@@ -1,7 +1,6 @@
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, Stack, Divider, FormControl, InputLabel, Select, MenuItem, FormHelperText } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Company } from "./Company.entity"
-import { useForm } from 'react-hook-form';
 import { remult } from "../common";
 import { ErrorInfo } from "remult";
 import { sectors } from "./Sectors";
@@ -32,7 +31,7 @@ export const CompanyEdit: React.FC<IProps> = ({ company, create, onSaved, onClos
     const handleSave = async () => {
         try {
             setErrors(undefined);
-            let newCompany = create ? await companyRepo.save(state, true) : await companyRepo.save(state, company.id);
+            let newCompany = await companyRepo.save(state, create ? true : undefined);
             onSaved(newCompany)
             handleClose();
         }

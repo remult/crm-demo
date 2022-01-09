@@ -1,7 +1,6 @@
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@mui/material"
 import { useState } from "react";
 import { AccountManager } from "./AccountManager.entity"
-import { useForm } from 'react-hook-form';
 import { remult } from "../common";
 import { ErrorInfo } from "remult";
 
@@ -15,27 +14,22 @@ interface IProps {
 }
 
 export const AccountManagerEdit: React.FC<IProps> = ({ accountManager, create, onSaved, onClose }) => {
-    const { register, handleSubmit } = useForm({ defaultValues: accountManager });
+    const [state, setState] = useState(accountManager);
     const [errors, setErrors] = useState<ErrorInfo<AccountManager>>();
     const handleClose = () => {
         onClose();
     };
-    const handleSave =
-        handleSubmit(async data => {
-            try {
-                setErrors(undefined);
-                let newAccountManager = await amRepo.save({
-                    ...data
-                }, create);
-                onSaved(newAccountManager)
-                handleClose();
-            }
-            catch (err: any) {
-                setErrors(err);
-            }
-        }, invalid => {
-            console.log(invalid);
-        })
+    const handleSave = async () => {
+        try {
+            setErrors(undefined);
+            let newAccountManager = await amRepo.save(state, create ? true : undefined);
+            onSaved(newAccountManager)
+            handleClose();
+        }
+        catch (err: any) {
+            setErrors(err);
+        }
+    }
 
 
     return (<div>
@@ -56,21 +50,24 @@ export const AccountManagerEdit: React.FC<IProps> = ({ accountManager, create, o
                         error={Boolean(errors?.modelState?.firstName)}
                         helperText={errors?.modelState?.firstName}
                         fullWidth
-                        {...register("firstName")}
+                        value={state.firstName}
+                        onChange={e => setState({ ...state, firstName: e.target.value })}
                     />
                     <TextField
                         label="Last Name"
                         fullWidth
                         error={Boolean(errors?.modelState?.lastName)}
                         helperText={errors?.modelState?.lastName}
-                        {...register("lastName")}
+                        value={state.lastName}
+                        onChange={e => setState({ ...state, lastName: e.target.value })}
                     />
                     <TextField
                         label="email"
                         fullWidth
                         error={Boolean(errors?.modelState?.email)}
                         helperText={errors?.modelState?.email}
-                        {...register("email")}
+                        value={state.email}
+                        onChange={e => setState({ ...state, email: e.target.value })}
                     />
 
                 </Box>
