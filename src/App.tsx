@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import { Link, Route, Routes } from 'react-router-dom';
 import { AccountManagersList } from './AccountManagers/AccountManagersList';
-import { CompanysList } from './Companies/CompaniesList';
+import { CompaniesList } from './Companies/CompaniesList';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <div className="App">
         <h1>Welcome to React Router!</h1>
         <Routes>
-          <Route path="/" element={<AccountManagersList />} />
+          <Route path="/" element={<CompaniesList />} />
           <Route path="about" element={<About />} />
         </Routes>
       </div>

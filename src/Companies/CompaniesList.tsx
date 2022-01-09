@@ -9,7 +9,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 const amRepo = remult.repo(Company);
 
-export const CompanysList: React.FC<{}> = () => {
+export const CompaniesList: React.FC<{}> = () => {
     const [companys, setCompanys] = useState<Company[]>([]);
     const loadCompanys = useCallback(() => amRepo.find().then(setCompanys), []);
     useEffect(() => {

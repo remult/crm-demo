@@ -30,6 +30,6 @@ export class Company {
     stateAbbr: string = '';
     @Field(o => o.valueType = AccountManager)
     accountManager!: AccountManager;
-    @Field()
-    created_at: string = '';
+    @Field({ allowApiUpdate: false })
+    created_at: Date = new Date();
 }
