@@ -1,10 +1,10 @@
-import { Entity, Field, UuidField } from "remult";
+import { Entity, Field, UuidField, Validators } from "remult";
 
 @Entity("accountManagers", { allowApiCrud: true })
 export class AccountManager {
     @UuidField()
     id: string = '';
-    @Field()
+    @Field({ validate: Validators.required })
     firstName: string = '';
     @Field()
     lastName: string = '';

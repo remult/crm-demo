@@ -1,0 +1,32 @@
+[
+  {
+    "id": "6f031aad-3175-4780-b805-130a72cfe7c7",
+    "firstName": "Noam",
+    "lastName": "Honig",
+    "email": ""
+  },
+  {
+    "id": "8655f7c3-3e31-4b68-a34b-f3294aae7386",
+    "firstName": "Yael",
+    "lastName": "Honig",
+    "email": ""
+  },
+  {
+    "id": "c619a4a9-8ef4-491b-a837-b554622692f4",
+    "firstName": "One more",
+    "lastName": "",
+    "email": ""
+  },
+  {
+    "id": "fe618492-f394-4749-9b64-e12e0cbe92ae",
+    "firstName": "Yoni",
+    "lastName": "Rapoport",
+    "email": ""
+  },
+  {
+    "id": "9d408c75-be4d-4d6d-baec-5794ccbbad72",
+    "firstName": "Menachem",
+    "lastName": "Ainemer",
+    "email": ""
+  }
+]
