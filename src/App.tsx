@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Link, Route, Routes } from 'react-router-dom';
+import { AccountManagersList } from './AccountManagers/AccountManagersList';
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
       <div className="App">
         <h1>Welcome to React Router!</h1>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<AccountManagersList />} />
           <Route path="about" element={<About />} />
         </Routes>
       </div>
