@@ -2,6 +2,7 @@ import express from 'express';
 import { remultExpress } from 'remult/remult-express';
 import glob from 'glob';
 import path from 'path';
+import { generateDataIfEmpty } from './generateDataIfEmpty';
 
 let ext = "ts";
 let dir = "src";
@@ -17,5 +18,9 @@ for (const type of ["entity", "controller"]) {
 }
 
 const app = express();
-app.use(remultExpress());
+const api = remultExpress();
+app.use(api);
+api.getRemult(undefined!).then(remult => {
+    generateDataIfEmpty(remult);
+});
 app.listen(3002, () => console.log("Server started"));
