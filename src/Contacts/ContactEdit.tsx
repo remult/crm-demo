@@ -118,7 +118,7 @@ export const ContactEdit: React.FC<IProps> = ({ contact, create, onSaved, onClos
                         <Divider />
 
                         <TextField
-                            autoFocus
+
                             label="Email"
                             error={Boolean(errors?.modelState?.email)}
                             helperText={errors?.modelState?.email}
@@ -136,7 +136,7 @@ export const ContactEdit: React.FC<IProps> = ({ contact, create, onSaved, onClos
                                 onChange={e => setState({ ...state, phoneNumber1: e.target.value })}
                             />
                             <TextField
-                                autoFocus
+
                                 label="Phone number 2"
                                 error={Boolean(errors?.modelState?.phoneNumber2)}
                                 helperText={errors?.modelState?.phoneNumber2}
