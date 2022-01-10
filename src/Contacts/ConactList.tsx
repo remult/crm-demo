@@ -16,23 +16,27 @@ const amRepo = remult.repo(Contact);
 
 export const ContactsList: React.FC<{}> = () => {
     let [searchParams, setSearchParams] = useSearchParams();
-    const search = {
+    const filter = {
         search: searchParams.get("search") || '',
         status: searchParams.get("status") || '',
         tag: searchParams.get("tag") || ''
     };
+    const patchFilter = (f: Partial<typeof filter>) => {
+        setSearchParams({ ...filter, ...f });
+    }
+
 
     const [contacts, setContacts] = useState<Contact[]>([]);
     const loadContacts = useCallback(() => amRepo.find({
         where: {
             $or: [
-                { firstName: { $contains: search.search } },
-                { lastName: { $contains: search.search } }
+                { firstName: { $contains: filter.search } },
+                { lastName: { $contains: filter.search } }
             ],
-            status: search.status ? Status.helper.byId(search.status) : undefined,
-            tags: search.tag ? { $contains: search.tag } : undefined
+            status: filter.status ? Status.helper.byId(filter.status) : undefined,
+            tags: filter.tag ? { $contains: filter.tag } : undefined
         }, limit: 5
-    }).then(setContacts), [search.search, search.status, search.tag]);
+    }).then(setContacts), [filter.search, filter.status, filter.tag]);
     useEffect(() => {
         loadContacts()
     }, [loadContacts]);
@@ -48,9 +52,9 @@ export const ContactsList: React.FC<{}> = () => {
     return <Grid container spacing={2}>
         <Grid item xs={2}>
             <TextField label="Search" variant="filled"
-                value={search.search}
+                value={filter.search}
                 onChange={e =>
-                    setSearchParams({ ...search, search: e.target.value })
+                    patchFilter({ search: e.target.value })
                 } />
             <List dense={true}>
                 <ListItem>
@@ -59,15 +63,15 @@ export const ContactsList: React.FC<{}> = () => {
                 {Status.helper.getOptions().map((s: Status) => (<ListItem
                     key={s.id}
 
-                    secondaryAction={s.id.toString() == search.status &&
+                    secondaryAction={s.id.toString() == filter.status &&
                         <IconButton edge="end" aria-label="cancel" onClick={() => {
-                            setSearchParams({ ...search, size: '' })
+                            patchFilter({ status: '' })
                         }}>
                             <CancelIcon />
                         </IconButton>
                     }>
                     <ListItemButton onClick={() => {
-                        setSearchParams({ ...search, size: s.id.toString() });
+                        patchFilter({ status: s.id.toString() });
                     }}>
                         <ListItemText
                             primary={s.caption}
@@ -108,7 +112,7 @@ export const ContactsList: React.FC<{}> = () => {
             {
                 editContact && <ContactEdit
                     contact={editContact}
-                    
+
                     onClose={() => setEditContact(undefined)}
                     onSaved={(contact) => {
                         editContactSaved(contact)

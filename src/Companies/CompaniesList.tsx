@@ -16,20 +16,23 @@ const amRepo = remult.repo(Company);
 
 export const CompaniesList: React.FC<{}> = () => {
     let [searchParams, setSearchParams] = useSearchParams();
-    const search = {
+    const filter = {
         search: searchParams.get("search") || '',
         size: searchParams.get("size") || '',
         sector: searchParams.get("sector") || ''
     };
+    const patchFilter = (f: Partial<typeof filter>) => {
+        setSearchParams({ ...filter, ...f });
+    }
 
     const [companys, setCompanys] = useState<Company[]>([]);
     const loadCompanys = useCallback(() => amRepo.find({
         where: {
-            name: { $contains: search.search },
-            size: search.size ? CompanySize.helper.byId(search.size) : undefined,
-            sector: search.sector ? search.sector : undefined
+            name: { $contains: filter.search },
+            size: filter.size ? CompanySize.helper.byId(filter.size) : undefined,
+            sector: filter.sector ? filter.sector : undefined
         }, limit: 5
-    }).then(setCompanys), [search.search, search.size, search.sector]);
+    }).then(setCompanys), [filter.search, filter.size, filter.sector]);
     useEffect(() => {
         loadCompanys()
     }, [loadCompanys]);
@@ -45,9 +48,9 @@ export const CompaniesList: React.FC<{}> = () => {
     return <Grid container spacing={2}>
         <Grid item xs={2}>
             <TextField label="Search" variant="filled"
-                value={search.search}
+                value={filter.search}
                 onChange={e =>
-                    setSearchParams({ ...search, search: e.target.value })
+                    patchFilter({ search: e.target.value })
                 } />
             <List dense={true}>
                 <ListItem>
@@ -56,15 +59,15 @@ export const CompaniesList: React.FC<{}> = () => {
                 {CompanySize.helper.getOptions().map((s: CompanySize) => (<ListItem
                     key={s.id}
 
-                    secondaryAction={s.id.toString() == search.size &&
+                    secondaryAction={s.id.toString() == filter.size &&
                         <IconButton edge="end" aria-label="cancel" onClick={() => {
-                            setSearchParams({ ...search, size: '' })
+                            patchFilter({ size: '' })
                         }}>
                             <CancelIcon />
                         </IconButton>
                     }>
                     <ListItemButton onClick={() => {
-                        setSearchParams({ ...search, size: s.id.toString() });
+                        patchFilter({ size: s.id.toString() });
                     }}>
                         <ListItemText
                             primary={s.caption}
@@ -77,15 +80,15 @@ export const CompaniesList: React.FC<{}> = () => {
                 {sectors.map((s) => (<ListItem
                     key={s}
 
-                    secondaryAction={s.toString() == search.sector &&
+                    secondaryAction={s.toString() == filter.sector &&
                         <IconButton edge="end" aria-label="cancel" onClick={() => {
-                            setSearchParams({ ...search, sector: '' })
+                            patchFilter({ sector: '' })
                         }}>
                             <CancelIcon />
                         </IconButton>
                     }>
                     <ListItemButton onClick={() => {
-                        setSearchParams({ ...search, sector: s });
+                        patchFilter({ sector: s });
                     }}>
                         <ListItemText
 

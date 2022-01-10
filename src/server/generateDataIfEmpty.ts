@@ -4,6 +4,7 @@ import { name, internet, random, address, company, datatype, phone } from 'faker
 import { Company } from "../Companies/Company.entity";
 import { sectors } from "../Companies/Sectors";
 import { CompanySize } from "../Companies/CompanySize";
+import { Contact } from "../Contacts/Contact.entity";
 
 export async function generateDataIfEmpty(remult: Remult) {
     {
@@ -41,6 +42,18 @@ export async function generateDataIfEmpty(remult: Remult) {
                     stateAbbr: address.stateAbbr(),
                     website: internet.url(),
                     zipcode: address.zipCode()
+                }, true)
+            }
+        }
+    }
+    {
+        const repo = remult.repo(Contact);
+        const accountManagers = await remult.repo(AccountManager).find();
+        const companies = await remult.repo(Company).find();
+        if (await repo.count() == 0) {
+            for (let index = 0; index < 100; index++) {
+                await repo.save({
+
                 }, true)
             }
         }
