@@ -4,6 +4,8 @@ import './App.css';
 import { Link, Route, Routes } from 'react-router-dom';
 import { AccountManagersList } from './AccountManagers/AccountManagersList';
 import { CompaniesList } from './Companies/CompaniesList';
+import { ContactsList } from './Contacts/ConactList';
+
 
 function App() {
   return (
@@ -11,7 +13,7 @@ function App() {
       <div className="App">
         <h1>Welcome to React Router!</h1>
         <Routes>
-          <Route path="/" element={<CompaniesList />} />
+          <Route path="/" element={<ContactsList />} />
           <Route path="about" element={<About />} />
         </Routes>
       </div>
