@@ -14,7 +14,7 @@ function App() {
       <div className="App">
         <h1>Welcome to React Router!</h1>
         <Routes>
-          <Route path="/" element={<ContactsList />} />
+          <Route path="/" element={<AccountManagersList />} />
           <Route path="/companies" element={<CompaniesList />} />
           <Route path="/companies/:id" element={<CompanyShow />} />
 
