@@ -10,6 +10,7 @@ import { useSearchParams } from "react-router-dom";
 import { CompanySize } from "./CompanySize";
 import CancelIcon from '@mui/icons-material/Cancel';
 import { sectors } from "./Sectors";
+import { Link } from 'react-router-dom';
 
 
 const amRepo = remult.repo(Company);
@@ -107,21 +108,21 @@ export const CompaniesList: React.FC<{}> = () => {
                 Add Company
             </Button>
             <List>
-                {companys.map(am => (
-                    <ListItem disablePadding key={am.id} secondaryAction={
+                {companys.map(company => (
+                    <ListItem disablePadding key={company.id} secondaryAction={
                         <Stack direction="row" spacing={2}>
                             <IconButton edge="end" aria-label="edit"
-                                onClick={() => deleteCompany(am)}>
+                                onClick={() => deleteCompany(company)}>
                                 <DeleteIcon />
                             </IconButton>
                             <IconButton edge="end" aria-label="edit"
-                                onClick={() => setEditCompany(am)}>
+                                onClick={() => setEditCompany(company)}>
                                 <EditIcon />
                             </IconButton>
                         </Stack>
                     }>
-                        <ListItemButton>
-                            <ListItemText primary={am.name} />
+                        <ListItemButton component={Link} to={`/companies/${company.id}`}>
+                            <ListItemText primary={company.name} />
                         </ListItemButton>
                     </ListItem>
                 ))}

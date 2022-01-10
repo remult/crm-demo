@@ -5,6 +5,7 @@ import { Link, Route, Routes } from 'react-router-dom';
 import { AccountManagersList } from './AccountManagers/AccountManagersList';
 import { CompaniesList } from './Companies/CompaniesList';
 import { ContactsList } from './Contacts/ConactList';
+import { CompanyShow } from './Companies/CompanyShow';
 
 
 function App() {
@@ -14,7 +15,9 @@ function App() {
         <h1>Welcome to React Router!</h1>
         <Routes>
           <Route path="/" element={<ContactsList />} />
-          <Route path="about" element={<About />} />
+          <Route path="/companies" element={<CompaniesList />} />
+          <Route path="/companies/:id" element={<CompanyShow />} />
+
         </Routes>
       </div>
     </div>
@@ -22,35 +25,3 @@ function App() {
 }
 
 export default App;
-
-
-function Home() {
-  return (
-    <>
-      <main>
-        <h2>Welcome to the homepage!</h2>
-        <p>You can do this, I believe in you.</p>
-      </main>
-      <nav>
-        <Link to="/about">About</Link>
-      </nav>
-    </>
-  );
-}
-
-function About() {
-  return (
-    <>
-      <main>
-        <h2>Who are we?</h2>
-        <p>
-          That feels like an existential question, don't you
-          think?
-        </p>
-      </main>
-      <nav>
-        <Link to="/">Home</Link>
-      </nav>
-    </>
-  );
-}
