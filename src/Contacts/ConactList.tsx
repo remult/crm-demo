@@ -108,7 +108,7 @@ export const ContactsList: React.FC<{}> = () => {
             {
                 editContact && <ContactEdit
                     contact={editContact}
-                    create={false}
+                    
                     onClose={() => setEditContact(undefined)}
                     onSaved={(contact) => {
                         editContactSaved(contact)
@@ -117,7 +117,7 @@ export const ContactsList: React.FC<{}> = () => {
             {
                 newContact && <ContactEdit
                     contact={newContact}
-                    create={true}
+                    create
                     onClose={() => setNewContact(undefined)}
                     onSaved={() => {
                         loadContacts()

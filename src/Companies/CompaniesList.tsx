@@ -127,7 +127,6 @@ export const CompaniesList: React.FC<{}> = () => {
             {
                 editCompany && <CompanyEdit
                     company={editCompany}
-                    create={false}
                     onClose={() => setEditCompany(undefined)}
                     onSaved={(company) => {
                         editCompanySaved(company)
@@ -136,7 +135,7 @@ export const CompaniesList: React.FC<{}> = () => {
             {
                 newCompany && <CompanyEdit
                     company={newCompany}
-                    create={true}
+                    create
                     onClose={() => setNewCompany(undefined)}
                     onSaved={() => {
                         loadCompanys()

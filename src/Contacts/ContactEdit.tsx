@@ -36,7 +36,7 @@ export const ContactEdit: React.FC<IProps> = ({ contact, create, onSaved, onClos
     const handleSave = async () => {
         try {
             setErrors(undefined);
-            let newContact = await contactRepo.save(state, create ? true : undefined);
+            let newContact = await contactRepo.save(state, create);
             onSaved(newContact)
             handleClose();
         }

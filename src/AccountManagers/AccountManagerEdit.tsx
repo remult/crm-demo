@@ -22,7 +22,7 @@ export const AccountManagerEdit: React.FC<IProps> = ({ accountManager, create, o
     const handleSave = async () => {
         try {
             setErrors(undefined);
-            let newAccountManager = await amRepo.save(state, create ? true : undefined);
+            let newAccountManager = await amRepo.save(state, create);
             onSaved(newAccountManager)
             handleClose();
         }

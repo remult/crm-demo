@@ -54,14 +54,13 @@ export const AccountManagersList: React.FC<{}> = () => {
         </List>
         {editAccountManager && <AccountManagerEdit
             accountManager={editAccountManager}
-            create={false}
             onClose={() => setEditAccountManager(undefined)}
             onSaved={(accountManager) => {
                 editAccountManagerSaved(accountManager)
             }} />}
         {newAccountManager && <AccountManagerEdit
             accountManager={newAccountManager}
-            create={true}
+            create
             onClose={() => setNewAccountManager(undefined)}
             onSaved={() => {
                 loadAccountManagers()
