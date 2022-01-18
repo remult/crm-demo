@@ -1,19 +1,29 @@
-import { Box, Card, CardContent, Stack, Typography } from "@mui/material";
+import { TabContext, TabList, TabPanel } from "@mui/lab";
+import { Box, Card, CardContent, Stack, Tab, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { remult } from "../common";
+import { Contact } from "../Contacts/Contact.entity";
 import { Company } from "./Company.entity";
 import { CompanyAside } from "./CompanyAside";
 
 export const CompanyShow: React.FC<{}> = () => {
     let params = useParams();
     const [company, setCompany] = useState<Company>();
+    const [contacts, setContacts] = useState<Contact[]>();
+
     const [loading, setLoading] = useState(true);
+    const [currentTab, setCurrentTab] = React.useState('1');
+
     useEffect(() => {
-        remult.repo(Company).findId(params.id!).then(company => {
+        (async () => {
+            const company = await remult.repo(Company).findId(params.id!);
             setCompany(company);
+            if (company) {
+                setContacts(await remult.repo(Contact).find({ where: { company } }));
+            }
             setLoading(false)
-        });
+        })();
     }, [params.id]);
     if (loading)
         return <span>Loading</span>;
@@ -23,21 +33,35 @@ export const CompanyShow: React.FC<{}> = () => {
         <Box flex="1">
             <Card>
                 <CardContent>
-                    <Stack direction="row">
-                        <img src={company.logo} style={{ maxWidth: '100px' }} />
-                        <Stack sx={{ ml: 1 }} alignItems='flex-start'>
-                            <Typography variant="h5">
-                                {company.name}
-                            </Typography>
-                            <Typography variant="body1">
-                                {company.sector}, {company.size?.caption}
-                            </Typography>
+                    <Stack>
+                        <Stack direction="row">
+                            <img src={company.logo} style={{ maxWidth: '100px' }} />
+                            <Stack sx={{ ml: 1 }} alignItems='flex-start'>
+                                <Typography variant="h5">
+                                    {company.name}
+                                </Typography>
+                                <Typography variant="body1">
+                                    {company.sector}, {company.size?.caption}
+                                </Typography>
+                            </Stack>
                         </Stack>
+                        <Box sx={{ width: '100%', typography: 'body1' }}>
+                            <TabContext value={currentTab}>
+                                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                                    <TabList onChange={(_, v) => setCurrentTab(v)} aria-label="lab API tabs example">
+                                        <Tab label="Contacts" value="1" />
+                                        <Tab label="Deals" value="2" />
+                                    </TabList>
+                                </Box>
+                                <TabPanel value="1">Item One</TabPanel>
+                                <TabPanel value="2">Item Two</TabPanel>
+                            </TabContext>
+                        </Box>
                     </Stack>
                 </CardContent>
             </Card>
         </Box>
-        <CompanyAside company={company}></CompanyAside>
+        <CompanyAside company={company} setCompany={setCompany}></CompanyAside>
     </Box>
 }
 

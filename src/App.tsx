@@ -21,6 +21,7 @@ function App() {
           <Route path="/" element={<AccountManagersList />} />
           <Route path="/companies" element={<CompaniesList />} />
           <Route path="/companies/:id" element={<CompanyShow />} />
+          <Route path="/contacts" element={<ContactsList />} />
 
         </Routes>
       </div >

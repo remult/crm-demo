@@ -6,8 +6,11 @@ import { Gender } from "./Gender";
 import { Status } from "./Status";
 import { Tag } from "./Tags";
 
-@Entity("contacts", {
-    allowApiCrud: true
+@Entity<Contact>("contacts", {
+    allowApiCrud: true,
+    defaultOrderBy: {
+        lastName: "asc"
+    }
 })
 export class Contact {
     @UuidField()
@@ -20,7 +23,7 @@ export class Contact {
     gender: Gender = Gender.male;
     @Field()
     title: string = '';
-    @Field()
+    @Field(c => c.valueType = Company)
     company?: Company;
     @Field()
     phoneNumber1: string = '';
