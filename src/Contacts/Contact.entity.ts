@@ -14,7 +14,7 @@ import { Tag } from "./Tags";
 })
 export class Contact {
     @UuidField()
-    id?: string ;
+    id?: string;
     @Field()
     firstName: string = '';
     @Field()
@@ -45,4 +45,6 @@ export class Contact {
     accountManager?: AccountManager;
     @Field(s => s.valueType = Status)
     status: Status = Status.cold;
+    @Field(f => f.valueType = Date)
+    lastSeen: Date = new Date();
 }

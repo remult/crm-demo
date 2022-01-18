@@ -1,5 +1,5 @@
-import { Button, IconButton, List, ListItem, ListItemButton, ListItemText, Stack } from "@mui/material";
-import { useState } from "react";
+import { Avatar, Box, Button, IconButton, List, ListItem, ListItemAvatar, ListItemButton, ListItemSecondaryAction, ListItemText, Stack, Typography } from "@mui/material";
+import React, { useState } from "react";
 import { remult } from "../common"
 import { Contact } from "./Contact.entity"
 import AddIcon from '@mui/icons-material/Add';
@@ -7,6 +7,8 @@ import { ContactEdit } from "./ContactEdit";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Company } from "../Companies/Company.entity";
+import { amber } from "@mui/material/colors";
+import { formatDistance } from "date-fns";
 
 const amRepo = remult.repo(Contact);
 
@@ -34,6 +36,7 @@ export const ContactsList: React.FC<{
         newContact.company = defaultCompany;
         setEditContact(newContact);
     }
+    const now = Date.now();
     return <>
         <Button
             variant="contained"
@@ -42,22 +45,48 @@ export const ContactsList: React.FC<{
             Add Contact
         </Button>
         <List>
-            {contacts.map(am => (
-                <ListItem disablePadding key={am.id} secondaryAction={
+            {contacts.map(contact => (
+                <ListItem disablePadding key={contact.id} secondaryAction={
                     <Stack direction="row" spacing={2}>
                         <IconButton edge="end" aria-label="edit"
-                            onClick={() => deleteContact(am)}>
+                            onClick={() => deleteContact(contact)}>
                             <DeleteIcon />
                         </IconButton>
                         <IconButton edge="end" aria-label="edit"
-                            onClick={() => setEditContact(am)}>
+                            onClick={() => setEditContact(contact)}>
                             <EditIcon />
                         </IconButton>
                     </Stack>
                 }>
-                    <ListItemButton>
-                        <ListItemText primary={am.firstName + " " + am.lastName} />
-                    </ListItemButton>
+
+                    <ListItemAvatar>
+                        <Avatar src={contact.avatar} />
+                    </ListItemAvatar>
+                    <ListItemText
+                        primary={`${contact.firstName} ${contact.lastName}`}
+                        secondary={
+                            <>
+                                {contact.title} at{' '}
+                                {contact.company?.name}{' '}
+                                {`- ${0} notes `}
+                                {contact.tags.map(t => t.caption)}
+                            </>
+                        }
+                    />
+                    <ListItemSecondaryAction>
+                        <Typography variant="body1" color="textSecondary">
+                            last activity{' '}
+                            {contact.lastSeen ? formatDistance(contact.lastSeen, now) : ""}{' '}
+                            ago <Box
+                                width={10}
+                                height={10}
+                                display="inline-block"
+                                borderRadius={5}
+                                bgcolor={contact.status.color}
+                                component="span"
+                            />
+                        </Typography>
+                    </ListItemSecondaryAction>
                 </ListItem>
             ))}
 
