@@ -15,19 +15,21 @@ export const AccountManagersList: React.FC<{}> = () => {
     useEffect(() => {
         loadAccountManagers()
     }, [loadAccountManagers]);
-    const [newAccountManager, setNewAccountManager] = useState<AccountManager>();
     const [editAccountManager, setEditAccountManager] = useState<AccountManager>();
     const deleteAccountManager = async (deletedAccountManager: AccountManager) => {
         await amRepo.delete(deletedAccountManager);
         setAccountManagers(accountManagers.filter(accountManager => deletedAccountManager.id != accountManager.id));
     }
-    const editAccountManagerSaved = (editAccountManager: AccountManager) =>
-        setAccountManagers(accountManagers.map(accountManager => accountManager.id === editAccountManager.id ? editAccountManager : accountManager));
+    const editAccountManagerSaved = (editedAccountManager: AccountManager) => {
+        if (!editAccountManager?.id)
+            loadAccountManagers();
+        setAccountManagers(accountManagers.map(accountManager => accountManager.id === editedAccountManager.id ? editedAccountManager : accountManager));
+    }
 
     return <div>
         <Button
             variant="contained"
-            onClick={() => setNewAccountManager(amRepo.create())}
+            onClick={() => setEditAccountManager(new AccountManager())}
             startIcon={<AddIcon />}>
             Add Account Manager
         </Button>
@@ -58,12 +60,6 @@ export const AccountManagersList: React.FC<{}> = () => {
             onSaved={(accountManager) => {
                 editAccountManagerSaved(accountManager)
             }} />}
-        {newAccountManager && <AccountManagerEdit
-            accountManager={newAccountManager}
-            create
-            onClose={() => setNewAccountManager(undefined)}
-            onSaved={() => {
-                loadAccountManagers()
-            }} />}
+
     </div>
 }

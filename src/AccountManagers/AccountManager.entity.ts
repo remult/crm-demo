@@ -3,7 +3,7 @@ import { Entity, Field, UuidField, Validators } from "remult";
 @Entity("accountManagers", { allowApiCrud: true })
 export class AccountManager {
     @UuidField()
-    id?: string ;
+    id?: string;
     @Field({ validate: Validators.required })
     firstName: string = '';
     @Field()

@@ -10,10 +10,9 @@ interface IProps {
     accountManager: AccountManager;
     onClose: () => void;
     onSaved: (accountManager: AccountManager) => void;
-    create?: boolean;
 }
 
-export const AccountManagerEdit: React.FC<IProps> = ({ accountManager, create, onSaved, onClose }) => {
+export const AccountManagerEdit: React.FC<IProps> = ({ accountManager, onSaved, onClose }) => {
     const [state, setState] = useState(accountManager);
     const [errors, setErrors] = useState<ErrorInfo<AccountManager>>();
     const handleClose = () => {
@@ -22,7 +21,7 @@ export const AccountManagerEdit: React.FC<IProps> = ({ accountManager, create, o
     const handleSave = async () => {
         try {
             setErrors(undefined);
-            let newAccountManager = await amRepo.save(state, create );
+            let newAccountManager = await amRepo.save(state);
             onSaved(newAccountManager)
             handleClose();
         }
@@ -34,7 +33,7 @@ export const AccountManagerEdit: React.FC<IProps> = ({ accountManager, create, o
 
     return (<div>
         <Dialog open={Boolean(accountManager)} onClose={handleClose}>
-            <DialogTitle>{create ? "Create " : "Update "} Account Manager</DialogTitle>
+            <DialogTitle>{!accountManager.id ? "Create " : "Update "} Account Manager</DialogTitle>
             <DialogContent>
                 <Box
                     component="form"
