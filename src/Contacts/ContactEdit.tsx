@@ -16,12 +16,11 @@ interface IProps {
     contact: Contact;
     onClose: () => void;
     onSaved: (contact: Contact) => void;
-    create?: boolean;
 }
 
-export const ContactEdit: React.FC<IProps> = ({ contact, create, onSaved, onClose }) => {
-    const [accountManagers, setAccountManagers] = useState<AccountManager[]>([]);
-    const [companies, setCompanies] = useState<Company[]>([]);
+export const ContactEdit: React.FC<IProps> = ({ contact, onSaved, onClose }) => {
+    const [accountManagers, setAccountManagers] = useState<AccountManager[]>();
+    const [companies, setCompanies] = useState<Company[]>();
     useEffect(() => {
         remult.repo(AccountManager).find().then(setAccountManagers)
         remult.repo(Company).find().then(setCompanies)
@@ -36,7 +35,7 @@ export const ContactEdit: React.FC<IProps> = ({ contact, create, onSaved, onClos
     const handleSave = async () => {
         try {
             setErrors(undefined);
-            let newContact = await contactRepo.save(state, create);
+            let newContact = await contactRepo.save(state);
             onSaved(newContact)
             handleClose();
         }
@@ -48,7 +47,7 @@ export const ContactEdit: React.FC<IProps> = ({ contact, create, onSaved, onClos
 
     return (<div>
         <Dialog open={Boolean(contact)} onClose={handleClose}>
-            <DialogTitle>{create ? "Create " : "Update "} Contact</DialogTitle>
+            <DialogTitle>{!contact.id ? "Create " : "Update "} Contact</DialogTitle>
             <DialogContent>
                 <Box
                     component="form"
@@ -107,8 +106,8 @@ export const ContactEdit: React.FC<IProps> = ({ contact, create, onSaved, onClos
 
                                 labelId="company-label"
                                 label="Company"
-                                value={state.company?.id || ''}
-                                onChange={e => setState({ ...state, company: companies.find(x => x.id == e.target.value)! })}
+                                value={companies && (state.company?.id || '')}
+                                onChange={e => setState({ ...state, company: companies?.find(x => x.id == e.target.value)! })}
                             >
                                 <MenuItem value={''}></MenuItem>
                                 {companies?.map(s => (<MenuItem key={s.id} value={s.id}>{s.name}</MenuItem>))}
@@ -177,8 +176,8 @@ export const ContactEdit: React.FC<IProps> = ({ contact, create, onSaved, onClos
 
                                 labelId="accountManager-label"
                                 label="Account Manager"
-                                value={state.accountManager?.id || ''}
-                                onChange={e => setState({ ...state, accountManager: accountManagers.find(x => x.id == e.target.value)! })}
+                                value={accountManagers && (state.accountManager?.id || '')}
+                                onChange={e => setState({ ...state, accountManager: accountManagers?.find(x => x.id == e.target.value)! })}
                             >
                                 <MenuItem value={''}></MenuItem>
                                 {accountManagers?.map(s => (<MenuItem key={s.id} value={s.id}>{s.lastName + " " + s.firstName}</MenuItem>))}

@@ -1,30 +1,42 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 import { Link, Route, Routes } from 'react-router-dom';
 import { AccountManagersList } from './AccountManagers/AccountManagersList';
 import { CompaniesList } from './Companies/CompaniesList';
-import { ContactsList } from './Contacts/ConactList';
+import { ContactsPage } from './Contacts/ConactsPage';
 import { CompanyShow } from './Companies/CompanyShow';
-import { CssBaseline } from '@mui/material';
+import { AppBar, Box, Button, CssBaseline, GlobalStyles, Toolbar, Typography } from '@mui/material';
 
 
 function App() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <div className="App">
-        <div style={{ textAlign: "center" }}>
-          <h1>Welcome to React Router!</h1>
-        </div>
+      <GlobalStyles
+        styles={{
+          body: { backgroundColor: "#fafafa" }
+        }}
+      />
+
+      <AppBar position="static" sx={{ mb: 1 }}>
+        <Toolbar>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            CRM
+          </Typography>
+          <Button color="inherit" component={Link} to={`/companies`} >Companies</Button>
+          <Button color="inherit" component={Link} to={`/contacts`} >Contacts</Button>
+          <Button color="inherit" component={Link} to={`/accountManagers`} >Account Managers</Button>
+        </Toolbar>
+      </AppBar>
+      <Box sx={{ p: 1 }}>
         <Routes>
           <Route path="/" element={<AccountManagersList />} />
           <Route path="/companies" element={<CompaniesList />} />
           <Route path="/companies/:id" element={<CompanyShow />} />
-          <Route path="/contacts" element={<ContactsList />} />
+          <Route path="/contacts" element={<ContactsPage />} />
+          <Route path="/accountManagers" element={<AccountManagersList />} />
 
         </Routes>
-      </div >
+      </Box>
     </React.Fragment>
   );
 }

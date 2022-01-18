@@ -4,13 +4,14 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { remult } from "../common";
 import { Contact } from "../Contacts/Contact.entity";
+import { ContactsList } from "../Contacts/ContactsList";
 import { Company } from "./Company.entity";
 import { CompanyAside } from "./CompanyAside";
 
 export const CompanyShow: React.FC<{}> = () => {
     let params = useParams();
     const [company, setCompany] = useState<Company>();
-    const [contacts, setContacts] = useState<Contact[]>();
+    const [contacts, setContacts] = useState<Contact[]>([]);
 
     const [loading, setLoading] = useState(true);
     const [currentTab, setCurrentTab] = React.useState('1');
@@ -53,7 +54,9 @@ export const CompanyShow: React.FC<{}> = () => {
                                         <Tab label="Deals" value="2" />
                                     </TabList>
                                 </Box>
-                                <TabPanel value="1">Item One</TabPanel>
+                                <TabPanel value="1">
+                                    <ContactsList contacts={contacts} setContacts={setContacts} defaultCompany={company} />
+                                </TabPanel>
                                 <TabPanel value="2">Item Two</TabPanel>
                             </TabContext>
                         </Box>

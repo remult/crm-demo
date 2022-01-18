@@ -14,7 +14,7 @@ import { Tag } from "./Tags";
 })
 export class Contact {
     @UuidField()
-    id: string = '';
+    id?: string ;
     @Field()
     firstName: string = '';
     @Field()
