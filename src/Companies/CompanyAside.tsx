@@ -57,9 +57,9 @@ export const CompanyAside = ({
                     color="textSecondary"
                     component="span"
                 >
-                    Added on
-                </Typography>{' '}
-                {new Date(company.created_at).toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" })}
+                    Added on{' '}
+                    {new Date(company.created_at).toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" })}
+                </Typography>
                 <br />
                 <Typography
                     component="span"
