@@ -7,6 +7,7 @@ import { Contact } from "../Contacts/Contact.entity";
 import { ContactsList } from "../Contacts/ContactsList";
 import { Company } from "./Company.entity";
 import { CompanyAside } from "./CompanyAside";
+import { Logo } from "./Logo";
 
 export const CompanyShow: React.FC<{}> = () => {
     let params = useParams();
@@ -36,7 +37,7 @@ export const CompanyShow: React.FC<{}> = () => {
                 <CardContent>
                     <Stack>
                         <Stack direction="row">
-                            <img src={company.logo} style={{ maxWidth: '100px' }} />
+                        <Logo url={company.logo} title={company.name} sizeInPixels={42}/>
                             <Stack sx={{ ml: 1 }} alignItems='flex-start'>
                                 <Typography variant="h5">
                                     {company.name}

@@ -9,6 +9,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { Company } from "../Companies/Company.entity";
 import { amber } from "@mui/material/colors";
 import { formatDistance } from "date-fns";
+import { Link } from 'react-router-dom';
+import { StatusIndicator } from "./StatusIndicator";
 
 const amRepo = remult.repo(Contact);
 
@@ -58,33 +60,27 @@ export const ContactsList: React.FC<{
                         </IconButton>
                     </Stack>
                 }>
-
-                    <ListItemAvatar>
-                        <Avatar src={contact.avatar} />
-                    </ListItemAvatar>
-                    <ListItemText
-                        primary={`${contact.firstName} ${contact.lastName}`}
-                        secondary={
-                            <>
-                                {contact.title} at{' '}
-                                {contact.company?.name}{' '}
-                                {`- ${0} notes `}
-                                {contact.tags.map(t => t.caption)}
-                            </>
-                        }
-                    />
+                    <ListItemButton component={Link} to={`/contacts/${contact.id}`}>
+                        <ListItemAvatar>
+                            <Avatar src={contact.avatar} />
+                        </ListItemAvatar>
+                        <ListItemText
+                            primary={`${contact.firstName} ${contact.lastName}`}
+                            secondary={
+                                <>
+                                    {contact.title} at{' '}
+                                    {contact.company?.name}{' '}
+                                    {`- ${0} notes `}
+                                    {contact.tags.map(t => t.caption)}
+                                </>
+                            }
+                        />
+                    </ListItemButton>
                     <ListItemSecondaryAction>
                         <Typography variant="body1" color="textSecondary">
                             last activity{' '}
                             {contact.lastSeen ? formatDistance(contact.lastSeen, now) : ""}{' '}
-                            ago <Box
-                                width={10}
-                                height={10}
-                                display="inline-block"
-                                borderRadius={5}
-                                bgcolor={contact.status.color}
-                                component="span"
-                            />
+                            ago <StatusIndicator status={contact.status}></StatusIndicator>
                         </Typography>
                     </ListItemSecondaryAction>
                 </ListItem>

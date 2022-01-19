@@ -26,7 +26,7 @@ export const CompaniesList: React.FC<{}> = () => {
         setSearchParams({ ...filter, ...f });
     }
 
-    const [companys, setCompanys] = useState<Company[]>([]);
+    const [companies, setCompanys] = useState<Company[]>([]);
     const loadCompanys = useCallback(() => amRepo.find({
         where: {
             name: { $contains: filter.search },
@@ -41,10 +41,10 @@ export const CompaniesList: React.FC<{}> = () => {
     const [editCompany, setEditCompany] = useState<Company>();
     const deleteCompany = async (deletedCompany: Company) => {
         await amRepo.delete(deletedCompany);
-        setCompanys(companys.filter(company => deletedCompany.id != company.id));
+        setCompanys(companies.filter(company => deletedCompany.id != company.id));
     }
     const editCompanySaved = (editCompany: Company) =>
-        setCompanys(companys.map(company => company.id === editCompany.id ? editCompany : company));
+        setCompanys(companies.map(company => company.id === editCompany.id ? editCompany : company));
 
     return <Grid container spacing={2}>
         <Grid item xs={2}>
@@ -108,7 +108,7 @@ export const CompaniesList: React.FC<{}> = () => {
                 Add Company
             </Button>
             <List>
-                {companys.map(company => (
+                {companies.map(company => (
                     <ListItem disablePadding key={company.id} secondaryAction={
                         <Stack direction="row" spacing={2}>
                             <IconButton edge="end" aria-label="edit"

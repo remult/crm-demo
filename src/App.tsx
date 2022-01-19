@@ -5,6 +5,7 @@ import { CompaniesList } from './Companies/CompaniesList';
 import { ContactsPage } from './Contacts/ConactsPage';
 import { CompanyShow } from './Companies/CompanyShow';
 import { AppBar, Box, Button, CssBaseline, GlobalStyles, Toolbar, Typography } from '@mui/material';
+import { ContactShow } from './Contacts/ContactShow';
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
           <Route path="/companies/:id" element={<CompanyShow />} />
           <Route path="/contacts" element={<ContactsPage />} />
           <Route path="/accountManagers" element={<AccountManagersList />} />
+          <Route path="/contacts/:id" element={<ContactShow />} />
 
         </Routes>
       </Box>
