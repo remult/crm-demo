@@ -2,7 +2,7 @@ import express from 'express';
 import { remultExpress } from 'remult/remult-express';
 import glob from 'glob';
 import path from 'path';
-import { generateDataIfEmpty } from './generateDataIfEmpty';
+import { seed } from './seed';
 
 let ext = "ts";
 let dir = "src";
@@ -19,7 +19,7 @@ for (const type of ["entity", "controller"]) {
 
 const app = express();
 const api = remultExpress({
-    initApi: generateDataIfEmpty
+    initApi: seed
 });
 app.use(api);
 

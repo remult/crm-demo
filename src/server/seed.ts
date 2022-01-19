@@ -10,7 +10,7 @@ import { Acquisition } from "../Contacts/Acquisition";
 import { Status } from "../Contacts/Status";
 import { ContactNote } from "../Contacts/ContactNote.entity";
 
-export async function generateDataIfEmpty(remult: Remult) {
+export async function seed(remult: Remult) {
     {
         const repo = remult.repo(AccountManager);
         if (await repo.count() == 0) {
