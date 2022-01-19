@@ -1,6 +1,6 @@
-import { Avatar, Box, Card, CardContent, Typography, TextField, Button, Select, MenuItem } from "@mui/material";
+import { Avatar, Box, Card, CardContent, Typography, TextField, Button, Select, MenuItem, Link } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link as RouterLink } from "react-router-dom";
 import { remult } from "../common";
 import { Contact } from "../Contacts/Contact.entity";
 import { ContactNote } from "./ContactNote.entity";
@@ -52,7 +52,10 @@ export const ContactShow: React.FC<{}> = () => {
                                 {contact.firstName} {contact.lastName}
                             </Typography>
                             <Typography variant="body1">
-                                {contact.title} at {contact.company?.name}
+                                {contact.title} at {' '}
+                                <Link component={RouterLink} to={`/companies/${contact.company?.id}`}>
+                                    {contact.company?.name}
+                                </Link>
                             </Typography>
                         </Box>
                         <Box>
