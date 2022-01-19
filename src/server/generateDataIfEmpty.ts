@@ -16,11 +16,11 @@ export async function generateDataIfEmpty(remult: Remult) {
             for (let index = 0; index < 10; index++) {
                 const firstName = name.firstName();
                 const lastName = name.lastName();
-                await repo.save({
+                await repo.insert({
                     firstName,
                     lastName,
                     email: internet.email(firstName, lastName)
-                }, true)
+                })
             }
         }
     }
@@ -30,7 +30,7 @@ export async function generateDataIfEmpty(remult: Remult) {
         if (await repo.count() == 0) {
             for (let index = 0; index < 100; index++) {
                 const name = company.companyName();
-                await repo.save({
+                await repo.insert({
                     accountManager: random.arrayElement(accountManagers),
                     address: address.streetAddress(),
                     city: address.city(),
@@ -45,7 +45,7 @@ export async function generateDataIfEmpty(remult: Remult) {
                     stateAbbr: address.stateAbbr(),
                     website: internet.url(),
                     zipcode: address.zipCode()
-                }, true)
+                })
             }
         }
     }
@@ -58,7 +58,7 @@ export async function generateDataIfEmpty(remult: Remult) {
                 const firstName = name.firstName();
                 const lastName = name.lastName();
                 const title = company.bsAdjective();
-                await repo.save({
+                await repo.insert({
                     firstName,
                     lastName,
                     gender: random.arrayElement(Gender.helper.getOptions()),
@@ -73,7 +73,7 @@ export async function generateDataIfEmpty(remult: Remult) {
                     status: random.arrayElement(Status.helper.getOptions()),
                     company: random.arrayElement(companies),
                     accountManager: random.arrayElement(accountManagers)
-                }, true)
+                })
             }
         }
     }

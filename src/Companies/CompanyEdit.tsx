@@ -13,10 +13,9 @@ interface IProps {
     company: Company;
     onClose: () => void;
     onSaved: (company: Company) => void;
-    create?: boolean;
 }
 
-export const CompanyEdit: React.FC<IProps> = ({ company, create, onSaved, onClose }) => {
+export const CompanyEdit: React.FC<IProps> = ({ company, onSaved, onClose }) => {
     const [accountManagers, setAccountManagers] = useState<AccountManager[]>([]);
     useEffect(() => {
         remult.repo(AccountManager).find().then(setAccountManagers)
@@ -31,7 +30,7 @@ export const CompanyEdit: React.FC<IProps> = ({ company, create, onSaved, onClos
     const handleSave = async () => {
         try {
             setErrors(undefined);
-            let newCompany = await companyRepo.save(state, create ? true : undefined);
+            let newCompany = await companyRepo.save(state);
             onSaved(newCompany)
             handleClose();
         }
@@ -43,7 +42,7 @@ export const CompanyEdit: React.FC<IProps> = ({ company, create, onSaved, onClos
 
     return (<div>
         <Dialog open={Boolean(company)} onClose={handleClose}>
-            <DialogTitle>{create ? "Create " : "Update "} Company</DialogTitle>
+            <DialogTitle>{!company.id ? "Create " : "Update "} Company</DialogTitle>
             <DialogContent>
                 <Box
                     component="form"

@@ -26,26 +26,28 @@ export const CompaniesList: React.FC<{}> = () => {
         setSearchParams({ ...filter, ...f });
     }
 
-    const [companys, setCompanys] = useState<Company[]>([]);
-    const loadCompanys = useCallback(() => amRepo.find({
+    const [companys, setCompanies] = useState<Company[]>([]);
+    const loadCompanies = useCallback(() => amRepo.find({
         where: {
             name: { $contains: filter.search },
             size: filter.size ? CompanySize.helper.byId(filter.size) : undefined,
             sector: filter.sector ? filter.sector : undefined
         }, limit: 5
-    }).then(setCompanys), [filter.search, filter.size, filter.sector]);
+    }).then(setCompanies), [filter.search, filter.size, filter.sector]);
     useEffect(() => {
-        loadCompanys()
-    }, [loadCompanys]);
-    const [newCompany, setNewCompany] = useState<Company>();
+        loadCompanies()
+    }, [loadCompanies]);
     const [editCompany, setEditCompany] = useState<Company>();
     const deleteCompany = async (deletedCompany: Company) => {
         await amRepo.delete(deletedCompany);
-        setCompanys(companys.filter(company => deletedCompany.id != company.id));
+        setCompanies(companys.filter(company => deletedCompany.id != company.id));
     }
-    const editCompanySaved = (editCompany: Company) =>
-        setCompanys(companys.map(company => company.id === editCompany.id ? editCompany : company));
-
+    const editCompanySaved = (editedCompany: Company) => {
+        if (editCompany?.id === undefined)
+            loadCompanies();
+        else
+            setCompanies(companys.map(company => company.id === editCompany.id ? editedCompany : company));
+    }
     return <Grid container spacing={2}>
         <Grid item xs={2}>
             <TextField label="Search" variant="filled"
@@ -103,7 +105,7 @@ export const CompaniesList: React.FC<{}> = () => {
         <Grid item xs={10}>
             <Button
                 variant="contained"
-                onClick={() => setNewCompany(amRepo.create())}
+                onClick={() => setEditCompany(new Company())}
                 startIcon={<AddIcon />}>
                 Add Company
             </Button>
@@ -136,15 +138,7 @@ export const CompaniesList: React.FC<{}> = () => {
                         editCompanySaved(company)
                     }} />
             }
-            {
-                newCompany && <CompanyEdit
-                    company={newCompany}
-                    create
-                    onClose={() => setNewCompany(undefined)}
-                    onSaved={() => {
-                        loadCompanys()
-                    }} />
-            }
+
         </Grid>
     </Grid >
 }
