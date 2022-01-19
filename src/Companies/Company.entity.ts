@@ -5,7 +5,7 @@ import { CompanySize } from "./CompanySize";
 @Entity("companies", { allowApiCrud: true })
 export class Company {
     @UuidField()
-    id: string = '';
+    id?: string;
     @Field()
     name: string = '';
     @Field()
@@ -30,6 +30,6 @@ export class Company {
     stateAbbr: string = '';
     @Field(o => o.valueType = AccountManager)
     accountManager!: AccountManager;
-    @Field({ allowApiUpdate: false },o=>o.valueType = Date)
+    @Field({ allowApiUpdate: false }, o => o.valueType = Date)
     created_at: Date = new Date();
 }

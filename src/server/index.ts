@@ -18,9 +18,9 @@ for (const type of ["entity", "controller"]) {
 }
 
 const app = express();
-const api = remultExpress();
-app.use(api);
-api.getRemult(undefined!).then(remult => {
-    generateDataIfEmpty(remult);
+const api = remultExpress({
+    initApi: generateDataIfEmpty
 });
+app.use(api);
+
 app.listen(3002, () => console.log("Server started"));
