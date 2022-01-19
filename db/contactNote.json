@@ -23998,5 +23998,19 @@
     "accountManager": "894d8a6f-4f21-42a5-bae3-85e9df0c6f38",
     "createdAt": "2022-01-18T19:51:35.581Z",
     "status": "warm"
+  },
+  {
+    "id": "59042883-657b-46f0-beda-48c731489aac",
+    "contact": "c1532f19-8a0d-4095-9bde-ee4c9eb4c9ed",
+    "text": "asdfasdf",
+    "createdAt": "2022-01-19T13:54:20.170Z",
+    "status": "cold"
+  },
+  {
+    "id": "a02707d8-c532-41c8-b7e8-083aa35a0223",
+    "contact": "c1532f19-8a0d-4095-9bde-ee4c9eb4c9ed",
+    "text": "asdfasdfasdf",
+    "createdAt": "2022-01-19T13:56:21.602Z",
+    "status": "cold"
   }
 ]

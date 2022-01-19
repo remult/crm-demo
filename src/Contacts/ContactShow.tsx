@@ -1,4 +1,4 @@
-import { Avatar, Box, Card, CardContent, Stack, Tab, Typography } from "@mui/material";
+import { Avatar, Box, Card, CardContent, Typography, TextField, Button, Select, MenuItem } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { remult } from "../common";
@@ -7,6 +7,8 @@ import { ContactNote } from "./ContactNote.entity";
 import { ContactAside } from "./ContactAside"
 import { Logo } from "../Companies/Logo";
 import { StatusIndicator } from "./StatusIndicator";
+import { DateTimePicker } from "@mui/lab";
+import { Status } from "./Status";
 
 export const ContactShow: React.FC<{}> = () => {
     let params = useParams();
@@ -15,12 +17,20 @@ export const ContactShow: React.FC<{}> = () => {
 
     const [loading, setLoading] = useState(true);
 
+    const [newNote, setNewNote] = useState(new ContactNote())
+
+    const submitNewNote = async () => {
+        const submittedNote = await remult.repo(ContactNote).insert({ ...newNote, contact });
+        setNotes([submittedNote, ...notes]);
+        setNewNote(new ContactNote())
+    }
+
     useEffect(() => {
         (async () => {
             const contact = await remult.repo(Contact).findId(params.id!);
             setContact(contact);
             if (contact) {
-                setNotes(await remult.repo(ContactNote).find({ where: { contact } }));
+                setNotes(await remult.repo(ContactNote).find({ where: { contact }, orderBy: { createdAt: "desc" } }));
             }
             setLoading(false)
         })();
@@ -50,11 +60,52 @@ export const ContactShow: React.FC<{}> = () => {
                         </Box>
                     </Box>
 
+                    <Box mt={2}>
+                        <TextField
+                            label="Add a note"
+                            size="small"
+                            fullWidth
+                            multiline
+                            value={newNote.text}
+                            onChange={(e: any) => setNewNote({ ...newNote, text: e.target.value })}
+                            rows={3}
+                        />
+
+                        <Box mt={1} display="flex">
+                            <Box component="span" flex="1">
+                                <Select
+                                    labelId="status-label"
+                                    label="Status"
+                                    value={newNote.status?.id}
+                                    onChange={e => setNewNote({ ...newNote, status: Status.helper.byId(e.target.value)! })}
+                                    disabled={!newNote.text || loading}
+                                >
+                                    {Status.helper.getOptions().map(s => (<MenuItem key={s.id} value={s.id}>{s.caption}</MenuItem>))}
+                                </Select>
+
+                                <DateTimePicker
+                                    value={newNote.createdAt}
+                                    onChange={d => setNewNote({ ...newNote, createdAt: d || new Date() })}
+                                    renderInput={p => <TextField {...p} />}
+                                    disabled={!newNote.text || loading}
+                                />
+                            </Box>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                disabled={!newNote.text || loading}
+                                onClick={() => submitNewNote()}
+                            >
+                                Add this note
+                            </Button>
+                        </Box>
+                    </Box>
+
                     {notes.map((note) => (<Box key={note.id} mt={2}>
-                        {note.contact.firstName} 
+                        {note.accountManager?.firstName}
                         added a note on {' '}
                         {note.createdAt.toLocaleString()}{' '}
-                        <StatusIndicator status={note.status}/>
+                        <StatusIndicator status={note.status} />
                         <Card>
                             <CardContent>
                                 <Typography variant="body1">
@@ -68,6 +119,6 @@ export const ContactShow: React.FC<{}> = () => {
             </Card>
         </Box>
         <ContactAside contact={contact} setContact={setContact}></ContactAside>
-    </Box>
+    </Box >
 }
 
