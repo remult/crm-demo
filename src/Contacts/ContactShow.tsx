@@ -1,4 +1,4 @@
-import { Avatar, Box, Card, CardContent, Typography, TextField, Button, Select, MenuItem, Link } from "@mui/material";
+import { Avatar, Box, Card, CardContent, Typography, TextField, Button, Select, MenuItem, Link, Stack, FormControl, InputLabel } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useParams, Link as RouterLink } from "react-router-dom";
 import { remult } from "../common";
@@ -70,21 +70,25 @@ export const ContactShow: React.FC<{}> = () => {
                             fullWidth
                             multiline
                             value={newNote.text}
+                            variant="filled"
                             onChange={(e: any) => setNewNote({ ...newNote, text: e.target.value })}
                             rows={3}
                         />
 
                         <Box mt={1} display="flex">
-                            <Box component="span" flex="1">
-                                <Select
-                                    labelId="status-label"
-                                    label="Status"
-                                    value={newNote.status?.id}
-                                    onChange={e => setNewNote({ ...newNote, status: Status.helper.byId(e.target.value)! })}
-                                    disabled={!newNote.text || loading}
-                                >
-                                    {Status.helper.getOptions().map(s => (<MenuItem key={s.id} value={s.id}>{s.caption}</MenuItem>))}
-                                </Select>
+                            <Stack direction="row" spacing={1} flex={1} >
+                                <FormControl sx={{ flexGrow: 1 }}>
+                                    <InputLabel id="status-label">Status</InputLabel>
+                                    <Select
+                                        labelId="status-label"
+                                        label="Status"
+                                        value={newNote.status?.id}
+                                        onChange={e => setNewNote({ ...newNote, status: Status.helper.byId(e.target.value)! })}
+                                        disabled={!newNote.text || loading}
+                                    >
+                                        {Status.helper.getOptions().map(s => (<MenuItem key={s.id} value={s.id}>{s.caption}</MenuItem>))}
+                                    </Select>
+                                </FormControl>
 
                                 <DateTimePicker
                                     value={newNote.createdAt}
@@ -92,7 +96,8 @@ export const ContactShow: React.FC<{}> = () => {
                                     renderInput={p => <TextField {...p} />}
                                     disabled={!newNote.text || loading}
                                 />
-                            </Box>
+
+                            </Stack>
                             <Button
                                 variant="contained"
                                 color="primary"
@@ -110,8 +115,8 @@ export const ContactShow: React.FC<{}> = () => {
                         {note.createdAt.toLocaleString()}{' '}
                         <StatusIndicator status={note.status} />
                         <Card>
-                            <CardContent>
-                                <Typography variant="body1">
+                            <CardContent sx={{ backgroundColor: '#edf3f0', p: 2, borderRadius: 2 }}>
+                                <Typography variant="body1" >
                                     {note.text}
                                 </Typography>
                             </CardContent>

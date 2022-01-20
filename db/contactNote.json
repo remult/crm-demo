@@ -24012,5 +24012,12 @@
     "text": "asdfasdfasdf",
     "createdAt": "2022-01-19T13:56:21.602Z",
     "status": "cold"
+  },
+  {
+    "id": "38d0dcd5-5b56-44a9-9456-ee998f202e21",
+    "contact": "afe364c1-d597-4b3a-9a8b-f76eaaae1e34",
+    "text": "132132132",
+    "createdAt": "2022-01-20T09:53:31.556Z",
+    "status": "hot"
   }
 ]

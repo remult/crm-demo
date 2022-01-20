@@ -24,7 +24,7 @@ function App() {
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               CRM
-          </Typography>
+            </Typography>
             <Button color="inherit" component={Link} to={`/companies`} >Companies</Button>
             <Button color="inherit" component={Link} to={`/contacts`} >Contacts</Button>
             <Button color="inherit" component={Link} to={`/accountManagers`} >Account Managers</Button>
