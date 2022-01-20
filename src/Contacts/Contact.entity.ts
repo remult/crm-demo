@@ -2,6 +2,7 @@ import { Entity, Field, UuidField } from "remult";
 import { AccountManager } from "../AccountManagers/AccountManager.entity";
 import { Company } from "../Companies/Company.entity";
 import { Acquisition } from "./Acquisition";
+import { ContactNote } from "./ContactNote.entity";
 import { Gender } from "./Gender";
 import { Status } from "./Status";
 import { Tag } from "./Tags";
@@ -47,4 +48,6 @@ export class Contact {
     status: Status = Status.cold;
     @Field(f => f.valueType = Date)
     lastSeen: Date = new Date();
+    @Field((options, remult) => options.serverExpression = async contact => remult.repo(ContactNote).count({ contact }))
+    nbNotes: number = 0;
 }

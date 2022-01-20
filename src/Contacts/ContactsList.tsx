@@ -70,7 +70,7 @@ export const ContactsList: React.FC<{
                                 <>
                                     {contact.title} at{' '}
                                     {contact.company?.name}{' '}
-                                    {`- ${0} notes `}
+                                    {`- ${contact.nbNotes} notes `}
                                     {contact.tags.map(t => t.caption)}
                                 </>
                             }
