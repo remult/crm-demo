@@ -78,7 +78,7 @@ export const ContactShow: React.FC<{}> = () => {
 
                         <Box mt={1} display="flex">
                             <Stack direction="row" spacing={1} flex={1} >
-                                <FormControl sx={{ flexGrow: 1 }}>
+                                <FormControl sx={{ flexGrow: 1, visibility: newNote.text ? 'visible' : 'hidden' }} size="small" variant="filled">
                                     <InputLabel id="status-label">Status</InputLabel>
                                     <Select
                                         labelId="status-label"
@@ -90,13 +90,22 @@ export const ContactShow: React.FC<{}> = () => {
                                         {Status.helper.getOptions().map(s => (<MenuItem key={s.id} value={s.id}> <Box component="span" sx={{ mr: 1 }}>{s.caption} </Box> <StatusIndicator status={s} /></MenuItem>))}
                                     </Select>
                                 </FormControl>
-
-                                <DateTimePicker
-                                    value={newNote.createdAt}
-                                    onChange={d => setNewNote({ ...newNote, createdAt: d || new Date() })}
-                                    renderInput={p => <TextField {...p} />}
+                                <TextField variant="filled" sx={{ flexGrow: 1, visibility: newNote.text ? 'visible' : 'hidden' }}
+                                    size="small"
+                                    type="datetime-local"
                                     disabled={!newNote.text || loading}
+                                    value={newNote.createdAt.toLocaleString("sv-SE", {
+                                        year: "numeric",
+                                        month: "2-digit",
+                                        day: "2-digit",
+                                        hour: "2-digit",
+                                        minute: "2-digit",
+                                        second: "2-digit"
+                                    }).replace(" ", "T")}
+                                    onChange={e => setNewNote({ ...newNote, createdAt: new Date(e.target.value) })}
                                 />
+
+
 
 
                                 <Button
@@ -113,7 +122,7 @@ export const ContactShow: React.FC<{}> = () => {
 
                     {notes.map((note) => (<Box key={note.id} mt={2}>
                         {note.accountManager?.firstName}
-                        added a note on {' '}
+                        {' '} added a note on {' '}
                         {note.createdAt.toLocaleString()}{' '}
                         <StatusIndicator status={note.status} />
                         <Note note={note} onDelete={note => setNotes(notes.filter(n => n !== note))} />

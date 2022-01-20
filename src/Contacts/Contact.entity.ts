@@ -48,6 +48,7 @@ export class Contact {
     status: Status = Status.cold;
     @Field(f => f.valueType = Date)
     lastSeen: Date = new Date();
+    
     @Field((options, remult) => options.serverExpression = async contact => remult.repo(ContactNote).count({ contact }))
     nbNotes: number = 0;
 }
