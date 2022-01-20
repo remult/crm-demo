@@ -9,6 +9,7 @@ import { Logo } from "../Companies/Logo";
 import { StatusIndicator } from "./StatusIndicator";
 import { DateTimePicker } from "@mui/lab";
 import { Status } from "./Status";
+import { Note } from "./Note";
 
 export const ContactShow: React.FC<{}> = () => {
     let params = useParams();
@@ -86,7 +87,7 @@ export const ContactShow: React.FC<{}> = () => {
                                         onChange={e => setNewNote({ ...newNote, status: Status.helper.byId(e.target.value)! })}
                                         disabled={!newNote.text || loading}
                                     >
-                                        {Status.helper.getOptions().map(s => (<MenuItem key={s.id} value={s.id}>{s.caption}</MenuItem>))}
+                                        {Status.helper.getOptions().map(s => (<MenuItem key={s.id} value={s.id}> <Box component="span" sx={{ mr: 1 }}>{s.caption} </Box> <StatusIndicator status={s} /></MenuItem>))}
                                     </Select>
                                 </FormControl>
 
@@ -97,15 +98,16 @@ export const ContactShow: React.FC<{}> = () => {
                                     disabled={!newNote.text || loading}
                                 />
 
+
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    disabled={!newNote.text || loading}
+                                    onClick={() => submitNewNote()}
+                                >
+                                    Add this note
+                                </Button>
                             </Stack>
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                disabled={!newNote.text || loading}
-                                onClick={() => submitNewNote()}
-                            >
-                                Add this note
-                            </Button>
                         </Box>
                     </Box>
 
@@ -114,13 +116,7 @@ export const ContactShow: React.FC<{}> = () => {
                         added a note on {' '}
                         {note.createdAt.toLocaleString()}{' '}
                         <StatusIndicator status={note.status} />
-                        <Card>
-                            <CardContent sx={{ backgroundColor: '#edf3f0', p: 2, borderRadius: 2 }}>
-                                <Typography variant="body1" >
-                                    {note.text}
-                                </Typography>
-                            </CardContent>
-                        </Card>
+                        <Note note={note} onDelete={note => setNotes(notes.filter(n => n !== note))} />
                     </Box>
                     ))}
                 </CardContent>
