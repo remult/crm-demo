@@ -7,7 +7,7 @@ import { ContactNote } from "./ContactNote.entity";
 import { ContactAside } from "./ContactAside"
 import { Logo } from "../Companies/Logo";
 import { StatusIndicator } from "./StatusIndicator";
-import { DateTimePicker } from "@mui/lab";
+
 import { Status } from "./Status";
 import { Note } from "./Note";
 

@@ -1,4 +1,4 @@
-import {  Grid, IconButton, List, ListItem, ListItemButton, ListItemText,  TextField } from "@mui/material";
+import { Box, Chip, Grid, IconButton, List, ListItem, ListItemButton, ListItemText, TextField } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 import { remult } from "../common"
 import { Contact } from "./Contact.entity"
@@ -7,6 +7,7 @@ import { useSearchParams } from "react-router-dom";
 import CancelIcon from '@mui/icons-material/Cancel';
 import { Status } from "./Status";
 import { ContactsList } from "./ContactsList";
+import { Tag } from "./Tag.entity";
 
 
 const amRepo = remult.repo(Contact);
@@ -22,6 +23,7 @@ export const ContactsPage: React.FC<{}> = () => {
         setSearchParams({ ...filter, ...f });
     }
     const [contacts, setContacts] = useState<Contact[]>([]);
+    const [tags, setTags] = useState<Tag[]>([]);
     const loadContacts = useCallback(() => amRepo.find({
         where: {
             $or: [
@@ -29,13 +31,14 @@ export const ContactsPage: React.FC<{}> = () => {
                 { lastName: { $contains: filter.search } }
             ],
             status: filter.status ? Status.helper.byId(filter.status) : undefined,
-            tags: filter.tag ? { $contains: filter.tag } : undefined
+            $and: [filter.tag ? Contact.filterTag(filter.tag) : undefined!]
         }, limit: 50
     }).then(setContacts), [filter.search, filter.status, filter.tag]);
     useEffect(() => {
         loadContacts()
+        remult.repo(Tag).find().then(setTags);
     }, [loadContacts]);
-   
+
 
     return <Grid container spacing={2}>
         <Grid item xs={2}>
@@ -66,6 +69,26 @@ export const ContactsPage: React.FC<{}> = () => {
                         />
                     </ListItemButton>
                 </ListItem>))}
+
+            </List>
+            <List dense={true}>
+                <ListItem>
+                    <ListItemText>TAGS</ListItemText>
+                </ListItem>
+                {tags.map((tag: Tag) => (
+                    <Box mt={1} mb={1} key={tag.id}>
+                        <Chip onClick={() => {
+                            patchFilter({ tag: tag.tag });
+                        }}
+                            size="small"
+                            variant="outlined"
+                            onDelete={tag.tag == filter.tag ? (() => patchFilter({ tag: '' })) : undefined}
+                            label={tag.tag}
+                            style={{ backgroundColor: tag.color, border: 1 }}
+                        />
+                    </Box>
+
+                ))}
 
             </List>
         </Grid>

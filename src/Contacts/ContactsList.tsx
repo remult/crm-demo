@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, IconButton, List, ListItem, ListItemAvatar, ListItemButton, ListItemSecondaryAction, ListItemText, Stack, Typography } from "@mui/material";
+import { Avatar, Box, Button, Chip, IconButton, List, ListItem, ListItemAvatar, ListItemButton, ListItemSecondaryAction, ListItemText, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { remult } from "../common"
 import { Contact } from "./Contact.entity"
@@ -71,7 +71,13 @@ export const ContactsList: React.FC<{
                                     {contact.title} at{' '}
                                     {contact.company?.name}{' '}
                                     {`- ${contact.nbNotes} notes `}
-                                    {contact.tags.map(t => t.caption)}
+                                    {contact.tags.map(tag => (<Chip key={tag.id}
+                                        sx={{ m: 0.5 }}
+                                        size="small"
+                                        variant="outlined"
+                                        label={tag.tag}
+                                        style={{ backgroundColor: tag.color }} />
+                                    ))}
                                 </>
                             }
                         />

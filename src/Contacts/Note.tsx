@@ -56,8 +56,8 @@ export const Note: React.FC<{ note: ContactNote, onDelete: (note: ContactNote) =
         </Box>
     </Box>)
         :
-        (<Card>
-            <CardContent sx={{ backgroundColor: '#edf3f0', p: 2, borderRadius: 2 }}
+        (<Card sx={{ backgroundColor: '#edf3f0', p: 2, borderRadius: 2 }}>
+            <CardContent 
                 onMouseEnter={() => setHover(true)}
                 onMouseLeave={() => setHover(false)}>
                 <Stack direction="row">
@@ -68,7 +68,10 @@ export const Note: React.FC<{ note: ContactNote, onDelete: (note: ContactNote) =
                         <Tooltip title="Edit note">
                             <IconButton
                                 size="small"
-                                onClick={() => setEditing(true)}
+                                onClick={() => {
+                                    setEditing(true);
+                                    setHover(false);
+                                }}
                             >
                                 <EditIcon />
                             </IconButton>
