@@ -21,7 +21,7 @@ export class Contact {
     firstName: string = '';
     @Field()
     lastName: string = '';
-    @Field()
+    @Field(o => o.valueType = Gender)
     gender: Gender = Gender.male;
     @Field()
     title: string = '';
@@ -33,7 +33,7 @@ export class Contact {
     phoneNumber2: string = '';
     @Field()
     background: string = '';
-    @Field()
+    @Field(o => o.valueType = Acquisition)
     acquisition: Acquisition = Acquisition.inbound;
     @Field()
     email: string = '';
