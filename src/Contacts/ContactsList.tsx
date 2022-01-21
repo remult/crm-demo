@@ -71,12 +71,11 @@ export const ContactsList: React.FC<{
                                     {contact.title} at{' '}
                                     {contact.company?.name}{' '}
                                     {`- ${contact.nbNotes} notes `}
-                                    {contact.tags.map(tag => (<Chip key={tag.id}
-                                        sx={{ m: 0.5 }}
-                                        size="small"
-                                        variant="outlined"
-                                        label={tag.tag}
-                                        style={{ backgroundColor: tag.color }} />
+                                    {contact.tags.map(tag => (
+                                        <span key={tag.id}
+                                            style={{color:'InfoText' ,  backgroundColor: tag.color, padding: 4, paddingLeft: 8, paddingRight: 8, margin: 4, borderRadius: 20 }} >
+                                            {tag.tag}
+                                        </span>
                                     ))}
                                 </>
                             }
