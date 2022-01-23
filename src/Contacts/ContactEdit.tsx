@@ -1,4 +1,4 @@
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, Stack, Divider, FormControl, InputLabel, Select, MenuItem, FormHelperText, FormControlLabel, Switch } from "@mui/material";
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, Stack, Divider, FormControl, InputLabel, Select, MenuItem, FormHelperText, FormControlLabel, Switch, Autocomplete } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Contact } from "./Contact.entity"
 import { remult } from "../common";
@@ -20,11 +20,15 @@ interface IProps {
 
 export const ContactEdit: React.FC<IProps> = ({ contact, onSaved, onClose }) => {
     const [accountManagers, setAccountManagers] = useState<AccountManager[]>(contact.accountManager ? [contact.accountManager] : []);
-    const [companies, setCompanies] = useState<Company[]>(contact.company ? [contact.company] : []);
+    const [companies, setCompanies] = useState<CompanyAutoSelect[]>([]);
     useEffect(() => {
         remult.repo(AccountManager).find().then(setAccountManagers)
-        remult.repo(Company).find().then(setCompanies)
-    }, [])
+
+    }, []);
+    const [companySearch, setCompanySearch] = useState('');
+    useEffect(() => {
+        remult.repo(Company).find({ where: { name: { $contains: companySearch } }, limit: 20 }).then(x => setCompanies(x.map(mapCompanyToAutoComplete)))
+    }, [companySearch]);
 
     const [state, setState] = useState(contact);
 
@@ -101,17 +105,18 @@ export const ContactEdit: React.FC<IProps> = ({ contact, onSaved, onClose }) => 
                         </Stack>
                         <FormControl sx={{ flexGrow: 1 }}
                             error={Boolean(errors?.modelState?.accountManager)}>
-                            <InputLabel id="accountManager-label">Company</InputLabel>
-                            <Select
+                            <Autocomplete
+                                disablePortal
 
-                                labelId="company-label"
-                                label="Company"
-                                value={companies && (state.company?.id || '')}
-                                onChange={e => setState({ ...state, company: companies?.find(x => x.id === e.target.value)! })}
-                            >
-                                <MenuItem value={''}></MenuItem>
-                                {companies?.map(s => (<MenuItem key={s.id} value={s.id}>{s.name}</MenuItem>))}
-                            </Select>
+                                id="combo-box-demo"
+                                options={companies}
+                                value={state.company ? mapCompanyToAutoComplete(state.company) : null}
+                                inputValue={companySearch}
+                                onChange={(e, newValue: CompanyAutoSelect | null) => setState({ ...state, company: newValue ? newValue.company : null! })}
+                                onInputChange={(e, newInput) => setCompanySearch(newInput)}
+
+                                renderInput={(params) => <TextField {...params} label="Company" />}
+                            />
                             <FormHelperText>{errors?.modelState?.company}</FormHelperText>
                         </FormControl>
                         <Divider />
@@ -229,4 +234,16 @@ export const ContactEdit: React.FC<IProps> = ({ contact, onSaved, onClose }) => 
             </DialogActions>
         </Dialog>
     </div >)
+}
+
+interface CompanyAutoSelect {
+    label: string;
+    company: Company;
+}
+function mapCompanyToAutoComplete(company: Company): CompanyAutoSelect {
+
+    return {
+        company,
+        label: company.name
+    }
 }
