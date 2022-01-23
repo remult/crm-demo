@@ -122,7 +122,7 @@ function App() {
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title={currentUser.firstName + " " + currentUser.lastName}>
                 <IconButton onClick={(e) => setAnchorElUser(e.currentTarget)} sx={{ p: 0 }}>
-                  <Avatar alt={currentUser.firstName + " " + currentUser.lastName} src={"/static/images/avatar/2.jpg"} />
+                  <Avatar alt={currentUser.firstName + " " + currentUser.lastName} src={currentUser.avatar} />
                 </IconButton>
               </Tooltip>
               <Menu

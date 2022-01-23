@@ -1,4 +1,4 @@
-import { Button, IconButton, List, ListItem, ListItemButton, ListItemText, Stack } from "@mui/material";
+import { Avatar, Button, IconButton, List, ListItem, ListItemAvatar,  ListItemButton, ListItemText, Stack } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 import { remult } from "../common"
 import { AccountManager } from "./AccountManager.entity"
@@ -48,7 +48,10 @@ export const AccountManagersList: React.FC<{}> = () => {
                     </Stack>
                 }>
                     <ListItemButton>
-                        <ListItemText primary={am.lastName + " " + am.firstName} />
+                        <ListItemAvatar>
+                            <Avatar src={am.avatar} />
+                        </ListItemAvatar>
+                        <ListItemText primary={am.firstName + " " + am.lastName} />
                     </ListItemButton>
                 </ListItem>
             ))}

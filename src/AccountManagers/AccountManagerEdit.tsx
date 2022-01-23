@@ -68,6 +68,14 @@ export const AccountManagerEdit: React.FC<IProps> = ({ accountManager, onSaved, 
                         value={state.email}
                         onChange={e => setState({ ...state, email: e.target.value })}
                     />
+                      <TextField
+                        label="Avatar"
+                        fullWidth
+                        error={Boolean(errors?.modelState?.avatar)}
+                        helperText={errors?.modelState?.avatar}
+                        value={state.avatar}
+                        onChange={e => setState({ ...state, avatar: e.target.value })}
+                    />
 
                 </Box>
             </DialogContent>

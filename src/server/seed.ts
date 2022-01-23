@@ -22,7 +22,8 @@ export async function seed(remult: Remult) {
                 await repo.insert({
                     firstName,
                     lastName,
-                    email: internet.email(firstName, lastName)
+                    email: internet.email(firstName, lastName),
+                    avatar: 'https://i.pravatar.cc/40?img=' + datatype.number(70)
                 })
             }
         }

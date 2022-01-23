@@ -1,6 +1,12 @@
 import { Allow, Entity, Field, UuidField, Validators } from "remult";
 
-@Entity("accountManagers", { allowApiCrud: Allow.authenticated })
+@Entity<AccountManager>("accountManagers", {
+    allowApiCrud: Allow.authenticated,
+    defaultOrderBy: {
+        firstName: "asc",
+        lastName: "asc"
+    }
+})
 export class AccountManager {
     @UuidField()
     id?: string;
@@ -10,5 +16,7 @@ export class AccountManager {
     lastName: string = '';
     @Field()
     email: string = '';
+    @Field()
+    avatar: string = '';
 
 }
