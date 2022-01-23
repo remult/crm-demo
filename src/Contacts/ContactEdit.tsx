@@ -19,8 +19,8 @@ interface IProps {
 }
 
 export const ContactEdit: React.FC<IProps> = ({ contact, onSaved, onClose }) => {
-    const [accountManagers, setAccountManagers] = useState<AccountManager[]>([contact.accountManager!]);
-    const [companies, setCompanies] = useState<Company[]>([contact.company!]);
+    const [accountManagers, setAccountManagers] = useState<AccountManager[]>(contact.accountManager ? [contact.accountManager] : []);
+    const [companies, setCompanies] = useState<Company[]>(contact.company ? [contact.company] : []);
     useEffect(() => {
         remult.repo(AccountManager).find().then(setAccountManagers)
         remult.repo(Company).find().then(setCompanies)

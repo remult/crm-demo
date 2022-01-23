@@ -13,6 +13,7 @@ export const CompanyShow: React.FC<{}> = () => {
     let params = useParams();
     const [company, setCompany] = useState<Company>();
     const [contacts, setContacts] = useState<Contact[]>([]);
+    const [loadingContacts, setLoadingContacts] = useState(false);
 
     const [loading, setLoading] = useState(true);
     const [currentTab, setCurrentTab] = React.useState('1');
@@ -21,10 +22,17 @@ export const CompanyShow: React.FC<{}> = () => {
         (async () => {
             const company = await remult.repo(Company).findId(params.id!);
             setCompany(company);
+            setLoading(false);
             if (company) {
-                setContacts(await remult.repo(Contact).find({ where: { company } }));
+                try {
+                    setLoadingContacts(true);
+                    setContacts(await remult.repo(Contact).find({ where: { company } }));
+                }
+                finally {
+                    setLoadingContacts(false);
+                }
             }
-            setLoading(false)
+            
         })();
     }, [params.id]);
     if (loading)
@@ -37,7 +45,7 @@ export const CompanyShow: React.FC<{}> = () => {
                 <CardContent>
                     <Stack>
                         <Stack direction="row">
-                        <Logo url={company.logo} title={company.name} sizeInPixels={42}/>
+                            <Logo url={company.logo} title={company.name} sizeInPixels={42} />
                             <Stack sx={{ ml: 1 }} alignItems='flex-start'>
                                 <Typography variant="h5">
                                     {company.name}
@@ -56,7 +64,7 @@ export const CompanyShow: React.FC<{}> = () => {
                                     </TabList>
                                 </Box>
                                 <TabPanel value="1">
-                                    <ContactsList contacts={contacts} setContacts={setContacts} defaultCompany={company} />
+                                    <ContactsList contacts={contacts} setContacts={setContacts} defaultCompany={company} loading={loadingContacts} />
                                 </TabPanel>
                                 <TabPanel value="2">Item Two</TabPanel>
                             </TabContext>

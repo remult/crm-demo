@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Chip, IconButton, List, ListItem, ListItemAvatar, ListItemButton, ListItemSecondaryAction, ListItemText, Stack, Typography } from "@mui/material";
+import { Avatar, Box, Button, Chip, IconButton, List, ListItem, ListItemAvatar, ListItemButton, ListItemSecondaryAction, ListItemText, Skeleton, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { remult } from "../common"
 import { Contact } from "./Contact.entity"
@@ -18,8 +18,9 @@ const amRepo = remult.repo(Contact);
 export const ContactsList: React.FC<{
     contacts: Contact[],
     setContacts: (contacts: Contact[]) => void,
-    defaultCompany?: Company
-}> = ({ contacts, setContacts, defaultCompany }) => {
+    defaultCompany?: Company,
+    loading: boolean
+}> = ({ contacts, setContacts, defaultCompany, loading }) => {
 
 
     const [editContact, setEditContact] = useState<Contact>();
@@ -47,19 +48,19 @@ export const ContactsList: React.FC<{
             Add Contact
         </Button>
         <List>
-            {contacts.map(contact => (
-                <ListItem disablePadding key={contact.id} secondaryAction={
-                    <Stack direction="row" spacing={2}>
-                        <IconButton edge="end" aria-label="edit"
-                            onClick={() => deleteContact(contact)}>
-                            <DeleteIcon />
-                        </IconButton>
-                        <IconButton edge="end" aria-label="edit"
-                            onClick={() => setEditContact(contact)}>
-                            <EditIcon />
-                        </IconButton>
-                    </Stack>
-                }>
+            {loading && Array.from(Array(10).keys()).map(i => (<ListItem disablePadding key={i}>
+                <ListItemButton >
+                    <ListItemAvatar>
+                        <Skeleton variant="circular" width={40} height={40} />
+                    </ListItemAvatar>
+                    <ListItemText primary={<Skeleton variant="text" />}
+                        secondary={<Skeleton variant="text" />}>
+
+                    </ListItemText>
+                </ListItemButton>
+            </ListItem>))}
+            {!loading && contacts.map(contact => (
+                <ListItem disablePadding key={contact.id} >
                     <ListItemButton component={Link} to={`/contacts/${contact.id}`}>
                         <ListItemAvatar>
                             <Avatar src={contact.avatar} />
@@ -73,7 +74,7 @@ export const ContactsList: React.FC<{
                                     {`- ${contact.nbNotes} notes `}
                                     {contact.tags.map(tag => (
                                         <span key={tag.id}
-                                            style={{color:'InfoText' ,  backgroundColor: tag.color, padding: 4, paddingLeft: 8, paddingRight: 8, margin: 4, borderRadius: 20 }} >
+                                            style={{ color: 'InfoText', backgroundColor: tag.color, padding: 4, paddingLeft: 8, paddingRight: 8, margin: 4, borderRadius: 20 }} >
                                             {tag.tag}
                                         </span>
                                     ))}
