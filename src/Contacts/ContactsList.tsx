@@ -1,13 +1,10 @@
-import { Avatar, Box, Button, Chip, IconButton, List, ListItem, ListItemAvatar, ListItemButton, ListItemSecondaryAction, ListItemText, Skeleton, Stack, Typography } from "@mui/material";
+import { Avatar, Button, List, ListItem, ListItemAvatar, ListItemButton, ListItemSecondaryAction, ListItemText, Skeleton, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { remult } from "../common"
 import { Contact } from "./Contact.entity"
 import AddIcon from '@mui/icons-material/Add';
 import { ContactEdit } from "./ContactEdit";
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
 import { Company } from "../Companies/Company.entity";
-import { amber } from "@mui/material/colors";
 import { formatDistance } from "date-fns";
 import { Link } from 'react-router-dom';
 import { StatusIndicator } from "./StatusIndicator";

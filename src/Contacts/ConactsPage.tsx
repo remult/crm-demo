@@ -1,4 +1,4 @@
-import { Box, Chip, Grid, IconButton, List, ListItem, ListItemButton, ListItemText, Skeleton, TextField } from "@mui/material";
+import { Box, Chip, Grid, IconButton, List, ListItem, ListItemButton, ListItemText, TextField } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 import { remult } from "../common"
 import { Contact } from "./Contact.entity"
