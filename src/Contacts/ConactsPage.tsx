@@ -1,4 +1,4 @@
-import { Box, Chip, Grid, IconButton, List, ListItem, ListItemButton, ListItemText, TextField } from "@mui/material";
+import { Box, Chip, Grid, IconButton, List, ListItem, ListItemButton, ListItemText, Skeleton, TextField } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 import { remult } from "../common"
 import { Contact } from "./Contact.entity"
@@ -25,6 +25,7 @@ export const ContactsPage: React.FC<{}> = () => {
     const [contacts, setContacts] = useState<Contact[]>([]);
     const [tags, setTags] = useState<Tag[]>([]);
     const [loading, setLoading] = useState(false);
+    const [loadingTags, setLoadingTags] = useState(false);
     const loadContacts = useCallback(async () => {
         try {
             setLoading(true);
@@ -45,10 +46,19 @@ export const ContactsPage: React.FC<{}> = () => {
         }
     }, [filter.search, filter.status, filter.tag]);
     useEffect(() => {
-        loadContacts()
-        remult.repo(Tag).find().then(setTags);
+        loadContacts();
     }, [loadContacts]);
-    
+    useEffect(() => {
+        (async () => {
+            try {
+                setLoadingTags(true);
+                await remult.repo(Tag).find().then(setTags);
+            } finally {
+                setLoadingTags(false);
+            }
+        })();
+    }, []);
+
 
     return <Grid container spacing={2}>
         <Grid item xs={2}>
@@ -64,7 +74,7 @@ export const ContactsPage: React.FC<{}> = () => {
                 {Status.helper.getOptions().map((s: Status) => (<ListItem
                     key={s.id}
 
-                    secondaryAction={s.id.toString() == filter.status &&
+                    secondaryAction={s.id.toString() === filter.status &&
                         <IconButton edge="end" aria-label="cancel" onClick={() => {
                             patchFilter({ status: '' })
                         }}>
@@ -85,20 +95,21 @@ export const ContactsPage: React.FC<{}> = () => {
                 <ListItem>
                     <ListItemText>TAGS</ListItemText>
                 </ListItem>
-                {tags.map((tag: Tag) => (
-                    <Box mt={1} mb={1} key={tag.id}>
-                        <Chip onClick={() => {
-                            patchFilter({ tag: tag.tag });
-                        }}
-                            size="small"
-                            variant="outlined"
-                            onDelete={tag.tag == filter.tag ? (() => patchFilter({ tag: '' })) : undefined}
-                            label={tag.tag}
-                            style={{ backgroundColor: tag.color, border: 1 }}
-                        />
-                    </Box>
-
-                ))}
+                {loadingTags ?
+                    Array.from(Array(5).keys()).map(i => (<Skeleton key={i} />))
+                    : tags.map((tag: Tag) => (
+                        <Box mt={1} mb={1} key={tag.id}>
+                            <Chip onClick={() => {
+                                patchFilter({ tag: tag.tag });
+                            }}
+                                size="small"
+                                variant="outlined"
+                                onDelete={tag.tag === filter.tag ? (() => patchFilter({ tag: '' })) : undefined}
+                                label={tag.tag}
+                                style={{ backgroundColor: tag.color, border: 1 }}
+                            />
+                        </Box>
+                    ))}
 
             </List>
         </Grid>

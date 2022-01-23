@@ -107,7 +107,7 @@ export const ContactEdit: React.FC<IProps> = ({ contact, onSaved, onClose }) => 
                                 labelId="company-label"
                                 label="Company"
                                 value={companies && (state.company?.id || '')}
-                                onChange={e => setState({ ...state, company: companies?.find(x => x.id == e.target.value)! })}
+                                onChange={e => setState({ ...state, company: companies?.find(x => x.id === e.target.value)! })}
                             >
                                 <MenuItem value={''}></MenuItem>
                                 {companies?.map(s => (<MenuItem key={s.id} value={s.id}>{s.name}</MenuItem>))}
@@ -177,7 +177,7 @@ export const ContactEdit: React.FC<IProps> = ({ contact, onSaved, onClose }) => 
                                 labelId="accountManager-label"
                                 label="Account Manager"
                                 value={accountManagers && (state.accountManager?.id || '')}
-                                onChange={e => setState({ ...state, accountManager: accountManagers?.find(x => x.id == e.target.value)! })}
+                                onChange={e => setState({ ...state, accountManager: accountManagers?.find(x => x.id === e.target.value)! })}
                             >
                                 <MenuItem value={''}></MenuItem>
                                 {accountManagers?.map(s => (<MenuItem key={s.id} value={s.id}>{s.lastName + " " + s.firstName}</MenuItem>))}
