@@ -1,7 +1,7 @@
-import { Entity, Field, UuidField } from "remult";
+import { Allow, Entity, Field, UuidField } from "remult";
 
 @Entity("tags", {
-    allowApiCrud: true
+    allowApiCrud: Allow.authenticated
 })
 export class Tag {
     @UuidField()

@@ -1,4 +1,4 @@
-import { Entity, EntityFilter, Field, Filter, UuidField } from "remult";
+import { Allow, Entity, EntityFilter, Field, Filter, UuidField } from "remult";
 import { AccountManager } from "../AccountManagers/AccountManager.entity";
 import { Company } from "../Companies/Company.entity";
 import { Acquisition } from "./Acquisition";
@@ -9,7 +9,7 @@ import { Status } from "./Status";
 import { Tag } from "./Tag.entity";
 
 @Entity<Contact>("contacts", {
-    allowApiCrud: true,
+    allowApiCrud: Allow.authenticated,
     defaultOrderBy: {
         lastName: "asc"
     }

@@ -1,9 +1,9 @@
-import { Entity, Field, UuidField } from "remult";
+import { Allow, Entity, Field, UuidField } from "remult";
 import { AccountManager } from "../AccountManagers/AccountManager.entity";
 import { Contact } from "./Contact.entity";
 import { Status } from "./Status";
 
-@Entity("contactNote", { allowApiCrud: true })
+@Entity("contactNote", { allowApiCrud: Allow.authenticated })
 export class ContactNote {
     @UuidField()
     id?: string;
