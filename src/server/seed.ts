@@ -11,6 +11,9 @@ import { Status } from "../Contacts/Status";
 import { ContactNote } from "../Contacts/ContactNote.entity";
 import { Tag } from "../Contacts/Tag.entity";
 import { ContactTag } from "../Contacts/ContactTag.entity";
+import { Deal, DealContact } from "../Deals/Deal.entity";
+import { DealStages } from "../Deals/DealStage";
+import { DealTypes } from "../Deals/DealType";
 
 export async function seed(remult: Remult) {
     try {
@@ -50,8 +53,10 @@ export async function seed(remult: Remult) {
                 Contact.disableLastSeenUpdate = true;
                 const contactNotesRepo = remult.repo(ContactNote);
                 const contactTagsRepo = remult.repo(ContactTag);
+                const dealRepo = remult.repo(Deal);
+                const dealContactRepo = remult.repo(DealContact);
 
-                const allTags = await remult.repo(Tag).find();
+                const tags = await remult.repo(Tag).find();
                 // delete related data
                 {
                     for (const c of await contactRepo.find()) {
@@ -63,6 +68,12 @@ export async function seed(remult: Remult) {
 
                     for (const c of await contactTagsRepo.find()) {
                         await contactTagsRepo.delete(c);
+                    }
+                    for (const c of await dealRepo.find()) {
+                        await dealRepo.delete(c);
+                    }
+                    for (const c of await dealContactRepo.find()) {
+                        await dealContactRepo.delete(c);
                     }
                 }
                 // Start create Companies
@@ -83,8 +94,9 @@ export async function seed(remult: Remult) {
                         stateAbbr: address.stateAbbr(),
                         website: internet.url(),
                         zipcode: address.zipCode(),
-                        created_at: date.recent(500)
+                        createdAt: date.recent(500)
                     });
+                    const contacts: Contact[] = [];
                     console.log(index + ": " + company.name);
                     // Create contact
                     {
@@ -111,33 +123,54 @@ export async function seed(remult: Remult) {
                                 company,
                                 accountManager: random.arrayElement(accountManagers)
                             });
+                            contacts.push(contact);
                             // Create Contact Notes
                             for (let index = 0; index < datatype.number(20) + 1; index++) {
                                 const note = await contactNotesRepo.insert({
                                     text: lorem.paragraphs(3),
                                     contact,
                                     accountManager: random.arrayElement(accountManagers),
-                                    createdAt: date.between(company.created_at, new Date()),
+                                    createdAt: date.between(company.createdAt, new Date()),
                                     status: random.arrayElement(Status.helper.getOptions())
                                 });
                                 if (index == 0 || note.createdAt > contact.lastSeen) {
                                     contact.lastSeen = note.createdAt;
                                 }
                                 if (index == 0 || note.createdAt < contact.createdAt) {
-                                    contact.createdAt = note.createdAt; 
+                                    contact.createdAt = note.createdAt;
                                 }
                             }
                             // Create Contact Tags
-                            let tags = [...allTags];
-                            for (let index = 0; index < datatype.number(3); index++) {
-                                const tag = random.arrayElement(tags);
-                                tags = tags.filter(t => t != tag);
+                            for (const tag of random.arrayElements(tags, datatype.number(3))) {
                                 await contactTagsRepo.insert({
                                     tag,
                                     contact
                                 })
                             }
                             await contactRepo.save(contact);
+                        }
+                    }
+                    {
+                        for (let index = 0; index < datatype.number(5) + 1; index++) {
+                            let name = lorem.words();
+                            name = name[0].toUpperCase() + name.slice(1);
+                            const created_at = date.between(company.createdAt, new Date());
+                            const deal = await dealRepo.insert({
+                                accountManager: random.arrayElement(accountManagers),
+                                amount: datatype.number(1000) * 100,
+                                company,
+                                name,
+                                description: lorem.paragraph(datatype.number(4) + 1),
+                                createdAt: created_at,
+                                stage: random.arrayElement(DealStages),
+                                type: random.arrayElement(DealTypes),
+                                updatedAt: date.between(created_at, new Date())
+                            });
+                            for (const contact of random.arrayElements(contacts, datatype.number(4) + 1)) {
+                                await dealContactRepo.insert({
+                                    deal, contact
+                                })
+                            }
                         }
                     }
                 }

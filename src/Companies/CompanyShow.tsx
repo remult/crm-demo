@@ -1,10 +1,12 @@
 import { TabContext, TabList, TabPanel } from "@mui/lab";
-import { Box, Card, CardContent, Stack, Tab, Typography } from "@mui/material";
+import { Box, Card, CardContent, List, ListItem, ListItemButton, ListItemSecondaryAction, ListItemText, Stack, Tab, Typography } from "@mui/material";
+import { formatDistance } from "date-fns";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { remult } from "../common";
 import { Contact } from "../Contacts/Contact.entity";
 import { ContactsList } from "../Contacts/ContactsList";
+import { Deal } from "../Deals/Deal.entity";
 import { Company } from "./Company.entity";
 import { CompanyAside } from "./CompanyAside";
 import { Logo } from "./Logo";
@@ -13,6 +15,7 @@ export const CompanyShow: React.FC<{}> = () => {
     let params = useParams();
     const [company, setCompany] = useState<Company>();
     const [contacts, setContacts] = useState<Contact[]>([]);
+    const [deals, setDeals] = useState<Deal[]>([]);
     const [loadingContacts, setLoadingContacts] = useState(false);
 
     const [loading, setLoading] = useState(true);
@@ -27,12 +30,13 @@ export const CompanyShow: React.FC<{}> = () => {
                 try {
                     setLoadingContacts(true);
                     setContacts(await remult.repo(Contact).find({ where: { company } }));
+                    setDeals(await remult.repo(Deal).find({ where: { company } }));
                 }
                 finally {
                     setLoadingContacts(false);
                 }
             }
-            
+
         })();
     }, [params.id]);
     if (loading)
@@ -66,7 +70,35 @@ export const CompanyShow: React.FC<{}> = () => {
                                 <TabPanel value="1">
                                     <ContactsList contacts={contacts} setContacts={setContacts} defaultCompany={company} loading={loadingContacts} />
                                 </TabPanel>
-                                <TabPanel value="2">Item Two</TabPanel>
+                                <TabPanel value="2">
+                                    <List>
+
+                                        {deals.map((deal, index) => (
+                                            <ListItem disablePadding key={deal.id} >
+                                                <ListItemButton >
+                                                    <ListItemText
+                                                        primary={`${deal.name}`}
+                                                        secondary={
+                                                            <>
+                                                                {deal.stage} {' '}
+                                                                {deal.amount / 1000}{'K, '}{deal.type}
+                                                            </>
+                                                        }
+                                                    />
+                                                    <ListItemSecondaryAction>
+                                                        <Typography variant="body1" color="textSecondary">
+                                                            last activity{' '}
+                                                            {deal.updatedAt ? formatDistance(deal.updatedAt, new Date()) : ""}{' '}
+                                                            ago
+                                                        </Typography>
+                                                    </ListItemSecondaryAction>
+                                                </ListItemButton>
+                                            </ListItem>
+                                        ))}
+
+                                    </List>
+
+                                </TabPanel>
                             </TabContext>
                         </Box>
                     </Stack>

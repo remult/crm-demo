@@ -31,5 +31,5 @@ export class Company {
     @Field(o => o.valueType = AccountManager)
     accountManager!: AccountManager;
     @Field({ allowApiUpdate: false }, o => o.valueType = Date)
-    created_at: Date = new Date();
+    createdAt: Date = new Date();
 }

@@ -66,7 +66,7 @@ export const CompanyAside = ({
                         component="span"
                     >
                         Added on{' '}
-                        {company.created_at.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" })}
+                        {company.createdAt.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" })}
                     </Typography>
                     <br />
                     <Typography
