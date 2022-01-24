@@ -22,9 +22,9 @@ export class Deal {
     @IntegerField()
     amount: number = 0;
     @Field(o => o.valueType = Date)
-    created_at: Date = new Date();
+    createdAt: Date = new Date();
     @Field(o => o.valueType = Date)
-    updated_at: Date = new Date();
+    updatedAt: Date = new Date();
     @Field(o => o.valueType = AccountManager)
     accountManager?: AccountManager;
     @Field()

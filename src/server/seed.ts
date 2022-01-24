@@ -161,10 +161,10 @@ export async function seed(remult: Remult) {
                                 company,
                                 name,
                                 description: lorem.paragraph(datatype.number(4) + 1),
-                                created_at,
+                                createdAt: created_at,
                                 stage: random.arrayElement(DealStages),
                                 type: random.arrayElement(DealTypes),
-                                updated_at: date.between(created_at, new Date())
+                                updatedAt: date.between(created_at, new Date())
                             });
                             for (const contact of random.arrayElements(contacts, datatype.number(4) + 1)) {
                                 await dealContactRepo.insert({
