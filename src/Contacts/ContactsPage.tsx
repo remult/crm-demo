@@ -1,5 +1,5 @@
 import { Box, Chip, Grid, IconButton, List, ListItem, ListItemButton, ListItemText, Skeleton, TextField, TablePagination } from "@mui/material";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { remult } from "../common"
 import { Contact } from "./Contact.entity"
 
@@ -31,30 +31,32 @@ export const ContactsPage: React.FC<{}> = () => {
     const [rowsPerPage, setRowsPerPage] = useState(25);
     const [contactsCount, setContactsCount] = useState(0);
 
-    const loadContacts = useCallback(async () => {
-        try {
-            setLoading(true);
-            const contactsQuery = await amRepo.query({
-                where: {
-                    $or: [
-                        { firstName: { $contains: filter.search } },
-                        { lastName: { $contains: filter.search } }
-                    ],
-                    status: filter.status ? Status.helper.byId(filter.status) : undefined,
-                    $and: [filter.tag ? Contact.filterTag(filter.tag) : undefined!]
-                }, pageSize: rowsPerPage
-            });
-            setContactsCount(await contactsQuery.count())
-            setContacts(await contactsQuery.getPage(page));
-        }
-        finally {
-            setLoading(false);
+    const contactsQuery = useMemo(() => {
+        const query = amRepo.query({
+            where: {
+                $or: [
+                    { firstName: { $contains: filter.search } },
+                    { lastName: { $contains: filter.search } }
+                ],
+                status: filter.status ? Status.helper.byId(filter.status) : undefined,
+                $and: [filter.tag ? Contact.filterTag(filter.tag) : undefined!]
+            }, pageSize: rowsPerPage
+        });
+        query.count().then(count => setContactsCount(count));
+        return query;
+    }, [filter.search, filter.status, filter.tag, rowsPerPage]);
 
-        }
-    }, [filter.search, filter.status, filter.tag, rowsPerPage, page]);
     useEffect(() => {
-        loadContacts();
-    }, [loadContacts]);
+        (async () => {
+            try {
+                setLoading(true);
+                setContacts(await contactsQuery.getPage(page));
+            }
+            finally {
+                setLoading(false);
+            }})();
+    }, [contactsQuery, page]);
+
     useEffect(() => {
         (async () => {
             try {
@@ -121,7 +123,7 @@ export const ContactsPage: React.FC<{}> = () => {
             </List>
         </Grid>
         <Grid item xs={10}>
-            <ContactsList contacts={contacts} setContacts={setContacts} loading={loading} itemsPerPage={rowsPerPage}/>
+            <ContactsList contacts={contacts} setContacts={setContacts} loading={loading} itemsPerPage={rowsPerPage} />
 
             <TablePagination
                 component="div"
