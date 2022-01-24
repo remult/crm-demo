@@ -29,14 +29,12 @@ export class Deal {
     accountManager?: AccountManager;
     @Field()
     index: number = 0;
-    @Field()
-    nb_notes: number = 0;
 }
 
 @Entity("dealContacts", {
     allowApiCrud: Allow.authenticated
 })
-export class DealContacts {
+export class DealContact {
     @UuidField()
     id?: string;
     @Field(o => o.valueType = Deal)
