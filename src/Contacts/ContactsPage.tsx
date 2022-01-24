@@ -1,4 +1,4 @@
-import { Box, Chip, Grid, IconButton, List, ListItem, ListItemButton, ListItemText, Skeleton, TextField } from "@mui/material";
+import { Box, Chip, Grid, IconButton, List, ListItem, ListItemButton, ListItemText, Skeleton, TextField, TablePagination } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 import { remult } from "../common"
 import { Contact } from "./Contact.entity"
@@ -26,10 +26,15 @@ export const ContactsPage: React.FC<{}> = () => {
     const [tags, setTags] = useState<Tag[]>([]);
     const [loading, setLoading] = useState(false);
     const [loadingTags, setLoadingTags] = useState(false);
+
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(25);
+    const [contactsCount, setContactsCount] = useState(0);
+
     const loadContacts = useCallback(async () => {
         try {
             setLoading(true);
-            await amRepo.find({
+            const contactsQuery = await amRepo.query({
                 where: {
                     $or: [
                         { firstName: { $contains: filter.search } },
@@ -37,14 +42,16 @@ export const ContactsPage: React.FC<{}> = () => {
                     ],
                     status: filter.status ? Status.helper.byId(filter.status) : undefined,
                     $and: [filter.tag ? Contact.filterTag(filter.tag) : undefined!]
-                }, limit: 50
-            }).then(setContacts);
+                }, pageSize: rowsPerPage
+            });
+            setContactsCount(await contactsQuery.count())
+            setContacts(await contactsQuery.getPage(page));
         }
         finally {
             setLoading(false);
 
         }
-    }, [filter.search, filter.status, filter.tag]);
+    }, [filter.search, filter.status, filter.tag, rowsPerPage, page]);
     useEffect(() => {
         loadContacts();
     }, [loadContacts]);
@@ -114,7 +121,21 @@ export const ContactsPage: React.FC<{}> = () => {
             </List>
         </Grid>
         <Grid item xs={10}>
-            <ContactsList contacts={contacts} setContacts={setContacts} loading={loading} />
+            <ContactsList contacts={contacts} setContacts={setContacts} loading={loading} itemsPerPage={rowsPerPage}/>
+
+            <TablePagination
+                component="div"
+                count={contactsCount}
+                page={page}
+                onPageChange={(_, newPage) => {
+                    setPage(newPage);
+                }}
+                rowsPerPage={rowsPerPage}
+                onRowsPerPageChange={e => {
+                    setRowsPerPage(parseInt(e.target.value, 10));
+                    setPage(0);
+                }}
+            />
         </Grid>
     </Grid >
 }

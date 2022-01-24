@@ -16,11 +16,9 @@ export const ContactsList: React.FC<{
     contacts: Contact[],
     setContacts: (contacts: Contact[]) => void,
     defaultCompany?: Company,
-    loading: boolean
-}> = ({ contacts, setContacts, defaultCompany, loading }) => {
-
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    loading: boolean,
+    itemsPerPage?: number
+}> = ({ contacts, setContacts, defaultCompany, loading, itemsPerPage = 10 }) => {
 
     const [editContact, setEditContact] = useState<Contact>();
     const deleteContact = async (deletedContact: Contact) => {
@@ -50,7 +48,7 @@ export const ContactsList: React.FC<{
             </Button>
         </Box>
         <List>
-            {loading && Array.from(Array(10).keys()).map(i => (<ListItem disablePadding key={i}>
+            {loading && Array.from(Array(itemsPerPage).keys()).map(i => (<ListItem disablePadding key={i}>
                 <ListItemButton >
                     <ListItemAvatar>
                         <Skeleton variant="circular" width={40} height={40} />
@@ -61,54 +59,39 @@ export const ContactsList: React.FC<{
                     </ListItemText>
                 </ListItemButton>
             </ListItem>))}
-            {!loading && contacts.map((contact, index) => (
-                (index >= page * rowsPerPage) && (index < (page + 1) * rowsPerPage) ? (<ListItem disablePadding key={contact.id} >
-                        <ListItemButton component={Link} to={`/contacts/${contact.id}`}>
-                            <ListItemAvatar>
-                                <Avatar src={contact.avatar} />
-                            </ListItemAvatar>
-                            <ListItemText
-                                primary={`${contact.firstName} ${contact.lastName}`}
-                                secondary={
-                                    <>
-                                        {contact.title} at{' '}
-                                        {contact.company?.name}{' '}
-                                        {`- ${contact.nbNotes} notes `}
-                                        {contact.tags.map(tag => (
-                                            <span key={tag.id}
-                                                style={{ color: 'InfoText', backgroundColor: tag.color, padding: 4, paddingLeft: 8, paddingRight: 8, margin: 4, borderRadius: 20 }} >
-                                                {tag.tag}
-                                            </span>
-                                        ))}
-                                    </>
-                                }
-                            />
-                            <ListItemSecondaryAction>
-                                <Typography variant="body1" color="textSecondary">
-                                    last activity{' '}
-                                    {contact.lastSeen ? formatDistance(contact.lastSeen, now) : ""}{' '}
+            {!loading && contacts.map((contact, index) => (<ListItem disablePadding key={contact.id} >
+                <ListItemButton component={Link} to={`/contacts/${contact.id}`}>
+                    <ListItemAvatar>
+                        <Avatar src={contact.avatar} />
+                    </ListItemAvatar>
+                    <ListItemText
+                        primary={`${contact.firstName} ${contact.lastName}`}
+                        secondary={
+                            <>
+                                {contact.title} at{' '}
+                                {contact.company?.name}{' '}
+                                {`- ${contact.nbNotes} notes `}
+                                {contact.tags.map(tag => (
+                                    <span key={tag.id}
+                                        style={{ color: 'InfoText', backgroundColor: tag.color, padding: 4, paddingLeft: 8, paddingRight: 8, margin: 4, borderRadius: 20 }} >
+                                        {tag.tag}
+                                    </span>
+                                ))}
+                            </>
+                        }
+                    />
+                    <ListItemSecondaryAction>
+                        <Typography variant="body1" color="textSecondary">
+                            last activity{' '}
+                            {contact.lastSeen ? formatDistance(contact.lastSeen, now) : ""}{' '}
                             ago <StatusIndicator status={contact.status}></StatusIndicator>
-                                </Typography>
-                            </ListItemSecondaryAction>
-                        </ListItemButton>
-                    </ListItem>) : null
+                        </Typography>
+                    </ListItemSecondaryAction>
+                </ListItemButton>
+            </ListItem>
             ))}
 
         </List>
-
-        <TablePagination
-            component="div"
-            count={contacts.length}
-            page={page}
-            onPageChange={(_, newPage) => {
-                setPage(newPage);
-            }}
-            rowsPerPage={rowsPerPage}
-            onRowsPerPageChange={e => {
-                setRowsPerPage(parseInt(e.target.value, 10));
-                setPage(0);
-            }}
-        />
 
         {
             editContact && <ContactEdit
