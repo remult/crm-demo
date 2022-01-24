@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, List, ListItem, ListItemAvatar, ListItemButton, ListItemSecondaryAction, ListItemText, Skeleton, Typography } from "@mui/material";
+import { Avatar, Box, Button, List, ListItem, ListItemAvatar, ListItemButton, ListItemSecondaryAction, ListItemText, Pagination, Skeleton, TablePagination, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { remult } from "../common"
 import { Contact } from "./Contact.entity"
@@ -19,6 +19,8 @@ export const ContactsList: React.FC<{
     loading: boolean
 }> = ({ contacts, setContacts, defaultCompany, loading }) => {
 
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
     const [editContact, setEditContact] = useState<Contact>();
     const deleteContact = async (deletedContact: Contact) => {
@@ -37,6 +39,17 @@ export const ContactsList: React.FC<{
         setEditContact(newContact);
     }
     const now = Date.now();
+
+
+    const handleChangePage = (event: any, newPage: any) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (event: any) => {
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setPage(0);
+    };
+
     return <>
         <Box display="flex" justifyContent="flex-end">
             <Button
@@ -58,40 +71,50 @@ export const ContactsList: React.FC<{
                     </ListItemText>
                 </ListItemButton>
             </ListItem>))}
-            {!loading && contacts.map(contact => (
-                <ListItem disablePadding key={contact.id} >
-                    <ListItemButton component={Link} to={`/contacts/${contact.id}`}>
-                        <ListItemAvatar>
-                            <Avatar src={contact.avatar} />
-                        </ListItemAvatar>
-                        <ListItemText
-                            primary={`${contact.firstName} ${contact.lastName}`}
-                            secondary={
-                                <>
-                                    {contact.title} at{' '}
-                                    {contact.company?.name}{' '}
-                                    {`- ${contact.nbNotes} notes `}
-                                    {contact.tags.map(tag => (
-                                        <span key={tag.id}
-                                            style={{ color: 'InfoText', backgroundColor: tag.color, padding: 4, paddingLeft: 8, paddingRight: 8, margin: 4, borderRadius: 20 }} >
-                                            {tag.tag}
-                                        </span>
-                                    ))}
-                                </>
-                            }
-                        />
-                    </ListItemButton>
-                    <ListItemSecondaryAction>
-                        <Typography variant="body1" color="textSecondary">
-                            last activity{' '}
-                            {contact.lastSeen ? formatDistance(contact.lastSeen, now) : ""}{' '}
+            {!loading && contacts.map((contact, index) => (
+                (index >= page * rowsPerPage) && (index < (page + 1) * rowsPerPage) ? (<ListItem disablePadding key={contact.id} >
+                        <ListItemButton component={Link} to={`/contacts/${contact.id}`}>
+                            <ListItemAvatar>
+                                <Avatar src={contact.avatar} />
+                            </ListItemAvatar>
+                            <ListItemText
+                                primary={`${contact.firstName} ${contact.lastName}`}
+                                secondary={
+                                    <>
+                                        {contact.title} at{' '}
+                                        {contact.company?.name}{' '}
+                                        {`- ${contact.nbNotes} notes `}
+                                        {contact.tags.map(tag => (
+                                            <span key={tag.id}
+                                                style={{ color: 'InfoText', backgroundColor: tag.color, padding: 4, paddingLeft: 8, paddingRight: 8, margin: 4, borderRadius: 20 }} >
+                                                {tag.tag}
+                                            </span>
+                                        ))}
+                                    </>
+                                }
+                            />
+                            <ListItemSecondaryAction>
+                                <Typography variant="body1" color="textSecondary">
+                                    last activity{' '}
+                                    {contact.lastSeen ? formatDistance(contact.lastSeen, now) : ""}{' '}
                             ago <StatusIndicator status={contact.status}></StatusIndicator>
-                        </Typography>
-                    </ListItemSecondaryAction>
-                </ListItem>
+                                </Typography>
+                            </ListItemSecondaryAction>
+                        </ListItemButton>
+                    </ListItem>) : null
             ))}
 
         </List>
+
+        <TablePagination
+            component="div"
+            count={contacts.length}
+            page={page}
+            onPageChange={(handleChangePage)}
+            rowsPerPage={rowsPerPage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+
         {
             editContact && <ContactEdit
                 contact={editContact}
