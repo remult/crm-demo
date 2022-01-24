@@ -37,7 +37,7 @@ export const ContactsPage: React.FC<{}> = () => {
                     ],
                     status: filter.status ? Status.helper.byId(filter.status) : undefined,
                     $and: [filter.tag ? Contact.filterTag(filter.tag) : undefined!]
-                }, limit: 50
+                }, limit: 10
             }).then(setContacts);
         }
         finally {
