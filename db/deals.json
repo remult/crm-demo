@@ -10,7 +10,7 @@
     "createdAt": "2022-01-05T16:00:19.530Z",
     "updatedAt": "2022-01-11T03:38:28.642Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 56
   },
   {
     "id": "eaf3d2ea-3674-44c2-8b30-27a4fbae8140",
@@ -23,7 +23,7 @@
     "createdAt": "2021-09-22T02:21:26.944Z",
     "updatedAt": "2021-10-18T10:08:52.661Z",
     "accountManager": "55f98c99-5fcd-4584-91ae-9ceb4e448f26",
-    "index": 0
+    "index": 19
   },
   {
     "id": "d1345ebe-5c9a-45ea-8dce-7e527b808523",
@@ -36,7 +36,7 @@
     "createdAt": "2021-07-27T17:22:21.962Z",
     "updatedAt": "2021-10-19T20:27:02.615Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 21
   },
   {
     "id": "930534a7-9d55-432f-b865-9776e1150272",
@@ -49,20 +49,20 @@
     "createdAt": "2021-07-20T07:59:45.631Z",
     "updatedAt": "2021-08-27T13:14:14.533Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 16
   },
   {
     "id": "dbd059ba-1dd3-4dc8-8a10-d2ba51758e43",
     "name": "Fugiat minus sunt",
     "company": "a07b4691-f481-49a2-aa8e-c53a1e949a7e",
     "type": "Copywriting",
-    "stage": "opportunity",
+    "stage": "proposal-sent",
     "description": "Aliquid omnis earum. Incidunt alias et dolores ipsa autem blanditiis est quia sunt. Aut dolorem animi ut earum aut. Voluptatum et expedita eveniet beatae et.",
     "amount": 73700,
     "createdAt": "2021-10-29T12:50:38.297Z",
     "updatedAt": "2021-12-11T09:33:54.596Z",
     "accountManager": "0c078496-ab7d-48ed-8bef-29edc084af2b",
-    "index": 0
+    "index": 9
   },
   {
     "id": "a23a01f4-a626-422c-9875-948ea2814346",
@@ -75,7 +75,7 @@
     "createdAt": "2021-08-14T15:22:27.106Z",
     "updatedAt": "2022-01-04T18:04:26.496Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 13
   },
   {
     "id": "830faabc-5a69-4fb9-9e64-bc70916574ca",
@@ -88,7 +88,7 @@
     "createdAt": "2021-12-14T08:18:59.415Z",
     "updatedAt": "2022-01-18T21:39:43.874Z",
     "accountManager": "7472fe13-9966-4ce3-b1a6-fba718f2e37e",
-    "index": 0
+    "index": 48
   },
   {
     "id": "7d3cb761-8f21-40bd-9658-b154c6d7f5ef",
@@ -101,7 +101,7 @@
     "createdAt": "2021-12-23T22:35:31.371Z",
     "updatedAt": "2021-12-30T02:04:34.020Z",
     "accountManager": "0c078496-ab7d-48ed-8bef-29edc084af2b",
-    "index": 0
+    "index": 52
   },
   {
     "id": "09a842b0-96e4-411d-a380-ca15c5f14586",
@@ -114,7 +114,7 @@
     "createdAt": "2021-09-17T19:03:16.763Z",
     "updatedAt": "2021-10-16T19:08:57.545Z",
     "accountManager": "0c078496-ab7d-48ed-8bef-29edc084af2b",
-    "index": 0
+    "index": 17
   },
   {
     "id": "b383d94c-95e7-4b71-b7bf-e96ae0237fc6",
@@ -127,7 +127,7 @@
     "createdAt": "2021-11-07T18:51:21.094Z",
     "updatedAt": "2022-01-08T02:09:30.913Z",
     "accountManager": "3fae6a74-6bc0-427f-a905-efc44f746b4f",
-    "index": 0
+    "index": 34
   },
   {
     "id": "5b0479db-20df-468b-abb2-5f4e341cbd0e",
@@ -140,7 +140,7 @@
     "createdAt": "2021-12-31T23:03:34.939Z",
     "updatedAt": "2022-01-09T20:41:38.905Z",
     "accountManager": "a6e9da4b-2ce9-46ac-bb0f-680c1ddc8a5b",
-    "index": 0
+    "index": 55
   },
   {
     "id": "81eecac5-7f7d-4f1f-96ba-94213b24835f",
@@ -153,7 +153,7 @@
     "createdAt": "2021-11-15T06:36:52.665Z",
     "updatedAt": "2021-12-29T15:14:28.322Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 33
   },
   {
     "id": "78b2c4eb-0ac5-43e6-a2c6-d40b2d7ee26a",
@@ -166,7 +166,7 @@
     "createdAt": "2021-09-18T08:25:17.721Z",
     "updatedAt": "2021-12-27T14:23:27.550Z",
     "accountManager": "55f98c99-5fcd-4584-91ae-9ceb4e448f26",
-    "index": 0
+    "index": 27
   },
   {
     "id": "10e70873-fa08-4e2a-8af3-1ca2b2f1db6f",
@@ -179,7 +179,7 @@
     "createdAt": "2022-01-05T16:39:00.201Z",
     "updatedAt": "2022-01-19T03:59:16.534Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 45
   },
   {
     "id": "66b5f515-3c5a-47c0-9251-4e274344fc1a",
@@ -192,7 +192,7 @@
     "createdAt": "2021-01-20T23:33:32.936Z",
     "updatedAt": "2021-10-27T06:47:31.978Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 7
   },
   {
     "id": "69275dc3-50ee-4ac8-bf9d-5a73182473ad",
@@ -205,7 +205,7 @@
     "createdAt": "2022-01-04T08:53:36.028Z",
     "updatedAt": "2022-01-13T10:26:36.443Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 6
   },
   {
     "id": "a459c801-baba-44cb-9be6-e92ee73d77da",
@@ -218,7 +218,7 @@
     "createdAt": "2021-02-22T15:17:50.432Z",
     "updatedAt": "2021-05-29T20:12:46.807Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 6
   },
   {
     "id": "4cf885a3-4700-4580-96d3-94511c194738",
@@ -231,7 +231,7 @@
     "createdAt": "2022-01-19T00:28:13.873Z",
     "updatedAt": "2022-01-20T23:22:10.589Z",
     "accountManager": "a6e9da4b-2ce9-46ac-bb0f-680c1ddc8a5b",
-    "index": 0
+    "index": 60
   },
   {
     "id": "96d3c5fe-4afb-491d-87af-347e00823046",
@@ -244,7 +244,7 @@
     "createdAt": "2021-06-17T15:28:41.757Z",
     "updatedAt": "2021-08-19T18:54:50.491Z",
     "accountManager": "a6e9da4b-2ce9-46ac-bb0f-680c1ddc8a5b",
-    "index": 0
+    "index": 22
   },
   {
     "id": "81de16b5-7b7d-4b32-bbd2-4206d576a9b9",
@@ -257,7 +257,7 @@
     "createdAt": "2021-09-25T18:24:06.892Z",
     "updatedAt": "2021-11-07T08:24:32.866Z",
     "accountManager": "55f98c99-5fcd-4584-91ae-9ceb4e448f26",
-    "index": 0
+    "index": 25
   },
   {
     "id": "b84ed760-f24f-4a36-afdb-363052db8250",
@@ -270,7 +270,7 @@
     "createdAt": "2021-08-04T02:48:19.214Z",
     "updatedAt": "2021-12-18T11:18:50.745Z",
     "accountManager": "7472fe13-9966-4ce3-b1a6-fba718f2e37e",
-    "index": 0
+    "index": 22
   },
   {
     "id": "0bb746d8-cef2-4a03-bf49-9914a16f8b0c",
@@ -283,7 +283,7 @@
     "createdAt": "2021-12-20T07:42:33.965Z",
     "updatedAt": "2022-01-04T20:53:32.648Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 46
   },
   {
     "id": "9842571e-9987-4aa7-b4a4-66f1aa853893",
@@ -296,7 +296,7 @@
     "createdAt": "2021-11-26T19:22:33.322Z",
     "updatedAt": "2021-12-01T06:52:57.545Z",
     "accountManager": "7472fe13-9966-4ce3-b1a6-fba718f2e37e",
-    "index": 0
+    "index": 26
   },
   {
     "id": "e41602c0-f35b-41ee-84c1-7fd6e6aed523",
@@ -309,7 +309,7 @@
     "createdAt": "2020-10-28T01:09:42.702Z",
     "updatedAt": "2021-11-18T15:24:35.569Z",
     "accountManager": "55f98c99-5fcd-4584-91ae-9ceb4e448f26",
-    "index": 0
+    "index": 2
   },
   {
     "id": "62f8d416-d809-4dca-8e15-2e2c7029d8dc",
@@ -322,20 +322,20 @@
     "createdAt": "2021-01-08T20:01:39.137Z",
     "updatedAt": "2021-07-04T22:19:15.009Z",
     "accountManager": "7472fe13-9966-4ce3-b1a6-fba718f2e37e",
-    "index": 0
+    "index": 5
   },
   {
     "id": "9fcd1ae5-3a00-467d-a570-51416d5b449e",
     "name": "Debitis consectetur vel",
     "company": "bc6c93f5-60a8-4259-bd81-bf70811ceb04",
     "type": "UI Design",
-    "stage": "opportunity",
+    "stage": "proposal-sent",
     "description": "Veniam autem eveniet expedita illo atque veritatis id. Aperiam porro est dolores officia modi totam tempora sint. Sit et magnam aliquam quidem molestiae consequatur rerum. Sit pariatur vitae.",
     "amount": 59500,
     "createdAt": "2021-06-28T15:11:10.552Z",
     "updatedAt": "2021-09-26T23:02:25.074Z",
     "accountManager": "7472fe13-9966-4ce3-b1a6-fba718f2e37e",
-    "index": 0
+    "index": 21
   },
   {
     "id": "0ced2eff-174f-469d-98fc-2eb7b9595123",
@@ -348,7 +348,7 @@
     "createdAt": "2021-09-26T18:33:58.490Z",
     "updatedAt": "2021-12-30T07:42:06.109Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 29
   },
   {
     "id": "f638b79d-98a9-41ff-95c4-18ee0cde528d",
@@ -361,7 +361,7 @@
     "createdAt": "2021-01-07T14:09:05.109Z",
     "updatedAt": "2021-09-01T17:28:03.814Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 4
   },
   {
     "id": "2b39d8f0-2842-498c-ba4e-205d46311c95",
@@ -374,7 +374,7 @@
     "createdAt": "2021-07-13T06:31:18.836Z",
     "updatedAt": "2021-10-17T18:42:42.885Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 25
   },
   {
     "id": "4da9da07-b701-46de-9f79-092c86b014c4",
@@ -387,7 +387,7 @@
     "createdAt": "2021-11-29T14:02:04.532Z",
     "updatedAt": "2021-12-13T03:23:45.170Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 28
   },
   {
     "id": "1f34aa2b-cc74-4948-84c0-97657de98532",
@@ -400,7 +400,7 @@
     "createdAt": "2021-11-21T23:40:27.832Z",
     "updatedAt": "2021-12-11T08:52:17.049Z",
     "accountManager": "7472fe13-9966-4ce3-b1a6-fba718f2e37e",
-    "index": 0
+    "index": 39
   },
   {
     "id": "2fc86ad1-a42c-454f-910b-17e4a5212ca0",
@@ -413,7 +413,7 @@
     "createdAt": "2021-08-01T06:38:04.243Z",
     "updatedAt": "2021-10-17T15:41:40.176Z",
     "accountManager": "3fae6a74-6bc0-427f-a905-efc44f746b4f",
-    "index": 0
+    "index": 10
   },
   {
     "id": "8832ccad-7e04-41bb-b348-aba66aae34b3",
@@ -426,7 +426,7 @@
     "createdAt": "2021-07-12T11:14:51.396Z",
     "updatedAt": "2021-08-04T10:41:49.336Z",
     "accountManager": "0c078496-ab7d-48ed-8bef-29edc084af2b",
-    "index": 0
+    "index": 9
   },
   {
     "id": "8a663597-f24f-45df-b7ce-60390699ecfc",
@@ -439,7 +439,7 @@
     "createdAt": "2021-12-20T22:48:49.259Z",
     "updatedAt": "2021-12-28T10:32:05.804Z",
     "accountManager": "7472fe13-9966-4ce3-b1a6-fba718f2e37e",
-    "index": 0
+    "index": 47
   },
   {
     "id": "0aa1bf8b-354c-41f3-88cd-cb51773e8215",
@@ -452,7 +452,7 @@
     "createdAt": "2021-11-03T17:57:30.830Z",
     "updatedAt": "2021-11-08T14:03:12.540Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 35
   },
   {
     "id": "8e4afe32-89f5-40a9-9d1e-999fcdef9a67",
@@ -465,7 +465,7 @@
     "createdAt": "2021-02-10T04:54:11.744Z",
     "updatedAt": "2021-11-30T10:27:58.639Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 5
   },
   {
     "id": "35186b0a-2130-416c-aafa-16e96241665e",
@@ -478,20 +478,20 @@
     "createdAt": "2021-08-30T13:42:44.813Z",
     "updatedAt": "2021-11-12T01:35:32.252Z",
     "accountManager": "59dd3275-47d1-4394-a5e9-b8dea26cce2c",
-    "index": 0
+    "index": 16
   },
   {
     "id": "b721fe8f-f394-43e7-a99e-e945c00b1d70",
     "name": "Eos nisi eum",
     "company": "8514c718-c2c3-41e2-84be-d2182ee9aa14",
     "type": "UI Design",
-    "stage": "opportunity",
+    "stage": "proposal-sent",
     "description": "Molestiae architecto ea itaque. Voluptates eaque sapiente autem in ex enim.",
     "amount": 18700,
     "createdAt": "2021-06-14T06:53:06.069Z",
     "updatedAt": "2021-12-19T17:44:24.041Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 12
   },
   {
     "id": "340bdf53-3913-4469-9a92-d221a18771d3",
@@ -504,7 +504,7 @@
     "createdAt": "2021-11-11T08:02:51.561Z",
     "updatedAt": "2021-11-20T03:51:02.499Z",
     "accountManager": "a6e9da4b-2ce9-46ac-bb0f-680c1ddc8a5b",
-    "index": 0
+    "index": 1
   },
   {
     "id": "0f60c4c0-a9e7-4cb8-b9e6-9db29ff885b9",
@@ -517,7 +517,7 @@
     "createdAt": "2021-07-06T20:11:54.384Z",
     "updatedAt": "2021-09-07T19:38:58.863Z",
     "accountManager": "0c078496-ab7d-48ed-8bef-29edc084af2b",
-    "index": 0
+    "index": 18
   },
   {
     "id": "5c23c90f-8607-495e-94af-813e37baf70b",
@@ -530,7 +530,7 @@
     "createdAt": "2022-01-04T17:20:38.611Z",
     "updatedAt": "2022-01-16T05:19:00.664Z",
     "accountManager": "d60f6fd8-75c3-43ab-af42-83371413a827",
-    "index": 0
+    "index": 45
   },
   {
     "id": "e66959e4-1f3d-4d72-a5e8-3514dc420587",
@@ -543,7 +543,7 @@
     "createdAt": "2022-01-07T21:38:33.210Z",
     "updatedAt": "2022-01-11T16:32:13.732Z",
     "accountManager": "d60f6fd8-75c3-43ab-af42-83371413a827",
-    "index": 0
+    "index": 47
   },
   {
     "id": "733ffe26-579b-40f9-8384-38f97dadbe52",
@@ -556,7 +556,7 @@
     "createdAt": "2022-01-22T00:26:13.430Z",
     "updatedAt": "2022-01-24T02:17:35.620Z",
     "accountManager": "0c078496-ab7d-48ed-8bef-29edc084af2b",
-    "index": 0
+    "index": 61
   },
   {
     "id": "82a95a71-e490-40a6-a737-39d953e26b13",
@@ -569,7 +569,7 @@
     "createdAt": "2021-12-14T16:28:39.682Z",
     "updatedAt": "2021-12-28T07:21:54.346Z",
     "accountManager": "d60f6fd8-75c3-43ab-af42-83371413a827",
-    "index": 0
+    "index": 42
   },
   {
     "id": "d4ef2029-6956-40dc-b47d-f383b20350e5",
@@ -582,7 +582,7 @@
     "createdAt": "2021-08-18T16:08:07.932Z",
     "updatedAt": "2021-11-17T17:39:16.560Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 25
   },
   {
     "id": "7bc3e556-2300-4a56-8435-ce89b54344d6",
@@ -595,20 +595,20 @@
     "createdAt": "2021-10-20T21:51:36.955Z",
     "updatedAt": "2021-10-27T01:46:11.488Z",
     "accountManager": "0c078496-ab7d-48ed-8bef-29edc084af2b",
-    "index": 0
+    "index": 23
   },
   {
     "id": "b2d272ba-5847-49d0-adab-8591c47d4879",
     "name": "Temporibus nihil dolor",
     "company": "42df60c6-5d0c-4cae-abc7-dbbf2dac9261",
     "type": "Website design",
-    "stage": "opportunity",
+    "stage": "proposal-sent",
     "description": "Delectus corrupti et. Voluptas laudantium omnis voluptatem dignissimos aspernatur voluptate ut. Expedita odit tempora deleniti in dolores expedita animi.",
     "amount": 37100,
     "createdAt": "2021-08-27T13:32:16.643Z",
     "updatedAt": "2021-10-03T07:09:24.200Z",
     "accountManager": "59dd3275-47d1-4394-a5e9-b8dea26cce2c",
-    "index": 0
+    "index": 6
   },
   {
     "id": "5347e835-61ca-4ca2-ac5a-356595f542d6",
@@ -621,7 +621,7 @@
     "createdAt": "2021-10-06T12:43:38.430Z",
     "updatedAt": "2022-01-10T07:41:28.499Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 29
   },
   {
     "id": "45e0ad60-386e-46b6-8f94-66c9145aac87",
@@ -634,7 +634,7 @@
     "createdAt": "2022-01-22T02:51:51.220Z",
     "updatedAt": "2022-01-23T01:01:37.789Z",
     "accountManager": "59dd3275-47d1-4394-a5e9-b8dea26cce2c",
-    "index": 0
+    "index": 56
   },
   {
     "id": "f02d2708-dbe1-4efc-8d37-1ea5865ca341",
@@ -647,7 +647,7 @@
     "createdAt": "2021-09-26T15:22:49.010Z",
     "updatedAt": "2022-01-11T09:02:18.437Z",
     "accountManager": "0c078496-ab7d-48ed-8bef-29edc084af2b",
-    "index": 0
+    "index": 26
   },
   {
     "id": "c1a4caef-8096-471b-8dd5-229165f44791",
@@ -660,7 +660,7 @@
     "createdAt": "2021-10-12T18:51:01.502Z",
     "updatedAt": "2021-10-20T08:16:22.790Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 29
   },
   {
     "id": "d3df2066-1887-4ce4-b594-3693c8cef871",
@@ -673,7 +673,7 @@
     "createdAt": "2021-10-24T02:44:54.598Z",
     "updatedAt": "2021-12-06T17:58:21.269Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 32
   },
   {
     "id": "ae103ed6-69f1-4ca9-8c74-832c307927ee",
@@ -686,7 +686,7 @@
     "createdAt": "2021-10-19T11:12:07.712Z",
     "updatedAt": "2021-11-27T12:42:32.083Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 21
   },
   {
     "id": "6ce46a6e-f66d-42ca-80c6-3fefd69d750b",
@@ -699,7 +699,7 @@
     "createdAt": "2021-12-28T09:58:02.730Z",
     "updatedAt": "2022-01-21T05:59:16.290Z",
     "accountManager": "d60f6fd8-75c3-43ab-af42-83371413a827",
-    "index": 0
+    "index": 10
   },
   {
     "id": "acbfc0d5-70ac-4c2f-9cc2-c387771f577d",
@@ -712,7 +712,7 @@
     "createdAt": "2021-11-23T22:18:10.281Z",
     "updatedAt": "2021-12-02T14:02:32.016Z",
     "accountManager": "55f98c99-5fcd-4584-91ae-9ceb4e448f26",
-    "index": 0
+    "index": 34
   },
   {
     "id": "072b2936-3451-4eb3-9840-f9e3467a18bf",
@@ -725,7 +725,7 @@
     "createdAt": "2021-12-24T02:13:39.153Z",
     "updatedAt": "2022-01-12T14:37:31.437Z",
     "accountManager": "d60f6fd8-75c3-43ab-af42-83371413a827",
-    "index": 0
+    "index": 42
   },
   {
     "id": "59840361-d128-4ce0-8bf0-a80fa08a358d",
@@ -738,20 +738,20 @@
     "createdAt": "2021-04-23T07:05:40.014Z",
     "updatedAt": "2021-12-14T08:54:21.291Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 12
   },
   {
     "id": "42c008ab-509d-4537-8ccb-658173c48442",
     "name": "Aut pariatur sed",
     "company": "537427c0-4667-48e4-bd7f-834fa53720d9",
     "type": "Print project",
-    "stage": "proposal-sent",
+    "stage": "won",
     "description": "Asperiores fuga a nesciunt quo doloremque. Voluptates nisi eaque maxime. Tempore asperiores ullam qui quam. Sequi qui reprehenderit est dolores natus enim.",
     "amount": 8800,
     "createdAt": "2021-04-03T21:06:35.024Z",
     "updatedAt": "2021-05-19T21:09:11.464Z",
     "accountManager": "d60f6fd8-75c3-43ab-af42-83371413a827",
-    "index": 0
+    "index": 2
   },
   {
     "id": "e3f01e56-6256-4b9d-9e70-8467e4608d77",
@@ -764,7 +764,7 @@
     "createdAt": "2021-03-22T09:57:13.272Z",
     "updatedAt": "2021-05-20T03:28:47.292Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 10
   },
   {
     "id": "cbe910e3-b464-4ae4-acd1-103f828638b1",
@@ -777,7 +777,7 @@
     "createdAt": "2021-02-27T18:23:08.103Z",
     "updatedAt": "2021-06-18T16:47:59.134Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 8
   },
   {
     "id": "27149256-9e27-4993-834b-0554ce4d5662",
@@ -790,7 +790,7 @@
     "createdAt": "2022-01-15T11:54:15.716Z",
     "updatedAt": "2022-01-23T13:24:49.628Z",
     "accountManager": "3fae6a74-6bc0-427f-a905-efc44f746b4f",
-    "index": 0
+    "index": 58
   },
   {
     "id": "ec99eda1-7af6-4bde-8ce3-c98d584fc975",
@@ -803,7 +803,7 @@
     "createdAt": "2021-09-06T15:32:30.156Z",
     "updatedAt": "2021-12-06T05:31:01.875Z",
     "accountManager": "55f98c99-5fcd-4584-91ae-9ceb4e448f26",
-    "index": 0
+    "index": 23
   },
   {
     "id": "471070a9-9c70-4699-8a4a-6d9d9680ac26",
@@ -816,7 +816,7 @@
     "createdAt": "2022-01-06T03:25:15.128Z",
     "updatedAt": "2022-01-15T09:55:31.772Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 46
   },
   {
     "id": "f3b90de6-6c2a-40a8-9e6c-8f364ca65ab1",
@@ -829,7 +829,7 @@
     "createdAt": "2021-10-23T15:05:22.996Z",
     "updatedAt": "2022-01-01T16:58:48.090Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 24
   },
   {
     "id": "9ff2e2a5-f18c-42ff-8bf9-a79fdfe705d1",
@@ -842,7 +842,7 @@
     "createdAt": "2022-01-24T00:44:43.922Z",
     "updatedAt": "2022-01-24T07:15:21.351Z",
     "accountManager": "55f98c99-5fcd-4584-91ae-9ceb4e448f26",
-    "index": 0
+    "index": 63
   },
   {
     "id": "e738add7-fa55-4d0a-b047-a386c9daea2b",
@@ -855,7 +855,7 @@
     "createdAt": "2021-10-24T16:25:05.151Z",
     "updatedAt": "2021-12-23T14:34:51.820Z",
     "accountManager": "d60f6fd8-75c3-43ab-af42-83371413a827",
-    "index": 0
+    "index": 34
   },
   {
     "id": "b003a882-a26f-4848-b577-9fc680707d04",
@@ -868,7 +868,7 @@
     "createdAt": "2022-01-11T21:20:50.714Z",
     "updatedAt": "2022-01-23T20:28:36.452Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 47
   },
   {
     "id": "8ea383fb-f4b3-4d70-bfed-29b50db53a8c",
@@ -881,7 +881,7 @@
     "createdAt": "2022-01-08T17:25:28.472Z",
     "updatedAt": "2022-01-22T06:54:39.251Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 48
   },
   {
     "id": "e62dd3eb-fe2c-4dd4-be43-e1a5d153f49b",
@@ -894,7 +894,7 @@
     "createdAt": "2021-11-30T15:41:07.548Z",
     "updatedAt": "2022-01-09T18:41:29.600Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 44
   },
   {
     "id": "7f298296-78bd-41db-b929-f163fe6f4db9",
@@ -907,7 +907,7 @@
     "createdAt": "2021-03-30T23:47:10.658Z",
     "updatedAt": "2021-08-22T11:15:08.855Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 16
   },
   {
     "id": "0b7cca92-50b0-4f1a-8be3-ca6c1fe0969c",
@@ -920,7 +920,7 @@
     "createdAt": "2021-05-13T16:19:16.435Z",
     "updatedAt": "2021-10-09T05:47:17.152Z",
     "accountManager": "3fae6a74-6bc0-427f-a905-efc44f746b4f",
-    "index": 0
+    "index": 1
   },
   {
     "id": "ac8fc3ee-75d5-403b-894a-0f429fc6402b",
@@ -933,7 +933,7 @@
     "createdAt": "2021-05-21T06:32:58.507Z",
     "updatedAt": "2022-01-10T22:13:45.220Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 20
   },
   {
     "id": "5c1ce790-f78b-41af-82eb-c0fe742f2ff5",
@@ -946,7 +946,7 @@
     "createdAt": "2021-10-13T14:30:33.225Z",
     "updatedAt": "2022-01-13T01:19:33.464Z",
     "accountManager": "59dd3275-47d1-4394-a5e9-b8dea26cce2c",
-    "index": 0
+    "index": 30
   },
   {
     "id": "a975ba15-126e-455b-8ab5-d2596578ac7d",
@@ -959,7 +959,7 @@
     "createdAt": "2021-12-01T22:06:58.026Z",
     "updatedAt": "2022-01-05T16:23:52.900Z",
     "accountManager": "55f98c99-5fcd-4584-91ae-9ceb4e448f26",
-    "index": 0
+    "index": 41
   },
   {
     "id": "8deb9663-47ea-4fa9-b01e-1e462a43fffe",
@@ -972,7 +972,7 @@
     "createdAt": "2021-11-23T12:19:56.472Z",
     "updatedAt": "2021-12-16T01:13:05.527Z",
     "accountManager": "59dd3275-47d1-4394-a5e9-b8dea26cce2c",
-    "index": 0
+    "index": 41
   },
   {
     "id": "e8ec6d48-b01e-4c79-87c9-dd38d27c6b21",
@@ -985,7 +985,7 @@
     "createdAt": "2021-12-18T14:51:48.862Z",
     "updatedAt": "2022-01-12T21:02:21.613Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 43
   },
   {
     "id": "55ab16eb-5051-49fa-93c7-73f05bf3e848",
@@ -998,7 +998,7 @@
     "createdAt": "2021-11-26T03:28:29.630Z",
     "updatedAt": "2021-12-22T07:20:40.203Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 35
   },
   {
     "id": "c44378d4-5a8a-431a-8c80-1f0dcb044534",
@@ -1011,7 +1011,7 @@
     "createdAt": "2022-01-18T02:03:04.439Z",
     "updatedAt": "2022-01-20T09:59:16.595Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 48
   },
   {
     "id": "31ed2567-602d-42a5-8d0f-87abc8655455",
@@ -1024,7 +1024,7 @@
     "createdAt": "2021-11-27T11:24:43.433Z",
     "updatedAt": "2022-01-22T14:53:26.782Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 43
   },
   {
     "id": "8961c20a-ac96-41c7-b8f8-7f0112510a5a",
@@ -1037,7 +1037,7 @@
     "createdAt": "2022-01-24T02:07:27.418Z",
     "updatedAt": "2022-01-24T02:40:49.978Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 22
   },
   {
     "id": "d2b1da72-584c-45ca-a1be-fce5cf5b6158",
@@ -1050,7 +1050,7 @@
     "createdAt": "2022-01-06T06:16:10.224Z",
     "updatedAt": "2022-01-21T02:30:12.126Z",
     "accountManager": "7472fe13-9966-4ce3-b1a6-fba718f2e37e",
-    "index": 0
+    "index": 46
   },
   {
     "id": "7093ebe8-745a-420a-a1b8-67d9221734d4",
@@ -1063,7 +1063,7 @@
     "createdAt": "2022-01-21T11:56:27.907Z",
     "updatedAt": "2022-01-23T10:53:37.892Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 42
   },
   {
     "id": "877d6d36-cf8a-4aa0-bdf8-8a5ccaf7d329",
@@ -1076,7 +1076,7 @@
     "createdAt": "2022-01-18T11:30:14.269Z",
     "updatedAt": "2022-01-19T21:28:35.921Z",
     "accountManager": "0c078496-ab7d-48ed-8bef-29edc084af2b",
-    "index": 0
+    "index": 49
   },
   {
     "id": "7a3054f1-d178-4f7e-ba45-ed8d20ceaaf5",
@@ -1089,7 +1089,7 @@
     "createdAt": "2021-12-01T12:01:48.904Z",
     "updatedAt": "2022-01-23T13:26:40.877Z",
     "accountManager": "d60f6fd8-75c3-43ab-af42-83371413a827",
-    "index": 0
+    "index": 46
   },
   {
     "id": "b060bdb8-a992-469a-82dd-14667993047d",
@@ -1102,7 +1102,7 @@
     "createdAt": "2021-01-01T11:03:48.874Z",
     "updatedAt": "2021-12-06T20:40:43.312Z",
     "accountManager": "3fae6a74-6bc0-427f-a905-efc44f746b4f",
-    "index": 0
+    "index": 3
   },
   {
     "id": "8495db8b-0d7e-45a2-a4cf-c8761f74b85a",
@@ -1115,7 +1115,7 @@
     "createdAt": "2021-12-18T00:01:01.789Z",
     "updatedAt": "2022-01-22T02:54:13.560Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 33
   },
   {
     "id": "adf76203-d655-4628-92dd-55191a03ea1f",
@@ -1128,20 +1128,20 @@
     "createdAt": "2021-08-25T12:55:48.686Z",
     "updatedAt": "2021-09-08T17:32:46.394Z",
     "accountManager": "55f98c99-5fcd-4584-91ae-9ceb4e448f26",
-    "index": 0
+    "index": 19
   },
   {
     "id": "655678d4-2242-4cfb-b26e-4803c131cf87",
     "name": "Molestias et dolor",
     "company": "a5ea0d7d-335a-4162-bba0-10ee57950e7d",
     "type": "Other",
-    "stage": "opportunity",
+    "stage": "proposal-sent",
     "description": "Ea qui aut quidem minima temporibus qui optio fuga maxime. Ipsum animi qui quo maiores illo. Voluptas earum nulla quidem vel. Non et reiciendis voluptatem facilis odio cumque quae nihil. Fugiat impedit id perferendis et. Saepe in eos necessitatibus.",
     "amount": 39800,
     "createdAt": "2021-08-24T20:43:15.275Z",
     "updatedAt": "2022-01-05T11:30:38.301Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 7
   },
   {
     "id": "dfa03103-3485-45aa-8855-664ecf449dd1",
@@ -1154,7 +1154,7 @@
     "createdAt": "2021-10-20T08:10:47.365Z",
     "updatedAt": "2022-01-14T03:26:26.750Z",
     "accountManager": "55f98c99-5fcd-4584-91ae-9ceb4e448f26",
-    "index": 0
+    "index": 31
   },
   {
     "id": "c06c1295-e92a-49d4-a8f3-e3dad566ce06",
@@ -1167,7 +1167,7 @@
     "createdAt": "2021-11-10T03:55:56.068Z",
     "updatedAt": "2021-12-20T17:16:37.106Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 36
   },
   {
     "id": "76a851f5-5bd1-43ae-a1e4-5166d2c1d206",
@@ -1180,7 +1180,7 @@
     "createdAt": "2021-06-30T03:23:34.889Z",
     "updatedAt": "2021-11-17T06:51:06.276Z",
     "accountManager": "7472fe13-9966-4ce3-b1a6-fba718f2e37e",
-    "index": 0
+    "index": 19
   },
   {
     "id": "3a1d04cf-f992-4aec-9c97-3e515eccdf32",
@@ -1193,7 +1193,7 @@
     "createdAt": "2021-06-20T01:43:13.533Z",
     "updatedAt": "2021-06-24T18:49:42.838Z",
     "accountManager": "59dd3275-47d1-4394-a5e9-b8dea26cce2c",
-    "index": 0
+    "index": 15
   },
   {
     "id": "55fc0b41-5048-47e5-829f-2559e5a80c74",
@@ -1206,7 +1206,7 @@
     "createdAt": "2021-05-08T11:54:44.463Z",
     "updatedAt": "2021-06-29T14:20:50.963Z",
     "accountManager": "59dd3275-47d1-4394-a5e9-b8dea26cce2c",
-    "index": 0
+    "index": 14
   },
   {
     "id": "c2094c2f-496b-4c12-9903-6d9184290fef",
@@ -1219,7 +1219,7 @@
     "createdAt": "2021-05-16T03:59:50.986Z",
     "updatedAt": "2021-07-25T22:41:35.129Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 17
   },
   {
     "id": "be6003a0-7227-42c1-a8fa-f3dac9b9c2df",
@@ -1232,7 +1232,7 @@
     "createdAt": "2021-04-14T02:28:33.807Z",
     "updatedAt": "2021-05-29T23:01:24.911Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 11
   },
   {
     "id": "33874da6-34c9-4647-8d5e-a470625ea7e6",
@@ -1245,7 +1245,7 @@
     "createdAt": "2021-06-25T05:34:45.586Z",
     "updatedAt": "2021-12-30T22:30:57.599Z",
     "accountManager": "59dd3275-47d1-4394-a5e9-b8dea26cce2c",
-    "index": 0
+    "index": 5
   },
   {
     "id": "10e2ab89-389d-422f-8ed4-a0a165433b81",
@@ -1258,20 +1258,20 @@
     "createdAt": "2022-01-02T15:28:48.521Z",
     "updatedAt": "2022-01-08T00:15:52.736Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 12
   },
   {
     "id": "12d56680-cb94-4e56-bc6b-fd2718c7adf1",
     "name": "Eum libero quia",
     "company": "383386e2-9f3b-49b6-a089-2a5a226dc147",
     "type": "Website design",
-    "stage": "opportunity",
+    "stage": "proposal-sent",
     "description": "Nulla commodi sunt atque voluptate eum. Accusantium omnis nesciunt omnis minima natus. Dolor quae nihil ut. Perferendis repellat aut fuga eos.",
     "amount": 53800,
     "createdAt": "2021-10-22T23:29:23.838Z",
     "updatedAt": "2021-11-03T14:00:25.506Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 1
   },
   {
     "id": "f881d42f-9eca-4e89-9fbe-b6e2ed3657a8",
@@ -1284,7 +1284,7 @@
     "createdAt": "2022-01-16T17:52:04.189Z",
     "updatedAt": "2022-01-23T03:57:24.950Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 52
   },
   {
     "id": "eb8f76d0-5bb8-465f-9398-144e49c33f8e",
@@ -1297,7 +1297,7 @@
     "createdAt": "2021-12-28T05:36:12.382Z",
     "updatedAt": "2022-01-22T20:04:01.718Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 9
   },
   {
     "id": "1426ba3a-61f7-4404-8566-6ee3979c6150",
@@ -1310,7 +1310,7 @@
     "createdAt": "2021-12-01T05:09:01.406Z",
     "updatedAt": "2021-12-16T16:27:28.678Z",
     "accountManager": "a6e9da4b-2ce9-46ac-bb0f-680c1ddc8a5b",
-    "index": 0
+    "index": 40
   },
   {
     "id": "bb8681ea-370e-4263-ac85-be266a2de985",
@@ -1323,7 +1323,7 @@
     "createdAt": "2021-06-17T09:16:39.788Z",
     "updatedAt": "2021-12-20T08:19:32.767Z",
     "accountManager": "7472fe13-9966-4ce3-b1a6-fba718f2e37e",
-    "index": 0
+    "index": 14
   },
   {
     "id": "24085d04-aa53-446a-b127-fc766e429df6",
@@ -1336,7 +1336,7 @@
     "createdAt": "2021-11-21T15:49:04.152Z",
     "updatedAt": "2022-01-01T19:24:04.277Z",
     "accountManager": "d60f6fd8-75c3-43ab-af42-83371413a827",
-    "index": 0
+    "index": 38
   },
   {
     "id": "4d40100a-9cdf-4976-86a6-89197535f7e0",
@@ -1349,7 +1349,7 @@
     "createdAt": "2021-06-30T18:12:39.719Z",
     "updatedAt": "2022-01-16T02:01:17.750Z",
     "accountManager": "3fae6a74-6bc0-427f-a905-efc44f746b4f",
-    "index": 0
+    "index": 18
   },
   {
     "id": "f90268bc-78b4-4bc2-817e-d7954fc07414",
@@ -1362,7 +1362,7 @@
     "createdAt": "2021-02-02T01:35:13.682Z",
     "updatedAt": "2021-08-28T10:30:34.982Z",
     "accountManager": "7472fe13-9966-4ce3-b1a6-fba718f2e37e",
-    "index": 0
+    "index": 4
   },
   {
     "id": "432b7d8f-9821-42b4-9e8c-5eb41d4595e4",
@@ -1375,20 +1375,20 @@
     "createdAt": "2022-01-13T08:41:09.562Z",
     "updatedAt": "2022-01-15T01:39:42.217Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 50
   },
   {
     "id": "04a03b5f-a926-4c62-80cb-7725f43bdb5d",
     "name": "Sed placeat vero",
     "company": "1e983eaf-34e6-4e6f-9188-46601d16e76c",
     "type": "Copywriting",
-    "stage": "opportunity",
+    "stage": "proposal-sent",
     "description": "Magnam dolorem accusamus consequatur a consequuntur reiciendis. Aut consectetur cupiditate ut perferendis nostrum ut earum. Est sit qui suscipit. Commodi voluptatem ut maiores aperiam magnam quis et at velit.",
     "amount": 78600,
     "createdAt": "2021-10-11T09:00:13.747Z",
     "updatedAt": "2022-01-08T08:33:31.220Z",
     "accountManager": "7472fe13-9966-4ce3-b1a6-fba718f2e37e",
-    "index": 0
+    "index": 3
   },
   {
     "id": "0a5beb57-8bc6-4772-9476-985e01c2ec2a",
@@ -1401,7 +1401,7 @@
     "createdAt": "2021-11-16T14:37:54.285Z",
     "updatedAt": "2021-12-27T23:52:49.285Z",
     "accountManager": "a6e9da4b-2ce9-46ac-bb0f-680c1ddc8a5b",
-    "index": 0
+    "index": 2
   },
   {
     "id": "0956a85e-edaf-4820-819e-23158c8a8ec6",
@@ -1414,7 +1414,7 @@
     "createdAt": "2021-12-30T02:08:35.831Z",
     "updatedAt": "2022-01-05T07:55:17.966Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 49
   },
   {
     "id": "7ecd9516-ad2b-412a-addb-07d129d49a35",
@@ -1427,7 +1427,7 @@
     "createdAt": "2021-08-28T12:42:20.410Z",
     "updatedAt": "2021-12-17T16:17:40.917Z",
     "accountManager": "a6e9da4b-2ce9-46ac-bb0f-680c1ddc8a5b",
-    "index": 0
+    "index": 21
   },
   {
     "id": "6f55e912-bde5-40b7-ac20-b65a6f2cd7df",
@@ -1440,7 +1440,7 @@
     "createdAt": "2021-05-09T19:54:22.585Z",
     "updatedAt": "2021-10-25T00:27:47.838Z",
     "accountManager": "55f98c99-5fcd-4584-91ae-9ceb4e448f26",
-    "index": 0
+    "index": 18
   },
   {
     "id": "5f46e465-e457-4291-a2ea-dbc3f6a154a9",
@@ -1453,7 +1453,7 @@
     "createdAt": "2021-11-15T16:44:32.646Z",
     "updatedAt": "2022-01-23T03:32:57.325Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 36
   },
   {
     "id": "a09d88c7-f613-4e1f-8cdf-8da1107642e6",
@@ -1466,7 +1466,7 @@
     "createdAt": "2021-12-08T12:38:07.755Z",
     "updatedAt": "2022-01-17T15:25:01.077Z",
     "accountManager": "d60f6fd8-75c3-43ab-af42-83371413a827",
-    "index": 0
+    "index": 38
   },
   {
     "id": "8cd0f66f-075e-4b90-929a-887c58d1a958",
@@ -1479,7 +1479,7 @@
     "createdAt": "2021-11-10T21:15:46.813Z",
     "updatedAt": "2022-01-20T18:41:56.783Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 35
   },
   {
     "id": "7b14cbaf-cb23-40d8-ab60-92959ff5dc3a",
@@ -1492,7 +1492,7 @@
     "createdAt": "2022-01-23T08:32:08.829Z",
     "updatedAt": "2022-01-24T09:47:38.737Z",
     "accountManager": "7472fe13-9966-4ce3-b1a6-fba718f2e37e",
-    "index": 0
+    "index": 43
   },
   {
     "id": "6be69c8e-3b47-4d88-80f2-5b2943acfd5e",
@@ -1505,7 +1505,7 @@
     "createdAt": "2022-01-21T12:11:35.435Z",
     "updatedAt": "2022-01-22T20:31:15.392Z",
     "accountManager": "0c078496-ab7d-48ed-8bef-29edc084af2b",
-    "index": 0
+    "index": 16
   },
   {
     "id": "1ec1654f-3939-4e3f-9403-7ee1637ff0d4",
@@ -1518,7 +1518,7 @@
     "createdAt": "2022-01-20T01:08:12.296Z",
     "updatedAt": "2022-01-21T08:33:19.115Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 53
   },
   {
     "id": "c3fc0c37-6cbe-4768-9896-30b4d8af8496",
@@ -1531,7 +1531,7 @@
     "createdAt": "2021-11-22T05:30:44.103Z",
     "updatedAt": "2022-01-06T00:38:49.263Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 40
   },
   {
     "id": "7413605b-3c05-437a-be99-1e5d8cea750f",
@@ -1544,7 +1544,7 @@
     "createdAt": "2021-10-24T00:58:27.417Z",
     "updatedAt": "2022-01-03T15:50:58.469Z",
     "accountManager": "a6e9da4b-2ce9-46ac-bb0f-680c1ddc8a5b",
-    "index": 0
+    "index": 33
   },
   {
     "id": "6111f5c7-5d4c-4bd7-8ffc-fc15f6a124fb",
@@ -1557,7 +1557,7 @@
     "createdAt": "2021-12-07T07:57:01.792Z",
     "updatedAt": "2021-12-15T02:56:22.604Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 3
   },
   {
     "id": "5a05e263-f677-4a7d-9075-29b7c87b3d8b",
@@ -1570,7 +1570,7 @@
     "createdAt": "2022-01-15T14:02:10.284Z",
     "updatedAt": "2022-01-17T04:02:26.351Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 59
   },
   {
     "id": "7294651b-9250-484e-8a04-7b7e0960228e",
@@ -1583,7 +1583,7 @@
     "createdAt": "2021-10-31T06:30:45.190Z",
     "updatedAt": "2021-11-30T04:12:21.106Z",
     "accountManager": "a6e9da4b-2ce9-46ac-bb0f-680c1ddc8a5b",
-    "index": 0
+    "index": 32
   },
   {
     "id": "33c3c281-2ced-4398-96f0-3a679e24253b",
@@ -1609,7 +1609,7 @@
     "createdAt": "2021-12-18T20:31:09.355Z",
     "updatedAt": "2021-12-29T03:05:29.729Z",
     "accountManager": "0c078496-ab7d-48ed-8bef-29edc084af2b",
-    "index": 0
+    "index": 50
   },
   {
     "id": "84d9841c-82e2-4fdf-a196-8f6b1dcb5675",
@@ -1622,7 +1622,7 @@
     "createdAt": "2021-07-06T07:00:25.878Z",
     "updatedAt": "2021-09-13T09:34:19.218Z",
     "accountManager": "3fae6a74-6bc0-427f-a905-efc44f746b4f",
-    "index": 0
+    "index": 6
   },
   {
     "id": "f1a27e09-993f-413c-a9c7-584323ec2114",
@@ -1635,7 +1635,7 @@
     "createdAt": "2021-12-29T10:57:44.875Z",
     "updatedAt": "2021-12-30T22:29:19.245Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 37
   },
   {
     "id": "39bf9d01-1f02-42ff-964e-ce46df4889e7",
@@ -1648,7 +1648,7 @@
     "createdAt": "2021-12-16T07:19:47.292Z",
     "updatedAt": "2022-01-13T12:12:37.537Z",
     "accountManager": "d60f6fd8-75c3-43ab-af42-83371413a827",
-    "index": 0
+    "index": 49
   },
   {
     "id": "8d1ddddd-af55-470b-abb8-77c50de06ad1",
@@ -1661,7 +1661,7 @@
     "createdAt": "2022-01-10T19:32:46.867Z",
     "updatedAt": "2022-01-18T14:46:38.741Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 57
   },
   {
     "id": "2c2479b6-9bcb-4b46-a1bd-aa06e0f28a82",
@@ -1674,7 +1674,7 @@
     "createdAt": "2021-09-21T23:18:04.063Z",
     "updatedAt": "2021-10-06T13:20:32.177Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 24
   },
   {
     "id": "70b35a2f-c83b-4519-89f0-2192bfcb087a",
@@ -1687,7 +1687,7 @@
     "createdAt": "2021-04-11T21:27:52.131Z",
     "updatedAt": "2021-04-17T19:00:33.524Z",
     "accountManager": "3fae6a74-6bc0-427f-a905-efc44f746b4f",
-    "index": 0
+    "index": 15
   },
   {
     "id": "f3b68a7b-9567-47fb-9e56-911d27e0883e",
@@ -1700,7 +1700,7 @@
     "createdAt": "2021-04-09T21:34:26.817Z",
     "updatedAt": "2021-04-13T20:41:11.056Z",
     "accountManager": "7472fe13-9966-4ce3-b1a6-fba718f2e37e",
-    "index": 0
+    "index": 8
   },
   {
     "id": "e09bf929-d925-443b-8648-544f0cb2cd31",
@@ -1713,7 +1713,7 @@
     "createdAt": "2021-08-07T08:38:12.839Z",
     "updatedAt": "2021-12-17T00:24:31.856Z",
     "accountManager": "7472fe13-9966-4ce3-b1a6-fba718f2e37e",
-    "index": 0
+    "index": 12
   },
   {
     "id": "5aac98c4-78f3-4a64-a470-3a06f27399ae",
@@ -1726,7 +1726,7 @@
     "createdAt": "2022-01-13T13:05:45.603Z",
     "updatedAt": "2022-01-23T18:47:07.567Z",
     "accountManager": "d60f6fd8-75c3-43ab-af42-83371413a827",
-    "index": 0
+    "index": 51
   },
   {
     "id": "57c85371-964d-4721-a449-595d795858e8",
@@ -1739,7 +1739,7 @@
     "createdAt": "2021-07-04T16:36:52.636Z",
     "updatedAt": "2021-07-18T05:50:25.055Z",
     "accountManager": "3fae6a74-6bc0-427f-a905-efc44f746b4f",
-    "index": 0
+    "index": 17
   },
   {
     "id": "d2d6e3cb-595e-4af9-9eed-06bdb479ca2b",
@@ -1752,7 +1752,7 @@
     "createdAt": "2021-09-24T21:19:59.628Z",
     "updatedAt": "2021-10-05T20:49:12.890Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 26
   },
   {
     "id": "1dbc6dbf-bc54-4c07-a95b-bee40c28921c",
@@ -1765,7 +1765,7 @@
     "createdAt": "2021-06-10T07:22:26.380Z",
     "updatedAt": "2021-07-29T21:58:50.359Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 4
   },
   {
     "id": "90c849ec-781e-4b24-9eb8-ff3c386dd590",
@@ -1778,7 +1778,7 @@
     "createdAt": "2022-01-21T02:52:13.873Z",
     "updatedAt": "2022-01-21T15:39:21.010Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 55
   },
   {
     "id": "0285edc9-5bc0-44dd-b8f6-7ccae9d46644",
@@ -1791,7 +1791,7 @@
     "createdAt": "2021-04-23T15:09:24.214Z",
     "updatedAt": "2021-06-19T13:26:48.545Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 11
   },
   {
     "id": "73b3ec1b-139d-4368-9b93-0fde2229f2b6",
@@ -1804,7 +1804,7 @@
     "createdAt": "2021-05-20T21:28:07.434Z",
     "updatedAt": "2021-09-09T15:10:59.829Z",
     "accountManager": "55f98c99-5fcd-4584-91ae-9ceb4e448f26",
-    "index": 0
+    "index": 19
   },
   {
     "id": "8b9722e5-5fb1-4158-8db8-c3076eafe956",
@@ -1817,7 +1817,7 @@
     "createdAt": "2021-05-01T10:48:12.496Z",
     "updatedAt": "2022-01-18T11:10:04.680Z",
     "accountManager": "a6e9da4b-2ce9-46ac-bb0f-680c1ddc8a5b",
-    "index": 0
+    "index": 13
   },
   {
     "id": "5bdfeea4-38f2-4506-8932-76f2a7d060c6",
@@ -1830,7 +1830,7 @@
     "createdAt": "2021-10-19T06:40:06.238Z",
     "updatedAt": "2022-01-23T09:54:51.443Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 33
   },
   {
     "id": "26926064-9092-41da-9366-db31c06f51a1",
@@ -1843,7 +1843,7 @@
     "createdAt": "2021-02-11T22:31:03.486Z",
     "updatedAt": "2021-09-19T01:16:48.359Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 6
   },
   {
     "id": "165f7faa-d62d-4181-abac-9e4df7f06b68",
@@ -1856,20 +1856,20 @@
     "createdAt": "2021-11-25T14:55:17.366Z",
     "updatedAt": "2021-12-16T14:22:04.503Z",
     "accountManager": "d60f6fd8-75c3-43ab-af42-83371413a827",
-    "index": 0
+    "index": 39
   },
   {
     "id": "3dfcdf08-8f63-4dbd-90c1-3073859fe812",
     "name": "Voluptatibus vel animi",
     "company": "69f822ca-9ced-47c6-b365-87d24a6be446",
     "type": "Copywriting",
-    "stage": "opportunity",
+    "stage": "in-negociation",
     "description": "Commodi excepturi eaque omnis et adipisci dolorem et dolorem ea. Perferendis eligendi deleniti est soluta. Provident tempora ut voluptatem qui reiciendis. Totam sit dolore quam officia voluptate. Similique ea et eum consectetur deserunt quae distinctio quos quo. Deserunt ea accusantium.",
     "amount": 14600,
     "createdAt": "2021-03-06T08:36:26.178Z",
     "updatedAt": "2021-08-23T14:31:24.834Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 1
   },
   {
     "id": "14a91670-a3c2-4c6f-abcd-dfd1ee78fa1e",
@@ -1882,20 +1882,20 @@
     "createdAt": "2021-07-10T07:47:38.249Z",
     "updatedAt": "2021-12-29T18:55:57.044Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 24
   },
   {
     "id": "c8b169b5-e6de-437a-9e14-59bfa9f8809d",
     "name": "Et repellat fugit",
     "company": "410e1b8d-047f-4c12-b467-0cdf01c44dbf",
     "type": "Copywriting",
-    "stage": "opportunity",
+    "stage": "proposal-sent",
     "description": "Hic dolores omnis unde quasi animi. Vitae nihil nostrum vitae eaque dignissimos eos accusantium aperiam. Et in voluptas. Rem temporibus qui perspiciatis illum consequatur quos dolorum.",
     "amount": 65900,
     "createdAt": "2021-05-10T14:40:29.299Z",
     "updatedAt": "2021-09-29T00:25:24.278Z",
     "accountManager": "3fae6a74-6bc0-427f-a905-efc44f746b4f",
-    "index": 0
+    "index": 13
   },
   {
     "id": "aa0be42a-5b34-45f7-9888-f3afb910a4d9",
@@ -1908,7 +1908,7 @@
     "createdAt": "2021-09-23T13:26:00.145Z",
     "updatedAt": "2021-10-07T09:29:09.623Z",
     "accountManager": "a6e9da4b-2ce9-46ac-bb0f-680c1ddc8a5b",
-    "index": 0
+    "index": 25
   },
   {
     "id": "d04eec60-6f0f-4363-96e6-ce6d3aafe60e",
@@ -1921,7 +1921,7 @@
     "createdAt": "2021-07-28T14:39:58.099Z",
     "updatedAt": "2021-11-04T04:12:12.499Z",
     "accountManager": "a6e9da4b-2ce9-46ac-bb0f-680c1ddc8a5b",
-    "index": 0
+    "index": 18
   },
   {
     "id": "43e11037-7b85-46cd-9424-4b248a72b53a",
@@ -1934,7 +1934,7 @@
     "createdAt": "2021-02-25T20:35:31.054Z",
     "updatedAt": "2021-12-04T10:54:36.045Z",
     "accountManager": "3fae6a74-6bc0-427f-a905-efc44f746b4f",
-    "index": 0
+    "index": 7
   },
   {
     "id": "4f264d7b-a3bf-474b-b188-7a48707ab202",
@@ -1947,7 +1947,7 @@
     "createdAt": "2021-07-07T23:50:08.818Z",
     "updatedAt": "2022-01-06T16:23:11.638Z",
     "accountManager": "0c078496-ab7d-48ed-8bef-29edc084af2b",
-    "index": 0
+    "index": 20
   },
   {
     "id": "683a30b0-39a1-4716-858e-7bec75a26011",
@@ -1960,7 +1960,7 @@
     "createdAt": "2021-10-17T09:52:46.134Z",
     "updatedAt": "2021-12-12T05:11:06.902Z",
     "accountManager": "a6e9da4b-2ce9-46ac-bb0f-680c1ddc8a5b",
-    "index": 0
+    "index": 30
   },
   {
     "id": "d6ab7432-b168-438d-8684-d75218d7b1b8",
@@ -1973,7 +1973,7 @@
     "createdAt": "2021-11-24T11:04:46.544Z",
     "updatedAt": "2021-12-17T21:09:13.649Z",
     "accountManager": "7472fe13-9966-4ce3-b1a6-fba718f2e37e",
-    "index": 0
+    "index": 42
   },
   {
     "id": "dffbda40-d2a2-4155-81f7-a77d34124488",
@@ -1986,7 +1986,7 @@
     "createdAt": "2021-05-14T03:41:39.968Z",
     "updatedAt": "2021-09-28T00:29:22.526Z",
     "accountManager": "a6e9da4b-2ce9-46ac-bb0f-680c1ddc8a5b",
-    "index": 0
+    "index": 2
   },
   {
     "id": "99042499-ba9c-456d-aed8-850136222d18",
@@ -1999,7 +1999,7 @@
     "createdAt": "2021-01-24T00:55:47.407Z",
     "updatedAt": "2021-08-12T12:34:20.769Z",
     "accountManager": "0c078496-ab7d-48ed-8bef-29edc084af2b",
-    "index": 0
+    "index": 3
   },
   {
     "id": "dcdb8e87-c31a-46f9-a2ab-8edd80d3beab",
@@ -2012,7 +2012,7 @@
     "createdAt": "2020-11-26T03:12:09.795Z",
     "updatedAt": "2021-04-21T21:05:45.117Z",
     "accountManager": "55f98c99-5fcd-4584-91ae-9ceb4e448f26",
-    "index": 0
+    "index": 1
   },
   {
     "id": "e14d2806-9124-4e95-8b21-e3b618a9453c",
@@ -2025,7 +2025,7 @@
     "createdAt": "2021-12-15T15:33:15.395Z",
     "updatedAt": "2021-12-28T11:25:07.123Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 40
   },
   {
     "id": "9a9abdcf-eb0b-432e-a3e7-35d8292a0c7d",
@@ -2038,7 +2038,7 @@
     "createdAt": "2022-01-23T13:52:25.806Z",
     "updatedAt": "2022-01-24T08:15:21.029Z",
     "accountManager": "0c078496-ab7d-48ed-8bef-29edc084af2b",
-    "index": 0
+    "index": 44
   },
   {
     "id": "6607aa87-fbc6-4694-a0db-712f2994b587",
@@ -2051,7 +2051,7 @@
     "createdAt": "2022-01-13T23:27:31.629Z",
     "updatedAt": "2022-01-23T22:02:57.946Z",
     "accountManager": "0c078496-ab7d-48ed-8bef-29edc084af2b",
-    "index": 0
+    "index": 51
   },
   {
     "id": "9be5d63b-face-445e-8730-9086a57bd61d",
@@ -2064,7 +2064,7 @@
     "createdAt": "2021-12-25T03:26:20.561Z",
     "updatedAt": "2022-01-04T08:13:34.397Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 44
   },
   {
     "id": "e342d52c-ea83-475e-b8e6-f4f70aa46fdb",
@@ -2077,7 +2077,7 @@
     "createdAt": "2021-12-17T08:25:56.853Z",
     "updatedAt": "2021-12-26T00:45:33.494Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 45
   },
   {
     "id": "27e315bb-d6d6-4da3-8e8d-5e2868e7e305",
@@ -2090,7 +2090,7 @@
     "createdAt": "2021-12-06T07:11:03.158Z",
     "updatedAt": "2021-12-18T18:21:59.940Z",
     "accountManager": "3fae6a74-6bc0-427f-a905-efc44f746b4f",
-    "index": 0
+    "index": 36
   },
   {
     "id": "0438d5f4-cc44-4455-b451-c65990558a30",
@@ -2103,7 +2103,7 @@
     "createdAt": "2021-12-14T05:45:58.508Z",
     "updatedAt": "2021-12-28T11:58:23.464Z",
     "accountManager": "a6e9da4b-2ce9-46ac-bb0f-680c1ddc8a5b",
-    "index": 0
+    "index": 31
   },
   {
     "id": "30d41466-ebdb-4da1-94ae-4fc2fed04098",
@@ -2116,7 +2116,7 @@
     "createdAt": "2022-01-11T15:37:24.092Z",
     "updatedAt": "2022-01-23T23:25:17.042Z",
     "accountManager": "3fae6a74-6bc0-427f-a905-efc44f746b4f",
-    "index": 0
+    "index": 49
   },
   {
     "id": "d49c9367-f13c-4c5e-afdd-b4b9c1ad92ab",
@@ -2129,7 +2129,7 @@
     "createdAt": "2021-08-18T06:20:20.970Z",
     "updatedAt": "2021-10-13T05:41:08.315Z",
     "accountManager": "d60f6fd8-75c3-43ab-af42-83371413a827",
-    "index": 0
+    "index": 26
   },
   {
     "id": "30643530-15bd-41f0-acc9-53bb757c5b31",
@@ -2142,7 +2142,7 @@
     "createdAt": "2022-01-03T12:46:49.678Z",
     "updatedAt": "2022-01-03T22:37:23.724Z",
     "accountManager": "a6e9da4b-2ce9-46ac-bb0f-680c1ddc8a5b",
-    "index": 0
+    "index": 50
   },
   {
     "id": "8b3a5fd2-5553-4b41-a7ae-3742747636d9",
@@ -2155,20 +2155,20 @@
     "createdAt": "2021-10-19T18:36:16.981Z",
     "updatedAt": "2022-01-21T17:59:17.417Z",
     "accountManager": "59dd3275-47d1-4394-a5e9-b8dea26cce2c",
-    "index": 0
+    "index": 31
   },
   {
     "id": "a7cccd34-f2e4-4baa-a20a-7219157853a7",
     "name": "Dolorum voluptatem ullam",
     "company": "021022f9-cc7b-4474-ae53-082117b20749",
     "type": "Website design",
-    "stage": "opportunity",
+    "stage": "proposal-sent",
     "description": "Maiores quasi eum deserunt quae odio ipsa. Sequi maiores dolorem nulla. Aperiam facere iste occaecati temporibus labore nemo neque atque eos.",
     "amount": 83400,
     "createdAt": "2021-07-24T18:58:21.350Z",
     "updatedAt": "2022-01-23T11:48:46.853Z",
     "accountManager": "d60f6fd8-75c3-43ab-af42-83371413a827",
-    "index": 0
+    "index": 10
   },
   {
     "id": "da4afea0-e4d1-44d6-8144-31763f137134",
@@ -2181,14 +2181,14 @@
     "createdAt": "2021-10-06T17:04:38.726Z",
     "updatedAt": "2021-12-23T18:29:10.937Z",
     "accountManager": "0c078496-ab7d-48ed-8bef-29edc084af2b",
-    "index": 0
+    "index": 28
   },
   {
     "id": "d755102a-db25-4369-9e86-50883ad4bb30",
     "name": "Illum sit nesciunt",
     "company": "3ce72c3f-2732-469f-b16c-8b837a2220a6",
     "type": "Copywriting",
-    "stage": "opportunity",
+    "stage": "proposal-sent",
     "description": "Voluptas odio laborum at deserunt quod veritatis enim. Laborum veritatis reprehenderit non praesentium unde officia repudiandae. Dolor nemo voluptatem officiis dolores voluptatem in dolorem itaque ex. Libero eveniet velit aut et natus ab officia est tempore. Maxime ut nobis dolorem eos. Iusto saepe aut non qui temporibus fugiat a.",
     "amount": 23300,
     "createdAt": "2021-11-03T20:01:42.444Z",
@@ -2207,7 +2207,7 @@
     "createdAt": "2021-12-15T20:03:53.057Z",
     "updatedAt": "2021-12-23T10:39:31.361Z",
     "accountManager": "7472fe13-9966-4ce3-b1a6-fba718f2e37e",
-    "index": 0
+    "index": 41
   },
   {
     "id": "67ac9466-79b5-4440-ac12-771993dfba8d",
@@ -2220,7 +2220,7 @@
     "createdAt": "2021-04-22T23:57:05.093Z",
     "updatedAt": "2021-09-22T11:31:57.916Z",
     "accountManager": "a6e9da4b-2ce9-46ac-bb0f-680c1ddc8a5b",
-    "index": 0
+    "index": 17
   },
   {
     "id": "81bb7445-0ffb-4c54-a2cd-81a37e24e8c8",
@@ -2233,7 +2233,7 @@
     "createdAt": "2021-08-06T15:16:51.867Z",
     "updatedAt": "2021-08-08T23:04:55.948Z",
     "accountManager": "d60f6fd8-75c3-43ab-af42-83371413a827",
-    "index": 0
+    "index": 11
   },
   {
     "id": "39800496-684d-4353-8e5c-7d3738a9193b",
@@ -2246,7 +2246,7 @@
     "createdAt": "2021-08-31T21:38:52.048Z",
     "updatedAt": "2021-10-08T19:03:51.160Z",
     "accountManager": "3fae6a74-6bc0-427f-a905-efc44f746b4f",
-    "index": 0
+    "index": 22
   },
   {
     "id": "50e551b1-e07c-40cb-945d-d189939a74dd",
@@ -2259,7 +2259,7 @@
     "createdAt": "2021-12-07T11:05:18.763Z",
     "updatedAt": "2021-12-23T10:32:44.022Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 30
   },
   {
     "id": "c15e271e-9e74-43e3-9d8e-f046b09c8a8e",
@@ -2272,7 +2272,7 @@
     "createdAt": "2021-12-11T18:05:14.687Z",
     "updatedAt": "2021-12-17T15:47:32.710Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 39
   },
   {
     "id": "1ce3c596-5f74-42f2-bc8d-9119d53a526c",
@@ -2285,7 +2285,7 @@
     "createdAt": "2021-12-09T09:11:25.888Z",
     "updatedAt": "2021-12-17T01:55:17.680Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 4
   },
   {
     "id": "5adbbe58-cb83-4b08-ba69-0fea69e245d2",
@@ -2298,7 +2298,7 @@
     "createdAt": "2021-10-05T10:41:32.468Z",
     "updatedAt": "2021-11-05T06:53:29.275Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 30
   },
   {
     "id": "e62733c6-a30f-446c-8873-e2e3a164c439",
@@ -2311,7 +2311,7 @@
     "createdAt": "2021-09-27T03:53:17.878Z",
     "updatedAt": "2021-10-26T21:29:48.877Z",
     "accountManager": "7472fe13-9966-4ce3-b1a6-fba718f2e37e",
-    "index": 0
+    "index": 27
   },
   {
     "id": "100d37df-b3da-4771-8228-53fdcf15cb16",
@@ -2324,7 +2324,7 @@
     "createdAt": "2021-12-25T06:31:51.711Z",
     "updatedAt": "2022-01-17T15:21:36.880Z",
     "accountManager": "7472fe13-9966-4ce3-b1a6-fba718f2e37e",
-    "index": 0
+    "index": 36
   },
   {
     "id": "6d7622e0-291e-44b8-b683-15ee337c4638",
@@ -2337,7 +2337,7 @@
     "createdAt": "2021-12-07T00:04:59.868Z",
     "updatedAt": "2021-12-10T14:33:46.722Z",
     "accountManager": "a6e9da4b-2ce9-46ac-bb0f-680c1ddc8a5b",
-    "index": 0
+    "index": 43
   },
   {
     "id": "a2bb245c-3613-464e-a07a-eaaab83e28c9",
@@ -2350,7 +2350,7 @@
     "createdAt": "2022-01-21T09:16:53.757Z",
     "updatedAt": "2022-01-22T20:03:17.209Z",
     "accountManager": "3fae6a74-6bc0-427f-a905-efc44f746b4f",
-    "index": 0
+    "index": 15
   },
   {
     "id": "38b94498-3775-4fa5-9eee-53041a870f1f",
@@ -2363,7 +2363,7 @@
     "createdAt": "2021-12-08T07:36:43.255Z",
     "updatedAt": "2022-01-03T15:48:55.239Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 44
   },
   {
     "id": "e31c501b-11a7-4350-a160-49f4bdaa98ae",
@@ -2376,20 +2376,20 @@
     "createdAt": "2021-11-28T00:27:28.133Z",
     "updatedAt": "2022-01-21T02:58:13.558Z",
     "accountManager": "55f98c99-5fcd-4584-91ae-9ceb4e448f26",
-    "index": 0
+    "index": 27
   },
   {
     "id": "22dfcab9-ba89-4160-9bb4-7837076c1ef4",
     "name": "Dignissimos in consequatur",
     "company": "b3afbd22-30bd-4896-80ca-5fe9081da6c0",
     "type": "Website design",
-    "stage": "opportunity",
+    "stage": "won",
     "description": "Corporis aliquid explicabo eius. Numquam totam fuga qui ut ut laudantium velit. Ab tempora reprehenderit vel fuga aut ut et dolorum. Pariatur harum et ipsa blanditiis cumque voluptatem iure occaecati voluptate. Tempora molestias quo neque praesentium fugit fugit excepturi. Nihil ut eius aperiam assumenda repudiandae ut ut quas.",
     "amount": 8700,
     "createdAt": "2021-06-08T21:06:32.932Z",
     "updatedAt": "2021-08-17T01:39:34.494Z",
     "accountManager": "55f98c99-5fcd-4584-91ae-9ceb4e448f26",
-    "index": 0
+    "index": 1
   },
   {
     "id": "bc923b2d-c977-41cf-80cd-30d883772d67",
@@ -2402,7 +2402,7 @@
     "createdAt": "2021-06-03T07:18:27.954Z",
     "updatedAt": "2022-01-23T07:09:56.657Z",
     "accountManager": "a6e9da4b-2ce9-46ac-bb0f-680c1ddc8a5b",
-    "index": 0
+    "index": 3
   },
   {
     "id": "6e1d3043-2434-42d4-8cc5-2b8923ec8e0f",
@@ -2415,7 +2415,7 @@
     "createdAt": "2021-10-22T11:32:49.084Z",
     "updatedAt": "2021-11-25T18:40:35.147Z",
     "accountManager": "59dd3275-47d1-4394-a5e9-b8dea26cce2c",
-    "index": 0
+    "index": 32
   },
   {
     "id": "0687ec79-7458-463e-978d-ac9a8715fb64",
@@ -2428,7 +2428,7 @@
     "createdAt": "2021-09-18T07:16:32.029Z",
     "updatedAt": "2021-09-25T20:58:46.827Z",
     "accountManager": "d60f6fd8-75c3-43ab-af42-83371413a827",
-    "index": 0
+    "index": 18
   },
   {
     "id": "f403c0f9-c894-44da-8b03-5c99514c8293",
@@ -2441,7 +2441,7 @@
     "createdAt": "2021-12-24T14:20:49.464Z",
     "updatedAt": "2021-12-28T17:14:21.884Z",
     "accountManager": "7472fe13-9966-4ce3-b1a6-fba718f2e37e",
-    "index": 0
+    "index": 53
   },
   {
     "id": "0c4ef8da-a41f-4671-aa6c-cdae61c4dd43",
@@ -2454,7 +2454,7 @@
     "createdAt": "2021-12-19T03:52:21.268Z",
     "updatedAt": "2022-01-22T05:43:58.226Z",
     "accountManager": "7472fe13-9966-4ce3-b1a6-fba718f2e37e",
-    "index": 0
+    "index": 34
   },
   {
     "id": "fff3df07-5bc8-4105-9f27-d472b4e91439",
@@ -2467,7 +2467,7 @@
     "createdAt": "2022-01-07T04:06:18.109Z",
     "updatedAt": "2022-01-16T23:25:14.180Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 13
   },
   {
     "id": "521b5b9f-40ec-410e-9cb5-ad784e420bca",
@@ -2480,7 +2480,7 @@
     "createdAt": "2021-12-21T02:52:51.426Z",
     "updatedAt": "2021-12-28T12:56:27.752Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 35
   },
   {
     "id": "b0059ef2-1ab1-4dae-b121-0079910d6a2a",
@@ -2493,7 +2493,7 @@
     "createdAt": "2021-04-13T20:19:25.661Z",
     "updatedAt": "2021-10-30T20:36:23.798Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 10
   },
   {
     "id": "63a76e47-418e-4909-90b9-712c94e568a6",
@@ -2506,20 +2506,20 @@
     "createdAt": "2021-09-14T09:56:40.720Z",
     "updatedAt": "2021-10-06T08:06:05.476Z",
     "accountManager": "a6e9da4b-2ce9-46ac-bb0f-680c1ddc8a5b",
-    "index": 0
+    "index": 21
   },
   {
     "id": "fe34828b-972e-4ea6-904b-3d7397f474a3",
     "name": "Et molestiae reiciendis",
     "company": "78e6cbc8-7633-4367-8442-8f326b83e825",
     "type": "Copywriting",
-    "stage": "opportunity",
+    "stage": "proposal-sent",
     "description": "Fuga iste consequatur iusto sit doloribus accusantium quos aut dolor. Dolore occaecati dicta ratione voluptates quia autem aut.",
     "amount": 50300,
     "createdAt": "2021-08-18T23:20:09.105Z",
     "updatedAt": "2021-09-26T01:14:58.433Z",
     "accountManager": "55f98c99-5fcd-4584-91ae-9ceb4e448f26",
-    "index": 0
+    "index": 8
   },
   {
     "id": "73975252-bb53-4bbc-ae21-53cf47d59788",
@@ -2532,7 +2532,7 @@
     "createdAt": "2021-10-05T13:00:04.930Z",
     "updatedAt": "2021-11-24T07:23:47.353Z",
     "accountManager": "3fae6a74-6bc0-427f-a905-efc44f746b4f",
-    "index": 0
+    "index": 31
   },
   {
     "id": "416149e2-e801-45ad-8255-e481f07cf485",
@@ -2545,7 +2545,7 @@
     "createdAt": "2021-06-24T05:54:38.479Z",
     "updatedAt": "2021-07-09T14:11:18.227Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 16
   },
   {
     "id": "a4632939-ff59-41f8-8428-2856f80474ac",
@@ -2558,7 +2558,7 @@
     "createdAt": "2021-09-24T23:03:36.099Z",
     "updatedAt": "2021-12-08T16:59:31.939Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 28
   },
   {
     "id": "2d803a0e-50a1-44dc-8292-9434718d055e",
@@ -2571,7 +2571,7 @@
     "createdAt": "2021-10-01T18:37:43.624Z",
     "updatedAt": "2021-10-29T14:31:10.228Z",
     "accountManager": "0c078496-ab7d-48ed-8bef-29edc084af2b",
-    "index": 0
+    "index": 29
   },
   {
     "id": "69a7401f-8fa7-48e2-9854-53bb114b012a",
@@ -2584,7 +2584,7 @@
     "createdAt": "2021-08-16T03:07:32.568Z",
     "updatedAt": "2021-11-22T06:43:23.953Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 14
   },
   {
     "id": "59d12101-531d-4ef3-9758-6b57a8022435",
@@ -2597,7 +2597,7 @@
     "createdAt": "2021-08-30T21:12:53.793Z",
     "updatedAt": "2021-11-12T06:31:07.750Z",
     "accountManager": "0c078496-ab7d-48ed-8bef-29edc084af2b",
-    "index": 0
+    "index": 27
   },
   {
     "id": "6fda44ce-058d-4968-a6a0-265b1cc65656",
@@ -2610,7 +2610,7 @@
     "createdAt": "2021-12-12T04:46:45.744Z",
     "updatedAt": "2022-01-11T02:08:50.807Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 40
   },
   {
     "id": "e803e58a-aade-48c6-b91c-2fd86149e56b",
@@ -2623,7 +2623,7 @@
     "createdAt": "2021-12-05T09:23:33.797Z",
     "updatedAt": "2021-12-17T16:55:36.784Z",
     "accountManager": "7472fe13-9966-4ce3-b1a6-fba718f2e37e",
-    "index": 0
+    "index": 42
   },
   {
     "id": "2dd30d65-0886-4dae-a7a6-6ac1656353b5",
@@ -2636,7 +2636,7 @@
     "createdAt": "2021-11-19T22:58:05.633Z",
     "updatedAt": "2022-01-09T18:18:41.553Z",
     "accountManager": "59dd3275-47d1-4394-a5e9-b8dea26cce2c",
-    "index": 0
+    "index": 37
   },
   {
     "id": "9ecbdcaf-37c7-4b54-a00a-1b183a8f2795",
@@ -2649,7 +2649,7 @@
     "createdAt": "2021-12-28T22:39:43.626Z",
     "updatedAt": "2022-01-17T18:37:17.397Z",
     "accountManager": "a6e9da4b-2ce9-46ac-bb0f-680c1ddc8a5b",
-    "index": 0
+    "index": 43
   },
   {
     "id": "04d36ae4-603e-4dfc-83cd-763459f9ed17",
@@ -2662,7 +2662,7 @@
     "createdAt": "2021-06-21T21:35:15.995Z",
     "updatedAt": "2022-01-10T02:49:56.535Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 15
   },
   {
     "id": "58e5105a-4887-4780-8f37-900cbd29bd1f",
@@ -2675,7 +2675,7 @@
     "createdAt": "2021-06-28T19:52:41.720Z",
     "updatedAt": "2022-01-13T09:08:50.110Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 17
   },
   {
     "id": "814b9a7f-8dcc-45c2-a8f6-2e95a35557cb",
@@ -2688,7 +2688,7 @@
     "createdAt": "2021-04-12T09:26:30.165Z",
     "updatedAt": "2021-08-29T02:37:39.737Z",
     "accountManager": "55f98c99-5fcd-4584-91ae-9ceb4e448f26",
-    "index": 0
+    "index": 9
   },
   {
     "id": "8ce51c79-e7f1-4ac4-a500-39a19ec9a5f5",
@@ -2701,7 +2701,7 @@
     "createdAt": "2021-11-07T01:03:31.573Z",
     "updatedAt": "2022-01-14T02:27:31.860Z",
     "accountManager": "7472fe13-9966-4ce3-b1a6-fba718f2e37e",
-    "index": 0
+    "index": 21
   },
   {
     "id": "0c9eaca3-3b65-440d-8458-0e5c6fcff160",
@@ -2714,7 +2714,7 @@
     "createdAt": "2021-09-09T13:03:29.715Z",
     "updatedAt": "2021-10-03T11:00:23.447Z",
     "accountManager": "59dd3275-47d1-4394-a5e9-b8dea26cce2c",
-    "index": 0
+    "index": 24
   },
   {
     "id": "98c51ef7-be47-4958-8bdb-0df4bf4ba013",
@@ -2727,7 +2727,7 @@
     "createdAt": "2021-08-15T13:18:02.754Z",
     "updatedAt": "2021-10-23T12:47:27.468Z",
     "accountManager": "59dd3275-47d1-4394-a5e9-b8dea26cce2c",
-    "index": 0
+    "index": 19
   },
   {
     "id": "787c9445-b901-4a35-96ad-22ab5aa27e74",
@@ -2740,7 +2740,7 @@
     "createdAt": "2022-01-19T12:50:33.119Z",
     "updatedAt": "2022-01-22T22:11:46.467Z",
     "accountManager": "59dd3275-47d1-4394-a5e9-b8dea26cce2c",
-    "index": 0
+    "index": 40
   },
   {
     "id": "ff97e4cc-2bee-410f-acc6-71017ddd37fb",
@@ -2753,7 +2753,7 @@
     "createdAt": "2020-11-22T12:21:24.188Z",
     "updatedAt": "2021-09-05T20:28:31.355Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 4
   },
   {
     "id": "0bcb930d-347a-42ef-b92e-fa5186ea4bfb",
@@ -2779,7 +2779,7 @@
     "createdAt": "2021-11-20T23:58:38.366Z",
     "updatedAt": "2022-01-07T09:43:53.500Z",
     "accountManager": "55f98c99-5fcd-4584-91ae-9ceb4e448f26",
-    "index": 0
+    "index": 38
   },
   {
     "id": "60a8cccb-c3e2-4170-b3ab-d32cde884b1f",
@@ -2792,7 +2792,7 @@
     "createdAt": "2021-03-11T01:07:22.741Z",
     "updatedAt": "2021-10-29T13:00:44.386Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 9
   },
   {
     "id": "810803d4-c988-445c-a7ea-40a9e3fb85f6",
@@ -2805,7 +2805,7 @@
     "createdAt": "2021-12-09T17:35:07.098Z",
     "updatedAt": "2022-01-11T07:45:51.752Z",
     "accountManager": "59dd3275-47d1-4394-a5e9-b8dea26cce2c",
-    "index": 0
+    "index": 5
   },
   {
     "id": "e27c6dbc-0308-4364-aa56-cebe2c44f857",
@@ -2818,7 +2818,7 @@
     "createdAt": "2021-01-01T10:28:51.352Z",
     "updatedAt": "2021-10-06T23:27:45.545Z",
     "accountManager": "a6e9da4b-2ce9-46ac-bb0f-680c1ddc8a5b",
-    "index": 0
+    "index": 14
   },
   {
     "id": "51987839-9b5b-44bf-82fb-caeb567ba264",
@@ -2831,7 +2831,7 @@
     "createdAt": "2021-08-27T02:12:43.400Z",
     "updatedAt": "2021-12-03T10:43:16.872Z",
     "accountManager": "d60f6fd8-75c3-43ab-af42-83371413a827",
-    "index": 0
+    "index": 15
   },
   {
     "id": "81829af3-763e-4326-8c62-426e8316c783",
@@ -2844,7 +2844,7 @@
     "createdAt": "2021-02-08T00:39:44.361Z",
     "updatedAt": "2021-05-02T10:06:20.694Z",
     "accountManager": "55f98c99-5fcd-4584-91ae-9ceb4e448f26",
-    "index": 0
+    "index": 5
   },
   {
     "id": "bbeac55a-aa75-4660-9428-ffd48b96dde3",
@@ -2857,14 +2857,14 @@
     "createdAt": "2021-03-30T16:27:04.367Z",
     "updatedAt": "2021-11-19T19:55:28.093Z",
     "accountManager": "55f98c99-5fcd-4584-91ae-9ceb4e448f26",
-    "index": 0
+    "index": 12
   },
   {
     "id": "a0915809-72bb-4714-9522-67ef2bdd4e92",
     "name": "Et quas sit",
     "company": "1078b568-6f28-4b35-bb6c-30c00e6f0b8d",
     "type": "Other",
-    "stage": "opportunity",
+    "stage": "in-negociation",
     "description": "Voluptas est dolores possimus mollitia.",
     "amount": 34500,
     "createdAt": "2021-01-01T19:56:49.754Z",
@@ -2883,7 +2883,7 @@
     "createdAt": "2021-09-26T20:10:45.752Z",
     "updatedAt": "2021-10-13T19:14:26.124Z",
     "accountManager": "0c078496-ab7d-48ed-8bef-29edc084af2b",
-    "index": 0
+    "index": 27
   },
   {
     "id": "9b2fde4b-70e9-4aab-83d8-2a06dafa5403",
@@ -2896,7 +2896,7 @@
     "createdAt": "2022-01-19T02:01:44.419Z",
     "updatedAt": "2022-01-20T23:20:41.827Z",
     "accountManager": "a6e9da4b-2ce9-46ac-bb0f-680c1ddc8a5b",
-    "index": 0
+    "index": 52
   },
   {
     "id": "7d765ade-846c-4123-8b3d-645caefc193d",
@@ -2909,7 +2909,7 @@
     "createdAt": "2022-01-15T00:20:49.482Z",
     "updatedAt": "2022-01-16T11:25:25.595Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 39
   },
   {
     "id": "c15087b6-c2bb-4a37-a5eb-2b21d7ef2839",
@@ -2922,7 +2922,7 @@
     "createdAt": "2021-10-04T19:50:31.362Z",
     "updatedAt": "2021-12-29T06:35:01.654Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 28
   },
   {
     "id": "28d54bad-caf7-44db-8fbf-c74ca569d6f3",
@@ -2935,7 +2935,7 @@
     "createdAt": "2021-06-04T00:31:04.251Z",
     "updatedAt": "2021-10-09T04:08:54.515Z",
     "accountManager": "0c078496-ab7d-48ed-8bef-29edc084af2b",
-    "index": 0
+    "index": 13
   },
   {
     "id": "3de7ee36-ed64-4bfa-9a91-b2d3f65e8509",
@@ -2948,7 +2948,7 @@
     "createdAt": "2021-08-07T11:44:05.316Z",
     "updatedAt": "2021-10-01T14:23:15.665Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 20
   },
   {
     "id": "7a68371a-8830-47aa-bd11-99880cb87524",
@@ -2961,7 +2961,7 @@
     "createdAt": "2021-12-22T02:45:58.174Z",
     "updatedAt": "2022-01-10T10:14:13.724Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 7
   },
   {
     "id": "e8c611ca-2ae3-46c2-9310-66453a29de12",
@@ -2974,7 +2974,7 @@
     "createdAt": "2020-11-02T09:47:01.067Z",
     "updatedAt": "2021-07-31T00:28:18.759Z",
     "accountManager": "59dd3275-47d1-4394-a5e9-b8dea26cce2c",
-    "index": 0
+    "index": 3
   },
   {
     "id": "cd3b57e8-b279-406f-aabb-42b1ac3f7a21",
@@ -2987,7 +2987,7 @@
     "createdAt": "2021-03-08T15:31:33.274Z",
     "updatedAt": "2021-08-08T23:19:37.511Z",
     "accountManager": "a6e9da4b-2ce9-46ac-bb0f-680c1ddc8a5b",
-    "index": 0
+    "index": 9
   },
   {
     "id": "74f764bb-8527-48a2-a4cd-120dd155d879",
@@ -3000,7 +3000,7 @@
     "createdAt": "2021-10-02T00:36:30.116Z",
     "updatedAt": "2021-11-01T20:44:02.563Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 30
   },
   {
     "id": "a7837337-3516-4140-8c47-f11763c9c0de",
@@ -3013,7 +3013,7 @@
     "createdAt": "2021-09-18T01:59:59.670Z",
     "updatedAt": "2021-12-25T21:33:24.125Z",
     "accountManager": "3fae6a74-6bc0-427f-a905-efc44f746b4f",
-    "index": 0
+    "index": 22
   },
   {
     "id": "3b7d66f7-2c39-4db8-940b-a1ecc636cb1b",
@@ -3026,7 +3026,7 @@
     "createdAt": "2021-12-26T13:55:11.878Z",
     "updatedAt": "2021-12-27T13:17:02.908Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 8
   },
   {
     "id": "0f7cbfd9-e952-43e4-8575-5cbf725c789f",
@@ -3039,7 +3039,7 @@
     "createdAt": "2021-06-28T17:58:42.863Z",
     "updatedAt": "2022-01-08T13:27:39.949Z",
     "accountManager": "0c078496-ab7d-48ed-8bef-29edc084af2b",
-    "index": 0
+    "index": 23
   },
   {
     "id": "7f11c9ca-3c28-48b6-bcb2-3bf3adea04ba",
@@ -3052,7 +3052,7 @@
     "createdAt": "2021-07-31T11:56:58.659Z",
     "updatedAt": "2021-08-08T04:52:21.440Z",
     "accountManager": "0c078496-ab7d-48ed-8bef-29edc084af2b",
-    "index": 0
+    "index": 17
   },
   {
     "id": "5f6aa913-a92a-4261-9c88-4eb18860128f",
@@ -3065,7 +3065,7 @@
     "createdAt": "2021-12-20T19:03:48.472Z",
     "updatedAt": "2022-01-24T09:58:53.967Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 51
   },
   {
     "id": "597ec0ef-5543-47e7-88ee-85589e99acd5",
@@ -3078,7 +3078,7 @@
     "createdAt": "2021-09-29T00:13:45.502Z",
     "updatedAt": "2021-11-14T13:56:32.446Z",
     "accountManager": "3fae6a74-6bc0-427f-a905-efc44f746b4f",
-    "index": 0
+    "index": 20
   },
   {
     "id": "b6dc1037-9a15-4cd6-8180-eab51f51b654",
@@ -3091,7 +3091,7 @@
     "createdAt": "2021-09-09T19:12:02.263Z",
     "updatedAt": "2022-01-14T19:19:05.643Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 20
   },
   {
     "id": "c9df5088-5224-4dad-87cb-afe465d2ea3e",
@@ -3104,7 +3104,7 @@
     "createdAt": "2021-11-14T08:00:50.318Z",
     "updatedAt": "2021-12-01T04:45:22.589Z",
     "accountManager": "59dd3275-47d1-4394-a5e9-b8dea26cce2c",
-    "index": 0
+    "index": 35
   },
   {
     "id": "7fe481a3-af4f-40a8-b3ce-e0451ba0ef06",
@@ -3117,7 +3117,7 @@
     "createdAt": "2021-12-28T00:16:45.389Z",
     "updatedAt": "2022-01-03T20:12:34.090Z",
     "accountManager": "3fae6a74-6bc0-427f-a905-efc44f746b4f",
-    "index": 0
+    "index": 54
   },
   {
     "id": "1b21ba2c-04c5-4130-a51b-1de4442e2790",
@@ -3130,7 +3130,7 @@
     "createdAt": "2021-09-10T22:57:43.986Z",
     "updatedAt": "2021-09-29T20:59:48.326Z",
     "accountManager": "3fae6a74-6bc0-427f-a905-efc44f746b4f",
-    "index": 0
+    "index": 26
   },
   {
     "id": "f33f51ba-9ef0-47d3-bad7-ec34ab915e92",
@@ -3143,7 +3143,7 @@
     "createdAt": "2021-12-31T15:43:06.579Z",
     "updatedAt": "2022-01-10T14:28:20.765Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 44
   },
   {
     "id": "152fe00b-ad3b-47bd-a21d-fde73a57e1da",
@@ -3156,7 +3156,7 @@
     "createdAt": "2021-09-27T15:43:35.119Z",
     "updatedAt": "2021-11-15T16:44:03.651Z",
     "accountManager": "d60f6fd8-75c3-43ab-af42-83371413a827",
-    "index": 0
+    "index": 28
   },
   {
     "id": "80779293-396f-41f3-8ec0-0bb95a6fe127",
@@ -3169,7 +3169,7 @@
     "createdAt": "2021-12-01T11:24:50.195Z",
     "updatedAt": "2021-12-17T03:38:17.942Z",
     "accountManager": "d60f6fd8-75c3-43ab-af42-83371413a827",
-    "index": 0
+    "index": 37
   },
   {
     "id": "322665c4-0d92-4bd3-9f7a-102291e38e02",
@@ -3182,7 +3182,7 @@
     "createdAt": "2021-12-11T08:08:19.702Z",
     "updatedAt": "2021-12-15T14:46:13.404Z",
     "accountManager": "3fae6a74-6bc0-427f-a905-efc44f746b4f",
-    "index": 0
+    "index": 47
   },
   {
     "id": "b0a2475a-afaf-4703-bed3-b524538811cc",
@@ -3195,7 +3195,7 @@
     "createdAt": "2021-03-20T20:59:38.384Z",
     "updatedAt": "2021-12-02T05:18:19.486Z",
     "accountManager": "a6e9da4b-2ce9-46ac-bb0f-680c1ddc8a5b",
-    "index": 0
+    "index": 10
   },
   {
     "id": "9f471ccd-fd69-42b0-b598-d8d2517aff90",
@@ -3208,7 +3208,7 @@
     "createdAt": "2021-10-04T11:58:00.756Z",
     "updatedAt": "2021-12-29T02:26:50.982Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 31
   },
   {
     "id": "13ecf3f2-e164-4168-b3ec-baa8cb160c52",
@@ -3221,20 +3221,20 @@
     "createdAt": "2021-10-20T16:32:46.064Z",
     "updatedAt": "2021-12-08T10:21:19.524Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 22
   },
   {
     "id": "a6616001-731b-4889-a279-877853fc7448",
     "name": "Voluptatem soluta necessitatibus",
     "company": "7db8114e-d3ec-4a0f-a63f-403bb91e7149",
     "type": "UI Design",
-    "stage": "opportunity",
+    "stage": "proposal-sent",
     "description": "Repellendus a et harum et odit voluptatibus animi. Quo modi ut quasi.",
     "amount": 32900,
     "createdAt": "2021-09-30T15:57:32.990Z",
     "updatedAt": "2021-11-27T06:53:33.147Z",
     "accountManager": "59dd3275-47d1-4394-a5e9-b8dea26cce2c",
-    "index": 0
+    "index": 5
   },
   {
     "id": "e2cf4fe5-9271-4d30-9835-87c851ef9910",
@@ -3247,7 +3247,7 @@
     "createdAt": "2021-12-14T01:32:48.380Z",
     "updatedAt": "2022-01-24T04:27:12.668Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 41
   },
   {
     "id": "b360baeb-091e-4626-a14a-38c727cf0694",
@@ -3260,7 +3260,7 @@
     "createdAt": "2021-12-03T01:33:45.594Z",
     "updatedAt": "2021-12-03T14:41:14.061Z",
     "accountManager": "3fae6a74-6bc0-427f-a905-efc44f746b4f",
-    "index": 0
+    "index": 29
   },
   {
     "id": "2d1c7de0-af4b-4d94-b420-1d6b26237dcd",
@@ -3273,7 +3273,7 @@
     "createdAt": "2021-01-16T16:23:59.640Z",
     "updatedAt": "2021-02-17T07:51:05.698Z",
     "accountManager": "3fae6a74-6bc0-427f-a905-efc44f746b4f",
-    "index": 0
+    "index": 6
   },
   {
     "id": "a0f3965f-b557-44ac-8153-82de49e2b964",
@@ -3286,7 +3286,7 @@
     "createdAt": "2021-02-15T11:14:12.632Z",
     "updatedAt": "2021-10-08T23:28:44.381Z",
     "accountManager": "d60f6fd8-75c3-43ab-af42-83371413a827",
-    "index": 0
+    "index": 7
   },
   {
     "id": "08a36f5d-0147-4cc6-99ea-2943e32fb161",
@@ -3299,20 +3299,20 @@
     "createdAt": "2021-08-12T16:01:27.756Z",
     "updatedAt": "2021-08-17T15:43:41.264Z",
     "accountManager": "3fae6a74-6bc0-427f-a905-efc44f746b4f",
-    "index": 0
+    "index": 24
   },
   {
     "id": "3db22d19-0bdc-4805-8a09-c33606d1c77f",
     "name": "Impedit enim et",
     "company": "c1585145-bfe7-43f0-a56d-e11688782189",
     "type": "UI Design",
-    "stage": "opportunity",
+    "stage": "proposal-sent",
     "description": "Commodi ea autem fugit. Dolore sed quos quia adipisci tempore in velit sequi voluptatem. Provident saepe quidem aut possimus quia id odio maxime nesciunt. Quia soluta id maxime. Quos magnam officiis aut quas est ipsam. Quaerat laudantium in expedita et hic et.",
     "amount": 36500,
     "createdAt": "2021-10-01T10:01:20.167Z",
     "updatedAt": "2022-01-22T11:13:14.916Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 4
   },
   {
     "id": "35e40430-a777-4b53-aee9-003fde0651c2",
@@ -3325,7 +3325,7 @@
     "createdAt": "2022-01-02T14:10:48.058Z",
     "updatedAt": "2022-01-09T16:46:26.076Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 38
   },
   {
     "id": "6b4af20d-e551-4823-b7f5-a733ff867900",
@@ -3338,7 +3338,7 @@
     "createdAt": "2021-11-30T21:27:34.719Z",
     "updatedAt": "2022-01-08T12:55:42.006Z",
     "accountManager": "7472fe13-9966-4ce3-b1a6-fba718f2e37e",
-    "index": 0
+    "index": 45
   },
   {
     "id": "79fb6186-3ead-4f1f-bec9-00707d5e6abf",
@@ -3351,7 +3351,7 @@
     "createdAt": "2022-01-10T12:43:27.578Z",
     "updatedAt": "2022-01-23T11:57:23.040Z",
     "accountManager": "d60f6fd8-75c3-43ab-af42-83371413a827",
-    "index": 0
+    "index": 14
   },
   {
     "id": "cb60125b-fbe2-417e-b4c9-ca901a33ca33",
@@ -3364,14 +3364,14 @@
     "createdAt": "2021-05-18T22:36:32.081Z",
     "updatedAt": "2021-07-08T05:41:29.903Z",
     "accountManager": "0c078496-ab7d-48ed-8bef-29edc084af2b",
-    "index": 0
+    "index": 12
   },
   {
     "id": "28c40c32-a4b1-4151-a0fe-d7572ea18e41",
     "name": "Repellat eveniet dolorum",
     "company": "46501699-7c69-4439-97b5-9df5997ce28c",
     "type": "Other",
-    "stage": "opportunity",
+    "stage": "won",
     "description": "Consequuntur voluptate totam qui molestiae officia iure eum rerum. Doloribus officiis voluptatum. Eos dolores rerum id. Ut perferendis quo consequatur eos itaque sint occaecati tempora et. Sapiente et perferendis nesciunt molestiae. Quia sit sed.",
     "amount": 62500,
     "createdAt": "2021-03-03T19:46:00.058Z",
@@ -3384,13 +3384,13 @@
     "name": "Autem officiis ex",
     "company": "46501699-7c69-4439-97b5-9df5997ce28c",
     "type": "Print project",
-    "stage": "opportunity",
+    "stage": "proposal-sent",
     "description": "Ipsa corrupti facere sit atque. Quaerat beatae sit. Aspernatur vel ipsum. Aut exercitationem et consectetur cupiditate voluptas expedita et ullam magni. Ad qui recusandae unde vel incidunt consequuntur vero fugiat amet.",
     "amount": 45300,
     "createdAt": "2021-10-21T06:50:02.776Z",
     "updatedAt": "2022-01-22T15:41:00.342Z",
     "accountManager": "3fae6a74-6bc0-427f-a905-efc44f746b4f",
-    "index": 0
+    "index": 2
   },
   {
     "id": "773ab41c-a7f6-4278-9f8b-982eca8445e9",
@@ -3403,20 +3403,20 @@
     "createdAt": "2021-03-25T21:11:05.242Z",
     "updatedAt": "2021-07-25T01:18:28.677Z",
     "accountManager": "59dd3275-47d1-4394-a5e9-b8dea26cce2c",
-    "index": 0
+    "index": 11
   },
   {
     "id": "90f99687-6c7c-4874-8832-55c602666175",
     "name": "Harum quis ut",
     "company": "46501699-7c69-4439-97b5-9df5997ce28c",
     "type": "Other",
-    "stage": "opportunity",
+    "stage": "proposal-sent",
     "description": "A at odit consequatur itaque. Rerum consequuntur eligendi dolorem corporis. Quia non aut aliquid minus ullam. Necessitatibus veniam nobis. Iste eius optio sit et illum voluptas recusandae fugiat.",
     "amount": 83600,
     "createdAt": "2021-06-20T21:26:58.326Z",
     "updatedAt": "2022-01-13T21:11:07.760Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 11
   },
   {
     "id": "b6d5234f-5f6d-46a9-909b-6ec95b7d8945",
@@ -3429,7 +3429,7 @@
     "createdAt": "2021-08-25T11:41:29.540Z",
     "updatedAt": "2021-11-09T07:04:57.694Z",
     "accountManager": "55f98c99-5fcd-4584-91ae-9ceb4e448f26",
-    "index": 0
+    "index": 20
   },
   {
     "id": "fb527c1e-0814-4373-970d-460b116659f6",
@@ -3442,7 +3442,7 @@
     "createdAt": "2021-10-11T21:01:25.935Z",
     "updatedAt": "2022-01-06T06:03:25.147Z",
     "accountManager": "0c078496-ab7d-48ed-8bef-29edc084af2b",
-    "index": 0
+    "index": 32
   },
   {
     "id": "81fe9939-9033-49d9-8ffd-b4af4d15363a",
@@ -3455,7 +3455,7 @@
     "createdAt": "2021-08-11T08:22:19.498Z",
     "updatedAt": "2021-08-20T18:36:33.571Z",
     "accountManager": "7472fe13-9966-4ce3-b1a6-fba718f2e37e",
-    "index": 0
+    "index": 23
   },
   {
     "id": "5801caf1-e77b-4e49-ad1f-99e363b3f06b",
@@ -3468,7 +3468,7 @@
     "createdAt": "2021-10-28T19:07:24.218Z",
     "updatedAt": "2021-11-14T00:04:32.942Z",
     "accountManager": "7472fe13-9966-4ce3-b1a6-fba718f2e37e",
-    "index": 0
+    "index": 33
   },
   {
     "id": "1494b46d-1139-4ebb-99c2-19244f9c59a2",
@@ -3481,7 +3481,7 @@
     "createdAt": "2021-12-06T08:22:03.166Z",
     "updatedAt": "2021-12-08T11:21:18.368Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 37
   },
   {
     "id": "095d14c1-9fd2-4c2a-9c8b-87096fc9da37",
@@ -3494,7 +3494,7 @@
     "createdAt": "2021-05-21T15:55:51.554Z",
     "updatedAt": "2021-08-22T02:35:00.692Z",
     "accountManager": "55f98c99-5fcd-4584-91ae-9ceb4e448f26",
-    "index": 0
+    "index": 14
   },
   {
     "id": "f46bd6ea-80dc-44da-a4f1-27de8d5a2218",
@@ -3507,7 +3507,7 @@
     "createdAt": "2021-04-24T05:33:36.751Z",
     "updatedAt": "2021-12-29T04:37:16.230Z",
     "accountManager": "d60f6fd8-75c3-43ab-af42-83371413a827",
-    "index": 0
+    "index": 13
   },
   {
     "id": "14567c94-b3f0-42c3-baf4-92b0cf816d70",
@@ -3520,7 +3520,7 @@
     "createdAt": "2022-01-19T19:45:06.904Z",
     "updatedAt": "2022-01-23T22:26:10.547Z",
     "accountManager": "7472fe13-9966-4ce3-b1a6-fba718f2e37e",
-    "index": 0
+    "index": 41
   },
   {
     "id": "46d7e14b-c679-4a5e-9852-89e8d7c5ada6",
@@ -3533,7 +3533,7 @@
     "createdAt": "2021-07-09T06:08:09.501Z",
     "updatedAt": "2021-07-21T10:55:18.920Z",
     "accountManager": "7472fe13-9966-4ce3-b1a6-fba718f2e37e",
-    "index": 0
+    "index": 7
   },
   {
     "id": "d2f2e255-7704-4d0a-879a-bb7ec177c01a",
@@ -3546,7 +3546,7 @@
     "createdAt": "2021-11-15T22:55:57.552Z",
     "updatedAt": "2021-12-03T12:49:57.435Z",
     "accountManager": "0c078496-ab7d-48ed-8bef-29edc084af2b",
-    "index": 0
+    "index": 37
   },
   {
     "id": "918d04a1-9e68-4176-98dc-5da4e149aeb3",
@@ -3559,7 +3559,7 @@
     "createdAt": "2022-01-22T04:11:35.630Z",
     "updatedAt": "2022-01-23T15:53:39.301Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 57
   },
   {
     "id": "232e0559-61d0-4906-99c7-872378060b1f",
@@ -3572,7 +3572,7 @@
     "createdAt": "2021-07-09T15:08:56.358Z",
     "updatedAt": "2021-10-28T22:55:11.818Z",
     "accountManager": "0c078496-ab7d-48ed-8bef-29edc084af2b",
-    "index": 0
+    "index": 8
   },
   {
     "id": "8bad9def-fe4b-44f7-8f67-5b6ea6d6f520",
@@ -3585,7 +3585,7 @@
     "createdAt": "2021-01-18T11:29:47.422Z",
     "updatedAt": "2021-03-07T11:15:18.420Z",
     "accountManager": "3fae6a74-6bc0-427f-a905-efc44f746b4f",
-    "index": 0
+    "index": 2
   },
   {
     "id": "c815cc76-4f7f-4b4a-9953-e024f15973b5",
@@ -3598,7 +3598,7 @@
     "createdAt": "2021-12-25T15:48:43.261Z",
     "updatedAt": "2022-01-13T23:52:29.995Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 48
   },
   {
     "id": "76fa3f75-3919-48d7-b029-0c75760d392f",
@@ -3611,7 +3611,7 @@
     "createdAt": "2022-01-22T17:08:20.628Z",
     "updatedAt": "2022-01-23T14:34:54.596Z",
     "accountManager": "3fae6a74-6bc0-427f-a905-efc44f746b4f",
-    "index": 0
+    "index": 62
   },
   {
     "id": "4d1b173a-6dfe-4637-be6d-a7d131c6ce5b",
@@ -3624,7 +3624,7 @@
     "createdAt": "2022-01-20T09:05:02.938Z",
     "updatedAt": "2022-01-23T14:29:33.719Z",
     "accountManager": "0c078496-ab7d-48ed-8bef-29edc084af2b",
-    "index": 0
+    "index": 54
   },
   {
     "id": "7844ff5f-1ed8-48a7-8d02-4f3bef47a9ea",
@@ -3637,7 +3637,7 @@
     "createdAt": "2022-01-01T05:56:41.361Z",
     "updatedAt": "2022-01-24T11:15:59.671Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 11
   },
   {
     "id": "e54f8bbe-c4f8-4803-b603-4a638e43d852",
@@ -3650,7 +3650,7 @@
     "createdAt": "2021-11-27T15:39:14.732Z",
     "updatedAt": "2021-12-07T07:56:12.076Z",
     "accountManager": "55f98c99-5fcd-4584-91ae-9ceb4e448f26",
-    "index": 0
+    "index": 36
   },
   {
     "id": "2b17cd06-4a53-425b-83af-fc720ee9edae",
@@ -3663,7 +3663,7 @@
     "createdAt": "2021-09-19T03:48:53.579Z",
     "updatedAt": "2021-10-26T17:56:17.143Z",
     "accountManager": "d60f6fd8-75c3-43ab-af42-83371413a827",
-    "index": 0
+    "index": 23
   },
   {
     "id": "1767bdd5-e098-469b-a284-891036d32351",
@@ -3689,7 +3689,7 @@
     "createdAt": "2021-08-01T03:24:18.494Z",
     "updatedAt": "2021-12-01T22:31:08.971Z",
     "accountManager": "59dd3275-47d1-4394-a5e9-b8dea26cce2c",
-    "index": 0
+    "index": 18
   },
   {
     "id": "fb8662b0-3bf3-46b8-b3e4-30a100074304",
@@ -3702,7 +3702,7 @@
     "createdAt": "2021-10-21T09:14:55.995Z",
     "updatedAt": "2021-10-28T08:49:56.320Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 34
   },
   {
     "id": "851da8e1-72bd-43fc-b1b6-baaa58909f24",
@@ -3715,7 +3715,7 @@
     "createdAt": "2021-07-06T20:30:23.730Z",
     "updatedAt": "2021-10-15T15:49:52.440Z",
     "accountManager": "7472fe13-9966-4ce3-b1a6-fba718f2e37e",
-    "index": 0
+    "index": 19
   },
   {
     "id": "45326fd2-de01-4997-a7d7-ee190d1afea2",
@@ -3728,7 +3728,7 @@
     "createdAt": "2021-05-25T06:39:12.427Z",
     "updatedAt": "2021-11-15T01:32:03.166Z",
     "accountManager": "7472fe13-9966-4ce3-b1a6-fba718f2e37e",
-    "index": 0
+    "index": 15
   },
   {
     "id": "54021345-c515-4a8a-81c7-0c6874441419",
@@ -3741,7 +3741,7 @@
     "createdAt": "2021-06-09T10:09:21.105Z",
     "updatedAt": "2021-08-15T00:51:56.371Z",
     "accountManager": "a6e9da4b-2ce9-46ac-bb0f-680c1ddc8a5b",
-    "index": 0
+    "index": 16
   },
   {
     "id": "1a8a167e-8336-47b5-a3dd-4261e62dcb19",
@@ -3754,7 +3754,7 @@
     "createdAt": "2021-12-02T23:34:13.492Z",
     "updatedAt": "2022-01-10T18:33:20.847Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
-    "index": 0
+    "index": 39
   },
   {
     "id": "ee01d965-bd00-4f78-9610-a5d8b8468629",
@@ -3767,7 +3767,7 @@
     "createdAt": "2021-12-14T20:00:34.976Z",
     "updatedAt": "2022-01-02T10:29:28.129Z",
     "accountManager": "27d24908-f417-4b0c-b98a-8946d661f0ce",
-    "index": 0
+    "index": 32
   },
   {
     "id": "fdc8e393-a47c-4585-9f88-cbd9bb2dbbb8",
@@ -3780,7 +3780,7 @@
     "createdAt": "2022-01-17T14:59:38.419Z",
     "updatedAt": "2022-01-21T02:52:26.239Z",
     "accountManager": "7472fe13-9966-4ce3-b1a6-fba718f2e37e",
-    "index": 0
+    "index": 53
   },
   {
     "id": "6ca8897b-c003-4db9-a32e-6df688e32caa",
@@ -3793,7 +3793,7 @@
     "createdAt": "2021-02-28T15:09:58.740Z",
     "updatedAt": "2021-04-30T03:15:18.025Z",
     "accountManager": "d60f6fd8-75c3-43ab-af42-83371413a827",
-    "index": 0
+    "index": 8
   },
   {
     "id": "f8fc739b-da40-45bc-ad71-bba800af78e0",
@@ -3806,7 +3806,7 @@
     "createdAt": "2021-12-01T20:42:08.405Z",
     "updatedAt": "2022-01-03T01:43:00.461Z",
     "accountManager": "a6e9da4b-2ce9-46ac-bb0f-680c1ddc8a5b",
-    "index": 0
+    "index": 38
   },
   {
     "id": "dfad1621-a574-4aec-afb2-39850cd2721d",
@@ -3819,7 +3819,7 @@
     "createdAt": "2022-01-23T08:35:58.836Z",
     "updatedAt": "2022-01-23T20:08:16.877Z",
     "accountManager": "3fae6a74-6bc0-427f-a905-efc44f746b4f",
-    "index": 0
+    "index": 50
   },
   {
     "id": "109a2417-d616-4a72-a350-8bd63917543e",
@@ -3832,6 +3832,6 @@
     "createdAt": "2021-11-19T06:07:30.710Z",
     "updatedAt": "2022-01-19T19:14:59.482Z",
     "accountManager": "7472fe13-9966-4ce3-b1a6-fba718f2e37e",
-    "index": 0
+    "index": 25
   }
 ]

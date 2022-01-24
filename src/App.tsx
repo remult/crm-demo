@@ -14,6 +14,7 @@ import LockIcon from '@mui/icons-material/Lock';
 import { auth, remult } from './common';
 import { AccountManager } from './AccountManagers/AccountManager.entity';
 import { DealsList } from './Deals/DealList';
+import { DealsCanban } from './Deals/DealsCanban';
 
 function App() {
   const [currentUser, setCurrentUser] = useState<AccountManager>();
@@ -117,6 +118,7 @@ function App() {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               CRM
             </Typography>
+            <Button color="inherit" component={Link} to={`/`} >Canban</Button>
             <Button color="inherit" component={Link} to={`/deals`} >Deals</Button>
             <Button color="inherit" component={Link} to={`/companies`} >Companies</Button>
             <Button color="inherit" component={Link} to={`/contacts`} >Contacts</Button>
@@ -156,7 +158,7 @@ function App() {
         </AppBar>
         <Box sx={{ p: 1 }}>
           <Routes>
-            <Route path="/" element={<AccountManagersList />} />
+            <Route path="/" element={<DealsCanban />} />
             <Route path="/companies" element={<CompaniesList />} />
             <Route path="/companies/:id" element={<CompanyShow />} />
             <Route path="/deals" element={<DealsList />} />
