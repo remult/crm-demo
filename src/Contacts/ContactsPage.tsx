@@ -31,6 +31,8 @@ export const ContactsPage: React.FC<{}> = () => {
     const [rowsPerPage, setRowsPerPage] = useState(25);
     const [contactsCount, setContactsCount] = useState(0);
 
+    const [addedContacts, setAddedContacts] = useState<Contact[]>([]);
+
     const contactsQuery = useMemo(() => {
         const query = amRepo.query({
             where: {
@@ -54,7 +56,8 @@ export const ContactsPage: React.FC<{}> = () => {
             }
             finally {
                 setLoading(false);
-            }})();
+            }
+        })();
     }, [contactsQuery, page]);
 
     useEffect(() => {
@@ -123,7 +126,12 @@ export const ContactsPage: React.FC<{}> = () => {
             </List>
         </Grid>
         <Grid item xs={10}>
-            <ContactsList contacts={contacts} setContacts={setContacts} loading={loading} itemsPerPage={rowsPerPage} />
+            <ContactsList contacts={contacts}
+                setContacts={setContacts} 
+                loading={loading} 
+                itemsPerPage={rowsPerPage} 
+                addedContacts={addedContacts}
+                setAddedContacts={setAddedContacts}/>
 
             <TablePagination
                 component="div"

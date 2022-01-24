@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, List, ListItem, ListItemAvatar, ListItemButton, ListItemSecondaryAction, ListItemText, Pagination, Skeleton, TablePagination, Typography } from "@mui/material";
+import { Avatar, Box, Button, List, ListItem, ListItemAvatar, ListItemButton, ListItemSecondaryAction, ListItemText, Pagination, Skeleton, TablePagination, Typography, alpha } from "@mui/material";
 import React, { useState } from "react";
 import { remult } from "../common"
 import { Contact } from "./Contact.entity"
@@ -17,50 +17,62 @@ export const ContactsList: React.FC<{
     setContacts: (contacts: Contact[]) => void,
     defaultCompany?: Company,
     loading: boolean,
-    itemsPerPage?: number
-}> = ({ contacts, setContacts, defaultCompany, loading, itemsPerPage = 10 }) => {
+    itemsPerPage?: number,
+    addedContacts?: Contact[],
+    setAddedContacts?: (contacts: Contact[]) => void
+}> = ({
+    contacts,
+    setContacts,
+    defaultCompany,
+    loading,
+    itemsPerPage = 10,
+    addedContacts = [] as Contact[],
+    setAddedContacts = (c: Contact[]) => { }
+}) => {
 
-    const [editContact, setEditContact] = useState<Contact>();
-    const deleteContact = async (deletedContact: Contact) => {
-        await amRepo.delete(deletedContact);
-        setContacts(contacts.filter(contact => deletedContact.id !== contact.id));
-    }
-    const editContactSaved = (afterEditContact: Contact) => {
-        if (!editContact?.id)
-            setContacts([...contacts, afterEditContact]);
-        else
-            setContacts(contacts.map(contact => contact.id === afterEditContact.id ? afterEditContact : contact));
-    }
-    const create = () => {
-        const newContact = new Contact();
-        newContact.company = defaultCompany;
-        setEditContact(newContact);
-    }
-    const now = Date.now();
+        const [editContact, setEditContact] = useState<Contact>();
+        const deleteContact = async (deletedContact: Contact) => {
+            await amRepo.delete(deletedContact);
+            setContacts(contacts.filter(contact => deletedContact.id !== contact.id));
+        }
+        const editContactSaved = (afterEditContact: Contact) => {
+            if (!editContact?.id) {
+                setContacts([afterEditContact, ...contacts]);
+                setAddedContacts([afterEditContact, ...addedContacts]);
+            }
+            else
+                setContacts(contacts.map(contact => contact.id === afterEditContact.id ? afterEditContact : contact));
+        }
+        const create = () => {
+            const newContact = new Contact();
+            newContact.company = defaultCompany;
+            setEditContact(newContact);
+        }
+        const now = Date.now();
 
-    return <>
-        <Box display="flex" justifyContent="flex-end">
-            <Button
-                variant="contained"
-                onClick={create}
-                startIcon={<AddIcon />}>
-                Add Contact
+        return <>
+            <Box display="flex" justifyContent="flex-end">
+                <Button
+                    variant="contained"
+                    onClick={create}
+                    startIcon={<AddIcon />}>
+                    Add Contact
             </Button>
-        </Box>
-        <List>
-            {loading && Array.from(Array(itemsPerPage).keys()).map(i => (<ListItem disablePadding key={i}>
-                <ListItemButton >
-                    <ListItemAvatar>
-                        <Skeleton variant="circular" width={40} height={40} />
-                    </ListItemAvatar>
-                    <ListItemText primary={<Skeleton variant="text" />}
-                        secondary={<Skeleton variant="text" />}>
+            </Box>
+            <List>
+                {loading && Array.from(Array(itemsPerPage).keys()).map(i => (<ListItem disablePadding key={i}>
+                    <ListItemButton >
+                        <ListItemAvatar>
+                            <Skeleton variant="circular" width={40} height={40} />
+                        </ListItemAvatar>
+                        <ListItemText primary={<Skeleton variant="text" />}
+                            secondary={<Skeleton variant="text" />}>
 
-                    </ListItemText>
-                </ListItemButton>
-            </ListItem>))}
-            {!loading && contacts.map((contact, index) => (<ListItem disablePadding key={contact.id} >
-                <ListItemButton component={Link} to={`/contacts/${contact.id}`}>
+                        </ListItemText>
+                    </ListItemButton>
+                </ListItem>))}
+                {!loading && contacts.map((contact, index) => (<ListItem disablePadding key={contact.id} sx={{ backgroundColor: (theme) => addedContacts?.includes(contact) ? alpha(theme.palette.secondary.light, 0.1) : undefined}} >
+                <ListItemButton component={Link} to={`/contacts/${contact.id}`} >
                     <ListItemAvatar>
                         <Avatar src={contact.avatar} />
                     </ListItemAvatar>
