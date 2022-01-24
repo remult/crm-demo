@@ -40,16 +40,6 @@ export const ContactsList: React.FC<{
     }
     const now = Date.now();
 
-
-    const handleChangePage = (event: any, newPage: any) => {
-        setPage(newPage);
-    };
-
-    const handleChangeRowsPerPage = (event: any) => {
-        setRowsPerPage(parseInt(event.target.value, 10));
-        setPage(0);
-    };
-
     return <>
         <Box display="flex" justifyContent="flex-end">
             <Button
@@ -110,9 +100,14 @@ export const ContactsList: React.FC<{
             component="div"
             count={contacts.length}
             page={page}
-            onPageChange={(handleChangePage)}
+            onPageChange={(_, newPage) => {
+                setPage(newPage);
+            }}
             rowsPerPage={rowsPerPage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
+            onRowsPerPageChange={e => {
+                setRowsPerPage(parseInt(e.target.value, 10));
+                setPage(0);
+            }}
         />
 
         {
