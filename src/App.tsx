@@ -13,6 +13,7 @@ import { ErrorInfo } from 'remult';
 import LockIcon from '@mui/icons-material/Lock';
 import { auth, remult } from './common';
 import { AccountManager } from './AccountManagers/AccountManager.entity';
+import { DealsList } from './Deals/DealList';
 
 function App() {
   const [currentUser, setCurrentUser] = useState<AccountManager>();
@@ -116,6 +117,7 @@ function App() {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               CRM
             </Typography>
+            <Button color="inherit" component={Link} to={`/deals`} >Deals</Button>
             <Button color="inherit" component={Link} to={`/companies`} >Companies</Button>
             <Button color="inherit" component={Link} to={`/contacts`} >Contacts</Button>
             <Button color="inherit" component={Link} to={`/accountManagers`} >Account Managers</Button>
@@ -157,6 +159,7 @@ function App() {
             <Route path="/" element={<AccountManagersList />} />
             <Route path="/companies" element={<CompaniesList />} />
             <Route path="/companies/:id" element={<CompanyShow />} />
+            <Route path="/deals" element={<DealsList />} />
             <Route path="/contacts" element={<ContactsPage />} />
             <Route path="/accountManagers" element={<AccountManagersList />} />
             <Route path="/contacts/:id" element={<ContactShow />} />
