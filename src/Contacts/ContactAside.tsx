@@ -121,7 +121,7 @@ export const ContactAside = ({
                         component="span"
                     >
                         Added on{' '}
-                        {contact.lastSeen.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" })}
+                        {contact.createdAt.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" })}
                     </Typography>
                     <br />
                     <Typography
@@ -172,7 +172,7 @@ export const ContactAside = ({
                                     backgroundColor: tag.color,
                                     border: 0,
                                 }}
-                                
+
                             />
                         </MenuItem>
                     ))}

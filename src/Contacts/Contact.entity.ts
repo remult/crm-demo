@@ -1,4 +1,4 @@
-import { Allow, Entity, EntityFilter, Field, Filter, UuidField } from "remult";
+import { Allow, Entity, EntityFilter, Field, Filter, Remult, UuidField } from "remult";
 import { AccountManager } from "../AccountManagers/AccountManager.entity";
 import { Company } from "../Companies/Company.entity";
 import { Acquisition } from "./Acquisition";
@@ -50,8 +50,16 @@ export class Contact {
     accountManager?: AccountManager;
     @Field(s => s.valueType = Status)
     status: Status = Status.cold;
-    @Field(f => f.valueType = Date)
+    @Field(f => f.valueType = Date,
+        {
+            allowApiUpdate: false
+        })
     lastSeen: Date = new Date();
+    @Field(f => f.valueType = Date,
+        {
+            allowApiUpdate: false
+        })
+    createdAt: Date = new Date();
 
     @Field((options, remult) => options.serverExpression = async contact => remult.repo(ContactNote).count({ contact }))
     nbNotes: number = 0;
@@ -68,4 +76,19 @@ export class Contact {
         };
         return r;
     });
+    static disableLastSeenUpdate = false;
+    static async updateLastSeen(remult: Remult, contact: Contact) {
+        if (Contact.disableLastSeenUpdate)
+            return;
+        const last = await remult.repo(ContactNote).findFirst(
+            {
+                contact
+            }, {
+            orderBy: {
+                createdAt: "desc"
+            }
+        });
+        contact.lastSeen = last?.createdAt;
+        await remult.repo(Contact).save(contact);
+    }
 }

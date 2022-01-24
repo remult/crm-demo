@@ -3,7 +3,17 @@ import { AccountManager } from "../AccountManagers/AccountManager.entity";
 import { Contact } from "./Contact.entity";
 import { Status } from "./Status";
 
-@Entity("contactNote", { allowApiCrud: Allow.authenticated })
+@Entity<ContactNote>("contactNote",
+    {
+        allowApiCrud: Allow.authenticated,
+        defaultOrderBy: {
+            createdAt: "desc"
+        }
+    },
+    (options, remult) => {
+        options.saved = ({ contact }) => Contact.updateLastSeen(remult, contact);
+        options.deleted = ({ contact }) => Contact.updateLastSeen(remult, contact);
+    })
 export class ContactNote {
     @UuidField()
     id?: string;
