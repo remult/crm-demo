@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import { AccountManagersList } from './AccountManagers/AccountManagersList';
 import { CompaniesList } from './Companies/CompaniesList';
-import { ContactsPage } from './Contacts/ConactsPage';
+import { ContactsPage } from './Contacts/ContactsPage';
 import { CompanyShow } from './Companies/CompanyShow';
 import { AppBar, Avatar, Box, Button, Card, CssBaseline, GlobalStyles, IconButton, Menu, MenuItem, Stack, TextField, Toolbar, Tooltip, Typography } from '@mui/material';
 import { ContactShow } from './Contacts/ContactShow';
