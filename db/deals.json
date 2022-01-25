@@ -15,7 +15,7 @@
   {
     "id": "eaf3d2ea-3674-44c2-8b30-27a4fbae8140",
     "name": "Praesentium itaque quas",
-    "company": "a07b4691-f481-49a2-aa8e-c53a1e949a7e",
+    "company": "b97f4b1b-03df-4833-b5d7-180d5697b3cb",
     "type": "UI Design",
     "stage": "lost",
     "description": "Exercitationem et vitae praesentium atque dolor ratione quia. Architecto accusamus quis id nam rem rem. Et a ea veniam aperiam sunt. Hic dicta blanditiis porro nobis amet deleniti. Blanditiis dolore in inventore libero sequi incidunt corporis atque. Laudantium dignissimos consequuntur blanditiis cumque ipsam. Consequatur commodi quaerat culpa in ipsa voluptas rem.",
@@ -504,7 +504,7 @@
     "createdAt": "2021-11-11T08:02:51.561Z",
     "updatedAt": "2021-11-20T03:51:02.499Z",
     "accountManager": "a6e9da4b-2ce9-46ac-bb0f-680c1ddc8a5b",
-    "index": 1
+    "index": 0
   },
   {
     "id": "0f60c4c0-a9e7-4cb8-b9e6-9db29ff885b9",
@@ -1271,7 +1271,7 @@
     "createdAt": "2021-10-22T23:29:23.838Z",
     "updatedAt": "2021-11-03T14:00:25.506Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 1
+    "index": 0
   },
   {
     "id": "f881d42f-9eca-4e89-9fbe-b6e2ed3657a8",
@@ -1401,7 +1401,7 @@
     "createdAt": "2021-11-16T14:37:54.285Z",
     "updatedAt": "2021-12-27T23:52:49.285Z",
     "accountManager": "a6e9da4b-2ce9-46ac-bb0f-680c1ddc8a5b",
-    "index": 2
+    "index": 1
   },
   {
     "id": "0956a85e-edaf-4820-819e-23158c8a8ec6",
@@ -2194,7 +2194,7 @@
     "createdAt": "2021-11-03T20:01:42.444Z",
     "updatedAt": "2021-12-02T20:04:28.221Z",
     "accountManager": "7472fe13-9966-4ce3-b1a6-fba718f2e37e",
-    "index": 0
+    "index": 1
   },
   {
     "id": "5bae2383-6e15-4fb9-85b5-dc11538f218c",
@@ -3676,7 +3676,7 @@
     "createdAt": "2021-11-08T13:36:41.217Z",
     "updatedAt": "2021-11-17T10:27:15.871Z",
     "accountManager": "226716e4-7933-44b1-bba3-1fa12392920a",
-    "index": 0
+    "index": 2
   },
   {
     "id": "d5a1cadd-670e-49be-b64b-9e6077756089",

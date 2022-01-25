@@ -119,7 +119,7 @@ export const DealsList: React.FC<{}> = () => {
                             </IconButton>
                         </Stack>
                     }>
-                        <ListItemButton component={Link} to={`/deals/${deal.id}`}>
+                        <ListItemButton >
                             <ListItemText primary={deal.name} />
                         </ListItemButton>
                     </ListItem>

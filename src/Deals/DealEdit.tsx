@@ -20,14 +20,14 @@ interface IProps {
 
 export const DealEdit: React.FC<IProps> = ({ deal, onSaved, onClose }) => {
     const [accountManagers, setAccountManagers] = useState<AccountManager[]>(deal.accountManager ? [deal.accountManager] : []);
-    const [companies, setCompanies] = useState<CompanyAutoSelect[]>([]);
+    const [companies, setCompanies] = useState<Company[]>([]);
     useEffect(() => {
         remult.repo(AccountManager).find().then(setAccountManagers)
 
     }, []);
     const [companySearch, setCompanySearch] = useState('');
     useEffect(() => {
-        remult.repo(Company).find({ where: { name: { $contains: companySearch } }, limit: 20 }).then(x => setCompanies(x.map(mapCompanyToAutoComplete)))
+        remult.repo(Company).find({ where: { name: { $contains: companySearch } }, limit: 20 }).then(x => setCompanies(x))
     }, [companySearch]);
 
     const [state, setState] = useState(deal);
@@ -84,10 +84,11 @@ export const DealEdit: React.FC<IProps> = ({ deal, onSaved, onClose }) => {
                                 disablePortal
 
                                 id="combo-box-demo"
+                                getOptionLabel={c=>c.name}
                                 options={companies}
-                                value={state.company ? mapCompanyToAutoComplete(state.company) : null}
+                                value={state.company ? state.company : null}
                                 inputValue={companySearch}
-                                onChange={(e, newValue: CompanyAutoSelect | null) => setState({ ...state, company: newValue ? newValue.company : null! })}
+                                onChange={(e, newValue: Company | null) => setState({ ...state, company: newValue ? newValue : null! })}
                                 onInputChange={(e, newInput) => setCompanySearch(newInput)}
 
                                 renderInput={(params) => <TextField {...params} label="Company" />}
@@ -165,14 +166,3 @@ export const DealEdit: React.FC<IProps> = ({ deal, onSaved, onClose }) => {
     </div >)
 }
 
-interface CompanyAutoSelect {
-    label: string;
-    company: Company;
-}
-function mapCompanyToAutoComplete(company: Company): CompanyAutoSelect {
-
-    return {
-        company,
-        label: company.name
-    }
-}
