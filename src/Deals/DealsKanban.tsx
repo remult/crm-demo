@@ -6,7 +6,7 @@ import { Deal } from "./Deal.entity";
 import { DealColumn } from "./DealColumn";
 import { DealStages } from "./DealStage";
 
-export const DealsCanban = () => {
+export const DealsKanban = () => {
     const [dealsForStage, setDeals] = useState<{ [key: string]: Deal[] }>();
     const loadDeals = useCallback(() => remult.repo(Deal).find({ orderBy: { index: "asc" } }).then(deals => {
         const newDealsForStage: typeof dealsForStage = DealStages.reduce((x, stage) => ({ ...x, [stage]: [] }), {});
