@@ -1,7 +1,7 @@
 export const DealStages = [
     'opportunity',
     'proposal-sent',
-    'in-negociation',
+    'in-negotiation',
     'won',
     'lost',
     'delayed',
