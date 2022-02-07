@@ -120,54 +120,54 @@ function App() {
             <Toolbar>
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                 CRM
-            </Typography>
-            <Button color="inherit" component={Link} to={`/`} >Kanban</Button>
-            <Button color="inherit" component={Link} to={`/deals`} >Deals</Button>
-            <Button color="inherit" component={Link} to={`/companies`} >Companies</Button>
-            <Button color="inherit" component={Link} to={`/contacts`} >Contacts</Button>
-            <Button color="inherit" component={Link} to={`/accountManagers`} >Account Managers</Button>
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title={currentUser.firstName + " " + currentUser.lastName}>
-                <IconButton onClick={(e) => setAnchorElUser(e.currentTarget)} sx={{ p: 0 }}>
-                  <Avatar alt={currentUser.firstName + " " + currentUser.lastName} src={currentUser.avatar} />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: '45px' }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={() => setAnchorElUser(null)}
-              >
-                <MenuItem onClick={() => {
-                  setAnchorElUser(null);
-                  auth.signOut();
-                }}>
-                  <Typography textAlign="center">Logout</Typography>
-                </MenuItem>
+              </Typography>
+              <Button color="inherit" component={Link} to={`/`} >Kanban</Button>
+              <Button color="inherit" component={Link} to={`/deals`} >Deals</Button>
+              <Button color="inherit" component={Link} to={`/companies`} >Companies</Button>
+              <Button color="inherit" component={Link} to={`/contacts`} >Contacts</Button>
+              <Button color="inherit" component={Link} to={`/accountManagers`} >Account Managers</Button>
+              <Box sx={{ flexGrow: 0 }}>
+                <Tooltip title={currentUser.firstName + " " + currentUser.lastName}>
+                  <IconButton onClick={(e) => setAnchorElUser(e.currentTarget)} sx={{ p: 0 }}>
+                    <Avatar alt={currentUser.firstName + " " + currentUser.lastName} src={currentUser.avatar} />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: '45px' }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={() => setAnchorElUser(null)}
+                >
+                  <MenuItem onClick={() => {
+                    setAnchorElUser(null);
+                    auth.signOut();
+                  }}>
+                    <Typography textAlign="center">Logout</Typography>
+                  </MenuItem>
 
-              </Menu>
-            </Box>
-          </Toolbar>
-        </AppBar>
-        <Box sx={{ p: 1 }}>
-          <Routes>
-            <Route path="/" element={<DealsKanban />} />
-            <Route path="/companies" element={<CompaniesList />} />
-            <Route path="/companies/:id" element={<CompanyShow />} />
-            <Route path="/deals" element={<DealsList />} />
-            <Route path="/contacts" element={<ContactsPage />} />
-            <Route path="/accountManagers" element={<AccountManagersList />} />
-            <Route path="/contacts/:id" element={<ContactShow />} />
+                </Menu>
+              </Box>
+            </Toolbar>
+          </AppBar>
+          <Box sx={{ p: 1 }}>
+            <Routes>
+              <Route path="/" element={<DealsKanban />} />
+              <Route path="/companies" element={<CompaniesList />} />
+              <Route path="/companies/:id" element={<CompanyShow />} />
+              <Route path="/deals" element={<DealsList />} />
+              <Route path="/contacts" element={<ContactsPage />} />
+              <Route path="/accountManagers" element={<AccountManagersList />} />
+              <Route path="/contacts/:id" element={<ContactShow />} />
 
             </Routes>
           </Box>
