@@ -35,6 +35,11 @@ app.use(expressJwt({
     algorithms: ['HS256']
 }));
 const api = remultExpress({
+    dataProvider: async () => {
+        if (process.env.NODE_ENV === "production")
+            return createPostgresConnection({ configuration: "heroku" })
+        return undefined;
+    },
     initApi: seed
 });
 app.use(api);
