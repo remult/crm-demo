@@ -89,7 +89,6 @@ function App() {
                 onChange={e => setState({ ...state, username: e.target.value })}
               />
               <TextField
-                autoFocus
                 type="password"
                 variant="standard"
                 label="Password"
