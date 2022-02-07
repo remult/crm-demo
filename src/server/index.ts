@@ -27,7 +27,7 @@ for (const type of ["entity", "controller"]) {
 
 const app = express();
 app.use(sslRedirect());
-app.use(helmet({ contentSecurityPolicy: false }));
+//app.use(helmet({ contentSecurityPolicy: false,crossOriginResourcePolicy:false }));
 app.use(compression());
 app.use(expressJwt({
     secret: getJwtTokenSignKey(),
