@@ -1,8 +1,12 @@
 import express from 'express';
+import compression from 'compression';
+import helmet from 'helmet';
 import { remultExpress } from 'remult/remult-express';
 import glob from 'glob';
 import path from 'path';
 import expressJwt from 'express-jwt';
+import sslRedirect from 'heroku-ssl-redirect'
+import { createPostgresConnection } from 'remult/postgres';
 import swaggerUi from 'swagger-ui-express';
 
 import { seed } from './seed';
@@ -22,6 +26,9 @@ for (const type of ["entity", "controller"]) {
 }
 
 const app = express();
+app.use(sslRedirect());
+app.use(helmet({ contentSecurityPolicy: false }));
+app.use(compression());
 app.use(expressJwt({
     secret: getJwtTokenSignKey(),
     credentialsRequired: false,
@@ -34,4 +41,8 @@ app.use(api);
 app.use('/api/docs', swaggerUi.serve,
     swaggerUi.setup(api.openApiDoc({ title: 'remult-react-todo' })));
 
-app.listen(3002, () => console.log("Server started"));
+app.use(express.static('build'));
+app.use('/*', async (req, res) => {
+    res.sendFile(process.cwd() + '/build/index.html');
+});
+app.listen(process.env.PORT || 3002, () => console.log("Server started"));
