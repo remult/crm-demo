@@ -1,6 +1,6 @@
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, Stack, Divider, FormControl, InputLabel, Select, MenuItem, FormHelperText, FormControlLabel, Switch, Autocomplete } from "@mui/material";
 import { useEffect, useState } from "react";
-import { Deal } from "./Deal.entity"
+import { Deal, DealContact } from "./Deal.entity"
 import { remult } from "../common";
 import { ErrorInfo } from "remult";
 
@@ -8,6 +8,8 @@ import { AccountManager } from "../AccountManagers/AccountManager.entity";
 import { Company } from "../Companies/Company.entity";
 import { DealTypes } from "./DealType";
 import { DealStages } from "./DealStage";
+import { Contact } from "../Contacts/Contact.entity";
+import { assign } from "remult/assign";
 
 
 const dealRepo = remult.repo(Deal);
@@ -20,10 +22,22 @@ interface IProps {
 
 export const DealEdit: React.FC<IProps> = ({ deal, onSaved, onClose }) => {
     const [accountManagers, setAccountManagers] = useState<AccountManager[]>(deal.accountManager ? [deal.accountManager] : []);
-    const [companies, setCompanies] = useState<Company[]>([]);
+    const [companies, setCompanies] = useState<Company[]>(deal.company ? [deal.company] : []);
+    const [companyContacts, setCompanyContacts] = useState<Contact[]>([]);
+    const [selectedContacts, setSelectedContacts] = useState<Contact[]>([]);
     useEffect(() => {
-        remult.repo(AccountManager).find().then(setAccountManagers)
-
+        remult.repo(AccountManager).find().then(setAccountManagers);
+        if (deal.id)
+            remult.repo(DealContact).find({
+                where: {
+                    deal
+                }
+            }).then(dc => {
+                const contacts = dc.filter(dc => dc.contact).map(dc => dc.contact);
+                if (companyContacts.length == 0)
+                    setCompanyContacts(contacts);
+                setSelectedContacts(contacts)
+            });
     }, []);
     const [companySearch, setCompanySearch] = useState('');
     useEffect(() => {
@@ -32,22 +46,29 @@ export const DealEdit: React.FC<IProps> = ({ deal, onSaved, onClose }) => {
 
     const [state, setState] = useState(deal);
 
+    useEffect(() => {
+        remult.repo(Contact).find({ where: { company: state.company } }).then(setCompanyContacts);
+        setSelectedContacts([...selectedContacts.filter(sc => sc.company?.id == state.company?.id)]);
+    }, [state.company])
+
     const [errors, setErrors] = useState<ErrorInfo<Deal>>();
     const handleClose = () => {
         onClose();
     };
     const handleSave = async () => {
+        const ref = dealRepo.getEntityRef(deal);
         try {
             setErrors(undefined);
-            let newDeal = await dealRepo.save(state);
-            onSaved(newDeal)
+            assign(deal, state);
+            await deal.saveWithContacts!(selectedContacts.map(c => c.id!));
+            onSaved(deal)
             handleClose();
         }
         catch (err: any) {
             setErrors(err);
+            ref.undoChanges();
         }
     }
-
 
     return (<div>
         <Dialog open={Boolean(deal)} onClose={handleClose}>
@@ -82,9 +103,9 @@ export const DealEdit: React.FC<IProps> = ({ deal, onSaved, onClose }) => {
                             error={Boolean(errors?.modelState?.accountManager)}>
                             <Autocomplete
                                 disablePortal
-
+                                isOptionEqualToValue={(a, b) => a.id == b.id}
                                 id="combo-box-demo"
-                                getOptionLabel={c=>c.name}
+                                getOptionLabel={c => c.name}
                                 options={companies}
                                 value={state.company ? state.company : null}
                                 inputValue={companySearch}
@@ -95,36 +116,56 @@ export const DealEdit: React.FC<IProps> = ({ deal, onSaved, onClose }) => {
                             />
                             <FormHelperText>{errors?.modelState?.company}</FormHelperText>
                         </FormControl>
-                        <FormControl sx={{ flexGrow: 1 }}
-                            error={Boolean(errors?.modelState?.stage)}>
-                            <InputLabel id="stage-label">Stage</InputLabel>
-                            <Select
+                        <FormControl sx={{ flexGrow: 1 }}>
+                            <Autocomplete
+                                disablePortal
+                                multiple
+                                isOptionEqualToValue={(a, b) => a.id == b.id}
+                                id="combo-box-demo"
+                                getOptionLabel={c => c.firstName + ' ' + c.lastName}
+                                options={companyContacts}
+                                value={selectedContacts}
 
-                                labelId="stage-label"
-                                label="Stage"
-                                value={state.stage}
-                                onChange={e => setState({ ...state, stage: e.target.value })}
-                            >
-                                <MenuItem value={''}>None</MenuItem>
-                                {DealStages.map(s => (<MenuItem key={s} value={s}>{s}</MenuItem>))}
-                            </Select>
-                            <FormHelperText>{errors?.modelState?.stage}</FormHelperText>
-                        </FormControl>
-                        <FormControl sx={{ flexGrow: 1 }}
-                            error={Boolean(errors?.modelState?.type)}>
-                            <InputLabel id="type-label">Type</InputLabel>
-                            <Select
 
-                                labelId="type-label"
-                                label="Type"
-                                value={state.type}
-                                onChange={e => setState({ ...state, type: e.target.value })}
-                            >
-                                <MenuItem value={''}>None</MenuItem>
-                                {DealTypes.map(type => (<MenuItem key={type} value={type}>{type}</MenuItem>))}
-                            </Select>
-                            <FormHelperText>{errors?.modelState?.type}</FormHelperText>
+                                onChange={(e, newValue: Contact[] | null) => setSelectedContacts(newValue ? newValue : [])}
+
+
+                                renderInput={(params) => <TextField {...params} label="Contacts" />}
+                            />
+
                         </FormControl>
+                        <Stack direction="row" spacing={2}>
+                            <FormControl sx={{ flexGrow: 1 }}
+                                error={Boolean(errors?.modelState?.stage)}>
+                                <InputLabel id="stage-label">Stage</InputLabel>
+                                <Select
+
+                                    labelId="stage-label"
+                                    label="Stage"
+                                    value={state.stage}
+                                    onChange={e => setState({ ...state, stage: e.target.value })}
+                                >
+                                    <MenuItem value={''}>None</MenuItem>
+                                    {DealStages.map(s => (<MenuItem key={s} value={s}>{s}</MenuItem>))}
+                                </Select>
+                                <FormHelperText>{errors?.modelState?.stage}</FormHelperText>
+                            </FormControl>
+                            <FormControl sx={{ flexGrow: 1 }}
+                                error={Boolean(errors?.modelState?.type)}>
+                                <InputLabel id="type-label">Type</InputLabel>
+                                <Select
+
+                                    labelId="type-label"
+                                    label="Type"
+                                    value={state.type}
+                                    onChange={e => setState({ ...state, type: e.target.value })}
+                                >
+                                    <MenuItem value={''}>None</MenuItem>
+                                    {DealTypes.map(type => (<MenuItem key={type} value={type}>{type}</MenuItem>))}
+                                </Select>
+                                <FormHelperText>{errors?.modelState?.type}</FormHelperText>
+                            </FormControl>
+                        </Stack>
 
                         <TextField
                             label="Amount"

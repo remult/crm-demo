@@ -2,6 +2,7 @@ import { Allow, BackendMethod, Entity, Field, IntegerField, Remult, UuidField } 
 import { AccountManager } from "../AccountManagers/AccountManager.entity";
 import { Company } from "../Companies/Company.entity";
 import { Contact } from "../Contacts/Contact.entity";
+import { assign } from 'remult/assign';
 
 @Entity("deals", {
     allowApiCrud: Allow.authenticated
@@ -70,6 +71,17 @@ export class Deal {
                 insertAt++;
             targetList.splice(insertAt, 0, deal);
         }
+    }
+    @BackendMethod({ allowed: Allow.authenticated })
+    async saveWithContacts?(contacts: string[], remult?: Remult) {
+        const isNew = !this.id;
+        const dealRepo = remult!.repo(DealContact);
+        const deal = await remult!.repo(Deal).save(this);
+        const existingContacts = isNew ? [] : await dealRepo.find({ where: { deal } });
+        const contactsToDelete = existingContacts.filter(c => !contacts.includes(c.id!));
+        const contactsToAdd = (await remult!.repo(Contact).find({ where: { id: contacts.filter(c => !existingContacts.find(ec => ec.id === c)) } }));
+        await Promise.all(contactsToDelete.map(dc => dealRepo.delete(dc)));
+        await dealRepo.insert(contactsToAdd.map(ac => ({ deal, contact: ac })));
     }
 }
 
