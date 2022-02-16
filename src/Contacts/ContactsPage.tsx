@@ -127,11 +127,11 @@ export const ContactsPage: React.FC<{}> = () => {
         </Grid>
         <Grid item xs={10}>
             <ContactsList contacts={contacts}
-                setContacts={setContacts} 
-                loading={loading} 
-                itemsPerPage={rowsPerPage} 
+                setContacts={setContacts}
+                loading={loading}
+                itemsPerPage={rowsPerPage}
                 addedContacts={addedContacts}
-                setAddedContacts={setAddedContacts}/>
+                setAddedContacts={setAddedContacts} />
 
             <TablePagination
                 component="div"

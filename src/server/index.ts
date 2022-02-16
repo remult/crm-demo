@@ -11,7 +11,9 @@ import swaggerUi from 'swagger-ui-express';
 
 import { seed } from './seed';
 import { getJwtTokenSignKey } from '../SignIn/AuthService';
+import { config } from 'dotenv';
 
+config();
 let ext = "ts";
 let dir = "src";
 if (__filename.endsWith("js")) {
