@@ -1,4 +1,4 @@
-import { Allow, Entity, EntityFilter, EntityMetadata, Field, Filter, Remult, Repository, SqlCommand, SqlDatabase, UuidField } from "remult";
+import { Allow, Entity, EntityFilter, EntityMetadata, Field, Filter, getEntityRef, Remult, Repository, SqlCommand, SqlDatabase, UuidField } from "remult";
 import { AccountManager } from "../AccountManagers/AccountManager.entity";
 import { Company } from "../Companies/Company.entity";
 import { Acquisition } from "./Acquisition";
@@ -85,8 +85,8 @@ export class Contact {
                     where: {
                         tag: await remult.repo(Tag).findFirst({ tag })
                     },
-                    load: ct => [ct.contact]
-                }).then(ct => ct.map(ct => ct.contact.id!))
+                    load: ct => []
+                }).then(ct => ct.map(ct => getEntityRef(ct).fields.contact.inputValue))
             };
             return r;
         }
