@@ -1,4 +1,4 @@
-import { BackendMethod, Controller, Field, Fields, Remult, UserInfo, Validators } from "remult";
+import { BackendMethod, Controller, Fields, Remult, UserInfo, Validators } from "remult";
 import { getJwtTokenSignKey } from "./AuthService";
 import * as jwt from 'jsonwebtoken';
 import { AccountManager } from "../AccountManagers/AccountManager.entity";

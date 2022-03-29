@@ -8,7 +8,6 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useSearchParams } from "react-router-dom";
 import CancelIcon from '@mui/icons-material/Cancel';
-import { Link } from 'react-router-dom';
 import { DealStages } from "./DealStage";
 import { DealTypes } from "./DealType";
 
@@ -40,7 +39,7 @@ export const DealsList: React.FC<{}> = () => {
     const [editDeal, setEditDeal] = useState<Deal>();
     const deleteDeal = async (deletedDeal: Deal) => {
         await amRepo.delete(deletedDeal);
-        setDeals(deals.filter(deal => deletedDeal.id != deal.id));
+        setDeals(deals.filter(deal => deletedDeal.id !== deal.id));
     }
     const editDealSaved = (editDeal: Deal) =>
         setDeals(deals.map(deal => deal.id === editDeal.id ? editDeal : deal));
@@ -58,7 +57,7 @@ export const DealsList: React.FC<{}> = () => {
                 </ListItem>
                 {DealTypes.map((s) => (<ListItem
                     key={s}
-                    secondaryAction={s.toString() == filter.type &&
+                    secondaryAction={s.toString() === filter.type &&
                         <IconButton edge="end" aria-label="cancel" onClick={() => {
                             patchFilter({ type: '' })
                         }}>
@@ -79,7 +78,7 @@ export const DealsList: React.FC<{}> = () => {
                 {DealStages.map((s) => (<ListItem
                     key={s}
 
-                    secondaryAction={s.toString() == filter.stage &&
+                    secondaryAction={s.toString() === filter.stage &&
                         <IconButton edge="end" aria-label="cancel" onClick={() => {
                             patchFilter({ stage: '' })
                         }}>

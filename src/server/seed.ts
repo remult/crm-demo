@@ -177,8 +177,6 @@ export async function seed(remult: Remult) {
                 console.log("End seed company");
             }
         }
-        console.log(remult.repo(Contact).metadata.fields.status.valueConverter);
-        console.table(await remult.repo(Contact).find({where:{id:'b343bde9-0ee3-40cc-a4de-62f1df8298d4'}}).then(c => c.map(c => getEntityRef(c).fields.status.inputValue)));
     }
     catch (err) {
         console.log({ err });
