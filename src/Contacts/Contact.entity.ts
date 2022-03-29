@@ -107,6 +107,7 @@ export class Contact {
     }
 }
 
+//playing around with sql builder
 
 async function sqlFor<entityType>(repo: Repository<entityType>, sql: CustomSqlFilterBuilder): Promise<sqlFor<entityType>> {
     const meta = repo.metadata;
