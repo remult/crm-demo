@@ -1,4 +1,4 @@
-import { Remult } from "remult";
+import { getEntityRef, getValueList, Remult } from "remult";
 import { AccountManager } from "../AccountManagers/AccountManager.entity";
 import { name as nameFaker, internet, random, address, company as companyFaker, datatype, phone, lorem, date } from 'faker';
 import { Company } from "../Companies/Company.entity";
@@ -90,7 +90,7 @@ export async function seed(remult: Remult) {
                         name,
                         phoneNumber: phone.phoneNumber(),
                         sector: random.arrayElement(sectors),
-                        size: random.arrayElement(CompanySize.helper.getOptions()),
+                        size: random.arrayElement(getValueList(CompanySize)),
                         stateAbbr: address.stateAbbr(),
                         website: internet.url(),
                         zipcode: address.zipCode(),
@@ -110,16 +110,16 @@ export async function seed(remult: Remult) {
                             const contact = await contactRepo.insert({
                                 firstName,
                                 lastName,
-                                gender: random.arrayElement(Gender.helper.getOptions()),
+                                gender: random.arrayElement(getValueList(Gender)),
                                 title,
                                 email: internet.email(firstName, lastName),
                                 phoneNumber1: phone.phoneNumber(),
                                 phoneNumber2: phone.phoneNumber(),
                                 background: lorem.sentence(),
-                                acquisition: random.arrayElement(Acquisition.helper.getOptions()),
+                                acquisition: random.arrayElement(getValueList(Acquisition)),
                                 avatar: 'https://i.pravatar.cc/40?img=' + datatype.number(70),
                                 hasNewsletter: datatype.boolean(),
-                                status: random.arrayElement(Status.helper.getOptions()),
+                                status: random.arrayElement(getValueList(Status)),
                                 company,
                                 accountManager: random.arrayElement(accountManagers)
                             });
@@ -131,7 +131,7 @@ export async function seed(remult: Remult) {
                                     contact,
                                     accountManager: random.arrayElement(accountManagers),
                                     createdAt: date.between(company.createdAt, new Date()),
-                                    status: random.arrayElement(Status.helper.getOptions())
+                                    status: random.arrayElement(getValueList(Status))
                                 });
                                 if (index == 0 || note.createdAt > contact.lastSeen) {
                                     contact.lastSeen = note.createdAt;
@@ -177,6 +177,8 @@ export async function seed(remult: Remult) {
                 console.log("End seed company");
             }
         }
+        console.log(remult.repo(Contact).metadata.fields.status.valueConverter);
+        console.table(await remult.repo(Contact).find({where:{id:'b343bde9-0ee3-40cc-a4de-62f1df8298d4'}}).then(c => c.map(c => getEntityRef(c).fields.status.inputValue)));
     }
     catch (err) {
         console.log({ err });

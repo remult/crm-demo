@@ -2,7 +2,7 @@ import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextFie
 import { useEffect, useState } from "react";
 import { Contact } from "./Contact.entity"
 import { remult } from "../common";
-import { ErrorInfo } from "remult";
+import { ErrorInfo, getValueList } from "remult";
 
 import { AccountManager } from "../AccountManagers/AccountManager.entity";
 import { Company } from "../Companies/Company.entity";
@@ -96,9 +96,9 @@ export const ContactEdit: React.FC<IProps> = ({ contact, onSaved, onClose }) => 
                                     labelId="gender-label"
                                     label="Gender"
                                     value={state.gender?.id}
-                                    onChange={e => setState({ ...state, gender: Gender.helper.byId(e.target.value)! })}
+                                    onChange={e => setState({ ...state, gender: getValueList(Gender).find(item => item.id === e.target.value)! })}
                                 >
-                                    {Gender.helper.getOptions().map(s => (<MenuItem key={s.id} value={s.id}>{s.caption}</MenuItem>))}
+                                    {getValueList(Gender).map(s => (<MenuItem key={s.id} value={s.id}>{s.caption}</MenuItem>))}
                                 </Select>
                                 <FormHelperText>{errors?.modelState?.gender}</FormHelperText>
                             </FormControl>
@@ -198,9 +198,9 @@ export const ContactEdit: React.FC<IProps> = ({ contact, onSaved, onClose }) => 
                                     labelId="status-label"
                                     label="Status"
                                     value={state.status?.id}
-                                    onChange={e => setState({ ...state, status: Status.helper.byId(e.target.value)! })}
+                                    onChange={e => setState({ ...state, status: getValueList(Status).find(item => item.id === e.target.value)! })}
                                 >
-                                    {Status.helper.getOptions().map(s => (<MenuItem key={s.id} value={s.id}>{s.caption}</MenuItem>))}
+                                    {getValueList(Status).map(s => (<MenuItem key={s.id} value={s.id}>{s.caption}</MenuItem>))}
                                 </Select>
                                 <FormHelperText>{errors?.modelState?.status}</FormHelperText>
                             </FormControl>
@@ -212,9 +212,9 @@ export const ContactEdit: React.FC<IProps> = ({ contact, onSaved, onClose }) => 
                                     labelId="acquisition-label"
                                     label="Acquisition"
                                     value={state.acquisition?.id}
-                                    onChange={e => setState({ ...state, acquisition: Acquisition.helper.byId(e.target.value)! })}
+                                    onChange={e => setState({ ...state, acquisition: getValueList(Acquisition).find(item => item.id === e.target.value)! })}
                                 >
-                                    {Acquisition.helper.getOptions().map(s => (<MenuItem key={s.id} value={s.id}>{s.caption}</MenuItem>))}
+                                    {getValueList(Acquisition).map(s => (<MenuItem key={s.id} value={s.id}>{s.caption}</MenuItem>))}
                                 </Select>
                                 <FormHelperText>{errors?.modelState?.acquisition}</FormHelperText>
                             </FormControl>

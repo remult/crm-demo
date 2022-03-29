@@ -1,4 +1,4 @@
-import { Allow, Entity, Field, UuidField, Validators } from "remult";
+import { Allow, Entity, Fields, Validators } from "remult";
 
 @Entity<AccountManager>("accountManagers", {
     allowApiCrud: Allow.authenticated,
@@ -8,15 +8,15 @@ import { Allow, Entity, Field, UuidField, Validators } from "remult";
     }
 })
 export class AccountManager {
-    @UuidField()
+    @Fields.uuid()
     id?: string;
-    @Field({ validate: Validators.required })
-    firstName: string = '';
-    @Field()
-    lastName: string = '';
-    @Field()
-    email: string = '';
-    @Field()
-    avatar: string = '';
+    @Fields.string({ validate: Validators.required })
+    firstName = '';
+    @Fields.string()
+    lastName = '';
+    @Fields.string()
+    email = '';
+    @Fields.string()
+    avatar = '';
 
 }

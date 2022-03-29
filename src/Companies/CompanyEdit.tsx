@@ -2,7 +2,7 @@ import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextFie
 import { useEffect, useState } from "react";
 import { Company } from "./Company.entity"
 import { remult } from "../common";
-import { ErrorInfo } from "remult";
+import { ErrorInfo, getValueList } from "remult";
 import { sectors } from "./Sectors";
 import { CompanySize } from "./CompanySize";
 import { AccountManager } from "../AccountManagers/AccountManager.entity";
@@ -88,10 +88,10 @@ export const CompanyEdit: React.FC<IProps> = ({ company, onSaved, onClose }) => 
                                     labelId="size-label"
                                     label="Size"
                                     value={state.size?.id}
-                                    onChange={e => setState({ ...state, size: CompanySize.helper.byId(e.target.value)! })}
+                                    onChange={e => setState({ ...state, size: getValueList(CompanySize).find(item => item.id === e.target.value)! })}
                                 >
                                     <MenuItem value={''}></MenuItem>
-                                    {CompanySize.helper.getOptions().map(s => (<MenuItem key={s.id} value={s.id}>{s.caption}</MenuItem>))}
+                                    {getValueList(CompanySize).map(s => (<MenuItem key={s.id} value={s.id}>{s.caption}</MenuItem>))}
                                 </Select>
                                 <FormHelperText>{errors?.modelState?.size}</FormHelperText>
                             </FormControl>

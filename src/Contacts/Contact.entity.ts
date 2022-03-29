@@ -1,4 +1,4 @@
-import { Allow, Entity, EntityFilter, EntityMetadata, Field, Filter, Remult, Repository, SqlCommand, SqlDatabase, UuidField } from "remult";
+import { Allow, Entity, EntityFilter, EntityMetadata, Field, Filter, Remult, Repository, SqlCommand, SqlDatabase, Fields } from "remult";
 import { AccountManager } from "../AccountManagers/AccountManager.entity";
 import { Company } from "../Companies/Company.entity";
 import { Acquisition } from "./Acquisition";
@@ -16,54 +16,52 @@ import { CustomSqlFilterBuilder, dbNameProvider, FilterConsumerBridgeToSqlReques
     }
 })
 export class Contact {
-    @UuidField()
+    @Fields.uuid()
     id?: string;
-    @Field()
-    firstName: string = '';
-    @Field()
-    lastName: string = '';
-    @Field(o => o.valueType = Gender)
-    gender: Gender = Gender.male;
-    @Field()
-    title: string = '';
-    @Field(c => c.valueType = Company)
+    @Fields.string()
+    firstName = '';
+    @Fields.string()
+    lastName = '';
+    @Field(() => Gender)
+    gender = Gender.male;
+    @Fields.string()
+    title = '';
+    @Field(() => Company)
     company?: Company;
-    @Field()
-    phoneNumber1: string = '';
-    @Field()
-    phoneNumber2: string = '';
-    @Field()
-    background: string = '';
-    @Field(o => o.valueType = Acquisition)
-    acquisition: Acquisition = Acquisition.inbound;
-    @Field()
-    email: string = '';
-    @Field()
-    avatar?: string = '';
-    @Field()
+    @Fields.string()
+    phoneNumber1 = '';
+    @Fields.string()
+    phoneNumber2 = '';
+    @Fields.string()
+    background = '';
+    @Field(() => Acquisition)
+    acquisition = Acquisition.inbound;
+    @Fields.string()
+    email = '';
+    @Fields.string()
+    avatar?= '';
+    @Fields.boolean()
     hasNewsletter: boolean = false;
-    @Field((options, remult) =>
+    @Fields.object((options, remult) =>
         options.serverExpression =
         async contact => remult.repo(ContactTag).find({ where: { contact } })
             .then(tags => tags.map(t => t.tag)))
     tags: Tag[] = [];
-    @Field(o => o.valueType = AccountManager)
+    @Field(() => AccountManager)
     accountManager?: AccountManager;
-    @Field(s => s.valueType = Status)
-    status: Status = Status.cold;
-    @Field(f => f.valueType = Date,
-        {
-            allowApiUpdate: false
-        })
-    lastSeen: Date = new Date();
-    @Field(f => f.valueType = Date,
-        {
-            allowApiUpdate: false
-        })
-    createdAt: Date = new Date();
+    @Field(() => Status)
+    status = Status.cold;
+    @Fields.date({
+        allowApiUpdate: false
+    })
+    lastSeen = new Date();
+    @Fields.date({
+        allowApiUpdate: false
+    })
+    createdAt = new Date();
 
-    @Field((options, remult) => options.serverExpression = async contact => remult.repo(ContactNote).count({ contact }))
-    nbNotes: number = 0;
+    @Fields.integer((options, remult) => options.serverExpression = async contact => remult.repo(ContactNote).count({ contact }))
+    nbNotes = 0;
 
     static filterTag = Filter.createCustom<Contact, string>(async (remult, tag) => {
         if (!tag)

@@ -13,7 +13,7 @@ import { sectors } from "./Sectors";
 import { Link } from 'react-router-dom';
 import InfiniteLoader from "react-window-infinite-loader";
 import { FixedSizeList } from "react-window";
-import { Paginator } from "remult";
+import { getValueList, Paginator } from "remult";
 
 
 const amRepo = remult.repo(Company);
@@ -38,7 +38,7 @@ export const CompaniesList: React.FC<{}> = () => {
             const paginator = await amRepo.query({
                 where: {
                     name: { $contains: filter.search },
-                    size: filter.size ? CompanySize.helper.byId(filter.size) : undefined,
+                    size: filter.size ? getValueList(CompanySize).find(item => item.id === +filter.size) : undefined,
                     sector: filter.sector ? filter.sector : undefined
                 }, pageSize: 50
             }).paginator();
@@ -76,7 +76,7 @@ export const CompaniesList: React.FC<{}> = () => {
                 <ListItem>
                     <ListItemText>SIZE</ListItemText>
                 </ListItem>
-                {CompanySize.helper.getOptions().map((s: CompanySize) => (<ListItem
+                {getValueList(CompanySize).map((s: CompanySize) => (<ListItem
                     key={s.id}
 
                     secondaryAction={s.id.toString() == filter.size &&

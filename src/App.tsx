@@ -121,11 +121,11 @@ function App() {
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                 CRM
               </Typography>
-              <Button color="inherit" component={Link} to={`/`} >Kanban</Button>
-              <Button color="inherit" component={Link} to={`/deals`} >Deals</Button>
-              <Button color="inherit" component={Link} to={`/companies`} >Companies</Button>
               <Button color="inherit" component={Link} to={`/contacts`} >Contacts</Button>
+              <Button color="inherit" component={Link} to={`/`} >Kanban</Button>
+              <Button color="inherit" component={Link} to={`/companies`} >Companies</Button>
               <Button color="inherit" component={Link} to={`/accountManagers`} >Account Managers</Button>
+              <Button color="inherit" component={Link} to={`/deals`} >Deals</Button>
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title={currentUser.firstName + " " + currentUser.lastName}>
                   <IconButton onClick={(e) => setAnchorElUser(e.currentTarget)} sx={{ p: 0 }}>

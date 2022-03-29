@@ -1,4 +1,4 @@
-import { BackendMethod, Controller, Field, Remult, UserInfo, Validators } from "remult";
+import { BackendMethod, Controller, Field, Fields, Remult, UserInfo, Validators } from "remult";
 import { getJwtTokenSignKey } from "./AuthService";
 import * as jwt from 'jsonwebtoken';
 import { AccountManager } from "../AccountManagers/AccountManager.entity";
@@ -10,10 +10,10 @@ export class SignInController {
 
     }
 
-    @Field({ validate: Validators.required.withMessage("Required.") })
-    username: string = '';
-    @Field({ validate: Validators.required.withMessage("Required, try 123") })
-    password: string = '';
+    @Fields.string({ validate: Validators.required.withMessage("Required.") })
+    username = '';
+    @Fields.string({ validate: Validators.required.withMessage("Required.") })
+    password = '';
     @BackendMethod({ allowed: true })
     async signIn() {
         const accountManager = await this.remult.repo(AccountManager).findFirst({

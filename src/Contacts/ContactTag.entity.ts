@@ -1,4 +1,4 @@
-import { Allow, Entity, Field, UuidField } from "remult";
+import { Allow, Entity, Field, Fields } from "remult";
 import { Contact } from "./Contact.entity";
 import { Tag } from "./Tag.entity";
 
@@ -6,10 +6,10 @@ import { Tag } from "./Tag.entity";
     allowApiCrud: Allow.authenticated
 })
 export class ContactTag {
-    @UuidField()
+    @Fields.uuid()
     id?: string;
-    @Field(o => o.valueType = Contact, { lazy: true })
+    @Field(() => Contact, { lazy: true })
     contact!: Contact;
-    @Field(o => o.valueType = Tag)
+    @Field(() => Tag)
     tag!: Tag;
 }

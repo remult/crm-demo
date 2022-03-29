@@ -10,6 +10,7 @@ import { StatusIndicator } from "./StatusIndicator";
 
 import { Status } from "./Status";
 import { Note } from "./Note";
+import { getValueList } from "remult";
 
 export const ContactShow: React.FC<{}> = () => {
     let params = useParams();
@@ -84,10 +85,10 @@ export const ContactShow: React.FC<{}> = () => {
                                         labelId="status-label"
                                         label="Status"
                                         value={newNote.status?.id}
-                                        onChange={e => setNewNote({ ...newNote, status: Status.helper.byId(e.target.value)! })}
+                                        onChange={e => setNewNote({ ...newNote, status: getValueList(Status).find(item => item.id === e.target.value)! })}
                                         disabled={!newNote.text || loading}
                                     >
-                                        {Status.helper.getOptions().map(s => (<MenuItem key={s.id} value={s.id}> <Box component="span" sx={{ mr: 1 }}>{s.caption} </Box> <StatusIndicator status={s} /></MenuItem>))}
+                                        {getValueList(Status).map(s => (<MenuItem key={s.id} value={s.id}> <Box component="span" sx={{ mr: 1 }}>{s.caption} </Box> <StatusIndicator status={s} /></MenuItem>))}
                                     </Select>
                                 </FormControl>
                                 <TextField variant="filled" sx={{ flexGrow: 1, visibility: newNote.text ? 'visible' : 'hidden' }}

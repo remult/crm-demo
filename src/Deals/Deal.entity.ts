@@ -1,4 +1,4 @@
-import { Allow, BackendMethod, Entity, Field, IntegerField, Remult, UuidField } from "remult";
+import { Allow, BackendMethod, Entity, Field, Fields, Remult } from "remult";
 import { AccountManager } from "../AccountManagers/AccountManager.entity";
 import { Company } from "../Companies/Company.entity";
 import { Contact } from "../Contacts/Contact.entity";
@@ -8,28 +8,28 @@ import { assign } from 'remult/assign';
     allowApiCrud: Allow.authenticated
 })
 export class Deal {
-    @UuidField()
+    @Fields.uuid()
     id?: string;
-    @Field()
-    name: string = '';
-    @Field(o => o.valueType = Company)
+    @Fields.string()
+    name = '';
+    @Field(() => Company)
     company!: Company;
-    @Field()
-    type: string = '';
-    @Field()
-    stage: string = '';
-    @Field()
-    description: string = '';
-    @IntegerField()
-    amount: number = 0;
-    @Field(o => o.valueType = Date)
-    createdAt: Date = new Date();
-    @Field(o => o.valueType = Date)
-    updatedAt: Date = new Date();
-    @Field(o => o.valueType = AccountManager)
+    @Fields.string()
+    type = '';
+    @Fields.string()
+    stage = '';
+    @Fields.string()
+    description = '';
+    @Fields.integer()
+    amount = 0;
+    @Fields.date()
+    createdAt = new Date();
+    @Fields.date()
+    updatedAt = new Date();
+    @Field(() => AccountManager)
     accountManager?: AccountManager;
-    @Field()
-    index: number = 0;
+    @Fields.integer()
+    index = 0;
 
     @BackendMethod({ allowed: Allow.authenticated })
     static async DealDropped(dealId: string, stage: string, onDealId: string | undefined, remult?: Remult) {
@@ -89,10 +89,10 @@ export class Deal {
     allowApiCrud: Allow.authenticated
 })
 export class DealContact {
-    @UuidField()
+    @Fields.uuid()
     id?: string;
-    @Field(o => o.valueType = Deal)
+    @Field(() => Deal)
     deal!: Deal;
-    @Field(o => o.valueType = Contact)
+    @Field(() => Contact)
     contact!: Contact;
 }

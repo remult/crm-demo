@@ -1,4 +1,4 @@
-import { Allow, Entity, Field, UuidField } from "remult";
+import { Allow, Entity, Field, Fields } from "remult";
 import { AccountManager } from "../AccountManagers/AccountManager.entity";
 import { Contact } from "./Contact.entity";
 import { Status } from "./Status";
@@ -15,16 +15,16 @@ import { Status } from "./Status";
         options.deleted = ({ contact }) => Contact.updateLastSeen(remult, contact);
     })
 export class ContactNote {
-    @UuidField()
+    @Fields.uuid()
     id?: string;
-    @Field(o => o.valueType = Contact)
+    @Field(() => Contact)
     contact!: Contact;
-    @Field()
-    text: string = '';
-    @Field(o => o.valueType = AccountManager)
+    @Fields.string()
+    text = '';
+    @Field(() => AccountManager)
     accountManager!: AccountManager;
-    @Field(o => o.valueType = Date)
-    createdAt: Date = new Date();
-    @Field(o => o.valueType = Status)
-    status: Status = Status.cold;
+    @Fields.date()
+    createdAt = new Date();
+    @Field(() => Status)
+    status = Status.cold;
 }

@@ -8,6 +8,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import { Status } from "./Status";
 import { ContactsList } from "./ContactsList";
 import { Tag } from "./Tag.entity";
+import { getValueList } from "remult";
 
 
 const amRepo = remult.repo(Contact);
@@ -40,7 +41,7 @@ export const ContactsPage: React.FC<{}> = () => {
                     { firstName: { $contains: filter.search } },
                     { lastName: { $contains: filter.search } }
                 ],
-                status: filter.status ? Status.helper.byId(filter.status) : undefined,
+                status: filter.status ? getValueList(Status).find(s => s.id == filter.status) : undefined,
                 $and: [filter.tag ? Contact.filterTag(filter.tag) : undefined!]
             }, pageSize: rowsPerPage
         });
@@ -83,7 +84,7 @@ export const ContactsPage: React.FC<{}> = () => {
                 <ListItem>
                     <ListItemText>STATUS</ListItemText>
                 </ListItem>
-                {Status.helper.getOptions().map((s: Status) => (<ListItem
+                {getValueList(Status).map((s: Status) => (<ListItem
                     key={s.id}
 
                     secondaryAction={s.id.toString() === filter.status &&
