@@ -121,8 +121,8 @@ function App() {
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                 CRM
               </Typography>
-              <Button color="inherit" component={Link} to={`/contacts`} >Contacts</Button>
-              <Button color="inherit" component={Link} to={`/`} >Kanban</Button>
+              <Button color="inherit" component={Link} to={`/`} >Contacts</Button>
+              <Button color="inherit" component={Link} to={`/kanban`} >Kanban</Button>
               <Button color="inherit" component={Link} to={`/companies`} >Companies</Button>
               <Button color="inherit" component={Link} to={`/accountManagers`} >Account Managers</Button>
               <Button color="inherit" component={Link} to={`/deals`} >Deals</Button>
@@ -161,11 +161,11 @@ function App() {
           </AppBar>
           <Box sx={{ p: 1 }}>
             <Routes>
-              <Route path="/" element={<DealsKanban />} />
+              <Route path="/" element={<ContactsPage />} />
+              <Route path="/kanban" element={<DealsKanban />} />
               <Route path="/companies" element={<CompaniesList />} />
               <Route path="/companies/:id" element={<CompanyShow />} />
               <Route path="/deals" element={<DealsList />} />
-              <Route path="/contacts" element={<ContactsPage />} />
               <Route path="/accountManagers" element={<AccountManagersList />} />
               <Route path="/contacts/:id" element={<ContactShow />} />
 
