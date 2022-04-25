@@ -1,5 +1,4 @@
 import { BackendMethod, Controller, Fields, Remult, UserInfo, Validators } from "remult";
-import { getJwtTokenSignKey } from "./AuthService";
 import * as jwt from 'jsonwebtoken';
 import { AccountManager } from "../AccountManagers/AccountManager.entity";
 
@@ -28,7 +27,13 @@ export class SignInController {
             id: accountManager.id,
             name: accountManager.firstName + ' ' + accountManager.lastName,
             roles: []
-        } as UserInfo, getJwtTokenSignKey());
+        } as UserInfo, getJwtSigningKey());
     }
 
 }
+export function getJwtSigningKey() {
+    if (process.env.NODE_ENV === "production")
+       return process.env.TOKEN_SIGN_KEY!;
+    return "my secret key";
+ }
+ 

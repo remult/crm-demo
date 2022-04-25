@@ -11,7 +11,7 @@ import { LocalizationProvider } from '@mui/lab';
 import { SignInController } from './SignIn/SignIn.controller';
 import { ErrorInfo } from 'remult';
 import LockIcon from '@mui/icons-material/Lock';
-import { auth, remult } from './common';
+import { remult, setAuthToken } from './common';
 import { AccountManager } from './AccountManagers/AccountManager.entity';
 import { DealsList } from './Deals/DealList';
 import { DealsKanban } from './Deals/DealsKanban';
@@ -31,7 +31,7 @@ function App() {
     signIn.username = state.username;
     signIn.password = state.password;
     try {
-      auth.setAuthToken(await signIn.signIn());
+      setAuthToken(await signIn.signIn());
 
     }
     catch (err: any) {
@@ -150,7 +150,7 @@ function App() {
                 >
                   <MenuItem onClick={() => {
                     setAnchorElUser(null);
-                    auth.signOut();
+                    setAuthToken(null);
                   }}>
                     <Typography textAlign="center">Logout</Typography>
                   </MenuItem>

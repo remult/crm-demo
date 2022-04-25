@@ -10,8 +10,9 @@ import { createPostgresConnection } from 'remult/postgres';
 import swaggerUi from 'swagger-ui-express';
 
 import { seed } from './seed';
-import { getJwtTokenSignKey } from '../SignIn/AuthService';
+
 import { config } from 'dotenv';
+import { getJwtSigningKey } from '../SignIn/SignIn.controller';
 
 config();
 let ext = "ts";
@@ -32,7 +33,7 @@ app.use(sslRedirect());
 //app.use(helmet({ contentSecurityPolicy: false,crossOriginResourcePolicy:false }));
 app.use(compression());
 app.use(expressJwt({
-    secret: getJwtTokenSignKey(),
+    secret: getJwtSigningKey(),
     credentialsRequired: false,
     algorithms: ['HS256']
 }));
