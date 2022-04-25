@@ -85,7 +85,7 @@ export class Contact {
                         tag: await remult.repo(Tag).findFirst({ tag })
                     },
                     load: ct => []
-                }).then(ct => ct.map(ct =>  getEntityRef(ct).fields.contact.inputValue))
+                }).then(ct => ct.map(ct => getEntityRef(ct).fields.contact.getId()))
             };
             return r;
         }
