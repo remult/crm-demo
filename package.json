@@ -37,7 +37,7 @@
     "react-scripts": "5.0.0",
     "react-window": "^1.8.6",
     "react-window-infinite-loader": "^1.0.7",
-    "remult": "^0.13.19",
+    "remult": "^0.13.20",
     "swagger-ui-express": "^4.3.0",
     "typescript": "^4.5.4",
     "web-vitals": "^2.1.3"
