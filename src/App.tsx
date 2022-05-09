@@ -15,6 +15,7 @@ import { remult, setAuthToken } from './common';
 import { AccountManager } from './AccountManagers/AccountManager.entity';
 import { DealsList } from './Deals/DealList';
 import { DealsKanban } from './Deals/DealsKanban';
+import { AdminPage } from './admin/AdminPage';
 
 const theme = createTheme();
 
@@ -168,6 +169,7 @@ function App() {
               <Route path="/deals" element={<DealsList />} />
               <Route path="/accountManagers" element={<AccountManagersList />} />
               <Route path="/contacts/:id" element={<ContactShow />} />
+              <Route path='/admin' element={<AdminPage />}/>
 
             </Routes>
           </Box>
