@@ -1,15 +1,9 @@
-import React, { useEffect } from "react";
-import { ContainsStringValueFilter } from "remult";
-
-import { Column, Filters, TableOptions, usePagination } from "react-table";
-
+import React from 'react'
 import styled from "@emotion/styled";
-import { useTable, useFilters } from "react-table";
-import { remult } from "../common";
-
-import { Company } from "../Companies/Company.entity";
-import { useRemultReactTable } from "./remult-react-table";
-
+import { useTable, usePagination, useFilters } from 'react-table'
+import { useRemultReactTable } from './remult-react-table';
+import { remult } from '../common';
+import { Contact } from '../Contacts/Contact.entity';
 
 
 const Styles = styled.div`
@@ -39,42 +33,24 @@ const Styles = styled.div`
       }
     }
   }
-`;
-function DefaultColumnFilter({
-    column: { filterValue, preFilteredRows, setFilter }
-}: {
-    column: {
-        filterValue: any,
-        preFilteredRows: any,
-        setFilter: any
-    }
-}) {
-    return (
-        <input
-            value={filterValue || ""}
-            onChange={e => {
-                setFilter(e.target.value || undefined); // Set undefined to remove the filter entirely
-            }}
-        />
-    );
-}
-function Table() {
-    const options = useRemultReactTable(remult.repo(Company));
-    const { pageCount } = options;
-    const defaultColumn = React.useMemo(
-        () => ({
-            // Let's set up our default Filter UI
-            Filter: DefaultColumnFilter
-        }),
-        []
-    );
 
+  .pagination {
+    padding: 0.5rem;
+  }
+`
+
+// Let's add a fetchData method to our Table component that will be used to fetch
+// new data when pagination state changes
+// We can also add a loading state to let our table know it's loading new data
+function Table() {
+    const options = useRemultReactTable(remult.repo(Contact));
+    const { loading, count, pageCount } = options;
     const {
         getTableProps,
         getTableBodyProps,
         headerGroups,
-        rows,
         prepareRow,
+        page,
         canPreviousPage,
         canNextPage,
         pageOptions,
@@ -86,49 +62,66 @@ function Table() {
         state: { pageIndex, pageSize },
     } = useTable(
         {
-            ...options, defaultColumn // Be sure to pass the defaultColumn option
+            ...options
         },
-        useFilters // useFilters!ת
-        , usePagination
-    );
+        usePagination
+    )
+
+    // Listen for changes in pagination and use the state to fetch our new data
 
 
-
-    // We don't want to render all of the rows for this example, so cap
-    // it for this use case
-
-
+    // Render the UI for your table
     return (
         <>
+
             <table {...getTableProps()}>
                 <thead>
                     {headerGroups.map(headerGroup => (
                         <tr {...headerGroup.getHeaderGroupProps()}>
                             {headerGroup.headers.map(column => (
                                 <th {...column.getHeaderProps()}>
-                                    {column.render("Header")}
-                                    <div>{column.canFilter ? column.render("Filter") : null}</div>
+                                    {column.filter}
+                                    {column.render('Header')}
+                                    <span>
+                                        {column.isSorted
+                                            ? column.isSortedDesc
+                                                ? ' 🔽'
+                                                : ' 🔼'
+                                            : ''}
+                                    </span>
                                 </th>
                             ))}
                         </tr>
                     ))}
                 </thead>
                 <tbody {...getTableBodyProps()}>
-                    {rows.map((row, i) => {
-                        prepareRow(row);
+                    {page.map((row, i) => {
+                        prepareRow(row)
                         return (
                             <tr {...row.getRowProps()}>
                                 {row.cells.map(cell => {
-                                    return (
-                                        <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-                                    );
+                                    return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                                 })}
                             </tr>
-                        );
+                        )
                     })}
+                    <tr>
+                        {loading ? (
+                            // Use our custom loading state to show a loading indicator
+                            <td colSpan={10000}>Loading...</td>
+                        ) : (
+                            <td colSpan={10000}>
+                                Showing {page.length} of {count}{' '}
+                                results
+                            </td>
+                        )}
+                    </tr>
                 </tbody>
             </table>
-
+            {/* 
+        Pagination can be built however you'd like. 
+        This is just a very basic UI implementation:
+      */}
             <div className="pagination">
                 <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
                     {'<<'}
@@ -174,28 +167,20 @@ function Table() {
                 </select>
             </div>
         </>
-    );
+    )
 }
 
+// Let's simulate a large dataset on the server (outside of our component)
 
 
-
-
-// SEE TABLE FOR NEW STUFF!
-// App just contains boilderplate
-
-export default function ReactTableDemo() {
-
-
-
-
-
-
+function App() {
 
 
     return (
         <Styles>
             <Table />
         </Styles>
-    );
+    )
 }
+
+export default App

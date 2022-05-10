@@ -17,6 +17,8 @@ import { DealsList } from './Deals/DealList';
 import { DealsKanban } from './Deals/DealsKanban';
 import { AdminPage } from './admin/AdminPage';
 import ReactTableDemo from './admin/ReactTable';
+import ReactTableBasics from './admin/ReactTableBasic';
+import ReactTable from './admin/ReactTable';
 
 const theme = createTheme();
 
@@ -171,7 +173,7 @@ function App() {
               <Route path="/accountManagers" element={<AccountManagersList />} />
               <Route path="/contacts/:id" element={<ContactShow />} />
               <Route path='/admin' element={<AdminPage />}/>
-              <Route path='/react-table' element={<ReactTableDemo />}/>
+              <Route path='/react-table' element={<ReactTable />}/>
 
             </Routes>
           </Box>
