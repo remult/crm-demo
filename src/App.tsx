@@ -16,6 +16,7 @@ import { AccountManager } from './AccountManagers/AccountManager.entity';
 import { DealsList } from './Deals/DealList';
 import { DealsKanban } from './Deals/DealsKanban';
 import { AdminPage } from './admin/AdminPage';
+import ReactTableDemo from './admin/ReactTable';
 
 const theme = createTheme();
 
@@ -170,6 +171,7 @@ function App() {
               <Route path="/accountManagers" element={<AccountManagersList />} />
               <Route path="/contacts/:id" element={<ContactShow />} />
               <Route path='/admin' element={<AdminPage />}/>
+              <Route path='/react-table' element={<ReactTableDemo />}/>
 
             </Routes>
           </Box>
