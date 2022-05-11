@@ -1,12 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Column, Filters, TableState } from "react-table";
-import { ContainsStringValueFilter, Repository } from "remult";
+import { Column, Filters, SortingRule, TableState } from "react-table";
+import { ContainsStringValueFilter, OmitEB, Repository } from "remult";
 
 export function useRemultReactTable<entityType extends object>(
     repo: Repository<entityType>) {
     const [data, setData] = useState<entityType[]>(() => []);
     const [count, setCount] = useState(0);
     const [filters, setFilters] = useState([] as Filters<entityType>);
+    const [sort, setSort] = useState([] as Array<SortingRule<entityType>>);
     const [loading, setLoading] = useState(false);
     const fetchIdRef = useRef(0);
     const [limit, setLimit] = useState(10);
@@ -14,11 +15,15 @@ export function useRemultReactTable<entityType extends object>(
     const [pageCount, setPageCount] = useState(0)
     useEffect(() => {
         let where: any = {};
+        let orderBy: any = {};
 
         for (const f of filters) {
             where[f.id] = {
                 $contains: f.value
             } as ContainsStringValueFilter
+        }
+        for (const s of sort) {
+            orderBy[s.id] = s.desc ? 'desc' : "asc";
         }
         (async () => {
             const fetchId = ++fetchIdRef.current;
@@ -26,6 +31,7 @@ export function useRemultReactTable<entityType extends object>(
             try {
                 const [rows, count] = await Promise.all([repo.find({
                     where,
+                    orderBy,
                     limit,
                     page
                 }), repo.count(where)]);
@@ -41,10 +47,11 @@ export function useRemultReactTable<entityType extends object>(
                 }
             }
         })();
-    }, [filters, limit, page]);
-    const columns = useMemo(
-        () =>
-            repo.metadata.fields.toArray().map(f => ({
+    }, [filters, sort, limit, page]);
+    const { columns, fields } = useMemo(
+        () => {
+            let fields: any = {}
+            const columns = repo.metadata.fields.toArray().map(f => fields[f.key] = ({
                 Header: f.caption,
                 accessor: (row: entityType) => {
                     //@ts-ignore
@@ -62,7 +69,9 @@ export function useRemultReactTable<entityType extends object>(
                 },
                 id: f.key
 
-            } as Column<entityType>))
+            } as Column<entityType>));
+            return { fields, columns };
+        }
         ,
         []
     );
@@ -82,11 +91,20 @@ export function useRemultReactTable<entityType extends object>(
                 setPage(state.pageIndex + 1);
             if (state.pageSize != limit)
                 setLimit(state.pageSize);
+            if (state.sortBy != sort)
+                setSort(state.sortBy);
             return state;
         },
         loading,
         count,
         manualPagination: true,
-        pageCount
+        pageCount,
+        manualSortBy: true,
+        fields
+
     }
 }
+
+export declare type ReactDataFieldsAsColumns<entityType extends object> = {
+    [Properties in keyof Partial<OmitEB<entityType>>]?: Column<entityType>;
+};

@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import { ContainsStringValueFilter } from "remult";
+import React, { useMemo } from "react";
 
-import { Column, Filters, TableOptions, usePagination } from "react-table";
+
+import { usePagination, useSortBy } from "react-table";
 
 import styled from "@emotion/styled";
 import { useTable, useFilters } from "react-table";
@@ -61,6 +61,7 @@ function DefaultColumnFilter({
 function Table() {
     const options = useRemultReactTable(remult.repo(Company));
     const { pageCount } = options;
+
     const defaultColumn = React.useMemo(
         () => ({
             // Let's set up our default Filter UI
@@ -86,10 +87,12 @@ function Table() {
         state: { pageIndex, pageSize },
     } = useTable(
         {
-            ...options, defaultColumn // Be sure to pass the defaultColumn option
+            ...options,
+            defaultColumn // Be sure to pass the defaultColumn option
         },
-        useFilters // useFilters!ת
-        , usePagination
+        useFilters,
+        useSortBy,
+        usePagination
     );
 
 
@@ -105,15 +108,23 @@ function Table() {
                     {headerGroups.map(headerGroup => (
                         <tr {...headerGroup.getHeaderGroupProps()}>
                             {headerGroup.headers.map(column => (
-                                <th {...column.getHeaderProps()}>
+                                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                                     {column.render("Header")}
-                                    <div>{column.canFilter ? column.render("Filter") : null}</div>
+                                    <span>
+                                        {column.isSorted
+                                            ? column.isSortedDesc
+                                                ? ' 🔽'
+                                                : ' 🔼'
+                                            : ''}
+                                    </span>
+                                    <div onClick={e => e.preventDefault()}>{column.canFilter ? column.render("Filter") : null}</div>
                                 </th>
                             ))}
                         </tr>
                     ))}
                 </thead>
                 <tbody {...getTableBodyProps()}>
+                    {options.loading && (<tr><td colSpan={1000}>loading...</td></tr>)}
                     {rows.map((row, i) => {
                         prepareRow(row);
                         return (
