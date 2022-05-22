@@ -2,6 +2,7 @@ import { Allow, Entity, Fields, Validators } from "remult";
 
 @Entity<AccountManager>("accountManagers", {
     allowApiCrud: Allow.authenticated,
+    allowApiDelete: false,
     defaultOrderBy: {
         firstName: "asc",
         lastName: "asc"

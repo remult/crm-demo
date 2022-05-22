@@ -2,7 +2,7 @@ import { Allow, Entity, Field, Fields } from "remult";
 import { AccountManager } from "../AccountManagers/AccountManager.entity";
 import { CompanySize } from "./CompanySize";
 
-@Entity("companies", { allowApiCrud: Allow.authenticated })
+@Entity("companies", { allowApiCrud: Allow.authenticated, allowApiDelete: false })
 export class Company {
     @Fields.uuid()
     id?: string;

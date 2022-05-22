@@ -40,7 +40,7 @@ app.use(expressJwt({
 const api = remultExpress({
     dataProvider: async () => {
         if (process.env.NODE_ENV === "production")
-            return createPostgresConnection({ configuration: "heroku" })
+            return createPostgresConnection({ configuration: "heroku", sslInDev: true })
         return undefined;
     },
     initApi: seed

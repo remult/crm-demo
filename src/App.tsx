@@ -19,6 +19,7 @@ import { AdminPage } from './admin/AdminPage';
 import ReactTableDemo from './admin/ReactTable';
 import ReactTableBasics from './admin/ReactTableBasic';
 import ReactTable from './admin/ReactTable';
+import { PlayForm } from './admin/form';
 
 const theme = createTheme();
 
@@ -172,8 +173,9 @@ function App() {
               <Route path="/deals" element={<DealsList />} />
               <Route path="/accountManagers" element={<AccountManagersList />} />
               <Route path="/contacts/:id" element={<ContactShow />} />
-              <Route path='/admin' element={<AdminPage />}/>
-              <Route path='/react-table' element={<ReactTable />}/>
+              <Route path='/admin' element={<AdminPage />} />
+              <Route path='/react-table' element={<ReactTable />} />
+              <Route path='/form' element={<PlayForm />} />
 
             </Routes>
           </Box>

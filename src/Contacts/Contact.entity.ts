@@ -12,6 +12,7 @@ import { CustomSqlFilterBuilder, dbNameProvider, FilterConsumerBridgeToSqlReques
 
 @Entity<Contact>("contacts", {
     allowApiCrud: Allow.authenticated,
+    allowApiDelete: false,
     defaultOrderBy: {
         lastName: "asc"
     }
