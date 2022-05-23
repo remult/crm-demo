@@ -111,6 +111,7 @@ export const ContactEdit: React.FC<IProps> = ({ contact, onSaved, onClose }) => 
                                 id="combo-box-demo"
                                 options={companies}
                                 value={state.company ? state.company : null}
+                                getOptionLabel={c=>c.name}
                                 inputValue={companySearch}
                                 onChange={(e, newValue: Company | null) => setState({ ...state, company: newValue ? newValue : null! })}
                                 onInputChange={(e, newInput) => setCompanySearch(newInput)}

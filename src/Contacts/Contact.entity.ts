@@ -1,5 +1,5 @@
 
-import { Allow, Entity, EntityFilter, EntityMetadata, Field, Filter, Remult, Repository, SqlCommand, SqlDatabase, Fields, getEntityRef } from "remult";
+import { Allow, Entity, EntityFilter, EntityMetadata, Field, Filter, Remult, Repository, SqlCommand, SqlDatabase, Fields, getEntityRef, Validators } from "remult";
 import { AccountManager } from "../AccountManagers/AccountManager.entity";
 import { Company } from "../Companies/Company.entity";
 import { Acquisition } from "./Acquisition";
@@ -20,9 +20,13 @@ import { CustomSqlFilterBuilder, dbNameProvider, FilterConsumerBridgeToSqlReques
 export class Contact {
     @Fields.uuid()
     id?: string;
-    @Fields.string()
+    @Fields.string({
+        validate: Validators.required
+    })
     firstName = '';
-    @Fields.string()
+    @Fields.string({
+        validate: Validators.required
+    })
     lastName = '';
     @Field(() => Gender)
     gender = Gender.male;
