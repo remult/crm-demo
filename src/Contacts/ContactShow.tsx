@@ -61,7 +61,7 @@ export const ContactShow: React.FC<{}> = () => {
                             </Typography>
                         </Box>
                         <Box>
-                            <Logo url={contact.company!.logo} title={contact.company!.name} sizeInPixels={20} />
+                            {contact.company && <Logo url={contact.company!.logo} title={contact.company!.name} sizeInPixels={20} />}
                         </Box>
                     </Box>
 
