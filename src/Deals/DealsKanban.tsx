@@ -11,7 +11,8 @@ export const DealsKanban = () => {
     const loadDeals = useCallback(() => remult.repo(Deal).find({ orderBy: { index: "asc" } }).then(deals => {
         const newDealsForStage: typeof dealsForStage = DealStages.reduce((x, stage) => ({ ...x, [stage]: [] }), {});
         for (const d of deals) {
-            newDealsForStage[d.stage].push(d);
+            if (newDealsForStage[d.stage])
+                newDealsForStage[d.stage].push(d);
         }
         setDeals(newDealsForStage);
 
