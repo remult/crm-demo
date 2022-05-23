@@ -16,12 +16,11 @@ export class SignInController {
     @BackendMethod({ allowed: true })
     async signIn() {
         const accountManager = await this.remult.repo(AccountManager).findFirst({
-            firstName: { $contains: this.username }
+            firstName: this.username
         })
         if (!accountManager) {
-            const allUsers = await this.remult.repo(AccountManager).find();
-            const randomUser = allUsers[Math.floor(Math.random() * allUsers.length)];
-            throw new Error("Invalid User, Try: " + randomUser.firstName);
+
+            throw new Error("Invalid User, Try: " + await SignInController.getValidUserName(this.remult));
         }
         return jwt.sign({
             id: accountManager.id,
@@ -29,11 +28,16 @@ export class SignInController {
             roles: []
         } as UserInfo, getJwtSigningKey());
     }
+    @BackendMethod({ allowed: true })
+    static async getValidUserName(remult?: Remult) {
+        const allUsers = await remult!.repo(AccountManager).find();
+        const randomUser = allUsers[Math.floor(Math.random() * allUsers.length)];
+        return randomUser.firstName;
+    }
 
 }
 export function getJwtSigningKey() {
     if (process.env.NODE_ENV === "production")
-       return process.env.TOKEN_SIGN_KEY!;
+        return process.env.TOKEN_SIGN_KEY!;
     return "my secret key";
- }
- 
+}

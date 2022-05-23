@@ -44,6 +44,7 @@ function App() {
     }
   }
   useEffect(() => {
+    SignInController.getValidUserName().then(username => setState({ username, password: '123' }));
     let unobserve = () => { };
     remult.userChange.observe(() => {
       if (!remult.authenticated())

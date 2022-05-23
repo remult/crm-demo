@@ -52,9 +52,7 @@
     "build": "react-scripts build && tsc -p tsconfig.server.json",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev-node": "ts-node-dev --project tsconfig.server.json src/server/",
-    "dev-react": "react-scripts start",
-    "dev": "concurrently --prefix \"[{name}]\" --names \"API-SERVER,DEV-REACT\" -c \"bgBlue.bold,bgGreen.bold\" \"npm run dev-node\" \"npm run dev-react\""
+    "dev": "concurrently -k -n \"API,WEB\" -c \"bgBlue.bold,bgGreen.bold\" \"ts-node-dev -P tsconfig.server.json src/server/\" \"react-scripts start\""
   },
   "proxy": "http://localhost:3002",
   "eslintConfig": {
