@@ -160,14 +160,15 @@ export const CompanyEdit: React.FC<IProps> = ({ company, onSaved, onClose }) => 
                             onChange={e => setState({ ...state, logo: e.target.value })}
                         />
                         <Divider />
-                        <Stack direction="row" spacing={2}><TextField sx={{ flexGrow: 1 }}
+                        <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
+                            <TextField sx={{ flexGrow: 1 }}
 
-                            label="Phone number"
-                            error={Boolean(errors?.modelState?.phoneNumber)}
-                            helperText={errors?.modelState?.phoneNumber}
-                            value={state.phoneNumber}
-                            onChange={e => setState({ ...state, phoneNumber: e.target.value })}
-                        />
+                                label="Phone number"
+                                error={Boolean(errors?.modelState?.phoneNumber)}
+                                helperText={errors?.modelState?.phoneNumber}
+                                value={state.phoneNumber}
+                                onChange={e => setState({ ...state, phoneNumber: e.target.value })}
+                            />
                             <FormControl sx={{ flexGrow: 1 }}
                                 error={Boolean(errors?.modelState?.accountManager)}>
                                 <InputLabel id="accountManager-label">Account Manager</InputLabel>

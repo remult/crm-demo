@@ -7,6 +7,7 @@ import { remult } from "../common";
 import { Contact } from "../Contacts/Contact.entity";
 import { ContactsList } from "../Contacts/ContactsList";
 import { Deal } from "../Deals/Deal.entity";
+import { useIsDesktop } from "../utils/useIsDesktop";
 import { Company } from "./Company.entity";
 import { CompanyAside } from "./CompanyAside";
 import { Logo } from "./Logo";
@@ -20,6 +21,8 @@ export const CompanyShow: React.FC<{}> = () => {
 
     const [loading, setLoading] = useState(true);
     const [currentTab, setCurrentTab] = React.useState('1');
+
+    const isDesktop = useIsDesktop();
 
     useEffect(() => {
         (async () => {
@@ -43,7 +46,7 @@ export const CompanyShow: React.FC<{}> = () => {
         return <span>Loading</span>;
     if (!company)
         return <span>not found</span>;
-    return <Box display="flex">
+    return <Stack direction={{ xs: "column", sm: "row" }}  >
         <Box flex="1">
             <Card>
                 <CardContent>
@@ -85,13 +88,13 @@ export const CompanyShow: React.FC<{}> = () => {
                                                             </>
                                                         }
                                                     />
-                                                    <ListItemSecondaryAction>
+                                                    {isDesktop && <ListItemSecondaryAction>
                                                         <Typography variant="body1" color="textSecondary">
                                                             last activity{' '}
                                                             {deal.updatedAt ? formatDistance(deal.updatedAt, new Date()) : ""}{' '}
                                                             ago
                                                         </Typography>
-                                                    </ListItemSecondaryAction>
+                                                    </ListItemSecondaryAction>}
                                                 </ListItemButton>
                                             </ListItem>
                                         ))}
@@ -106,6 +109,6 @@ export const CompanyShow: React.FC<{}> = () => {
             </Card>
         </Box>
         <CompanyAside company={company} setCompany={setCompany}></CompanyAside>
-    </Box>
+    </Stack>
 }
 

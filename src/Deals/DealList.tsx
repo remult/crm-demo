@@ -10,6 +10,7 @@ import { useSearchParams } from "react-router-dom";
 import CancelIcon from '@mui/icons-material/Cancel';
 import { DealStages } from "./DealStage";
 import { DealTypes } from "./DealType";
+import { useIsDesktop } from "../utils/useIsDesktop";
 
 
 const amRepo = remult.repo(Deal);
@@ -43,9 +44,9 @@ export const DealsList: React.FC<{}> = () => {
     }
     const editDealSaved = (editDeal: Deal) =>
         setDeals(deals.map(deal => deal.id === editDeal.id ? editDeal : deal));
-
+    const isDesktop = useIsDesktop();
     return <Grid container spacing={2}>
-        <Grid item xs={2}>
+        {isDesktop && <Grid item xs={2}>
             <TextField label="Search" variant="filled"
                 value={filter.search}
                 onChange={e =>
@@ -96,8 +97,8 @@ export const DealsList: React.FC<{}> = () => {
                     </ListItemButton>
                 </ListItem>))}
             </List>
-        </Grid>
-        <Grid item xs={10}>
+        </Grid>}
+        <Grid item xs={12} sm={10}>
             <Button
                 variant="contained"
                 onClick={() => setEditDeal(new Deal())}

@@ -1,4 +1,4 @@
-import { Button, Grid, IconButton, List, ListItem, ListItemButton, ListItemText, Stack, TextField } from "@mui/material";
+import { Box, Button, Drawer, Grid, IconButton, List, ListItem, ListItemButton, ListItemText, Stack, TextField } from "@mui/material";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { remult } from "../common"
 import { Company } from "./Company.entity"
@@ -14,6 +14,8 @@ import { Link } from 'react-router-dom';
 import InfiniteLoader from "react-window-infinite-loader";
 import { FixedSizeList } from "react-window";
 import { getValueList, Paginator } from "remult";
+import { useIsDesktop } from "../utils/useIsDesktop";
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
 
 
 const amRepo = remult.repo(Company);
@@ -25,8 +27,10 @@ export const CompaniesList: React.FC<{}> = () => {
         size: searchParams.get("size") || '',
         sector: searchParams.get("sector") || ''
     };
+    const [openDrawer, setOpenDrawer] = useState(false);
     const patchFilter = (f: Partial<typeof filter>) => {
         setSearchParams({ ...filter, ...f });
+        setOpenDrawer(false);
     }
 
     const [companies, setCompanies] = useState<{ companies: Company[], paginator?: Paginator<Company> }>({
@@ -65,67 +69,81 @@ export const CompaniesList: React.FC<{}> = () => {
     const editCompanySaved = (editCompany: Company) =>
         setCompanies({ companies: companies.companies.map(company => company.id === editCompany.id ? editCompany : company), paginator: companies.paginator });
 
+    const isDesktop = useIsDesktop();
+    const FilterElement = () => <List dense={true}>
+        <ListItem>
+            <ListItemText>SIZE</ListItemText>
+        </ListItem>
+        {getValueList(CompanySize).map((s: CompanySize) => (<ListItem
+            key={s.id}
+
+            secondaryAction={s.id.toString() == filter.size &&
+                <IconButton edge="end" aria-label="cancel" onClick={() => {
+                    patchFilter({ size: '' })
+                }}>
+                    <CancelIcon />
+                </IconButton>
+            }>
+            <ListItemButton onClick={() => {
+                patchFilter({ size: s.id.toString() });
+            }}>
+                <ListItemText
+                    primary={s.caption}
+                />
+            </ListItemButton>
+        </ListItem>))}
+        <ListItem>
+            <ListItemText>SECTOR</ListItemText>
+        </ListItem>
+        {sectors.map((s) => (<ListItem
+            key={s}
+
+            secondaryAction={s.toString() == filter.sector &&
+                <IconButton edge="end" aria-label="cancel" onClick={() => {
+                    patchFilter({ sector: '' })
+                }}>
+                    <CancelIcon />
+                </IconButton>
+            }>
+            <ListItemButton onClick={() => {
+                patchFilter({ sector: s });
+            }}>
+                <ListItemText
+
+                    primary={s}
+
+                />
+            </ListItemButton>
+        </ListItem>))}
+    </List>
     return <Grid container spacing={2}>
-        <Grid item xs={2}>
-            <TextField label="Search" variant="filled"
-                value={filter.search}
-                onChange={e =>
-                    patchFilter({ search: e.target.value })
-                } />
-            <List dense={true}>
-                <ListItem>
-                    <ListItemText>SIZE</ListItemText>
-                </ListItem>
-                {getValueList(CompanySize).map((s: CompanySize) => (<ListItem
-                    key={s.id}
-
-                    secondaryAction={s.id.toString() == filter.size &&
-                        <IconButton edge="end" aria-label="cancel" onClick={() => {
-                            patchFilter({ size: '' })
-                        }}>
-                            <CancelIcon />
-                        </IconButton>
-                    }>
-                    <ListItemButton onClick={() => {
-                        patchFilter({ size: s.id.toString() });
-                    }}>
-                        <ListItemText
-                            primary={s.caption}
-                        />
-                    </ListItemButton>
-                </ListItem>))}
-                <ListItem>
-                    <ListItemText>SECTOR</ListItemText>
-                </ListItem>
-                {sectors.map((s) => (<ListItem
-                    key={s}
-
-                    secondaryAction={s.toString() == filter.sector &&
-                        <IconButton edge="end" aria-label="cancel" onClick={() => {
-                            patchFilter({ sector: '' })
-                        }}>
-                            <CancelIcon />
-                        </IconButton>
-                    }>
-                    <ListItemButton onClick={() => {
-                        patchFilter({ sector: s });
-                    }}>
-                        <ListItemText
-
-                            primary={s}
-
-                        />
-                    </ListItemButton>
-                </ListItem>))}
-            </List>
-        </Grid>
-        <Grid item xs={10}>
-            <Button
-                variant="contained"
-                onClick={() => setEditCompany(new Company())}
-                startIcon={<AddIcon />}>
-                Add Company
-            </Button>
+        <Drawer anchor="left" open={openDrawer} onClose={() => setOpenDrawer(false)}>
+            <FilterElement />
+        </Drawer>
+        {isDesktop && <Grid item sm={2}>
+            <FilterElement />
+        </Grid>}
+        <Grid item xs={12} sm={10}>
+            <Box display='flex' justifyContent='space-between'>
+                {!isDesktop && <IconButton onClick={() => setOpenDrawer(true)}>
+                    <FilterAltIcon />
+                </IconButton>}
+                <TextField label="Search" variant="filled"
+                    value={filter.search}
+                    onChange={e =>
+                        patchFilter({ search: e.target.value })
+                    } />
+                <div>
+                    {isDesktop ? <Button
+                        variant="contained"
+                        onClick={() => setEditCompany(new Company())}
+                        startIcon={<AddIcon />}>
+                        Add Company
+                    </Button> : <Button onClick={() => setEditCompany(new Company())} variant='contained'>
+                        <AddIcon />
+                    </Button>}
+                </div>
+            </Box>
             <List>
                 {companies.paginator ? (<
                     InfiniteLoader
