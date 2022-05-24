@@ -43,7 +43,7 @@ export const DealsKanban = () => {
         return <>loading...</>;
     return (
         <DragDropContext onDragEnd={onDragEnd}>
-            <Box display="flex">
+            <Box display="flex" sx={{overflowX:'auto'}}>
                 {DealStages.map(stage => (
                     <DealColumn
                         stage={stage}
