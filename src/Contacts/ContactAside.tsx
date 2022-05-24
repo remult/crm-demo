@@ -9,6 +9,7 @@ import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import { colors, Tag } from './Tag.entity';
 import { ContactTag } from './ContactTag.entity';
 import { remult } from '../common';
+import { useIsDesktop } from '../utils/useIsDesktop';
 
 const tagsRepo = remult.repo(Tag);
 const contactTagsRepo = remult.repo(ContactTag);
@@ -40,7 +41,7 @@ export const ContactAside = ({
         setContactTags([...contactTags, await contactTagsRepo.insert({ contact, tag })]);
         setAnchorEl(null);
     };
-
+    const isDesktop = useIsDesktop();
 
     const [createTagDialogOpen, setCreateTagDialogOpen] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
@@ -69,7 +70,7 @@ export const ContactAside = ({
 
     return (contact ? (
         <>
-            <Box ml={4} width={250} minWidth={250}>
+            <Box ml={isDesktop?4:undefined} width={isDesktop ? 250 : undefined} minWidth={isDesktop ? 250 : undefined} >
                 <Box textAlign="center" mb={2}>
                     {link === 'edit' ? (
                         <Button startIcon={<EditIcon />} onClick={() => setEditContact(contact)}>Edit Contact</Button>

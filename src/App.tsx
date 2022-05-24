@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import { AccountManagersList } from './AccountManagers/AccountManagersList';
 import { CompaniesList } from './Companies/CompaniesList';
 import { ContactsPage } from './Contacts/ContactsPage';
 import { CompanyShow } from './Companies/CompanyShow';
-import { AppBar, Avatar, Box, Button, Card, createTheme, CssBaseline, GlobalStyles, IconButton, Menu, MenuItem, Stack, TextField, ThemeProvider, Toolbar, Tooltip, Typography } from '@mui/material';
+import { AppBar, Avatar, Box, Button, Card, createTheme, CssBaseline, Drawer, GlobalStyles, IconButton, List, ListItem, ListItemButton, ListItemText, Menu, MenuItem, Stack, TextField, ThemeProvider, Toolbar, Tooltip, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { ContactShow } from './Contacts/ContactShow';
 import DateAdapter from '@mui/lab/AdapterDateFns';
 import { LocalizationProvider } from '@mui/lab';
@@ -16,10 +16,10 @@ import { AccountManager } from './AccountManagers/AccountManager.entity';
 import { DealsList } from './Deals/DealList';
 import { DealsKanban } from './Deals/DealsKanban';
 import { AdminPage } from './admin/AdminPage';
-import ReactTableDemo from './admin/ReactTable';
-import ReactTableBasics from './admin/ReactTableBasic';
+import MenuIcon from '@mui/icons-material/Menu';
 import ReactTable from './admin/ReactTable';
 import { PlayForm } from './admin/form';
+import { useIsDesktop } from './utils/useIsDesktop';
 
 const theme = createTheme();
 
@@ -57,7 +57,19 @@ function App() {
     }
   }, []);
 
+  const isDesktop = useIsDesktop();
+  const [openDrawer, setOpenDrawer] = useState(false);
+
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const routes = useMemo(() => [
+    { path: '/', caption: 'Contacts' },
+    { path: '/kanban', caption: "Kanban" },
+    { path: `/companies`, caption: 'Companies' },
+    { path: `/accountManagers`, caption: 'Account Managers' },
+    { path: `/deals`, caption: 'Deals' }
+
+
+  ], [])
 
 
   if (!currentUser)
@@ -122,16 +134,36 @@ function App() {
         />
 
         <LocalizationProvider dateAdapter={DateAdapter}>
+          <Drawer
+            anchor='left'
+            open={openDrawer}
+            onClose={() => setOpenDrawer(false)}
+          >
+            <List>{routes.map(route => (
+              <ListItem key={route.path} disablePadding>
+                <ListItemButton component={Link} to={route.path} onClick={() => setOpenDrawer(false)} >
+                  <ListItemText primary={route.caption} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+
+            </List>
+          </Drawer>
           <AppBar position="static" sx={{ mb: 1 }}>
             <Toolbar>
+              {!isDesktop && <IconButton aria-label="menu" color='inherit'
+                onClick={() => setOpenDrawer(true)}>
+                <MenuIcon />
+              </IconButton>}
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                 CRM
               </Typography>
-              <Button color="inherit" component={Link} to={`/`} >Contacts</Button>
-              <Button color="inherit" component={Link} to={`/kanban`} >Kanban</Button>
-              <Button color="inherit" component={Link} to={`/companies`} >Companies</Button>
-              <Button color="inherit" component={Link} to={`/accountManagers`} >Account Managers</Button>
-              <Button color="inherit" component={Link} to={`/deals`} >Deals</Button>
+
+              {isDesktop && routes.map(route => (
+                <Button color="inherit" key={route.path} component={Link} to={route.path} >{route.caption}</Button>
+              ))}
+
+
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title={currentUser.firstName + " " + currentUser.lastName}>
                   <IconButton onClick={(e) => setAnchorElUser(e.currentTarget)} sx={{ p: 0 }}>
@@ -182,7 +214,7 @@ function App() {
           </Box>
         </LocalizationProvider>
       </ThemeProvider>
-    </React.Fragment>
+    </React.Fragment >
   );
 }
 

@@ -11,6 +11,7 @@ import { StatusIndicator } from "./StatusIndicator";
 import { Status } from "./Status";
 import { Note } from "./Note";
 import { getValueList } from "remult";
+import { useIsDesktop } from "../utils/useIsDesktop";
 
 export const ContactShow: React.FC<{}> = () => {
     let params = useParams();
@@ -37,6 +38,7 @@ export const ContactShow: React.FC<{}> = () => {
             setLoading(false)
         })();
     }, [params.id]);
+    const isDesktop = useIsDesktop();
 
     if (loading)
         return <span>Loading</span>;
@@ -64,6 +66,9 @@ export const ContactShow: React.FC<{}> = () => {
                             {contact.company && <Logo url={contact.company!.logo} title={contact.company!.name} sizeInPixels={20} />}
                         </Box>
                     </Box>
+                    {!isDesktop && <Box>
+                        <ContactAside contact={contact} setContact={setContact}></ContactAside>
+                    </Box>}
 
                     <Box mt={2}>
                         <TextField
@@ -91,7 +96,7 @@ export const ContactShow: React.FC<{}> = () => {
                                         {getValueList(Status).map(s => (<MenuItem key={s.id} value={s.id}> <Box component="span" sx={{ mr: 1 }}>{s.caption} </Box> <StatusIndicator status={s} /></MenuItem>))}
                                     </Select>
                                 </FormControl>
-                                <TextField variant="filled" sx={{ flexGrow: 1, visibility: newNote.text ? 'visible' : 'hidden' }}
+                                {isDesktop&&<TextField variant="filled" sx={{ flexGrow: 1, visibility: newNote.text ? 'visible' : 'hidden' }}
                                     size="small"
                                     type="datetime-local"
                                     disabled={!newNote.text || loading}
@@ -104,7 +109,7 @@ export const ContactShow: React.FC<{}> = () => {
                                         second: "2-digit"
                                     }).replace(" ", "T")}
                                     onChange={e => setNewNote({ ...newNote, createdAt: new Date(e.target.value) })}
-                                />
+                                />}
 
 
 
@@ -132,7 +137,7 @@ export const ContactShow: React.FC<{}> = () => {
                 </CardContent>
             </Card>
         </Box>
-        <ContactAside contact={contact} setContact={setContact}></ContactAside>
+        {isDesktop && <ContactAside contact={contact} setContact={setContact}></ContactAside>}
     </Box >
 }
 
