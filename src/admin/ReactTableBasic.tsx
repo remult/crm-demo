@@ -2,7 +2,7 @@ import React from 'react'
 import styled from "@emotion/styled";
 import { useTable, usePagination, useFilters } from 'react-table'
 import { useRemultReactTable } from './remult-react-table';
-import { remult } from '../common';
+import { remult } from 'remult';
 import { Contact } from '../Contacts/Contact.entity';
 
 

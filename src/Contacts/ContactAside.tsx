@@ -8,7 +8,7 @@ import { Gender } from './Gender';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import { colors, Tag } from './Tag.entity';
 import { ContactTag } from './ContactTag.entity';
-import { remult } from '../common';
+import { remult } from 'remult';
 import { useIsDesktop } from '../utils/useIsDesktop';
 
 const tagsRepo = remult.repo(Tag);

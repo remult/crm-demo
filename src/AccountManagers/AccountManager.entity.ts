@@ -1,4 +1,4 @@
-import { Allow, Entity, Fields, Validators } from "remult";
+import { Allow, BackendMethod, Entity, Fields, remult, Validators } from "remult";
 
 @Entity<AccountManager>("accountManagers", {
     allowApiCrud: Allow.authenticated,
@@ -20,4 +20,17 @@ export class AccountManager {
     @Fields.string()
     avatar = '';
 
+    @BackendMethod({ allowed: true })
+    static async getValidUserName() {
+        const allUsers = await remult.repo(AccountManager).find();
+        const randomUser = allUsers[Math.floor(Math.random() * allUsers.length)];
+        return randomUser.firstName;
+    }
+}
+
+
+declare module 'remult' {
+    export interface UserInfo {
+        avatar: string
+    }
 }

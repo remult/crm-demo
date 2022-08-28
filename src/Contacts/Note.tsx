@@ -3,7 +3,7 @@ import { useState } from "react";
 import { ContactNote } from "./ContactNote.entity";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import { remult } from "../common";
+import { remult } from "remult";
 const contactNoteRepo = remult.repo(ContactNote);
 
 export const Note: React.FC<{ note: ContactNote, onDelete: (note: ContactNote) => void }> = ({ note, onDelete }) => {

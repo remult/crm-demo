@@ -1,6 +1,6 @@
 import { Button, Grid, IconButton, List, ListItem, ListItemButton, ListItemText, Stack, TextField } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
-import { remult } from "../common"
+import { remult } from "remult"
 import { Deal } from "./Deal.entity"
 import AddIcon from '@mui/icons-material/Add';
 import { DealEdit } from "./DealEdit";

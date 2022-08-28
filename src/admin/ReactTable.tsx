@@ -5,7 +5,7 @@ import { usePagination, useSortBy } from "react-table";
 
 import styled from "@emotion/styled";
 import { useTable, useFilters } from "react-table";
-import { remult } from "../common";
+import { remult } from "remult";
 
 import { Company } from "../Companies/Company.entity";
 import { useRemultReactTable } from "./remult-react-table";

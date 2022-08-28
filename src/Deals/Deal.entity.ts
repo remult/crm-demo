@@ -1,8 +1,7 @@
-import { Allow, BackendMethod, Entity, Field, Fields, Remult } from "remult";
+import { Allow, BackendMethod, Entity, Field, Fields, remult } from "remult";
 import { AccountManager } from "../AccountManagers/AccountManager.entity";
 import { Company } from "../Companies/Company.entity";
 import { Contact } from "../Contacts/Contact.entity";
-import { assign } from 'remult/assign';
 
 @Entity("deals", {
     allowApiCrud: Allow.authenticated
@@ -32,7 +31,7 @@ export class Deal {
     index = 0;
 
     @BackendMethod({ allowed: Allow.authenticated })
-    static async DealDropped(dealId: string, stage: string, onDealId: string | undefined, remult?: Remult) {
+    static async DealDropped(dealId: string, stage: string, onDealId: string | undefined) {
         const dealRepo = remult!.repo(Deal);
         const deal = await dealRepo.findId(dealId);
         const origList = await dealRepo.find({ where: { stage: deal.stage }, orderBy: { index: "asc" } });
@@ -73,7 +72,7 @@ export class Deal {
         }
     }
     @BackendMethod({ allowed: Allow.authenticated })
-    async saveWithContacts?(contacts: string[], remult?: Remult) {
+    async saveWithContacts?(contacts: string[]) {
         const isNew = !this.id;
         const dealRepo = remult!.repo(DealContact);
         const deal = await remult!.repo(Deal).save(this);

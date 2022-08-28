@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
 import { EntityOrderBy, FieldMetadata, Paginator } from "remult";
-import { remult } from "../common";
+import { remult } from "remult";
 import { Contact } from "../Contacts/Contact.entity";
 
 

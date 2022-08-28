@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 import { DragDropContext, OnDragEndResponder } from "react-beautiful-dnd";
-import { remult } from "../common";
+import { remult } from "remult";
 import { Deal } from "./Deal.entity";
 import { DealColumn } from "./DealColumn";
 import { DealStages } from "./DealStage";

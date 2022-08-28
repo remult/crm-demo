@@ -3,7 +3,7 @@ import { Box, Card, CardContent, List, ListItem, ListItemButton, ListItemSeconda
 import { formatDistance } from "date-fns";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { remult } from "../common";
+import { remult } from "remult";
 import { Contact } from "../Contacts/Contact.entity";
 import { ContactsList } from "../Contacts/ContactsList";
 import { Deal } from "../Deals/Deal.entity";

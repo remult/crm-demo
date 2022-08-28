@@ -1,7 +1,7 @@
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, Stack, Divider, FormControl, InputLabel, Select, MenuItem, FormHelperText, FormControlLabel, Switch, Autocomplete } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Contact } from "./Contact.entity"
-import { remult } from "../common";
+import { remult } from "remult";
 import { ErrorInfo, getValueList } from "remult";
 
 import { AccountManager } from "../AccountManagers/AccountManager.entity";

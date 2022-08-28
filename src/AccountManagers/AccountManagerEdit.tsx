@@ -1,7 +1,7 @@
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@mui/material"
 import { useState } from "react";
 import { AccountManager } from "./AccountManager.entity"
-import { remult } from "../common";
+import { remult } from "remult";
 import { ErrorInfo } from "remult";
 
 const amRepo = remult.repo(AccountManager);

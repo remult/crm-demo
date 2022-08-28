@@ -1,6 +1,6 @@
 import { Avatar, Button, IconButton, List, ListItem, ListItemAvatar,  ListItemButton, ListItemText, Stack } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
-import { remult } from "../common"
+import { remult } from "remult"
 import { AccountManager } from "./AccountManager.entity"
 import AddIcon from '@mui/icons-material/Add';
 import { AccountManagerEdit } from "./AccountManagerEdit";

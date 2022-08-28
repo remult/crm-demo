@@ -1,6 +1,6 @@
 import { Avatar, Box, Button, List, ListItem, ListItemAvatar, ListItemButton, ListItemSecondaryAction, ListItemText, Pagination, Skeleton, TablePagination, Typography, alpha, IconButton } from "@mui/material";
 import React, { useState } from "react";
-import { remult } from "../common"
+import { remult } from "remult"
 import { Contact } from "./Contact.entity"
 import AddIcon from '@mui/icons-material/Add';
 import { ContactEdit } from "./ContactEdit";

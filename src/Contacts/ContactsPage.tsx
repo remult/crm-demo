@@ -1,6 +1,6 @@
 import { Box, Chip, Grid, IconButton, List, ListItem, ListItemButton, ListItemText, Skeleton, TextField, TablePagination, Drawer } from "@mui/material";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { remult } from "../common"
+import { remult } from "remult"
 import { Contact } from "./Contact.entity"
 
 import { useSearchParams } from "react-router-dom";

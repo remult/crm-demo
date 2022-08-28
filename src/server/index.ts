@@ -1,24 +1,33 @@
 import express from 'express';
 import compression from 'compression';
-import expressJwt from 'express-jwt';
+import session from "cookie-session";
+import csrf from "csurf";
 import sslRedirect from 'heroku-ssl-redirect'
 import swaggerUi from 'swagger-ui-express';
-import { getJwtSigningKey } from '../SignIn/SignIn.controller';
 import { api } from './api';
-
-
+import { auth } from './auth';
+import cookieParser from "cookie-parser";
 
 const app = express();
 app.use(sslRedirect());
 //app.use(helmet({ contentSecurityPolicy: false,crossOriginResourcePolicy:false }));
 app.use(compression());
-app.use(expressJwt({
-    secret: getJwtSigningKey(),
-    credentialsRequired: false,
-    algorithms: ['HS256']
-}));
 
+
+app.use("/api", session({ secret: process.env['TOKEN_SIGN_KEY'] || "my secret" }));
+app.use(auth);
+app.use("/api", cookieParser());
+app.use("/api", csrf({ cookie: true }));
+app.use("/api", (req, res, next) => {
+    // axios uses this cookie for anti-CSRF
+    res.cookie("XSRF-TOKEN", req.csrfToken());
+    next();
+});
+app.get('/api/test', (req, res) => res.send("ok"));
 app.use(api);
+
+
+
 app.use('/api/docs', swaggerUi.serve,
     swaggerUi.setup(api.openApiDoc({ title: 'remult-react-todo' })));
 

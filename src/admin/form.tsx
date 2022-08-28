@@ -2,7 +2,7 @@ import { Divider, FormControl, FormHelperText, InputLabel, MenuItem, Select, Sta
 import { Fragment, useEffect, useMemo, useState } from "react";
 import { getValueList, ValueListItem } from "remult";
 import { AccountManager } from "../AccountManagers/AccountManager.entity";
-import { remult } from "../common";
+import { remult } from "remult";
 import { Company } from "../Companies/Company.entity";
 import { Acquisition } from "../Contacts/Acquisition";
 import { Contact } from "../Contacts/Contact.entity";

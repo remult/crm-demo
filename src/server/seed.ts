@@ -1,4 +1,4 @@
-import { getEntityRef, getValueList, Remult } from "remult";
+import { getValueList, remult } from "remult";
 import { AccountManager } from "../AccountManagers/AccountManager.entity";
 import { name as nameFaker, internet, random, address, company as companyFaker, datatype, phone, lorem, date } from 'faker';
 import { Company } from "../Companies/Company.entity";
@@ -15,7 +15,7 @@ import { Deal, DealContact } from "../Deals/Deal.entity";
 import { DealStages } from "../Deals/DealStage";
 import { DealTypes } from "../Deals/DealType";
 
-export async function seed(remult: Remult) {
+export async function seed() {
     try {
         {
             const repo = remult.repo(Tag);

@@ -1,7 +1,7 @@
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, Stack, Divider, FormControl, InputLabel, Select, MenuItem, FormHelperText } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Company } from "./Company.entity"
-import { remult } from "../common";
+import { remult } from "remult";
 import { ErrorInfo, getValueList } from "remult";
 import { sectors } from "./Sectors";
 import { CompanySize } from "./CompanySize";

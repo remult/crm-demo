@@ -1,7 +1,7 @@
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, Stack, Divider, FormControl, InputLabel, Select, MenuItem, FormHelperText, FormControlLabel, Switch, Autocomplete } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Deal, DealContact } from "./Deal.entity"
-import { remult } from "../common";
+import { remult } from "remult";
 import { ErrorInfo } from "remult";
 
 import { AccountManager } from "../AccountManagers/AccountManager.entity";
@@ -9,7 +9,6 @@ import { Company } from "../Companies/Company.entity";
 import { DealTypes } from "./DealType";
 import { DealStages } from "./DealStage";
 import { Contact } from "../Contacts/Contact.entity";
-import { assign } from "remult/assign";
 
 
 const dealRepo = remult.repo(Deal);
@@ -59,7 +58,7 @@ export const DealEdit: React.FC<IProps> = ({ deal, onSaved, onClose }) => {
         const ref = dealRepo.getEntityRef(deal);
         try {
             setErrors(undefined);
-            assign(deal, state);
+            deal = Object.assign(deal, state);
             await deal.saveWithContacts!(selectedContacts.map(c => c.id!));
             onSaved(deal)
             handleClose();

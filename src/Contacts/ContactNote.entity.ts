@@ -8,11 +8,9 @@ import { Status } from "./Status";
         allowApiCrud: Allow.authenticated,
         defaultOrderBy: {
             createdAt: "desc"
-        }
-    },
-    (options, remult) => {
-        options.saved = ({ contact }) => Contact.updateLastSeen(remult, contact);
-        options.deleted = ({ contact }) => Contact.updateLastSeen(remult, contact);
+        },
+        saved: ({ contact }) => Contact.updateLastSeen(contact),
+        deleted: ({ contact }) => Contact.updateLastSeen(contact)
     })
 export class ContactNote {
     @Fields.uuid()

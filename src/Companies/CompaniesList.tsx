@@ -1,6 +1,6 @@
 import { Box, Button, Drawer, Grid, IconButton, List, ListItem, ListItemButton, ListItemText, Stack, TextField } from "@mui/material";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { remult } from "../common"
+import { remult } from "remult"
 import { Company } from "./Company.entity"
 import AddIcon from '@mui/icons-material/Add';
 import { CompanyEdit } from "./CompanyEdit";

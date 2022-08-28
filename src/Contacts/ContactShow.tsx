@@ -1,7 +1,7 @@
 import { Avatar, Box, Card, CardContent, Typography, TextField, Button, Select, MenuItem, Link, Stack, FormControl, InputLabel } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useParams, Link as RouterLink } from "react-router-dom";
-import { remult } from "../common";
+import { remult } from "remult";
 import { Contact } from "../Contacts/Contact.entity";
 import { ContactNote } from "./ContactNote.entity";
 import { ContactAside } from "./ContactAside"
