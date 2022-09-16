@@ -5,7 +5,7 @@ import { api } from "./api";
 
 export const auth = Router();
 auth.use(express.json());
-auth.post("/api/signIn", api.withRemultMiddleware, async (req, res) => {
+auth.post("/api/signIn", api.withRemult, async (req, res) => {
     const accountManager = await remult.repo(AccountManager).findFirst({
         firstName: req.body.username
     })

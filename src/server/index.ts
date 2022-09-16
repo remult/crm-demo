@@ -16,13 +16,7 @@ app.use(compression());
 
 app.use("/api", session({ secret: process.env['TOKEN_SIGN_KEY'] || "my secret" }));
 app.use(auth);
-app.use("/api", cookieParser());
-app.use("/api", csrf({ cookie: true }));
-app.use("/api", (req, res, next) => {
-    // axios uses this cookie for anti-CSRF
-    res.cookie("XSRF-TOKEN", req.csrfToken());
-    next();
-});
+
 app.get('/api/test', (req, res) => res.send("ok"));
 app.use(api);
 
