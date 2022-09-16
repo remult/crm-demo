@@ -10,7 +10,7 @@ import cookieParser from "cookie-parser";
 
 const app = express();
 app.use(sslRedirect());
-//app.use(helmet({ contentSecurityPolicy: false,crossOriginResourcePolicy:false }));
+//app.use(helmet({ contentSecurityPolicy: false,crossOriginResourcePolicy:false }));//removed because avatar image urls point to a different website
 app.use(compression());
 
 
