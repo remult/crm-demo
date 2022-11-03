@@ -13,11 +13,11 @@ https://remult-crm-demo.herokuapp.com/
 ```sh
 git clone https://github.com/remult/crm-demo.git
 cd crm-demo
-yarn install
+npm install
 ```
 2. Run crm-demo app:
 ```sh
-yarn run dev
+npm run dev
 ```
 You can now view crm-demo in the browser:http://localhost:3000
 
@@ -27,17 +27,17 @@ you can see scripts in package.json file include: **start, build, test, eject an
 
 1. To run the dev server API and Web client:
 ```sh
-yarn run dev
+npm run dev
 ```
 Note that the development build is not optimized. To create a production build.
 
 2. To build **crm-demo** app:
 ```sh
-yarn run build
+npm run build
 ```
 3. To start server
 ```sh
-yarn run start
+npm run start
 ```
 4. Exploring source code dig indead into remult CRUD framework and CRM-demo.
 
