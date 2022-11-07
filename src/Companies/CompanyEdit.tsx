@@ -177,7 +177,7 @@ export const CompanyEdit: React.FC<IProps> = ({ company, onSaved, onClose }) => 
                                     labelId="accountManager-label"
                                     label="Account Manager"
                                     value={state.accountManager?.id || ''}
-                                    onChange={e => setState({ ...state, accountManager: accountManagers.find(x => x.id == e.target.value)! })}
+                                    onChange={e => setState({ ...state, accountManager: accountManagers.find(x => x.id === e.target.value)! })}
                                 >
                                     <MenuItem value={''}></MenuItem>
                                     {accountManagers?.map(s => (<MenuItem key={s.id} value={s.id}>{s.lastName + " " + s.firstName}</MenuItem>))}

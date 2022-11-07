@@ -1,5 +1,5 @@
 import { Box, Button, Drawer, Grid, IconButton, List, ListItem, ListItemButton, ListItemText, Stack, TextField } from "@mui/material";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import {  useEffect,  useState } from "react";
 import { remult } from "remult"
 import { Company } from "./Company.entity"
 import AddIcon from '@mui/icons-material/Add';
@@ -64,7 +64,7 @@ export const CompaniesList: React.FC<{}> = () => {
     const [editCompany, setEditCompany] = useState<Company>();
     const deleteCompany = async (deletedCompany: Company) => {
         await amRepo.delete(deletedCompany);
-        setCompanies({ companies: companies.companies.filter(company => deletedCompany.id != company.id), paginator: companies.paginator });
+        setCompanies({ companies: companies.companies.filter(company => deletedCompany.id !== company.id), paginator: companies.paginator });
     }
     const editCompanySaved = (editCompany: Company) =>
         setCompanies({ companies: companies.companies.map(company => company.id === editCompany.id ? editCompany : company), paginator: companies.paginator });
@@ -77,7 +77,7 @@ export const CompaniesList: React.FC<{}> = () => {
         {getValueList(CompanySize).map((s: CompanySize) => (<ListItem
             key={s.id}
 
-            secondaryAction={s.id.toString() == filter.size &&
+            secondaryAction={s.id.toString() === filter.size &&
                 <IconButton edge="end" aria-label="cancel" onClick={() => {
                     patchFilter({ size: '' })
                 }}>
@@ -98,7 +98,7 @@ export const CompaniesList: React.FC<{}> = () => {
         {sectors.map((s) => (<ListItem
             key={s}
 
-            secondaryAction={s.toString() == filter.sector &&
+            secondaryAction={s.toString() === filter.sector &&
                 <IconButton edge="end" aria-label="cancel" onClick={() => {
                     patchFilter({ sector: '' })
                 }}>

@@ -1,4 +1,4 @@
-import { Avatar, Button, IconButton, List, ListItem, ListItemAvatar,  ListItemButton, ListItemText, Stack } from "@mui/material";
+import { Avatar, Button, IconButton, List, ListItem, ListItemAvatar, ListItemButton, ListItemText, Stack } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 import { remult } from "remult"
 import { AccountManager } from "./AccountManager.entity"
@@ -18,7 +18,7 @@ export const AccountManagersList: React.FC<{}> = () => {
     const [editAccountManager, setEditAccountManager] = useState<AccountManager>();
     const deleteAccountManager = async (deletedAccountManager: AccountManager) => {
         await amRepo.delete(deletedAccountManager);
-        setAccountManagers(accountManagers.filter(accountManager => deletedAccountManager.id != accountManager.id));
+        setAccountManagers(accountManagers.filter(accountManager => deletedAccountManager.id !== accountManager.id));
     }
     const editAccountManagerSaved = (editedAccountManager: AccountManager) => {
         if (!editAccountManager?.id)

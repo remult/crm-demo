@@ -47,7 +47,7 @@ export function useRemultReactTable<entityType extends object>(
                 }
             }
         })();
-    }, [filters, sort, limit, page]);
+    }, [filters, sort, limit, page, repo]);
     const { columns, fields } = useMemo(
         () => {
             let fields: any = {}
@@ -73,7 +73,7 @@ export function useRemultReactTable<entityType extends object>(
             return { fields, columns };
         }
         ,
-        []
+        [repo.metadata.fields]
     );
     return {
         data,
@@ -85,13 +85,13 @@ export function useRemultReactTable<entityType extends object>(
             pageIndex: 0
         },
         stateReducer: (state: TableState<entityType>) => {
-            if (state.filters != filters)
+            if (state.filters !== filters)
                 setFilters(state.filters);
-            if (state.pageIndex != page - 1)
+            if (state.pageIndex !== page - 1)
                 setPage(state.pageIndex + 1);
-            if (state.pageSize != limit)
+            if (state.pageSize !== limit)
                 setLimit(state.pageSize);
-            if (state.sortBy != sort)
+            if (state.sortBy !== sort)
                 setSort(state.sortBy);
             return state;
         },

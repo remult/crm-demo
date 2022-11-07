@@ -36,8 +36,8 @@ export class Deal {
         const deal = await dealRepo.findId(dealId);
         const origList = await dealRepo.find({ where: { stage: deal.stage }, orderBy: { index: "asc" } });
         let targetList = origList;
-        if (deal.stage != stage) {
-            targetList = await (await dealRepo.find({ where: { stage }, orderBy: { index: "asc" } })).filter(d => d.id != deal.id);
+        if (deal.stage !== stage) {
+            targetList = await (await dealRepo.find({ where: { stage }, orderBy: { index: "asc" } })).filter(d => d.id !== deal.id);
             deal.stage = stage;
         }
         Deal.organizeLists({ dealId, stage, onDealId, origList, targetList });
@@ -46,7 +46,7 @@ export class Deal {
             deal.index = i++;
             await dealRepo.save(deal);
         }
-        if (targetList != origList) {
+        if (targetList !== origList) {
             i = 0;
             for (const deal of origList) {
                 deal.index = i++;
@@ -56,7 +56,7 @@ export class Deal {
 
     }
     static organizeLists({ dealId, onDealId, stage, origList, targetList }: { dealId: string, stage: string, onDealId: string | undefined, origList: Deal[], targetList: Deal[] }) {
-        if (dealId == onDealId)
+        if (dealId === onDealId)
             return;
         const deal = origList.find(d => d.id === dealId)!;
         deal.stage = stage;
@@ -65,8 +65,8 @@ export class Deal {
         if (!onDealId) {
             targetList.push(deal);
         } else {
-            let insertAt = targetList.findIndex(d => d.id == onDealId);
-            if (insertAt >= origIndex && origList == targetList)
+            let insertAt = targetList.findIndex(d => d.id === onDealId);
+            if (insertAt >= origIndex && origList === targetList)
                 insertAt++;
             targetList.splice(insertAt, 0, deal);
         }

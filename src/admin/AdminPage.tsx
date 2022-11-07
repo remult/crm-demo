@@ -14,7 +14,7 @@ export const AdminPage = () => {
     const [orderBy, setOrderBy] = useState<EntityOrderBy<Contact>>({});
     useEffect(() => {
         repo.query({ orderBy, pageSize: 25 }).paginator().then(setItems);
-    }, [orderBy]);
+    }, [orderBy, repo]);
     const HeaderCell: React.FC<{ field: FieldMetadata }> = ({ field }) => {
         const current = (orderBy as any)[field.key] as string | undefined;
         const handleClick = () => {

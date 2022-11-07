@@ -35,7 +35,7 @@ export const ContactAside = ({
 
     const handleDeleteTag = async (contactTagToDelete: ContactTag) => {
         await contactTagsRepo.delete(contactTagToDelete);
-        setContactTags(contactTags.filter(t => t != contactTagToDelete));
+        setContactTags(contactTags.filter(t => t !== contactTagToDelete));
     };
     const handleAddTag = async (tag: Tag) => {
         setContactTags([...contactTags, await contactTagsRepo.insert({ contact, tag })]);
@@ -70,7 +70,7 @@ export const ContactAside = ({
 
     return (contact ? (
         <>
-            <Box ml={isDesktop?4:undefined} width={isDesktop ? 250 : undefined} minWidth={isDesktop ? 250 : undefined} >
+            <Box ml={isDesktop ? 4 : undefined} width={isDesktop ? 250 : undefined} minWidth={isDesktop ? 250 : undefined} >
                 <Box textAlign="center" mb={2}>
                     {link === 'edit' ? (
                         <Button startIcon={<EditIcon />} onClick={() => setEditContact(contact)}>Edit Contact</Button>

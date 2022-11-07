@@ -1,6 +1,5 @@
-import { Avatar, Box, Button, List, ListItem, ListItemAvatar, ListItemButton, ListItemSecondaryAction, ListItemText, Pagination, Skeleton, TablePagination, Typography, alpha, IconButton } from "@mui/material";
+import { Avatar, Box, Button, List, ListItem, ListItemAvatar, ListItemButton, ListItemSecondaryAction, ListItemText, Skeleton, Typography, alpha } from "@mui/material";
 import React, { useState } from "react";
-import { remult } from "remult"
 import { Contact } from "./Contact.entity"
 import AddIcon from '@mui/icons-material/Add';
 import { ContactEdit } from "./ContactEdit";
@@ -9,8 +8,6 @@ import { formatDistance } from "date-fns";
 import { Link } from 'react-router-dom';
 import { StatusIndicator } from "./StatusIndicator";
 import { useIsDesktop } from "../utils/useIsDesktop";
-
-const amRepo = remult.repo(Contact);
 
 
 export const ContactsList: React.FC<{
@@ -33,10 +30,10 @@ export const ContactsList: React.FC<{
 }) => {
 
         const [editContact, setEditContact] = useState<Contact>();
-        const deleteContact = async (deletedContact: Contact) => {
-            await amRepo.delete(deletedContact);
-            setContacts(contacts.filter(contact => deletedContact.id !== contact.id));
-        }
+        // const deleteContact = async (deletedContact: Contact) => {
+        //     await amRepo.delete(deletedContact);
+        //     setContacts(contacts.filter(contact => deletedContact.id !== contact.id));
+        // }
         const editContactSaved = (afterEditContact: Contact) => {
             if (!editContact?.id) {
                 setContacts([afterEditContact, ...contacts]);
@@ -57,16 +54,16 @@ export const ContactsList: React.FC<{
             <Box display="flex" justifyContent="space-between">
                 {children}
                 <div>
-                   
-                  {isDesktop?  <Button
+
+                    {isDesktop ? <Button
                         variant="contained"
                         onClick={create}
                         startIcon={<AddIcon />}>
                         Add Contact
-                    </Button>:
-                    <Button  onClick={create} variant='contained'>
-                        <AddIcon />
-                    </Button>}
+                    </Button> :
+                        <Button onClick={create} variant='contained'>
+                            <AddIcon />
+                        </Button>}
                 </div>
 
             </Box>

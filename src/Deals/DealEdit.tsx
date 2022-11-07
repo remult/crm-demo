@@ -1,4 +1,4 @@
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, Stack, Divider, FormControl, InputLabel, Select, MenuItem, FormHelperText, FormControlLabel, Switch, Autocomplete } from "@mui/material";
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, Stack, FormControl, InputLabel, Select, MenuItem, FormHelperText, Autocomplete } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Deal, DealContact } from "./Deal.entity"
 import { remult } from "remult";
@@ -33,11 +33,11 @@ export const DealEdit: React.FC<IProps> = ({ deal, onSaved, onClose }) => {
                 }
             }).then(dc => {
                 const contacts = dc.filter(dc => dc.contact).map(dc => dc.contact);
-                if (companyContacts.length == 0)
+                if (companyContacts.length === 0)
                     setCompanyContacts(contacts);
                 setSelectedContacts(contacts)
             });
-    }, []);
+    }, [companyContacts.length, deal]);
     const [companySearch, setCompanySearch] = useState('');
     useEffect(() => {
         remult.repo(Company).find({ where: { name: { $contains: companySearch } }, limit: 20 }).then(x => setCompanies(x))
@@ -47,8 +47,8 @@ export const DealEdit: React.FC<IProps> = ({ deal, onSaved, onClose }) => {
 
     useEffect(() => {
         remult.repo(Contact).find({ where: { company: state.company } }).then(setCompanyContacts);
-        setSelectedContacts([...selectedContacts.filter(sc => sc.company?.id == state.company?.id)]);
-    }, [state.company])
+        setSelectedContacts([...selectedContacts.filter(sc => sc.company?.id === state.company?.id)]);
+    }, [state.company, selectedContacts])
 
     const [errors, setErrors] = useState<ErrorInfo<Deal>>();
     const handleClose = () => {
@@ -102,7 +102,7 @@ export const DealEdit: React.FC<IProps> = ({ deal, onSaved, onClose }) => {
                             error={Boolean(errors?.modelState?.accountManager)}>
                             <Autocomplete
                                 disablePortal
-                                isOptionEqualToValue={(a, b) => a.id == b.id}
+                                isOptionEqualToValue={(a, b) => a.id === b.id}
                                 id="combo-box-demo"
                                 getOptionLabel={c => c.name}
                                 options={companies}
@@ -119,7 +119,7 @@ export const DealEdit: React.FC<IProps> = ({ deal, onSaved, onClose }) => {
                             <Autocomplete
                                 disablePortal
                                 multiple
-                                isOptionEqualToValue={(a, b) => a.id == b.id}
+                                isOptionEqualToValue={(a, b) => a.id === b.id}
                                 id="combo-box-demo"
                                 getOptionLabel={c => c.firstName + ' ' + c.lastName}
                                 options={companyContacts}

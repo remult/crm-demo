@@ -58,7 +58,7 @@ export const PlayForm = () => {
         remult.repo(Company).find().then(setCompanies);
         remult.repo(AccountManager).find().then(setAccountManagers);
 
-    }, []);
+    }, [f.setState]);
     return (<>
         {f.sections.map((section, i) => {
             return (<Fragment {...section.getProps()}>

@@ -4,7 +4,7 @@ import { AccountManagersList } from './AccountManagers/AccountManagersList';
 import { CompaniesList } from './Companies/CompaniesList';
 import { ContactsPage } from './Contacts/ContactsPage';
 import { CompanyShow } from './Companies/CompanyShow';
-import { AppBar, Avatar, Box, Button, Card, createTheme, CssBaseline, Drawer, GlobalStyles, IconButton, List, ListItem, ListItemButton, ListItemText, Menu, MenuItem, Stack, TextField, ThemeProvider, Toolbar, Tooltip, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { AppBar, Avatar, Box, Button, createTheme, CssBaseline, Drawer, GlobalStyles, IconButton, List, ListItem, ListItemButton, ListItemText, Menu, MenuItem, ThemeProvider, Toolbar, Tooltip, Typography } from '@mui/material';
 import { ContactShow } from './Contacts/ContactShow';
 import DateAdapter from '@mui/lab/AdapterDateFns';
 import { LocalizationProvider } from '@mui/lab';

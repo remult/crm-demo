@@ -1,4 +1,4 @@
-import { getValueList, ValueListFieldType } from "remult";
+import { ValueListFieldType } from "remult";
 
 @ValueListFieldType()
 export class Acquisition {

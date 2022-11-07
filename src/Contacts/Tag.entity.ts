@@ -1,4 +1,4 @@
-import { Allow, Entity, Field, Fields } from "remult";
+import { Allow, Entity, Fields } from "remult";
 
 @Entity("tags", {
     allowApiCrud: Allow.authenticated

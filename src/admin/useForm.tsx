@@ -9,7 +9,7 @@ export function useInputArea<T>(options: UseInputAreaOptions<T>) {
         let i = 0;
         const getKeyProps = () => {
             const key = i++;
-            return () => ({ key }) 
+            return () => ({ key })
         }
         const render = options.renderInput || (props =>
             <input {...getInputProps(props)} />);
@@ -60,7 +60,7 @@ export function useInputArea<T>(options: UseInputAreaOptions<T>) {
         }
         return result;
 
-    }, [options.layout, state]);
+    }, [options.layout, state, options.error?.modelState, options.renderInput]);
 
     return { sections, state, setState, error, setError };
 }

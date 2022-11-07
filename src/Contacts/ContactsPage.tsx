@@ -1,5 +1,5 @@
 import { Box, Chip, Grid, IconButton, List, ListItem, ListItemButton, ListItemText, Skeleton, TextField, TablePagination, Drawer } from "@mui/material";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { remult } from "remult"
 import { Contact } from "./Contact.entity"
 
@@ -45,7 +45,7 @@ export const ContactsPage: React.FC<{}> = () => {
                     { firstName: { $contains: filter.search } },
                     { lastName: { $contains: filter.search } }
                 ],
-                status: filter.status ? getValueList(Status).find(s => s.id == filter.status) : undefined,
+                status: filter.status ? getValueList(Status).find(s => s.id === filter.status) : undefined,
                 $and: [filter.tag ? Contact.filterTag(filter.tag) : undefined!]
             }, pageSize: rowsPerPage
         });
