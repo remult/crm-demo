@@ -1,12 +1,10 @@
 import express from 'express';
 import compression from 'compression';
 import session from "cookie-session";
-import csrf from "csurf";
 import sslRedirect from 'heroku-ssl-redirect'
 import swaggerUi from 'swagger-ui-express';
 import { api } from './api';
 import { auth } from './auth';
-import cookieParser from "cookie-parser";
 
 const app = express();
 app.use(sslRedirect());

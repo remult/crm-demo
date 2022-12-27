@@ -46,10 +46,10 @@ export class Contact {
     avatar?= '';
     @Fields.boolean()
     hasNewsletter: boolean = false;
-    @Fields.object((options, remult) =>
-        options.serverExpression =
-        async contact => remult.repo(ContactTag).find({ where: { contact } })
-            .then(tags => tags.map(t => t.tag)))
+    @Fields.object({
+        serverExpression: async contact => remult.repo(ContactTag).find({ where: { contact } })
+            .then(tags => tags.map(t => t.tag))
+    })
     tags: Tag[] = [];
     @Field(() => AccountManager)
     accountManager?: AccountManager;
@@ -64,7 +64,7 @@ export class Contact {
     })
     createdAt = new Date();
 
-    @Fields.integer((options, remult) => options.serverExpression = async contact => remult.repo(ContactNote).count({ contact }))
+    @Fields.integer({ serverExpression: async contact => remult.repo(ContactNote).count({ contact }) })
     nbNotes = 0;
 
     static filterTag = Filter.createCustom<Contact, string>(async (remult, tag) => {
