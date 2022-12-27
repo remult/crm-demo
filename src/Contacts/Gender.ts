@@ -1,9 +1,9 @@
-import { ValueListFieldType } from "remult";
+import { ValueListFieldType } from 'remult'
 
 @ValueListFieldType()
 export class Gender {
-    static male = new Gender();
-    static female = new Gender();
-    id!: string;
-    caption!: string;
+  static male = new Gender()
+  static female = new Gender()
+  id!: string
+  caption!: string
 }

@@ -1,30 +1,33 @@
-import express from 'express';
-import compression from 'compression';
-import session from "cookie-session";
+import express from 'express'
+import compression from 'compression'
+import session from 'cookie-session'
 import sslRedirect from 'heroku-ssl-redirect'
-import swaggerUi from 'swagger-ui-express';
-import { api } from './api';
-import { auth } from './auth';
+import swaggerUi from 'swagger-ui-express'
+import { api } from './api'
+import { auth } from './auth'
 
-const app = express();
-app.use(sslRedirect());
+const app = express()
+app.use(sslRedirect())
 //app.use(helmet({ contentSecurityPolicy: false,crossOriginResourcePolicy:false }));//removed because avatar image urls point to a different website
-app.use(compression());
+app.use(compression())
 
+app.use(
+  '/api',
+  session({ secret: process.env['TOKEN_SIGN_KEY'] || 'my secret' })
+)
+app.use(auth)
 
-app.use("/api", session({ secret: process.env['TOKEN_SIGN_KEY'] || "my secret" }));
-app.use(auth);
+app.get('/api/test', (req, res) => res.send('ok'))
+app.use(api)
 
-app.get('/api/test', (req, res) => res.send("ok"));
-app.use(api);
+app.use(
+  '/api/docs',
+  swaggerUi.serve,
+  swaggerUi.setup(api.openApiDoc({ title: 'remult-react-todo' }))
+)
 
-
-
-app.use('/api/docs', swaggerUi.serve,
-    swaggerUi.setup(api.openApiDoc({ title: 'remult-react-todo' })));
-
-app.use(express.static('build'));
+app.use(express.static('build'))
 app.use('/*', async (req, res) => {
-    res.sendFile(process.cwd() + '/build/index.html');
-});
-app.listen(process.env.PORT || 3002, () => console.log("Server started"));
+  res.sendFile(process.cwd() + '/build/index.html')
+})
+app.listen(process.env.PORT || 3002, () => console.log('Server started'))

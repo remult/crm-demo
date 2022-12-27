@@ -1,13 +1,17 @@
-import { ValueListFieldType } from "remult";
+import { ValueListFieldType } from 'remult'
 @ValueListFieldType({
-    getValues: () => [
-        Status.cold,
-        new Status('warm', '#e8cb7d'),
-        new Status('hot', '#e88b7d'),
-        new Status('in-contract', '#a4e87d')
-    ]
+  getValues: () => [
+    Status.cold,
+    new Status('warm', '#e8cb7d'),
+    new Status('hot', '#e88b7d'),
+    new Status('in-contract', '#a4e87d')
+  ]
 })
 export class Status {
-    static cold = new Status('cold', '#7dbde8');
-    constructor(public id: string, public color: string, public caption?: string) { }
+  static cold = new Status('cold', '#7dbde8')
+  constructor(
+    public id: string,
+    public color: string,
+    public caption?: string
+  ) {}
 }

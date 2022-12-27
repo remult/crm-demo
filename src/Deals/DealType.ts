@@ -1,7 +1,7 @@
 export const DealTypes = [
-    'Other',
-    'Copywriting',
-    'Print project',
-    'UI Design',
-    'Website design',
+  'Other',
+  'Copywriting',
+  'Print project',
+  'UI Design',
+  'Website design'
 ]

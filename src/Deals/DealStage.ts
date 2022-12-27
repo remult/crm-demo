@@ -1,8 +1,8 @@
 export const DealStages = [
-    'opportunity',
-    'proposal-sent',
-    'in-negotiation',
-    'won',
-    'lost',
-    'delayed',
-] ;
+  'opportunity',
+  'proposal-sent',
+  'in-negotiation',
+  'won',
+  'lost',
+  'delayed'
+]
