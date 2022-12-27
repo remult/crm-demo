@@ -1,6 +1,6 @@
 # Remult CRM demo
 See it working at:
-https://remult-crm-demo.herokuapp.com/
+https://crm-demo.up.railway.app
 
 ## What is CRM demo?
 
