@@ -5,6 +5,9 @@ import sslRedirect from 'heroku-ssl-redirect'
 import swaggerUi from 'swagger-ui-express'
 import { api } from './api'
 import { auth } from './auth'
+import { buildSchema } from 'graphql'
+import { graphqlHTTP } from 'express-graphql'
+import { remultGraphql } from 'remult/graphql'
 
 const app = express()
 app.use(sslRedirect())
@@ -25,6 +28,18 @@ app.use(
   swaggerUi.serve,
   swaggerUi.setup(api.openApiDoc({ title: 'remult-react-todo' }))
 )
+
+app.use(api);
+const { schema, rootValue } = remultGraphql(api);
+app.use('/api/graphql', (req, res, next) => {
+  //Set a dummy user so that graphql will work when signed out - only for demo purposes
+  req.session!['user'] = { id: "graphql", name: "graphql" };
+  next();
+}, graphqlHTTP({
+  schema: buildSchema(schema),
+  rootValue,
+  graphiql: true,
+}));
 
 app.use(express.static('build'))
 app.use('/*', async (req, res) => {
