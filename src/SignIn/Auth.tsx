@@ -53,6 +53,9 @@ function Auth() {
         if (currentUserFromServer) setCurrentUser(currentUserFromServer)
         else setSignInUsername(await AccountManager.getValidUserName())
       })
+      .catch(async () => {
+        setSignInUsername(await AccountManager.getValidUserName())
+      })
   }, [])
   if (!currentUser)
     return (
