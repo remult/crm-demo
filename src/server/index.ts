@@ -41,8 +41,8 @@ app.use('/api/graphql', (req, res, next) => {
   graphiql: true,
 }));
 
-app.use(express.static('build'))
+app.use(express.static('dist'))
 app.use('/*', async (req, res) => {
-  res.sendFile(process.cwd() + '/build/index.html')
+  res.sendFile(process.cwd() + '/dist/index.html')
 })
 app.listen(process.env.PORT || 3002, () => console.log('Server started'))
