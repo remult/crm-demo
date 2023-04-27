@@ -5,7 +5,7 @@ https://crm-demo.up.railway.app
 
 ## What is CRM demo?
 
-**CRM demo** is a full-stack simple CRM using Remult CRUD framework as a core to demontrating real app **full Backend and Frontend App**.
+**CRM demo** is a full-stack simple CRM using Remult CRUD framework as a core to demonstrating real app **full Backend and Frontend App**.
 
 ## Installation
 
