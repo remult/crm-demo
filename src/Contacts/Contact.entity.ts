@@ -83,23 +83,21 @@ export class Contact {
   })
   nbNotes = 0
 
-  static filterTag = Filter.createCustom<Contact, string>(
-    async (remult, tag) => {
-      if (!tag) return {}
-      const r: EntityFilter<Contact> = {
-        id: await remult
-          .repo(ContactTag)
-          .find({
-            where: {
-              tag: await remult.repo(Tag).findFirst({ tag })
-            },
-            load: (ct) => []
-          })
-          .then((ct) => ct.map((ct) => getEntityRef(ct).fields.contact.getId()))
-      }
-      return r
+  static filterTag = Filter.createCustom<Contact, string>(async (tag) => {
+    if (!tag) return {}
+    const r: EntityFilter<Contact> = {
+      id: await remult
+        .repo(ContactTag)
+        .find({
+          where: {
+            tag: await remult.repo(Tag).findFirst({ tag })
+          },
+          load: (ct) => []
+        })
+        .then((ct) => ct.map((ct) => getEntityRef(ct).fields.contact.getId()))
     }
-  )
+    return r
+  })
   static disableLastSeenUpdate = false
   static async updateLastSeen(contact: Contact) {
     if (Contact.disableLastSeenUpdate) return

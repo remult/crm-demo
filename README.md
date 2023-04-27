@@ -23,7 +23,7 @@ npm install
 npm run dev
 ```
 
-You can now view crm-demo in the browser:http://localhost:3000
+You can now view crm-demo in the browser:http://localhost:5173
 
 ## Usage
 
