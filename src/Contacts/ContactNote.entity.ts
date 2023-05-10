@@ -13,7 +13,6 @@ import { Status } from './Status'
       contactNote.accountManager = await remult
         .repo(AccountManager)
         .findId(remult.user!.id)
-      console.log({ x: contactNote.accountManager, user: remult.user })
     }
   },
   saved: ({ contact }) => Contact.updateLastSeen(contact),
