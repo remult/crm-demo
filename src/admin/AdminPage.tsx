@@ -5,12 +5,12 @@ import { remult } from 'remult'
 import { Contact } from '../Contacts/Contact.entity'
 
 export const AdminPage = () => {
-  const repo = useMemo(() => remult.repo(Contact), [])
+  const repo =  remult.repo(Contact);
   const [items, setItems] = useState<Paginator<Contact>>()
   const [orderBy, setOrderBy] = useState<EntityOrderBy<Contact>>({})
   useEffect(() => {
     repo.query({ orderBy, pageSize: 25 }).paginator().then(setItems)
-  }, [orderBy, repo])
+  }, [orderBy])
   const HeaderCell: React.FC<{ field: FieldMetadata }> = ({ field }) => {
     const current = (orderBy as any)[field.key] as string | undefined
     const handleClick = () => {
