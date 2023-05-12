@@ -76,7 +76,7 @@ export const DealEdit: React.FC<IProps> = ({ deal, onSaved, onClose }) => {
     setSelectedContacts([
       ...selectedContacts.filter((sc) => sc.company?.id === state.company?.id)
     ])
-  }, [state.company, selectedContacts])
+  }, [state.company])
 
   const [errors, setErrors] = useState<ErrorInfo<Deal>>()
   const handleClose = () => {
