@@ -41,7 +41,7 @@ export const AdminPage = () => {
               <LineCell key={f.key}>
                 {
                   //@ts-ignore
-                  x[f.key].toString()
+                  x[f.key]?.toString()
                 }
               </LineCell>
             ))}

@@ -22,6 +22,7 @@ for (const type of ['entity', 'controller']) {
 export const api = remultExpress({
   getUser: (req) => req.session!['user'],
   dataProvider: async () => {
+    return createPostgresConnection()
     if (process.env.NODE_ENV === 'production')
       return createPostgresConnection({ configuration: 'heroku' })
     return undefined
