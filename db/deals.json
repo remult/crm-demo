@@ -10,7 +10,7 @@
     "createdAt": "2021-10-18T16:45:54.642Z",
     "updatedAt": "2021-10-19T10:58:45.433Z",
     "accountManager": "55f98c99-5fcd-4584-91ae-9ceb4e448f26",
-    "index": 1
+    "index": 2
   },
   {
     "id": "b255b727-d053-4f04-bb90-89def7c5188e",
@@ -160,7 +160,7 @@
     "name": "Quos placeat ea",
     "company": "f4258280-8bdc-4fe2-be09-8fd99f4f5e3d",
     "type": "UI Design",
-    "stage": "won",
+    "stage": "proposal-sent",
     "description": "Sit harum recusandae et omnis nesciunt quis officia a quas.",
     "amount": 55700,
     "createdAt": "2021-07-06T22:46:59.302Z",
@@ -251,7 +251,7 @@
     "name": "Fuga eaque possimus",
     "company": "fe05ce8b-d229-4d58-9363-f4b4c402f060",
     "type": "Other",
-    "stage": "proposal-sent",
+    "stage": "won",
     "description": "Facilis ab unde harum eos eveniet et ipsa atque architecto. Officiis laudantium illum numquam recusandae veritatis occaecati quis ea et. Tempora et est. Consequuntur dignissimos optio nesciunt eligendi laboriosam nihil.",
     "amount": 68400,
     "createdAt": "2021-05-13T15:49:42.299Z",
@@ -348,7 +348,7 @@
     "createdAt": "2022-01-24T04:26:27.001Z",
     "updatedAt": "2022-01-27T02:19:50.966Z",
     "accountManager": "3fae6a74-6bc0-427f-a905-efc44f746b4f",
-    "index": 2
+    "index": 1
   },
   {
     "id": "f98cfdad-ea82-4ab7-a0a1-f3d7b4cb7945",
@@ -3845,6 +3845,17 @@
     "createdAt": "2021-07-26T16:01:42.287Z",
     "updatedAt": "2022-01-23T03:50:52.426Z",
     "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
+    "index": 0
+  },
+  {
+    "id": "128dd109-be71-4065-bd67-597311448483",
+    "name": "",
+    "type": "",
+    "stage": "",
+    "description": "",
+    "amount": 0,
+    "createdAt": "2023-05-14T11:18:15.530Z",
+    "updatedAt": "2023-05-14T11:18:15.530Z",
     "index": 0
   }
 ]

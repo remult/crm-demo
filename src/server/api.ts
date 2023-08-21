@@ -1,31 +1,33 @@
 import { remultExpress } from 'remult/remult-express'
-import glob from 'glob'
-import path from 'path'
 import { createPostgresConnection } from 'remult/postgres'
 import { seed } from './seed'
 import { config } from 'dotenv'
+import { Deal, DealContact } from '../Deals/Deal.entity'
+import { AccountManager } from '../AccountManagers/AccountManager.entity'
+import { Company } from '../Companies/Company.entity'
+import { Contact } from '../Contacts/Contact.entity'
+import { ContactTag } from '../Contacts/ContactTag.entity'
+import { ContactNote } from '../Contacts/ContactNote.entity'
+import { Tag } from '../Contacts/Tag.entity'
 
 config()
-let ext = 'ts'
-let dir = 'src'
-if (__filename.endsWith('js')) {
-  ext = 'js'
-  dir = 'dist'
-}
-
-for (const type of ['entity', 'controller']) {
-  for (const file of glob.sync(dir + `/**/*.${type}.${ext}`)) {
-    require(path.resolve(file))
-  }
-}
 
 export const api = remultExpress({
   getUser: (req) => req.session!['user'],
   dataProvider: async () => {
-    return createPostgresConnection()
     if (process.env.NODE_ENV === 'production')
       return createPostgresConnection({ configuration: 'heroku' })
     return undefined
   },
-  initApi: seed
+  initApi: seed,
+  entities: [
+    AccountManager,
+    Company,
+    Contact,
+    ContactNote,
+    Tag,
+    ContactTag,
+    DealContact,
+    Deal
+  ]
 })

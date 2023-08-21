@@ -5,7 +5,7 @@ import { remult } from 'remult'
 import { Contact } from '../Contacts/Contact.entity'
 
 export const AdminPage = () => {
-  const repo =  remult.repo(Contact);
+  const repo = remult.repo(Contact)
   const [items, setItems] = useState<Paginator<Contact>>()
   const [orderBy, setOrderBy] = useState<EntityOrderBy<Contact>>({})
   useEffect(() => {
