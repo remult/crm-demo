@@ -17,6 +17,7 @@ import { ContactTag } from './ContactTag.entity'
 import { Gender } from './Gender'
 import { Status } from './Status'
 import { Tag } from './Tag.entity'
+import { InstanceTypeWithRelations, config } from '../dev-remult/relations'
 
 @Entity<Contact>('contacts', {
   allowApiCrud: Allow.authenticated,
@@ -83,6 +84,13 @@ export class Contact {
   })
   nbNotes = 0
 
+  static config = config(Contact, {
+    relations: ({ many, one }) => ({
+      tags2: many(ContactTag, 'contact'),
+      company2: one(Company, 'company')
+    })
+  })
+
   static filterTag = Filter.createCustom<Contact, string>(async (tag) => {
     if (!tag) return {}
     const r: EntityFilter<Contact> = {
@@ -115,3 +123,19 @@ export class Contact {
     await remult.repo(Contact).save(contact)
   }
 }
+
+export type ContactWithTags = InstanceTypeWithRelations<
+  typeof Contact,
+  {
+    tags2: {
+      with: {
+        //[ ] - allows any value - I want it to give an error when it is not a relation
+        //[ ] - what happens with an outer join relation where the related value not necessary exists
+        //[ ] - remix shows the actual fields and not the types and their names
+        //[ ] - consider the find options that are relevant for one (not many)
+        tag2: true
+      }
+    }
+  }
+>
+let x: ContactWithTags

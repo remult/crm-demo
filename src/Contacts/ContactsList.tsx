@@ -13,7 +13,7 @@ import {
   alpha
 } from '@mui/material'
 import React, { useState } from 'react'
-import { Contact } from './Contact.entity'
+import { Contact, ContactWithTags } from './Contact.entity'
 import AddIcon from '@mui/icons-material/Add'
 import { ContactEdit } from './ContactEdit'
 import { Company } from '../Companies/Company.entity'
@@ -23,8 +23,8 @@ import { StatusIndicator } from './StatusIndicator'
 import { useIsDesktop } from '../utils/useIsDesktop'
 
 export const ContactsList: React.FC<{
-  contacts: Contact[]
-  setContacts: (contacts: Contact[]) => void
+  contacts: ContactWithTags[]
+  setContacts: (contacts: ContactWithTags[]) => void
   defaultCompany?: Company
   loading: boolean
   itemsPerPage?: number
@@ -40,12 +40,12 @@ export const ContactsList: React.FC<{
   addedContacts = [] as Contact[],
   setAddedContacts = (c: Contact[]) => {}
 }) => {
-  const [editContact, setEditContact] = useState<Contact>()
+  const [editContact, setEditContact] = useState<ContactWithTags>()
   // const deleteContact = async (deletedContact: Contact) => {
   //     await amRepo.delete(deletedContact);
   //     setContacts(contacts.filter(contact => deletedContact.id !== contact.id));
   // }
-  const editContactSaved = (afterEditContact: Contact) => {
+  const editContactSaved = (afterEditContact: ContactWithTags) => {
     if (!editContact?.id) {
       setContacts([afterEditContact, ...contacts])
       setAddedContacts([afterEditContact, ...addedContacts])
@@ -59,7 +59,7 @@ export const ContactsList: React.FC<{
   const create = () => {
     const newContact = new Contact()
     newContact.company = defaultCompany
-    setEditContact(newContact)
+    setEditContact({ ...newContact, tags2: [] })
   }
   const now = Date.now()
   const isDesktop = useIsDesktop()
@@ -121,12 +121,12 @@ export const ContactsList: React.FC<{
                     <>
                       {contact.title} at {contact.company?.name}{' '}
                       {`- ${contact.nbNotes} notes `}
-                      {contact.tags.map((tag) => (
+                      {contact.tags2.map((tag) => (
                         <span
-                          key={tag.id}
+                          key={tag.tag.id}
                           style={{
                             color: 'InfoText',
-                            backgroundColor: tag.color,
+                            backgroundColor: tag.tag.color,
                             padding: 4,
                             paddingLeft: 8,
                             paddingRight: 8,
@@ -164,7 +164,7 @@ export const ContactsList: React.FC<{
           contact={editContact}
           onClose={() => setEditContact(undefined)}
           onSaved={(contact) => {
-            editContactSaved(contact)
+            editContactSaved({ ...editContact, ...contact })
           }}
         />
       )}

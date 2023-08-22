@@ -16,18 +16,19 @@ import { formatDistance } from 'date-fns'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { remult } from 'remult'
-import { Contact } from '../Contacts/Contact.entity'
+import { Contact, ContactWithTags } from '../Contacts/Contact.entity'
 import { ContactsList } from '../Contacts/ContactsList'
 import { Deal } from '../Deals/Deal.entity'
 import { useIsDesktop } from '../utils/useIsDesktop'
 import { Company } from './Company.entity'
 import { CompanyAside } from './CompanyAside'
 import { Logo } from './Logo'
+import { specialRepo } from '../dev-remult/relations'
 
 export const CompanyShow: React.FC<{}> = () => {
   let params = useParams()
   const [company, setCompany] = useState<Company>()
-  const [contacts, setContacts] = useState<Contact[]>([])
+  const [contacts, setContacts] = useState<ContactWithTags[]>([])
   const [deals, setDeals] = useState<Deal[]>([])
   const [loadingContacts, setLoadingContacts] = useState(false)
 
@@ -44,7 +45,12 @@ export const CompanyShow: React.FC<{}> = () => {
       if (company) {
         try {
           setLoadingContacts(true)
-          setContacts(await remult.repo(Contact).find({ where: { company } }))
+          setContacts(
+            await specialRepo(Contact).find({
+              where: { company },
+              with: { tags2: true }
+            })
+          )
           setDeals(await remult.repo(Deal).find({ where: { company } }))
         } finally {
           setLoadingContacts(false)

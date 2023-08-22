@@ -14,7 +14,7 @@ import {
 } from '@mui/material'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { remult } from 'remult'
-import { Contact } from './Contact.entity'
+import { Contact, ContactWithTags } from './Contact.entity'
 
 import { useSearchParams } from 'react-router-dom'
 import CancelIcon from '@mui/icons-material/Cancel'
@@ -24,6 +24,7 @@ import { Tag } from './Tag.entity'
 import { getValueList } from 'remult'
 import { useIsDesktop } from '../utils/useIsDesktop'
 import FilterAltIcon from '@mui/icons-material/FilterAlt'
+import { specialRepo } from '../dev-remult/relations'
 
 const amRepo = remult.repo(Contact)
 
@@ -39,7 +40,7 @@ export const ContactsPage: React.FC<{}> = () => {
     setSearchParams({ ...filter, ...f })
     setOpenDrawer(false)
   }
-  const [contacts, setContacts] = useState<Contact[]>([])
+  const [contacts, setContacts] = useState<ContactWithTags[]>([])
   const [tags, setTags] = useState<Tag[]>([])
   const [loading, setLoading] = useState(false)
   const [loadingTags, setLoadingTags] = useState(false)
@@ -50,36 +51,39 @@ export const ContactsPage: React.FC<{}> = () => {
 
   const [addedContacts, setAddedContacts] = useState<Contact[]>([])
 
-  const contactsQuery = useMemo(() => {
-    const query = amRepo.query({
-      where: {
-        $or: [
-          { firstName: { $contains: filter.search } },
-          { lastName: { $contains: filter.search } }
-        ],
-        status: filter.status
-          ? getValueList(Status).find((s) => s.id === filter.status)
-          : undefined,
-        $and: [filter.tag ? Contact.filterTag(filter.tag) : undefined!]
-      },
-      pageSize: rowsPerPage
-    })
-    query.count().then((count) => setContactsCount(count))
-    return query
-  }, [filter.search, filter.status, filter.tag, rowsPerPage])
   const fetchRef = useRef(0)
   useEffect(() => {
     ;(async () => {
       const ref = ++fetchRef.current
       try {
         setLoading(true)
-        const contacts = await contactsQuery.getPage(page)
+        const where = {
+          $or: [
+            { firstName: { $contains: filter.search } },
+            { lastName: { $contains: filter.search } }
+          ],
+          status: filter.status
+            ? getValueList(Status).find((s) => s.id === filter.status)
+            : undefined,
+          $and: [filter.tag ? Contact.filterTag(filter.tag) : undefined!]
+        }
+        amRepo.count(where).then((count) => setContactsCount(count))
+        const contacts = await specialRepo(Contact).find({
+          where,
+          with: {
+            tags2: {
+              with: {}
+            }
+          },
+          limit: rowsPerPage,
+          page
+        })
         if (ref === fetchRef.current) setContacts(contacts)
       } finally {
         if (ref === fetchRef.current) setLoading(false)
       }
     })()
-  }, [contactsQuery, page])
+  }, [page, filter.search, filter.status, filter.tag, rowsPerPage])
 
   useEffect(() => {
     ;(async () => {
