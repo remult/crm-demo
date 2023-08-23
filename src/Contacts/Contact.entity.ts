@@ -126,6 +126,7 @@ export type ContactWithTags = InstanceTypeWithRelations<
     tags2: {
       with: {
         //[ ] - consider adding one to many type with load etc...
+        //[ ] - consider creating a shared definition between the with and the with type
 
         //[ ] - allows any value - I want it to give an error when it is not a relation
         //[ ] - what happens with an outer join relation where the related value not necessary exists
