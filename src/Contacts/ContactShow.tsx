@@ -16,7 +16,7 @@ import {
 import React, { useEffect, useState } from 'react'
 import { useParams, Link as RouterLink } from 'react-router-dom'
 import { remult } from 'remult'
-import { Contact } from '../Contacts/Contact.entity'
+import { Contact, ContactWithTags } from '../Contacts/Contact.entity'
 import { ContactNote } from './ContactNote.entity'
 import { ContactAside } from './ContactAside'
 import { Logo } from '../Companies/Logo'
@@ -26,11 +26,28 @@ import { Status } from './Status'
 import { Note } from './Note'
 import { getValueList } from 'remult'
 import { useIsDesktop } from '../utils/useIsDesktop'
+import { InstanceTypeWithRelations, specialRepo } from '../dev-remult/relations'
 
 export const ContactShow: React.FC<{}> = () => {
   let params = useParams()
-  const [contact, setContact] = useState<Contact>()
-  const [notes, setNotes] = useState<ContactNote[]>([])
+  const [contact, setContact] = useState<
+    InstanceTypeWithRelations<
+      typeof Contact,
+      {
+        company2: true
+        notes: {
+          with: {
+            accountManager2: true
+          }
+        }
+        tags2: {
+          with: {
+            tag2: true
+          }
+        }
+      }
+    >
+  >()
 
   const [loading, setLoading] = useState(true)
 
@@ -39,22 +56,40 @@ export const ContactShow: React.FC<{}> = () => {
   const submitNewNote = async () => {
     const submittedNote = await remult
       .repo(ContactNote)
-      .insert({ ...newNote, contact })
-    setNotes([submittedNote, ...notes])
+      .insert({ ...newNote, contact: contact!.id! })
+    setContact({
+      ...contact!,
+      notes: [
+        {
+          ...submittedNote,
+          accountManager2: (await specialRepo(ContactNote).accountManager2(
+            submittedNote
+          ))!
+        },
+        ...contact!.notes
+      ]
+    })
     setNewNote(new ContactNote())
   }
 
   useEffect(() => {
     ;(async () => {
-      const contact = await remult.repo(Contact).findId(params.id!)
+      const contact = await specialRepo(Contact).findId(params.id!, {
+        with: {
+          tags2: {
+            with: {
+              tag2: true
+            }
+          },
+          company2: true,
+          notes: {
+            with: {
+              accountManager2: true
+            }
+          }
+        }
+      })
       setContact(contact)
-      if (contact) {
-        setNotes(
-          await remult
-            .repo(ContactNote)
-            .find({ where: { contact }, orderBy: { createdAt: 'desc' } })
-        )
-      }
       setLoading(false)
     })()
   }, [params.id])
@@ -78,17 +113,17 @@ export const ContactShow: React.FC<{}> = () => {
                   {contact.title} at{' '}
                   <Link
                     component={RouterLink}
-                    to={`/companies/${contact.company?.id}`}
+                    to={`/companies/${contact.company}`}
                   >
-                    {contact.company?.name}
+                    {contact.company2?.name}
                   </Link>
                 </Typography>
               </Box>
               <Box>
                 {contact.company && (
                   <Logo
-                    url={contact.company!.logo}
-                    title={contact.company!.name}
+                    url={contact.company2!.logo}
+                    title={contact.company2!.name}
                     sizeInPixels={20}
                   />
                 )}
@@ -98,7 +133,7 @@ export const ContactShow: React.FC<{}> = () => {
               <Box>
                 <ContactAside
                   contact={contact}
-                  setContact={setContact}
+                  setContact={(c) => setContact({ ...contact!, ...c })}
                 ></ContactAside>
               </Box>
             )}
@@ -194,14 +229,19 @@ export const ContactShow: React.FC<{}> = () => {
               </Box>
             </Box>
 
-            {notes.map((note) => (
+            {contact.notes.map((note) => (
               <Box key={note.id} mt={2}>
-                {note.accountManager?.firstName} added a note on{' '}
+                {note.accountManager2?.firstName} added a note on{' '}
                 {note.createdAt.toLocaleString()}{' '}
                 <StatusIndicator status={note.status} />
                 <Note
                   note={note}
-                  onDelete={(note) => setNotes(notes.filter((n) => n !== note))}
+                  onDelete={(note) =>
+                    setContact({
+                      ...contact!,
+                      notes: contact.notes.filter((n) => n !== note)
+                    })
+                  }
                 />
               </Box>
             ))}
@@ -209,7 +249,10 @@ export const ContactShow: React.FC<{}> = () => {
         </Card>
       </Box>
       {isDesktop && (
-        <ContactAside contact={contact} setContact={setContact}></ContactAside>
+        <ContactAside
+          contact={contact}
+          setContact={(c) => setContact({ ...contact, ...c })}
+        ></ContactAside>
       )}
     </Box>
   )

@@ -60,79 +60,121 @@ export function config<entityType extends EntityType, TheRelations>(
   type: entityType,
   options: ConfigOptions<entityType, TheRelations>
 ): ConfigOptions<entityType, TheRelations> {
-  return {} as any
+  return options
+}
+
+function getRelations<entityType extends EntityType>(type: entityType) {
+  const relations: (RelationInfo<any> & { field: string; key: string })[] = []
+
+  for (const key in type) {
+    const config = type[key] as any as ConfigOptions<entityType, any>
+    if (typeof config.relations === 'function') {
+      const result = config.relations({
+        one: (type, field) => ({
+          relationType: 'one',
+          type,
+          field
+        }),
+        many: (type, field) => ({
+          type,
+          field
+        })
+      })
+      for (const key in result) {
+        relations.push({ ...result[key], key })
+      }
+    }
+  }
+  return relations
 }
 
 export function specialRepo<
   entityType extends { new (): EntityInstance<entityType> }
 >(type: entityType): SpecialRepo<entityType> {
-  return {
-    async find<withType extends SelectRelations<entityType>>(
-      options: OptionsWithWith<entityType, withType>
-    ) {
-      const r = await remult.repo(type).find({ ...options })
+  async function find<withType extends SelectRelations<entityType>>(
+    options: OptionsWithWith<entityType, withType>
+  ) {
+    const r = await remult.repo(type).find({ ...options })
 
-      const rowEnrichers: ((
-        row: EntityInstance<entityType>
-      ) => Promise<EntityInstance<entityType>>)[] = []
-      if (options.with)
-        for (const key in type) {
-          const config = type[key] as any as ConfigOptions<entityType, any>
-          if (typeof config.relations === 'function') {
-            const result = config.relations({
-              one: (type, field) => ({
-                relationType: 'one',
-                type,
-                field
-              }),
-              many: (type, field) => ({
-                type,
-                field
-              })
-            })
-            for (const key in result) {
-              if (Object.prototype.hasOwnProperty.call(result, key)) {
-                const relation = result[key] as RelationInfo<any> & {
-                  field: string
-                }
-                let z = (
-                  options.with as Record<
-                    string,
-                    true | OptionsWithWith<any, any> | undefined
-                  >
-                )[key]
-                if (z !== undefined) {
-                  if (relation.relationType === 'one') {
-                    
-                      rowEnrichers.push(async (r) => {
-                        let val = (r as Record<string, number | string>)[
-                          relation.field
-                        ]
-                        if (typeof val === 'object') val = (val as any).id
-                        return (await remult
-                          .repo(relation.type)
-                          .findId(val)) as any
-                      })
-                    
-                    }
-                   else {
-                    let options :OptionsWithWith<any,any>={};
-                    if (z!==true){
-                      options={...z};
-                    }
-                    options.where = {}
-                  }
-                }
-              }
-            }
-          }
-        }
-      for (const row of r) {
-        for (const e of rowEnrichers) {
-          await e(row)
+    const rowEnrichers: ((row: EntityInstance<entityType>) => Promise<void>)[] =
+      []
+    if (options.with)
+      for (const relation of getRelations<entityType>(type)) {
+        let z = (
+          options.with as Record<
+            string,
+            true | OptionsWithWith<any, any> | undefined
+          >
+        )[relation.key]
+        if (z !== undefined) {
+          rowEnrichers.push(async (r) => {
+            let relatedResult: any
+            relatedResult = await getRelatedResult(relation, r, z)
+            ;(r as any)[relation.key] = relatedResult
+          })
         }
       }
-      return r as InstanceTypeWithRelations<entityType, withType>[]
+    for (const row of r) {
+      for (const e of rowEnrichers) {
+        await e(row)
+      }
+    }
+    return r as InstanceTypeWithRelations<entityType, withType>[]
+  }
+
+  const relations: any = {}
+  for (const relation of getRelations(type)) {
+    relations[relation.key] = (
+      instance: EntityInstance<entityType>,
+      withRelations: SelectRelations<entityType>
+    ) => getRelatedResult(relation, instance, withRelations || true)
+  }
+
+  return {
+    find,
+    async findId(id: any, options: any) {
+      const r = await find({
+        ...options,
+        where: {
+          //@ts-ignore
+          id
+        },
+        limit: 1
+      })
+      if (r.length == 0) return r
+      return r[0]
+    },
+    ...relations
+  } as any
+
+  async function getRelatedResult(
+    relation: ReturnType<typeof getRelations>[number],
+    r: InstanceType<entityType>,
+    z: boolean | OptionsWithWith<any, any> | undefined
+  ) {
+    if (relation.relationType === 'one') {
+      let val = (r as Record<string, number | string>)[relation.field]
+      if (typeof val === 'object') {
+        val = (val as any).id
+      }
+      return (await remult.repo(relation.type).findId(val)) as any
+    } else {
+      let options: OptionsWithWith<any, any> = {}
+      if (z !== true) {
+        options = { ...z }
+      }
+      options.where = {
+        $and: [
+          options.where!,
+          {
+            [relation.field]:
+              typeof r === 'object'
+                ? remult.repo(type).metadata.idMetadata.getId(r)
+                : r
+          }
+        ]
+      }
+      return await specialRepo(relation.type).find(options)
     }
   }
 }
@@ -144,10 +186,28 @@ export interface OptionsWithWith<
   with?: withType
 }
 
-export interface SpecialRepo<entityType extends EntityType> {
+export type SpecialRepo<entityType extends EntityType> = {
   find<withType extends SelectRelations<entityType>>(
     options: OptionsWithWith<entityType, withType>
   ): Promise<InstanceTypeWithRelations<entityType, withType>[]>
+  findId<withType extends SelectRelations<entityType>>(
+    id: string,
+    options: OptionsWithWith<entityType, withType>
+  ): Promise<InstanceTypeWithRelations<entityType, withType>>
+} & {
+  [P in keyof Relations<entityType>]: Relations<entityType>[P] extends OneRelationInfo<
+    infer z
+  >
+    ? <withRelations extends SelectRelations<z>>(
+        instance: EntityInstance<entityType>,
+        options?: OptionsWithWith<z, withRelations>
+      ) => Promise<InstanceTypeWithRelations<z, withRelations> | undefined>
+    : Relations<entityType>[P] extends RelationInfo<infer z>
+    ? <withRelations extends SelectRelations<z>>(
+        instance: EntityInstance<entityType> | string,
+        options?: OptionsWithWith<z, withRelations>
+      ) => Promise<InstanceTypeWithRelations<z, withRelations>[]>
+    : never
 }
 
 export type InferRelatedType<

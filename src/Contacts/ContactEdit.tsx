@@ -18,7 +18,7 @@ import {
   Autocomplete
 } from '@mui/material'
 import { useEffect, useState } from 'react'
-import { Contact } from './Contact.entity'
+import { Contact, ContactWithTags } from './Contact.entity'
 import { remult } from 'remult'
 import { ErrorInfo, getValueList } from 'remult'
 
@@ -31,9 +31,9 @@ import { Status } from './Status'
 const contactRepo = remult.repo(Contact)
 
 interface IProps {
-  contact: Contact
+  contact: ContactWithTags
   onClose: () => void
-  onSaved: (contact: Contact) => void
+  onSaved: (contact: ContactWithTags) => void
 }
 
 export const ContactEdit: React.FC<IProps> = ({
@@ -41,9 +41,7 @@ export const ContactEdit: React.FC<IProps> = ({
   onSaved,
   onClose
 }) => {
-  const [accountManagers, setAccountManagers] = useState<AccountManager[]>(
-    contact.accountManager ? [contact.accountManager] : []
-  )
+  const [accountManagers, setAccountManagers] = useState<AccountManager[]>([])
   const [companies, setCompanies] = useState<Company[]>([])
   useEffect(() => {
     remult.repo(AccountManager).find().then(setAccountManagers)
@@ -66,7 +64,7 @@ export const ContactEdit: React.FC<IProps> = ({
     try {
       setErrors(undefined)
       let newContact = await contactRepo.save(state)
-      onSaved(newContact)
+      onSaved({ ...newContact, tags2: state.tags2, company2: state.company2 })
       handleClose()
     } catch (err: any) {
       setErrors(err)
@@ -156,11 +154,15 @@ export const ContactEdit: React.FC<IProps> = ({
                   disablePortal
                   id="combo-box-demo"
                   options={companies}
-                  value={state.company ? state.company : null}
+                  value={companies.find((x) => x.id === state.company)! || null}
                   getOptionLabel={(c) => c.name}
                   inputValue={companySearch}
                   onChange={(e, newValue: Company | null) =>
-                    setState({ ...state, company: newValue ? newValue : null! })
+                    setState({
+                      ...state,
+                      company: (newValue ? newValue.id! : null!)!,
+                      company2: newValue || null!
+                    })
                   }
                   onInputChange={(e, newInput) => setCompanySearch(newInput)}
                   renderInput={(params) => (
@@ -249,13 +251,11 @@ export const ContactEdit: React.FC<IProps> = ({
                 <Select
                   labelId="accountManager-label"
                   label="Account Manager"
-                  value={accountManagers && (state.accountManager?.id || '')}
+                  value={accountManagers && (state.accountManager || '')}
                   onChange={(e) =>
                     setState({
                       ...state,
-                      accountManager: accountManagers?.find(
-                        (x) => x.id === e.target.value
-                      )!
+                      accountManager: e.target.value
                     })
                   }
                 >

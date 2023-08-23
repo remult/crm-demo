@@ -15,12 +15,12 @@ import {
 } from '@mui/material'
 import EditIcon from '@mui/icons-material/Edit'
 import { FormEvent, useEffect, useState } from 'react'
-import { Contact } from './Contact.entity'
+import { Contact, ContactWithTags } from './Contact.entity'
 import { ContactEdit } from './ContactEdit'
 import { Gender } from './Gender'
 import ControlPointIcon from '@mui/icons-material/ControlPoint'
 import { colors, Tag } from './Tag.entity'
-import { ContactTag } from './ContactTag.entity'
+import { ContactTag, ContactTagWithTag } from './ContactTag.entity'
 import { remult } from 'remult'
 import { useIsDesktop } from '../utils/useIsDesktop'
 
@@ -31,19 +31,19 @@ export const ContactAside = ({
   setContact,
   link = 'edit'
 }: {
-  contact: Contact
-  setContact: (company: Contact) => void
+  contact: ContactWithTags
+  setContact: (contact: ContactWithTags) => void
   link?: string
 }) => {
-  const [editContact, setEditContact] = useState<Contact>()
+  const [editContact, setEditContact] = useState<ContactWithTags>()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
-  const [contactTags, setContactTags] = useState<ContactTag[]>([])
+  const [contactTags, setContactTags] = useState<ContactTagWithTag[]>([])
   const [allTags, setAllTags] = useState<Tag[]>([])
   const unselectedTagIds: Tag[] = allTags.filter(
-    (t) => !contactTags.find((ct) => ct.tag.tag === t.tag)
+    (t) => !contactTags.find((ct) => ct.tag === t.id)
   )
   useEffect(() => {
-    contactTagsRepo.find({ where: { contact } }).then(setContactTags)
+    setContactTags(contact.tags2)
     tagsRepo.find().then(setAllTags)
   }, [contact])
 
@@ -54,7 +54,13 @@ export const ContactAside = ({
   const handleAddTag = async (tag: Tag) => {
     setContactTags([
       ...contactTags,
-      await contactTagsRepo.insert({ contact, tag })
+      {
+        ...(await contactTagsRepo.insert({
+          contact: contact.id,
+          tag: tag.id
+        })),
+        tag2: tag
+      }
     ])
     setAnchorEl(null)
   }
@@ -165,8 +171,8 @@ export const ContactAside = ({
               size="small"
               variant="outlined"
               onDelete={() => handleDeleteTag(contactTag)}
-              label={contactTag.tag.tag}
-              style={{ backgroundColor: contactTag.tag.color, border: 0 }}
+              label={contactTag.tag2.tag}
+              style={{ backgroundColor: contactTag.tag2.color, border: 0 }}
             />
           </Box>
         ))}

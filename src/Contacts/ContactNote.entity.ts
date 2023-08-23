@@ -2,6 +2,7 @@ import { Allow, Entity, Field, Fields, isBackend, remult } from 'remult'
 import { AccountManager } from '../AccountManagers/AccountManager.entity'
 import { Contact } from './Contact.entity'
 import { Status } from './Status'
+import { config } from '../dev-remult/relations'
 
 @Entity<ContactNote>('contactNote', {
   allowApiCrud: Allow.authenticated,
@@ -10,9 +11,7 @@ import { Status } from './Status'
   },
   saving: async (contactNote) => {
     if (isBackend()) {
-      contactNote.accountManager = await remult
-        .repo(AccountManager)
-        .findId(remult.user!.id)
+      contactNote.accountManager = remult.user!.id
     }
   },
   saved: ({ contact }) => Contact.updateLastSeen(contact),
@@ -21,14 +20,20 @@ import { Status } from './Status'
 export class ContactNote {
   @Fields.uuid()
   id?: string
-  @Field(() => Contact)
-  contact!: Contact
+  @Fields.string()
+  contact = ''
   @Fields.string()
   text = ''
-  @Field(() => AccountManager, { allowApiUpdate: false })
-  accountManager!: AccountManager
+  @Fields.string({ allowApiUpdate: false })
+  accountManager = ''
   @Fields.date()
   createdAt = new Date()
   @Field(() => Status)
   status = Status.cold
+
+  static config = config(ContactNote, {
+    relations: ({ one }) => ({
+      accountManager2: one(AccountManager, 'accountManager')
+    })
+  })
 }

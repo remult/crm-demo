@@ -1,8 +1,10 @@
 import { Box, Typography, Divider, Link, Button } from '@mui/material'
 import { Company } from './Company.entity'
 import EditIcon from '@mui/icons-material/Edit'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CompanyEdit } from './CompanyEdit'
+import { specialRepo } from '../dev-remult/relations'
+import { AccountManager } from '../AccountManagers/AccountManager.entity'
 
 export const CompanyAside = ({
   company,
@@ -14,6 +16,11 @@ export const CompanyAside = ({
   link?: string
 }) => {
   const [editCompany, setEditCompany] = useState<Company>()
+  const [accountManager, setAccountManager] = useState<AccountManager>()
+  useEffect(() => {
+    if (editCompany)
+      specialRepo(Company).accountManager2(editCompany).then(setAccountManager)
+  }, [editCompany])
 
   return company ? (
     <>
@@ -70,8 +77,8 @@ export const CompanyAside = ({
             Followed by
           </Typography>{' '}
           <Link href="#">
-            {company.accountManager
-              ? `${company.accountManager.firstName} ${company.accountManager.lastName}`
+            {accountManager
+              ? `${accountManager.firstName} ${accountManager.lastName}`
               : ''}
           </Link>
         </Box>

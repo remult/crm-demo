@@ -15,22 +15,33 @@ import {
 import { formatDistance } from 'date-fns'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { remult } from 'remult'
-import { Contact, ContactWithTags } from '../Contacts/Contact.entity'
 import { ContactsList } from '../Contacts/ContactsList'
-import { Deal } from '../Deals/Deal.entity'
 import { useIsDesktop } from '../utils/useIsDesktop'
 import { Company } from './Company.entity'
 import { CompanyAside } from './CompanyAside'
 import { Logo } from './Logo'
-import { specialRepo } from '../dev-remult/relations'
+import { InstanceTypeWithRelations, specialRepo } from '../dev-remult/relations'
 
 export const CompanyShow: React.FC<{}> = () => {
   let params = useParams()
-  const [company, setCompany] = useState<Company>()
-  const [contacts, setContacts] = useState<ContactWithTags[]>([])
-  const [deals, setDeals] = useState<Deal[]>([])
-  const [loadingContacts, setLoadingContacts] = useState(false)
+  const [company, setCompany] = useState<
+    InstanceTypeWithRelations<
+      typeof Company,
+      {
+        deals: true
+        contacts: {
+          with: {
+            company2: true
+            tags2: {
+              with: {
+                tag2: true
+              }
+            }
+          }
+        }
+      }
+    >
+  >()
 
   const [loading, setLoading] = useState(true)
   const [currentTab, setCurrentTab] = React.useState('1')
@@ -39,23 +50,19 @@ export const CompanyShow: React.FC<{}> = () => {
 
   useEffect(() => {
     ;(async () => {
-      const company = await remult.repo(Company).findId(params.id!)
+      const company = await specialRepo(Company).findId(params.id!, {
+        with: {
+          deals: true,
+          contacts: {
+            with: {
+              tags2: { with: { tag2: true } },
+              company2: true
+            }
+          }
+        }
+      })
       setCompany(company)
       setLoading(false)
-      if (company) {
-        try {
-          setLoadingContacts(true)
-          setContacts(
-            await specialRepo(Contact).find({
-              where: { company },
-              with: { tags2: true }
-            })
-          )
-          setDeals(await remult.repo(Deal).find({ where: { company } }))
-        } finally {
-          setLoadingContacts(false)
-        }
-      }
     })()
   }, [params.id])
   if (loading) return <span>Loading</span>
@@ -92,15 +99,17 @@ export const CompanyShow: React.FC<{}> = () => {
                   </Box>
                   <TabPanel value="1">
                     <ContactsList
-                      contacts={contacts}
-                      setContacts={setContacts}
+                      contacts={company.contacts}
+                      setContacts={(contacts) =>
+                        setCompany({ ...company, contacts })
+                      }
                       defaultCompany={company}
-                      loading={loadingContacts}
+                      loading={false}
                     />
                   </TabPanel>
                   <TabPanel value="2">
                     <List>
-                      {deals.map((deal, index) => (
+                      {company.deals.map((deal, index) => (
                         <ListItem disablePadding key={deal.id}>
                           <ListItemButton>
                             <ListItemText
@@ -138,7 +147,15 @@ export const CompanyShow: React.FC<{}> = () => {
           </CardContent>
         </Card>
       </Box>
-      <CompanyAside company={company} setCompany={setCompany}></CompanyAside>
+      <CompanyAside
+        company={company}
+        setCompany={(updatedCompany) =>
+          setCompany((company) => ({
+            ...company!,
+            ...updatedCompany
+          }))
+        }
+      ></CompanyAside>
     </Stack>
   )
 }

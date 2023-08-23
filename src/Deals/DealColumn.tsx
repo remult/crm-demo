@@ -2,13 +2,19 @@ import { Typography } from '@mui/material'
 import { Droppable } from 'react-beautiful-dnd'
 import { Deal } from './Deal.entity'
 import { DealCard } from './DealCard'
+import { InstanceTypeWithRelations } from '../dev-remult/relations'
 
 export const DealColumn = ({
   stage,
   deals
 }: {
   stage: string
-  deals: Deal[]
+  deals: InstanceTypeWithRelations<
+    typeof Deal,
+    {
+      company2: true
+    }
+  >[]
 }) => {
   return (
     <div>

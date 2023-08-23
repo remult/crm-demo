@@ -72,8 +72,11 @@ export const ContactsPage: React.FC<{}> = () => {
           where,
           with: {
             tags2: {
-              with: {}
-            }
+              with: {
+                tag2: true
+              }
+            },
+            company2: true
           },
           limit: rowsPerPage,
           page

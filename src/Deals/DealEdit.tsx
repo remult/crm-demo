@@ -24,6 +24,7 @@ import { Company } from '../Companies/Company.entity'
 import { DealTypes } from './DealType'
 import { DealStages } from './DealStage'
 import { Contact } from '../Contacts/Contact.entity'
+import { specialRepo } from '../dev-remult/relations'
 
 const dealRepo = remult.repo(Deal)
 
@@ -34,26 +35,23 @@ interface IProps {
 }
 
 export const DealEdit: React.FC<IProps> = ({ deal, onSaved, onClose }) => {
-  const [accountManagers, setAccountManagers] = useState<AccountManager[]>(
-    deal.accountManager ? [deal.accountManager] : []
-  )
-  const [companies, setCompanies] = useState<Company[]>(
-    deal.company ? [deal.company] : []
-  )
+  const [accountManagers, setAccountManagers] = useState<AccountManager[]>([])
+  const [companies, setCompanies] = useState<Company[]>([])
   const [companyContacts, setCompanyContacts] = useState<Contact[]>([])
   const [selectedContacts, setSelectedContacts] = useState<Contact[]>([])
   useEffect(() => {
     remult.repo(AccountManager).find().then(setAccountManagers)
     if (deal.id)
-      remult
-        .repo(DealContact)
-        .find({
-          where: {
-            deal
+      specialRepo(Deal)
+        .dealContacts(deal, {
+          with: {
+            contact2: true
           }
         })
         .then((dc) => {
-          const contacts = dc.filter((dc) => dc.contact).map((dc) => dc.contact)
+          const contacts = dc
+            .filter((dc) => dc.contact)
+            .map((dc) => dc.contact2)
           if (companyContacts.length === 0) setCompanyContacts(contacts)
           setSelectedContacts(contacts)
         })
@@ -69,12 +67,9 @@ export const DealEdit: React.FC<IProps> = ({ deal, onSaved, onClose }) => {
   const [state, setState] = useState(deal)
 
   useEffect(() => {
-    remult
-      .repo(Contact)
-      .find({ where: { company: state.company } })
-      .then(setCompanyContacts)
+    specialRepo(Company).contacts(state.company).then(setCompanyContacts)
     setSelectedContacts([
-      ...selectedContacts.filter((sc) => sc.company?.id === state.company?.id)
+      ...selectedContacts.filter((sc) => sc.company === state.company)
     ])
   }, [state.company])
 
@@ -133,10 +128,13 @@ export const DealEdit: React.FC<IProps> = ({ deal, onSaved, onClose }) => {
                   id="combo-box-demo"
                   getOptionLabel={(c) => c.name}
                   options={companies}
-                  value={state.company ? state.company : null}
+                  value={companies.find((x) => x.id === state.company)! || null}
                   inputValue={companySearch}
                   onChange={(e, newValue: Company | null) =>
-                    setState({ ...state, company: newValue ? newValue : null! })
+                    setState({
+                      ...state,
+                      company: newValue ? newValue.id! : ''!
+                    })
                   }
                   onInputChange={(e, newInput) => setCompanySearch(newInput)}
                   renderInput={(params) => (
@@ -231,13 +229,11 @@ export const DealEdit: React.FC<IProps> = ({ deal, onSaved, onClose }) => {
                 <Select
                   labelId="accountManager-label"
                   label="Account Manager"
-                  value={accountManagers && (state.accountManager?.id || '')}
+                  value={deal.accountManager}
                   onChange={(e) =>
                     setState({
                       ...state,
-                      accountManager: accountManagers?.find(
-                        (x) => x.id === e.target.value
-                      )!
+                      accountManager: e.target.value
                     })
                   }
                 >

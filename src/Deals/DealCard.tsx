@@ -2,8 +2,20 @@ import { Card, Typography } from '@mui/material'
 import * as React from 'react'
 import { Draggable } from 'react-beautiful-dnd'
 import { Deal } from './Deal.entity'
+import { InstanceTypeWithRelations } from '../dev-remult/relations'
 
-export const DealCard = ({ deal, index }: { deal: Deal; index: number }) => {
+export const DealCard = ({
+  deal,
+  index
+}: {
+  deal: InstanceTypeWithRelations<
+    typeof Deal,
+    {
+      company2: true
+    }
+  >
+  index: number
+}) => {
   if (!deal) return null
 
   const handleClick = () => {}
@@ -25,7 +37,7 @@ export const DealCard = ({ deal, index }: { deal: Deal; index: number }) => {
             elevation={snapshot.isDragging ? 3 : 1}
           >
             <div>
-              {deal.company.name}
+              {deal.company2.name}
               <div>
                 <Typography variant="body2" gutterBottom>
                   {deal.name}

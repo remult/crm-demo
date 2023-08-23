@@ -90,7 +90,7 @@ export async function seed() {
         for (let index = 0; index < 100; index++) {
           const name = companyFaker.companyName()
           const company = await companyRepo.insert({
-            accountManager: random.arrayElement(accountManagers),
+            accountManager: random.arrayElement(accountManagers).id,
             address: address.streetAddress(),
             city: address.city(),
             linkedIn: `https://www.linkedin.com/company/${name
@@ -129,16 +129,16 @@ export async function seed() {
                 avatar: 'https://i.pravatar.cc/40?img=' + datatype.number(70),
                 hasNewsletter: datatype.boolean(),
                 status: random.arrayElement(getValueList(Status)),
-                company,
-                accountManager: random.arrayElement(accountManagers)
+                company: company.id,
+                accountManager: random.arrayElement(accountManagers).id
               })
               contacts.push(contact)
               // Create Contact Notes
               for (let index = 0; index < datatype.number(20) + 1; index++) {
                 const note = await contactNotesRepo.insert({
                   text: lorem.paragraphs(3),
-                  contact,
-                  accountManager: random.arrayElement(accountManagers),
+                  contact:contact.id,
+                  accountManager: random.arrayElement(accountManagers).id,
                   createdAt: date.between(company.createdAt, new Date()),
                   status: random.arrayElement(getValueList(Status))
                 })
@@ -155,8 +155,8 @@ export async function seed() {
                 datatype.number(3)
               )) {
                 await contactTagsRepo.insert({
-                  tag,
-                  contact
+                  tag: tag.id,
+                  contact: contact.id
                 })
               }
               await contactRepo.save(contact)
@@ -168,9 +168,9 @@ export async function seed() {
               name = name[0].toUpperCase() + name.slice(1)
               const created_at = date.between(company.createdAt, new Date())
               const deal = await dealRepo.insert({
-                accountManager: random.arrayElement(accountManagers),
+                accountManager: random.arrayElement(accountManagers).id,
                 amount: datatype.number(1000) * 100,
-                company,
+                company: company.id,
                 name,
                 description: lorem.paragraph(datatype.number(4) + 1),
                 createdAt: created_at,
@@ -183,8 +183,8 @@ export async function seed() {
                 datatype.number(4) + 1
               )) {
                 await dealContactRepo.insert({
-                  deal,
-                  contact
+                  deal: deal.id,
+                  contact: contact.id
                 })
               }
             }

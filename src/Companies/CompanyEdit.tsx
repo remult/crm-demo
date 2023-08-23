@@ -35,7 +35,7 @@ export const CompanyEdit: React.FC<IProps> = ({
   onSaved,
   onClose
 }) => {
-  const [accountManagers, setAccountManagers] = useState<AccountManager[]>([])
+  const [accountManagers, setAccountManagers] = useState<AccountManager[]>()
   useEffect(() => {
     remult.repo(AccountManager).find().then(setAccountManagers)
   }, [])
@@ -221,22 +221,20 @@ export const CompanyEdit: React.FC<IProps> = ({
                   <Select
                     labelId="accountManager-label"
                     label="Account Manager"
-                    value={state.accountManager?.id || ''}
+                    value={state.accountManager}
                     onChange={(e) =>
                       setState({
                         ...state,
-                        accountManager: accountManagers.find(
-                          (x) => x.id === e.target.value
-                        )!
+                        accountManager: e.target.value
                       })
                     }
                   >
                     <MenuItem value={''}></MenuItem>
-                    {accountManagers?.map((s) => (
+                    {accountManagers? accountManagers.map((s) => (
                       <MenuItem key={s.id} value={s.id}>
                         {s.lastName + ' ' + s.firstName}
                       </MenuItem>
-                    ))}
+                    )):<MenuItem value={company.accountManager}/>}
                   </Select>
                   <FormHelperText>
                     {errors?.modelState?.accountManager}

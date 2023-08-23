@@ -1,7 +1,7 @@
 import { Allow, Entity, Field, Fields } from 'remult'
 import { Contact } from './Contact.entity'
 import { Tag } from './Tag.entity'
-import { config } from '../dev-remult/relations'
+import { InstanceTypeWithRelations, config } from '../dev-remult/relations'
 
 @Entity('contactTag', {
   allowApiCrud: Allow.authenticated
@@ -9,14 +9,21 @@ import { config } from '../dev-remult/relations'
 export class ContactTag {
   @Fields.uuid()
   id?: string
-  @Field(() => Contact, { lazy: true })
-  contact!: Contact
-  @Field(() => Tag)
-  tag!: Tag
+  @Fields.string()
+  contact = ''
+  @Fields.string()
+  tag = ''
 
   static config = config(ContactTag, {
     relations: ({ one }) => ({
-      tag2: one(Tag, 'contact')
+      tag2: one(Tag, 'tag')
     })
   })
 }
+
+export type ContactTagWithTag = InstanceTypeWithRelations<
+  typeof ContactTag,
+  {
+    tag2: true
+  }
+>

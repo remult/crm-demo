@@ -41,8 +41,8 @@ export class Contact {
   gender = Gender.male
   @Fields.string()
   title = ''
-  @Field(() => Company)
-  company?: Company
+  @Fields.string()
+  company = ''
   @Fields.string()
   phoneNumber1 = ''
   @Fields.string()
@@ -57,16 +57,9 @@ export class Contact {
   avatar? = ''
   @Fields.boolean()
   hasNewsletter: boolean = false
-  @Fields.object({
-    serverExpression: async (contact) =>
-      remult
-        .repo(ContactTag)
-        .find({ where: { contact } })
-        .then((tags) => tags.map((t) => t.tag))
-  })
-  tags: Tag[] = []
-  @Field(() => AccountManager)
-  accountManager?: AccountManager
+
+  @Fields.string()
+  accountManager = ''
   @Field(() => Status)
   status = Status.cold
   @Fields.date({
@@ -87,7 +80,9 @@ export class Contact {
   static config = config(Contact, {
     relations: ({ many, one }) => ({
       tags2: many(ContactTag, 'contact'),
-      company2: one(Company, 'company')
+      company2: one(Company, 'company'),
+      accountManager2: one(AccountManager, 'accountManager'),
+      notes: many(ContactNote, 'contact')
     })
   })
 
@@ -98,20 +93,20 @@ export class Contact {
         .repo(ContactTag)
         .find({
           where: {
-            tag: await remult.repo(Tag).findFirst({ tag })
+            tag: (await remult.repo(Tag).findFirst({ tag })).id
           },
           load: (ct) => []
         })
-        .then((ct) => ct.map((ct) => getEntityRef(ct).fields.contact.getId()))
+        .then((ct) => ct.map((ct) => ct.contact))
     }
     return r
   })
   static disableLastSeenUpdate = false
-  static async updateLastSeen(contact: Contact) {
+  static async updateLastSeen(contactId: string) {
     if (Contact.disableLastSeenUpdate) return
     const last = await remult.repo(ContactNote).findFirst(
       {
-        contact
+        contact: contactId
       },
       {
         orderBy: {
@@ -119,6 +114,7 @@ export class Contact {
         }
       }
     )
+    const contact = await remult.repo(Contact).findId(contactId)
     contact.lastSeen = last?.createdAt
     await remult.repo(Contact).save(contact)
   }
@@ -129,6 +125,8 @@ export type ContactWithTags = InstanceTypeWithRelations<
   {
     tags2: {
       with: {
+        //[ ] - consider adding one to many type with load etc...
+
         //[ ] - allows any value - I want it to give an error when it is not a relation
         //[ ] - what happens with an outer join relation where the related value not necessary exists
         //[ ] - remix shows the actual fields and not the types and their names
@@ -136,6 +134,6 @@ export type ContactWithTags = InstanceTypeWithRelations<
         tag2: true
       }
     }
+    company2: true
   }
 >
-let x: ContactWithTags

@@ -58,8 +58,8 @@ export const ContactsList: React.FC<{
   }
   const create = () => {
     const newContact = new Contact()
-    newContact.company = defaultCompany
-    setEditContact({ ...newContact, tags2: [] })
+    newContact.company = defaultCompany!.id!
+    setEditContact({ ...newContact, tags2: [],company2:defaultCompany! })
   }
   const now = Date.now()
   const isDesktop = useIsDesktop()
@@ -119,14 +119,14 @@ export const ContactsList: React.FC<{
                   primary={`${contact.firstName} ${contact.lastName}`}
                   secondary={
                     <>
-                      {contact.title} at {contact.company?.name}{' '}
+                      {contact.title} at {contact.company2.name}{' '}
                       {`- ${contact.nbNotes} notes `}
                       {contact.tags2.map((tag) => (
                         <span
-                          key={tag.tag.id}
+                          key={tag.tag2.id}
                           style={{
                             color: 'InfoText',
-                            backgroundColor: tag.tag.color,
+                            backgroundColor: tag.tag2.color,
                             padding: 4,
                             paddingLeft: 8,
                             paddingRight: 8,
@@ -134,7 +134,7 @@ export const ContactsList: React.FC<{
                             borderRadius: 20
                           }}
                         >
-                          {tag.tag}
+                          {tag.tag2.tag}
                         </span>
                       ))}
                     </>
