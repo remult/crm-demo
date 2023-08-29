@@ -9,6 +9,7 @@ import { Contact } from '../Contacts/Contact.entity'
 import { ContactTag } from '../Contacts/ContactTag.entity'
 import { ContactNote } from '../Contacts/ContactNote.entity'
 import { Tag } from '../Contacts/Tag.entity'
+import { InstanceTypeWithRelations, specialRepo } from '../dev-remult/relations'
 
 config()
 
@@ -19,7 +20,18 @@ export const api = remultExpress({
       return createPostgresConnection({ configuration: 'heroku' })
     return undefined
   },
-  initApi: seed,
+  initApi: async () => {
+    await seed()
+    const repo = specialRepo(Contact)
+    const c = await repo.find({
+      limit: 2,
+
+      with: {
+        tags2: true
+      }
+    })
+    PrintContact(c[0])
+  },
   entities: [
     AccountManager,
     Company,
@@ -31,3 +43,17 @@ export const api = remultExpress({
     Deal
   ]
 })
+
+
+
+export function PrintContact(
+  contact: InstanceTypeWithRelations<
+    typeof Contact,
+    {
+      tags2: true
+    }
+  >
+) {
+  console.log(contact)
+  console.log(contact)
+}

@@ -1,4 +1,4 @@
-import { FindOptions, remult } from 'remult'
+import { Field, FindOptions, remult } from 'remult'
 
 type EntityType<entityType extends abstract new (...args: any) => any = any> = {
   new (...args: any): entityType
@@ -114,6 +114,22 @@ export function specialRepo<
           })
         }
       }
+    for (const field of remult.repo(type).fields.toArray()) {
+      //@ts-ignore
+      const relationInfo = field.options.relationInfo as OneToManyRelationInfo
+      if (relationInfo) {
+        rowEnrichers.push(async (r) => {
+          //@ts-ignore
+          r[field.key] = await remult
+            .repo(relationInfo.toType())
+            //@ts-ignore
+            .find({
+              //@ts-ignore
+              where: { [relationInfo.field]: typeof r === 'object' ? r.id : r }
+            })
+        })
+      }
+    }
     for (const row of r) {
       for (const e of rowEnrichers) {
         await e(row)
@@ -128,6 +144,20 @@ export function specialRepo<
       instance: EntityInstance<entityType>,
       withRelations: SelectRelations<entityType>
     ) => getRelatedResult(relation, instance, withRelations || true)
+  }
+  for (const field of remult.repo(type).fields.toArray()) {
+    //@ts-ignore
+    const relationInfo = field.options.relationInfo as OneToManyRelationInfo
+    if (relationInfo) {
+      relations[field.key] = async (r: EntityInstance<entityType>) =>
+        await remult
+          .repo(relationInfo.toType())
+          //@ts-ignore
+          .find({
+            //@ts-ignore
+            where: { [relationInfo.field]: typeof r === 'object' ? r.id : r }
+          })
+    }
   }
 
   return {
@@ -144,7 +174,7 @@ export function specialRepo<
       if (r.length == 0) return r
       return r[0]
     },
-    ...relations
+    relations
   } as any
 
   async function getRelatedResult(
@@ -181,7 +211,8 @@ export function specialRepo<
 
 export interface OptionsWithWith<
   entityType extends EntityType,
-  withType extends SelectRelations<entityType>
+  withType extends SelectRelations<entityType>,
+  
 > extends FindOptions<EntityInstance<entityType>> {
   with?: withType
 }
@@ -195,19 +226,32 @@ export type SpecialRepo<entityType extends EntityType> = {
     options: OptionsWithWith<entityType, withType>
   ): Promise<InstanceTypeWithRelations<entityType, withType>>
 } & {
-  [P in keyof Relations<entityType>]: Relations<entityType>[P] extends OneRelationInfo<
-    infer z
-  >
-    ? <withRelations extends SelectRelations<z>>(
-        instance: EntityInstance<entityType>,
-        options?: OptionsWithWith<z, withRelations>
-      ) => Promise<InstanceTypeWithRelations<z, withRelations> | undefined>
-    : Relations<entityType>[P] extends RelationInfo<infer z>
-    ? <withRelations extends SelectRelations<z>>(
-        instance: EntityInstance<entityType> | string,
-        options?: OptionsWithWith<z, withRelations>
-      ) => Promise<InstanceTypeWithRelations<z, withRelations>[]>
-    : never
+  relations: {
+    [P in keyof Relations<entityType>]: Relations<entityType>[P] extends OneRelationInfo<
+      infer z
+    >
+      ? <withRelations extends SelectRelations<z>>(
+          instance: EntityInstance<entityType>,
+          options?: OptionsWithWith<z, withRelations>
+        ) => Promise<InstanceTypeWithRelations<z, withRelations> | undefined>
+      : Relations<entityType>[P] extends RelationInfo<infer z>
+      ? <withRelations extends SelectRelations<z>>(
+          instance: EntityInstance<entityType> | string,
+          options?: OptionsWithWith<z, withRelations>
+        ) => Promise<InstanceTypeWithRelations<z, withRelations>[]>
+      : never
+  } & {
+    [K in keyof EntityInstance<entityType> as EntityInstance<entityType>[K] extends OneToMany<
+      infer z
+    >
+      ? K
+      : never]: EntityInstance<entityType>[K] extends OneToMany<infer z>
+      ? (
+          instance: EntityInstance<entityType> | string
+          //@ts-ignore
+        ) => Promise<EntityInstance<z>[]>
+      : never
+  }
 }
 
 export type InferRelatedType<
@@ -235,3 +279,25 @@ export type InstanceTypeWithRelations<
 }
 
 // Typescript 4.7.4 at least
+
+export type OneToMany<T> = { type?: T } & Array<T>
+
+export function OneToManyField<entityType, toEntityType extends EntityType>(
+  entity: entityType,
+  toEntityType: () => toEntityType,
+  field: keyof EntityInstance<toEntityType>
+) {
+  return Field(() => undefined!, {
+    serverExpression: () => [],
+    //@ts-ignore
+    relationInfo: {
+      field,
+      toType: toEntityType
+    } as OneToManyRelationInfo
+  })
+}
+
+interface OneToManyRelationInfo {
+  field: string
+  toType: () => any
+}

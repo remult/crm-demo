@@ -62,9 +62,9 @@ export const ContactShow: React.FC<{}> = () => {
       notes: [
         {
           ...submittedNote,
-          accountManager2: (await specialRepo(ContactNote).accountManager2(
-            submittedNote
-          ))!
+          accountManager2: (await specialRepo(
+            ContactNote
+          ).relations.accountManager2(submittedNote))!
         },
         ...contact!.notes
       ]

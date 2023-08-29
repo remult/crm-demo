@@ -43,7 +43,7 @@ export const DealEdit: React.FC<IProps> = ({ deal, onSaved, onClose }) => {
     remult.repo(AccountManager).find().then(setAccountManagers)
     if (deal.id)
       specialRepo(Deal)
-        .dealContacts(deal, {
+        .relations.dealContacts(deal, {
           with: {
             contact2: true
           }
@@ -67,7 +67,7 @@ export const DealEdit: React.FC<IProps> = ({ deal, onSaved, onClose }) => {
   const [state, setState] = useState(deal)
 
   useEffect(() => {
-    specialRepo(Company).contacts(state.company).then(setCompanyContacts)
+    specialRepo(Company).relations.contacts(state.company).then(setCompanyContacts)
     setSelectedContacts([
       ...selectedContacts.filter((sc) => sc.company === state.company)
     ])

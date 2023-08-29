@@ -17,7 +17,12 @@ import { ContactTag } from './ContactTag.entity'
 import { Gender } from './Gender'
 import { Status } from './Status'
 import { Tag } from './Tag.entity'
-import { InstanceTypeWithRelations, config } from '../dev-remult/relations'
+import {
+  InstanceTypeWithRelations,
+  OneToMany,
+  OneToManyField,
+  config
+} from '../dev-remult/relations'
 
 @Entity<Contact>('contacts', {
   allowApiCrud: Allow.authenticated,
@@ -77,6 +82,9 @@ export class Contact {
   })
   nbNotes = 0
 
+  @OneToManyField(Contact, () => ContactTag, 'contact')
+  tags3: OneToMany<ContactTag> = []
+
   static config = config(Contact, {
     relations: ({ many, one }) => ({
       tags2: many(ContactTag, 'contact'),
@@ -132,6 +140,10 @@ export type ContactWithTags = InstanceTypeWithRelations<
         //[ ] - what happens with an outer join relation where the related value not necessary exists
         //[ ] - remix shows the actual fields and not the types and their names
         //[ ] - consider the find options that are relevant for one (not many)
+        //[ ] - server expression fields should also be optional (I think) as they can be expensive
+        //[ ] - consider lazy default to true
+        //[ ] - consider when lazy is true, to return an object with only id.
+        
         tag2: true
       }
     }

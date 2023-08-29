@@ -19,7 +19,9 @@ export const CompanyAside = ({
   const [accountManager, setAccountManager] = useState<AccountManager>()
   useEffect(() => {
     if (editCompany)
-      specialRepo(Company).accountManager2(editCompany).then(setAccountManager)
+      specialRepo(Company)
+        .relations.accountManager2(editCompany)
+        .then(setAccountManager)
   }, [editCompany])
 
   return company ? (
