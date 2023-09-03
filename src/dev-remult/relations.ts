@@ -32,7 +32,7 @@ type Relations<classType extends EntityType> = UnionToIntersection<
       : never
   }>
 >
-type SelectRelations<entityType extends EntityType> = {
+export type SelectRelations<entityType extends EntityType> = {
   [K in keyof Relations<entityType>]?:
     | true
     | (Relations<entityType>[K] extends {
@@ -40,6 +40,14 @@ type SelectRelations<entityType extends EntityType> = {
       }
         ? OptionsWithWith<z, SelectRelations<z>>
         : never)
+} & {
+  [K in keyof EntityInstance<entityType> as EntityInstance<entityType>[K] extends OneToMany<
+    infer z
+  >
+    ? K
+    : never]?: EntityInstance<entityType>[K] extends OneToMany<infer z>
+    ? true | OptionsWithWith<z, SelectRelations<z>>
+    : never
 }
 
 type ConfigOptions<entityType extends EntityType, TheRelations> = {
@@ -211,8 +219,7 @@ export function specialRepo<
 
 export interface OptionsWithWith<
   entityType extends EntityType,
-  withType extends SelectRelations<entityType>,
-  
+  withType extends SelectRelations<entityType>
 > extends FindOptions<EntityInstance<entityType>> {
   with?: withType
 }
@@ -221,6 +228,9 @@ export type SpecialRepo<entityType extends EntityType> = {
   find<withType extends SelectRelations<entityType>>(
     options: OptionsWithWith<entityType, withType>
   ): Promise<InstanceTypeWithRelations<entityType, withType>[]>
+  buildWith<withType extends SelectRelations<entityType>>(
+    options: OptionsWithWith<entityType, withType>
+  ): withType & { $entityType?: entityType }
   findId<withType extends SelectRelations<entityType>>(
     id: string,
     options: OptionsWithWith<entityType, withType>
@@ -280,7 +290,9 @@ export type InstanceTypeWithRelations<
 
 // Typescript 4.7.4 at least
 
-export type OneToMany<T> = { type?: T } & Array<T>
+export type OneToMany<T extends EntityType> = { type?: T } & Array<
+  InstanceType<T>
+>
 
 export function OneToManyField<entityType, toEntityType extends EntityType>(
   entity: entityType,
@@ -301,3 +313,9 @@ interface OneToManyRelationInfo {
   field: string
   toType: () => any
 }
+
+export type InstanceFromWith<withType> = withType extends {
+  $entityType?: infer z extends EntityType
+} & SelectRelations<infer z>
+  ? InstanceTypeWithRelations<z, withType>
+  : never

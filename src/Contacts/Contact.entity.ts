@@ -18,10 +18,12 @@ import { Gender } from './Gender'
 import { Status } from './Status'
 import { Tag } from './Tag.entity'
 import {
+  InstanceFromWith,
   InstanceTypeWithRelations,
   OneToMany,
   OneToManyField,
-  config
+  config,
+  specialRepo
 } from '../dev-remult/relations'
 
 @Entity<Contact>('contacts', {
@@ -83,7 +85,7 @@ export class Contact {
   nbNotes = 0
 
   @OneToManyField(Contact, () => ContactTag, 'contact')
-  tags3: OneToMany<ContactTag> = []
+  tags3: OneToMany<typeof ContactTag> = []
 
   static config = config(Contact, {
     relations: ({ many, one }) => ({
@@ -143,10 +145,25 @@ export type ContactWithTags = InstanceTypeWithRelations<
         //[ ] - server expression fields should also be optional (I think) as they can be expensive
         //[ ] - consider lazy default to true
         //[ ] - consider when lazy is true, to return an object with only id.
-        
+
         tag2: true
       }
     }
     company2: true
   }
 >
+
+specialRepo(Contact)
+  .find({
+    with: {
+      company2: true
+    }
+  })
+  .then((y) => {})
+
+let x = specialRepo(Contact).buildWith({
+  with: {
+    company2: true
+  }
+})
+let y: InstanceFromWith<typeof x>
