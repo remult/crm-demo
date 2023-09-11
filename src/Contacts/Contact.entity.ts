@@ -167,3 +167,4 @@ let x = specialRepo(Contact).buildWith({
   }
 })
 let y: InstanceFromWith<typeof x>
+
