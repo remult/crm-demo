@@ -49,20 +49,21 @@ function Auth() {
   useEffect(() => {
     let tryCounter = 0
     function getCurrentUser() {
-      fetch('/api/currentUser')
-        .then((r) => r.json())
-        .then(async (currentUserFromServer) => {
-          if (currentUserFromServer) setCurrentUser(currentUserFromServer)
-          else setSignInUsername(await AccountManager.getValidUserName())
-        })
-        .catch(async (err) => {
-          if (tryCounter++ < 10 && !err.message.includes('JSON'))
+      fetch('/api/currentUser').then(async (r) => {
+        if (r.ok) {
+          try {
+            setCurrentUser(await r.json())
+          } catch {
+            setSignInUsername(await AccountManager.getValidUserName())
+          }
+        } else {
+          if (tryCounter++ < 10)
             // retry if dev server is not yet ready
             setTimeout(() => {
               getCurrentUser()
             }, 500)
-          else setSignInUsername(await AccountManager.getValidUserName())
-        })
+        }
+      })
     }
     getCurrentUser()
   }, [])
