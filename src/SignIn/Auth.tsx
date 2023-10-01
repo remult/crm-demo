@@ -55,8 +55,9 @@ function Auth() {
           if (currentUserFromServer) setCurrentUser(currentUserFromServer)
           else setSignInUsername(await AccountManager.getValidUserName())
         })
-        .catch(async () => {
-          if (tryCounter++ < 10) // retry if dev server is not yet ready
+        .catch(async (err) => {
+          if (tryCounter++ < 10 && !err.message.includes('JSON'))
+            // retry if dev server is not yet ready
             setTimeout(() => {
               getCurrentUser()
             }, 500)
