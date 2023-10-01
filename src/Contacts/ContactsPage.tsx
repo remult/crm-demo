@@ -62,7 +62,10 @@ export const ContactsPage: React.FC<{}> = () => {
           : undefined,
         $and: [filter.tag ? Contact.filterTag(filter.tag) : undefined!]
       },
-      pageSize: rowsPerPage
+      pageSize: rowsPerPage,
+      include: {
+        tags: true
+      }
     })
     query.count().then((count) => setContactsCount(count))
     return query

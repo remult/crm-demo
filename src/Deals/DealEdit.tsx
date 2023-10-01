@@ -16,7 +16,7 @@ import {
 } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { Deal, DealContact } from './Deal.entity'
-import { remult } from 'remult'
+import { remult, repo } from 'remult'
 import { ErrorInfo } from 'remult'
 
 import { AccountManager } from '../AccountManagers/AccountManager.entity'
@@ -45,11 +45,11 @@ export const DealEdit: React.FC<IProps> = ({ deal, onSaved, onClose }) => {
   useEffect(() => {
     remult.repo(AccountManager).find().then(setAccountManagers)
     if (deal.id)
-      remult
-        .repo(DealContact)
-        .find({
-          where: {
-            deal
+      repo(Deal)
+        .relations(deal)
+        .contacts.find({
+          include: {
+            contact: true
           }
         })
         .then((dc) => {
@@ -60,8 +60,7 @@ export const DealEdit: React.FC<IProps> = ({ deal, onSaved, onClose }) => {
   }, [companyContacts.length, deal])
   const [companySearch, setCompanySearch] = useState('')
   useEffect(() => {
-    remult
-      .repo(Company)
+    repo(Company)
       .find({ where: { name: { $contains: companySearch } }, limit: 20 })
       .then((x) => setCompanies(x))
   }, [companySearch])
@@ -69,9 +68,8 @@ export const DealEdit: React.FC<IProps> = ({ deal, onSaved, onClose }) => {
   const [state, setState] = useState(deal)
 
   useEffect(() => {
-    remult
-      .repo(Contact)
-      .find({ where: { company: state.company } })
+    repo(Contact)
+      .find({ where: { company: [state.company] } })
       .then(setCompanyContacts)
     setSelectedContacts([
       ...selectedContacts.filter((sc) => sc.company?.id === state.company?.id)

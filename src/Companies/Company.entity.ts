@@ -1,6 +1,8 @@
 import { Allow, Entity, Field, Fields } from 'remult'
 import { AccountManager } from '../AccountManagers/AccountManager.entity'
 import { CompanySize } from './CompanySize'
+import { Contact } from '../Contacts/Contact.entity'
+import { Deal } from '../Deals/Deal.entity'
 
 @Entity('companies', {
   allowApiCrud: Allow.authenticated,
@@ -31,8 +33,12 @@ export class Company {
   city = ''
   @Fields.string()
   stateAbbr = ''
-  @Field(() => AccountManager)
-  accountManager!: AccountManager
+  @Fields.reference(() => AccountManager)
+  accountManager?: AccountManager
   @Fields.date({ allowApiUpdate: false })
   createdAt = new Date()
+  @Fields.many(() => Contact, 'company')
+  contacts?: Contact[]
+  @Fields.many(() => Deal, 'company')
+  deals?: Deal[]
 }

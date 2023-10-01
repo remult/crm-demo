@@ -29,7 +29,6 @@ export const CompanyShow: React.FC<{}> = () => {
   const [company, setCompany] = useState<Company>()
   const [contacts, setContacts] = useState<Contact[]>([])
   const [deals, setDeals] = useState<Deal[]>([])
-  const [loadingContacts, setLoadingContacts] = useState(false)
 
   const [loading, setLoading] = useState(true)
   const [currentTab, setCurrentTab] = React.useState('1')
@@ -38,17 +37,22 @@ export const CompanyShow: React.FC<{}> = () => {
 
   useEffect(() => {
     ;(async () => {
-      const company = await remult.repo(Company).findId(params.id!)
+      const company = await remult.repo(Company).findId(params.id!, {
+        include: {
+          accountManager: true,
+          contacts: {
+            include: {
+              tags: true
+            }
+          },
+          deals: true
+        }
+      })
       setCompany(company)
       setLoading(false)
       if (company) {
-        try {
-          setLoadingContacts(true)
-          setContacts(await remult.repo(Contact).find({ where: { company } }))
-          setDeals(await remult.repo(Deal).find({ where: { company } }))
-        } finally {
-          setLoadingContacts(false)
-        }
+        setContacts(company.contacts!)
+        setDeals(company.deals!)
       }
     })()
   }, [params.id])
@@ -89,7 +93,7 @@ export const CompanyShow: React.FC<{}> = () => {
                       contacts={contacts}
                       setContacts={setContacts}
                       defaultCompany={company}
-                      loading={loadingContacts}
+                      loading={false}
                     />
                   </TabPanel>
                   <TabPanel value="2">

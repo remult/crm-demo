@@ -15,14 +15,18 @@ import { Status } from './Status'
         .findId(remult.user!.id)
     }
   },
-  saved: ({ contact }) => Contact.updateLastSeen(contact),
-  deleted: ({ contact }) => Contact.updateLastSeen(contact)
+  saved: async (_, { relations }) =>
+    Contact.updateLastSeen((await relations.contact.findOne())!),
+  deleted: async (_, { relations }) =>
+    Contact.updateLastSeen((await relations.contact.findOne())!)
 })
 export class ContactNote {
   @Fields.uuid()
   id?: string
-  @Field(() => Contact)
-  contact!: Contact
+  @Fields.string({ dbName: 'contact' })
+  contactId = ''
+  @Fields.one<ContactNote, Contact>(() => Contact, 'contactId')
+  contact?: Contact
   @Fields.string()
   text = ''
   @Field(() => AccountManager, { allowApiUpdate: false })

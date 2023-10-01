@@ -1,4 +1,12 @@
-import { Allow, BackendMethod, Entity, Field, Fields, remult } from 'remult'
+import {
+  Allow,
+  BackendMethod,
+  Entity,
+  Field,
+  Fields,
+  remult,
+  repo
+} from 'remult'
 import { AccountManager } from '../AccountManagers/AccountManager.entity'
 import { Company } from '../Companies/Company.entity'
 import { Contact } from '../Contacts/Contact.entity'
@@ -11,7 +19,7 @@ export class Deal {
   id?: string
   @Fields.string()
   name = ''
-  @Field(() => Company)
+  @Fields.reference(() => Company)
   company!: Company
   @Fields.string()
   type = ''
@@ -25,10 +33,12 @@ export class Deal {
   createdAt = new Date()
   @Fields.date()
   updatedAt = new Date()
-  @Field(() => AccountManager)
+  @Fields.reference(() => AccountManager)
   accountManager?: AccountManager
   @Fields.integer()
   index = 0
+  @Fields.many(() => DealContact, 'deal')
+  contacts?: DealContact[]
 
   @BackendMethod({ allowed: Allow.authenticated })
   static async DealDropped(
@@ -92,36 +102,31 @@ export class Deal {
   @BackendMethod({ allowed: Allow.authenticated })
   async saveWithContacts?(contacts: string[]) {
     const isNew = !this.id
-    const dealRepo = remult!.repo(DealContact)
-    const deal = await remult!.repo(Deal).save(this)
-    const existingContacts = isNew
-      ? []
-      : await dealRepo.find({ where: { deal } })
+    const deal = await repo(Deal).save(this)
+    const dealContactRepo = repo(Deal).relations(deal).contacts
+    const existingContacts = isNew ? [] : await dealContactRepo.find()
     const contactsToDelete = existingContacts.filter(
-      (c) => !contacts.includes(c.id!)
+      (c) => !contacts.includes(c.contactId)
     )
-    const contactsToAdd = await remult!
-      .repo(Contact)
-      .find({
-        where: {
-          id: contacts.filter(
-            (c) => !existingContacts.find((ec) => ec.id === c)
-          )
-        }
-      })
-    await Promise.all(contactsToDelete.map((dc) => dealRepo.delete(dc)))
-    await dealRepo.insert(contactsToAdd.map((ac) => ({ deal, contact: ac })))
+    const contactsToAdd = contacts.filter(
+      (c) => !existingContacts.find((e) => e.contactId == c)
+    )
+    await Promise.all(contactsToDelete.map((dc) => dealContactRepo.delete(dc)))
+    await dealContactRepo.insert(
+      contactsToAdd.map((contactId) => ({ contactId }))
+    )
   }
 }
 
-@Entity('dealContacts', {
-  allowApiCrud: Allow.authenticated
+@Entity<DealContact>('dealContacts', {
+  allowApiCrud: Allow.authenticated,
+  id: { deal: true, contactId: true }
 })
 export class DealContact {
-  @Fields.uuid()
-  id?: string
-  @Field(() => Deal)
+  @Fields.reference(() => Deal)
   deal!: Deal
-  @Field(() => Contact)
+  @Fields.one<DealContact, Contact>(() => Contact, 'contactId')
   contact!: Contact
+  @Fields.string({ dbName: 'contact' })
+  contactId!: string
 }

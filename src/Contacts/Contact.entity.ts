@@ -6,8 +6,8 @@ import {
   Filter,
   remult,
   Fields,
-  getEntityRef,
-  Validators
+  Validators,
+  repo
 } from 'remult'
 import { AccountManager } from '../AccountManagers/AccountManager.entity'
 import { Company } from '../Companies/Company.entity'
@@ -40,7 +40,7 @@ export class Contact {
   gender = Gender.male
   @Fields.string()
   title = ''
-  @Field(() => Company)
+  @Fields.reference(() => Company, { defaultIncluded: true })
   company?: Company
   @Fields.string()
   phoneNumber1 = ''
@@ -56,14 +56,8 @@ export class Contact {
   avatar? = ''
   @Fields.boolean()
   hasNewsletter: boolean = false
-  @Fields.object({
-    serverExpression: async (contact) =>
-      remult
-        .repo(ContactTag)
-        .find({ where: { contact } })
-        .then((tags) => tags.map((t) => t.tag))
-  })
-  tags: Tag[] = []
+  @Fields.many(() => ContactTag, 'contactId')
+  tags?: ContactTag[]
   @Field(() => AccountManager)
   accountManager?: AccountManager
   @Field(() => Status)
@@ -79,9 +73,12 @@ export class Contact {
 
   @Fields.integer({
     serverExpression: async (contact) =>
-      remult.repo(ContactNote).count({ contact })
+      remult.repo(Contact).relations(contact).notes.count()
   })
-  nbNotes = 0
+  nbNotes = 0 //[ ] reconsider - maybe make server expression managed with include etc...
+
+  @Fields.many(() => ContactNote, 'contactId')
+  notes?: ContactNote[]
 
   static filterTag = Filter.createCustom<Contact, string>(async (tag) => {
     if (!tag) return {}
@@ -94,23 +91,24 @@ export class Contact {
           },
           load: (ct) => []
         })
-        .then((ct) => ct.map((ct) => getEntityRef(ct).fields.contact.getId()))
+        .then((ct) => ct.map((ct) => ct.contactId))
     }
     return r
   })
   static disableLastSeenUpdate = false
   static async updateLastSeen(contact: Contact) {
     if (Contact.disableLastSeenUpdate) return
-    const last = await remult.repo(ContactNote).findFirst(
-      {
-        contact
-      },
-      {
-        orderBy: {
-          createdAt: 'desc'
+    const last = await repo(Contact)
+      .relations(contact)
+      .notes.findFirst(
+        {},
+        {
+          orderBy: {
+            createdAt: 'desc'
+          }
         }
-      }
-    )
+      )
+
     contact.lastSeen = last?.createdAt
     await remult.repo(Contact).save(contact)
   }

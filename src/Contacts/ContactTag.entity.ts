@@ -2,14 +2,18 @@ import { Allow, Entity, Field, Fields } from 'remult'
 import { Contact } from './Contact.entity'
 import { Tag } from './Tag.entity'
 
-@Entity('contactTag', {
-  allowApiCrud: Allow.authenticated
+@Entity<ContactTag>('contactTag', {
+  allowApiCrud: Allow.authenticated,
+  id: { contactId: true, tag: true }
 })
 export class ContactTag {
-  @Fields.uuid()
-  id?: string
-  @Field(() => Contact, { lazy: true })
+  @Fields.string({ dbName: 'contact' })
+  contactId = ''
+  @Fields.one<ContactTag, Contact>(() => Contact, 'contactId')
   contact!: Contact
-  @Field(() => Tag)
+
+  @Fields.reference(() => Tag, {
+    defaultIncluded: true
+  })
   tag!: Tag
 }

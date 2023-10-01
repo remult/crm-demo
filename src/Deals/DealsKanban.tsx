@@ -1,7 +1,7 @@
 import { Box } from '@mui/material'
 import { useCallback, useEffect, useState } from 'react'
 import { DragDropContext, OnDragEndResponder } from 'react-beautiful-dnd'
-import { remult } from 'remult'
+import { remult, repo } from 'remult'
 import { Deal } from './Deal.entity'
 import { DealColumn } from './DealColumn'
 import { DealStages } from './DealStage'
@@ -10,9 +10,13 @@ export const DealsKanban = () => {
   const [dealsForStage, setDeals] = useState<{ [key: string]: Deal[] }>()
   const loadDeals = useCallback(
     () =>
-      remult
-        .repo(Deal)
-        .find({ orderBy: { index: 'asc' } })
+      repo(Deal)
+        .find({
+          orderBy: { index: 'asc' },
+          include: {
+            company: true
+          }
+        })
         .then((deals) => {
           const newDealsForStage: typeof dealsForStage = DealStages.reduce(
             (x, stage) => ({ ...x, [stage]: [] }),

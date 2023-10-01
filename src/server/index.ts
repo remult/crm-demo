@@ -21,6 +21,7 @@ app.use(
 app.use(auth)
 
 app.get('/api/test', (req, res) => res.send('ok'))
+//@ts-ignore
 app.use(api)
 
 app.use(
@@ -29,17 +30,16 @@ app.use(
   swaggerUi.setup(api.openApiDoc({ title: 'remult-react-todo' }))
 )
 
-app.use(api);
-const { schema, rootValue } = remultGraphql(api);
-app.use('/api/graphql', (req, res, next) => {
-  //Set a dummy user so that graphql will work when signed out - only for demo purposes
-  req.session!['user'] = { id: "graphql", name: "graphql" };
-  next();
-}, graphqlHTTP({
-  schema: buildSchema(schema),
-  rootValue,
-  graphiql: true,
-}));
+// const { schema, rootValue } = remultGraphql(api);
+// app.use('/api/graphql', (req, res, next) => {
+//   //Set a dummy user so that graphql will work when signed out - only for demo purposes
+//   req.session!['user'] = { id: "graphql", name: "graphql" };
+//   next();
+// }, graphqlHTTP({
+//   schema: buildSchema(schema),
+//   rootValue,
+//   graphiql: true,
+// }));
 
 app.use(express.static('dist'))
 app.use('/*', async (req, res) => {

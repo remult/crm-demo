@@ -15,7 +15,7 @@ import {
 } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useParams, Link as RouterLink } from 'react-router-dom'
-import { remult } from 'remult'
+import { remult, repo } from 'remult'
 import { Contact } from '../Contacts/Contact.entity'
 import { ContactNote } from './ContactNote.entity'
 import { ContactAside } from './ContactAside'
@@ -37,23 +37,23 @@ export const ContactShow: React.FC<{}> = () => {
   const [newNote, setNewNote] = useState(new ContactNote())
 
   const submitNewNote = async () => {
-    const submittedNote = await remult
-      .repo(ContactNote)
-      .insert({ ...newNote, contact })
+    const submittedNote = await repo(Contact)
+      .relations(contact!)
+      .notes.insert(newNote)
     setNotes([submittedNote, ...notes])
     setNewNote(new ContactNote())
   }
 
   useEffect(() => {
     ;(async () => {
-      const contact = await remult.repo(Contact).findId(params.id!)
+      const contact = await repo(Contact).findId(params.id!, {
+        include: {
+          notes: true
+        }
+      })
       setContact(contact)
       if (contact) {
-        setNotes(
-          await remult
-            .repo(ContactNote)
-            .find({ where: { contact }, orderBy: { createdAt: 'desc' } })
-        )
+        setNotes(contact.notes!)
       }
       setLoading(false)
     })()
@@ -214,3 +214,4 @@ export const ContactShow: React.FC<{}> = () => {
     </Box>
   )
 }
+//[ ] - consider the fact that the tags are already in the client - but they always come in as well

@@ -1,4 +1,4 @@
-import { getValueList, remult } from 'remult'
+import { getValueList, remult, repo } from 'remult'
 import { AccountManager } from '../AccountManagers/AccountManager.entity'
 import {
   name as nameFaker,
@@ -59,25 +59,22 @@ export async function seed() {
       const accountManagers = await remult.repo(AccountManager).find()
       if ((await companyRepo.count()) == 0) {
         console.log('Start seed company')
-        const contactRepo = remult.repo(Contact)
         Contact.disableLastSeenUpdate = true
-        const contactNotesRepo = remult.repo(ContactNote)
-        const contactTagsRepo = remult.repo(ContactTag)
         const dealRepo = remult.repo(Deal)
         const dealContactRepo = remult.repo(DealContact)
 
         const tags = await remult.repo(Tag).find()
         // delete related data
         {
-          for (const c of await contactRepo.find()) {
-            await contactRepo.delete(c)
+          for (const c of await repo(Contact).find()) {
+            await repo(Contact).delete(c)
           }
-          for (const c of await contactNotesRepo.find()) {
-            await contactNotesRepo.delete(c)
+          for (const c of await repo(ContactNote).find()) {
+            await repo(ContactNote).delete(c)
           }
 
-          for (const c of await contactTagsRepo.find()) {
-            await contactTagsRepo.delete(c)
+          for (const c of await repo(ContactNote).find()) {
+            await repo(ContactNote).delete(c)
           }
           for (const c of await dealRepo.find()) {
             await dealRepo.delete(c)
@@ -106,6 +103,7 @@ export async function seed() {
             zipcode: address.zipCode(),
             createdAt: date.recent(500)
           })
+          const compRel = companyRepo.relations(company)
           const contacts: Contact[] = []
           console.log(index + ': ' + company.name)
           // Create contact
@@ -116,7 +114,7 @@ export async function seed() {
               const firstName = nameFaker.firstName()
               const lastName = nameFaker.lastName()
               const title = companyFaker.bsAdjective()
-              const contact = await contactRepo.insert({
+              const contact = await compRel.contacts.insert({
                 firstName,
                 lastName,
                 gender: random.arrayElement(getValueList(Gender)),
@@ -129,15 +127,14 @@ export async function seed() {
                 avatar: 'https://i.pravatar.cc/40?img=' + datatype.number(70),
                 hasNewsletter: datatype.boolean(),
                 status: random.arrayElement(getValueList(Status)),
-                company,
                 accountManager: random.arrayElement(accountManagers)
               })
               contacts.push(contact)
+              const contactRel = compRel.contacts.relations(contact)
               // Create Contact Notes
               for (let index = 0; index < datatype.number(20) + 1; index++) {
-                const note = await contactNotesRepo.insert({
+                const note = await contactRel.notes.insert({
                   text: lorem.paragraphs(3),
-                  contact,
                   accountManager: random.arrayElement(accountManagers),
                   createdAt: date.between(company.createdAt, new Date()),
                   status: random.arrayElement(getValueList(Status))
@@ -150,16 +147,12 @@ export async function seed() {
                 }
               }
               // Create Contact Tags
-              for (const tag of random.arrayElements(
-                tags,
-                datatype.number(3)
-              )) {
-                await contactTagsRepo.insert({
-                  tag,
-                  contact
-                })
-              }
-              await contactRepo.save(contact)
+              await contactRel.tags.insert(
+                random
+                  .arrayElements(tags, datatype.number(3))
+                  .map((tag) => ({ tag }))
+              )
+              await compRel.contacts.save(contact)
             }
           }
           {
@@ -178,15 +171,14 @@ export async function seed() {
                 type: random.arrayElement(DealTypes),
                 updatedAt: date.between(created_at, new Date())
               })
-              for (const contact of random.arrayElements(
-                contacts,
-                datatype.number(4) + 1
-              )) {
-                await dealContactRepo.insert({
-                  deal,
-                  contact
-                })
-              }
+
+              dealRepo.relations(deal).contacts.insert(
+                random
+                  .arrayElements(contacts, datatype.number(4) + 1)
+                  .map((contact) => ({
+                    contact
+                  }))
+              )
             }
           }
         }

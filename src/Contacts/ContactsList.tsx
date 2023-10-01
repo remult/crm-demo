@@ -121,12 +121,12 @@ export const ContactsList: React.FC<{
                     <>
                       {contact.title} at {contact.company?.name}{' '}
                       {`- ${contact.nbNotes} notes `}
-                      {contact.tags.map((tag) => (
+                      {contact.tags!.map((tag) => (
                         <span
-                          key={tag.id}
+                          key={tag.tag.id}
                           style={{
                             color: 'InfoText',
-                            backgroundColor: tag.color,
+                            backgroundColor: tag.tag.color,
                             padding: 4,
                             paddingLeft: 8,
                             paddingRight: 8,
@@ -134,7 +134,7 @@ export const ContactsList: React.FC<{
                             borderRadius: 20
                           }}
                         >
-                          {tag.tag}
+                          {tag.tag.tag}
                         </span>
                       ))}
                     </>
