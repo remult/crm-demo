@@ -1,4 +1,4 @@
-import { Allow, Entity, Field, Fields } from 'remult'
+import { Allow, Entity, Field, Fields, Relations } from 'remult'
 import { Contact } from './Contact.entity'
 import { Tag } from './Tag.entity'
 
@@ -9,10 +9,10 @@ import { Tag } from './Tag.entity'
 export class ContactTag {
   @Fields.string({ dbName: 'contact' })
   contactId = ''
-  @Fields.one<ContactTag, Contact>(() => Contact, 'contactId')
+  @Relations.toOne<ContactTag, Contact>(() => Contact, 'contactId')
   contact!: Contact
 
-  @Fields.reference(() => Tag, {
+  @Relations.toOne(() => Tag, {
     defaultIncluded: true
   })
   tag!: Tag

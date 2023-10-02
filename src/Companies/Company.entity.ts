@@ -1,4 +1,4 @@
-import { Allow, Entity, Field, Fields } from 'remult'
+import { Allow, Entity, Field, Fields, Relations } from 'remult'
 import { AccountManager } from '../AccountManagers/AccountManager.entity'
 import { CompanySize } from './CompanySize'
 import { Contact } from '../Contacts/Contact.entity'
@@ -33,12 +33,12 @@ export class Company {
   city = ''
   @Fields.string()
   stateAbbr = ''
-  @Fields.reference(() => AccountManager)
+  @Relations.toOne(() => AccountManager)
   accountManager?: AccountManager
   @Fields.date({ allowApiUpdate: false })
   createdAt = new Date()
-  @Fields.many(() => Contact, 'company')
+  @Relations.toMany(() => Contact, 'company')
   contacts?: Contact[]
-  @Fields.many(() => Deal, 'company')
+  @Relations.toMany(() => Deal, 'company')
   deals?: Deal[]
 }

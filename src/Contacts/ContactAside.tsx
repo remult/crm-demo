@@ -160,7 +160,7 @@ export const ContactAside = ({
         <Typography variant="subtitle2">Tags</Typography>
         <Divider />
         {contactTags.map((contactTag) => (
-          <Box mt={1} mb={1} key={contactTag.id}>
+          <Box mt={1} mb={1} key={contactTag.tag.id}>
             <Chip
               size="small"
               variant="outlined"

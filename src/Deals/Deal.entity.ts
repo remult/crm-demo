@@ -4,6 +4,7 @@ import {
   Entity,
   Field,
   Fields,
+  Relations,
   remult,
   repo
 } from 'remult'
@@ -19,7 +20,7 @@ export class Deal {
   id?: string
   @Fields.string()
   name = ''
-  @Fields.reference(() => Company)
+  @Relations.toOne(() => Company, { defaultIncluded: true })
   company!: Company
   @Fields.string()
   type = ''
@@ -33,11 +34,11 @@ export class Deal {
   createdAt = new Date()
   @Fields.date()
   updatedAt = new Date()
-  @Fields.reference(() => AccountManager)
+  @Relations.toOne(() => AccountManager)
   accountManager?: AccountManager
   @Fields.integer()
   index = 0
-  @Fields.many(() => DealContact, 'deal')
+  @Relations.toMany(() => DealContact, 'deal')
   contacts?: DealContact[]
 
   @BackendMethod({ allowed: Allow.authenticated })
@@ -123,9 +124,9 @@ export class Deal {
   id: { deal: true, contactId: true }
 })
 export class DealContact {
-  @Fields.reference(() => Deal)
+  @Relations.toOne(() => Deal)
   deal!: Deal
-  @Fields.one<DealContact, Contact>(() => Contact, 'contactId')
+  @Relations.toOne<DealContact, Contact>(() => Contact, 'contactId')
   contact!: Contact
   @Fields.string({ dbName: 'contact' })
   contactId!: string

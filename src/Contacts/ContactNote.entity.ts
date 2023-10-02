@@ -1,4 +1,12 @@
-import { Allow, Entity, Field, Fields, isBackend, remult } from 'remult'
+import {
+  Allow,
+  Entity,
+  Field,
+  Fields,
+  Relations,
+  isBackend,
+  remult
+} from 'remult'
 import { AccountManager } from '../AccountManagers/AccountManager.entity'
 import { Contact } from './Contact.entity'
 import { Status } from './Status'
@@ -25,7 +33,7 @@ export class ContactNote {
   id?: string
   @Fields.string({ dbName: 'contact' })
   contactId = ''
-  @Fields.one<ContactNote, Contact>(() => Contact, 'contactId')
+  @Relations.toOne<ContactNote, Contact>(() => Contact, 'contactId')
   contact?: Contact
   @Fields.string()
   text = ''

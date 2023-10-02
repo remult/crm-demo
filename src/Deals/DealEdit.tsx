@@ -54,7 +54,9 @@ export const DealEdit: React.FC<IProps> = ({ deal, onSaved, onClose }) => {
         })
         .then((dc) => {
           const contacts = dc.filter((dc) => dc.contact).map((dc) => dc.contact)
-          if (companyContacts.length === 0) setCompanyContacts(contacts)
+          setCompanyContacts((companyContacts) =>
+            companyContacts.length === 0 ? contacts : companyContacts
+          )
           setSelectedContacts(contacts)
         })
   }, [companyContacts.length, deal])

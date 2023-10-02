@@ -7,7 +7,8 @@ import {
   remult,
   Fields,
   Validators,
-  repo
+  repo,
+  Relations
 } from 'remult'
 import { AccountManager } from '../AccountManagers/AccountManager.entity'
 import { Company } from '../Companies/Company.entity'
@@ -40,7 +41,7 @@ export class Contact {
   gender = Gender.male
   @Fields.string()
   title = ''
-  @Fields.reference(() => Company, { defaultIncluded: true })
+  @Relations.toOne(() => Company, { defaultIncluded: true })
   company?: Company
   @Fields.string()
   phoneNumber1 = ''
@@ -56,7 +57,7 @@ export class Contact {
   avatar? = ''
   @Fields.boolean()
   hasNewsletter: boolean = false
-  @Fields.many(() => ContactTag, 'contactId')
+  @Relations.toMany(() => ContactTag, 'contactId')
   tags?: ContactTag[]
   @Field(() => AccountManager)
   accountManager?: AccountManager
@@ -77,7 +78,7 @@ export class Contact {
   })
   nbNotes = 0 //[ ] reconsider - maybe make server expression managed with include etc...
 
-  @Fields.many(() => ContactNote, 'contactId')
+  @Relations.toMany(() => ContactNote, 'contactId')
   notes?: ContactNote[]
 
   static filterTag = Filter.createCustom<Contact, string>(async (tag) => {
