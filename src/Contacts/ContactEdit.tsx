@@ -41,9 +41,7 @@ export const ContactEdit: React.FC<IProps> = ({
   onSaved,
   onClose
 }) => {
-  const [accountManagers, setAccountManagers] = useState<AccountManager[]>(
-    contact.accountManager ? [contact.accountManager] : []
-  )
+  const [accountManagers, setAccountManagers] = useState<AccountManager[]>([])
   const [companies, setCompanies] = useState<Company[]>([])
   useEffect(() => {
     remult.repo(AccountManager).find().then(setAccountManagers)
@@ -249,13 +247,11 @@ export const ContactEdit: React.FC<IProps> = ({
                 <Select
                   labelId="accountManager-label"
                   label="Account Manager"
-                  value={accountManagers && (state.accountManager?.id || '')}
+                  value={state.accountManagerId}
                   onChange={(e) =>
                     setState({
                       ...state,
-                      accountManager: accountManagers?.find(
-                        (x) => x.id === e.target.value
-                      )!
+                      accountManagerId: e.target.value
                     })
                   }
                 >

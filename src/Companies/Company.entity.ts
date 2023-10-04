@@ -37,8 +37,8 @@ export class Company {
   accountManager?: AccountManager
   @Fields.date({ allowApiUpdate: false })
   createdAt = new Date()
-  @Relations.toMany(() => Contact, 'company')
+  @Relations.toMany(() => Contact)
   contacts?: Contact[]
-  @Relations.toMany(() => Deal, 'company')
+  @Relations.toMany(() => Deal)
   deals?: Deal[]
 }

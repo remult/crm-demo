@@ -5,9 +5,7 @@ import sslRedirect from 'heroku-ssl-redirect'
 import swaggerUi from 'swagger-ui-express'
 import { api } from './api'
 import { auth } from './auth'
-import { buildSchema } from 'graphql'
-import { graphqlHTTP } from 'express-graphql'
-import { remultGraphql } from 'remult/graphql'
+import { Remult } from 'remult'
 
 const app = express()
 app.use(sslRedirect())

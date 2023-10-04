@@ -51,7 +51,7 @@ export const DealsKanban = () => {
       targetList: dealsForStage[stage]
     })
     setDeals(dealsForStage)
-    await Deal.DealDropped(draggableId, stage, onDealId)
+    await Deal.DealDroppedOnKanban(draggableId, stage, onDealId)
     await loadDeals()
   }
   if (!dealsForStage) return <>loading...</>

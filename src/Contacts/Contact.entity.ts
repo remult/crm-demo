@@ -57,9 +57,14 @@ export class Contact {
   avatar? = ''
   @Fields.boolean()
   hasNewsletter: boolean = false
-  @Relations.toMany(() => ContactTag, 'contactId')
+  @Relations.toMany(() => ContactTag)
   tags?: ContactTag[]
-  @Field(() => AccountManager)
+  @Fields.string({ dbName: 'accountManager' })
+  accountManagerId = ''
+  @Relations.toOne<Contact, AccountManager>(
+    () => AccountManager,
+    'accountManagerId'
+  )
   accountManager?: AccountManager
   @Field(() => Status)
   status = Status.cold
@@ -78,7 +83,7 @@ export class Contact {
   })
   nbNotes = 0 //[ ] reconsider - maybe make server expression managed with include etc...
 
-  @Relations.toMany(() => ContactNote, 'contactId')
+  @Relations.toMany(() => ContactNote)
   notes?: ContactNote[]
 
   static filterTag = Filter.createCustom<Contact, string>(async (tag) => {

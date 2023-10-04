@@ -38,11 +38,11 @@ export class Deal {
   accountManager?: AccountManager
   @Fields.integer()
   index = 0
-  @Relations.toMany(() => DealContact, 'deal')
+  @Relations.toMany(() => DealContact)
   contacts?: DealContact[]
 
   @BackendMethod({ allowed: Allow.authenticated })
-  static async DealDropped(
+  static async DealDroppedOnKanban(
     dealId: string,
     stage: string,
     onDealId: string | undefined
@@ -103,15 +103,28 @@ export class Deal {
   @BackendMethod({ allowed: Allow.authenticated })
   async saveWithContacts?(contacts: string[]) {
     const isNew = !this.id
+    console.log('#### 0')
     const deal = await repo(Deal).save(this)
+    console.log('#### 1')
     const dealContactRepo = repo(Deal).relations(deal).contacts
-    const existingContacts = isNew ? [] : await dealContactRepo.find()
+    const existingContacts = isNew
+      ? []
+      : await dealContactRepo.find({
+          include: {
+            contact: false
+          }
+        })
     const contactsToDelete = existingContacts.filter(
       (c) => !contacts.includes(c.contactId)
     )
     const contactsToAdd = contacts.filter(
       (c) => !existingContacts.find((e) => e.contactId == c)
     )
+    console.log('#### 2', {
+      existingContacts,
+      contactsToDelete,
+      contactsToAdd
+    })
     await Promise.all(contactsToDelete.map((dc) => dealContactRepo.delete(dc)))
     await dealContactRepo.insert(
       contactsToAdd.map((contactId) => ({ contactId }))

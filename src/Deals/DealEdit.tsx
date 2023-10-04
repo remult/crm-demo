@@ -59,7 +59,7 @@ export const DealEdit: React.FC<IProps> = ({ deal, onSaved, onClose }) => {
           )
           setSelectedContacts(contacts)
         })
-  }, [companyContacts.length, deal])
+  }, [deal])
   const [companySearch, setCompanySearch] = useState('')
   useEffect(() => {
     repo(Company)
