@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Column, Filters, SortingRule, TableState } from 'react-table'
-import { ContainsStringValueFilter, OmitEB, Repository } from 'remult'
+import { ContainsStringValueFilter, Repository } from 'remult'
 
 export function useRemultReactTable<entityType extends object>(
   repo: Repository<entityType>
@@ -99,5 +99,5 @@ export function useRemultReactTable<entityType extends object>(
 }
 
 export declare type ReactDataFieldsAsColumns<entityType extends object> = {
-  [Properties in keyof Partial<OmitEB<entityType>>]?: Column<entityType>
+  [Properties in keyof Partial<entityType>]?: Column<entityType>
 }
