@@ -3,9 +3,13 @@ import compression from 'compression'
 import session from 'cookie-session'
 import sslRedirect from 'heroku-ssl-redirect'
 import swaggerUi from 'swagger-ui-express'
-import { api } from './api'
+import { api, entities } from './api'
 import { auth } from './auth'
-import { Remult } from 'remult'
+import { Remult, remult } from 'remult'
+import remultAdmin from 'remult-admin'
+import { remultGraphql } from 'remult/graphql'
+import { createSchema, createYoga } from 'graphql-yoga'
+import fs from 'fs'
 
 const app = express()
 app.use(sslRedirect())
@@ -28,16 +32,27 @@ app.use(
   swaggerUi.setup(api.openApiDoc({ title: 'remult-react-todo' }))
 )
 
-// const { schema, rootValue } = remultGraphql(api);
-// app.use('/api/graphql', (req, res, next) => {
-//   //Set a dummy user so that graphql will work when signed out - only for demo purposes
-//   req.session!['user'] = { id: "graphql", name: "graphql" };
-//   next();
-// }, graphqlHTTP({
-//   schema: buildSchema(schema),
-//   rootValue,
-//   graphiql: true,
-// }));
+const { typeDefs, resolvers } = remultGraphql({
+  entities,
+  removeComments: true
+})
+fs.writeFileSync('./tmp/x.gql', typeDefs)
+const yoga = createYoga({
+  graphqlEndpoint: '/api/graphql',
+  schema: createSchema({
+    typeDefs,
+    resolvers
+  })
+})
+app.use(yoga.graphqlEndpoint, api.withRemult, (req, res) => {
+  remult.user = { id: 'admin', avatar: '' } //this is a hack to make sure the admin user is logged in
+  yoga(req, res)
+})
+
+app.get('/api/admin/*', api.withRemult, (_, res) => {
+  remult.user = { id: 'admin', avatar: '' } //this is a hack to make sure the admin user is logged in
+  res.send(remultAdmin({ entities, baseUrl: '/api/admin' }))
+})
 
 app.use(express.static('dist'))
 app.use('/*', async (req, res) => {

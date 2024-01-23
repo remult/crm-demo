@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node dist/server/server/",
     "build": "tsc && vite build && tsc -p tsconfig.server.json",
-    "dev": "concurrently \"ts-node-dev -P tsconfig.server.json src/server/\" \"vite\" -k -n \"API,WEB\" -c \"bgBlue.bold,bgGreen.bold\""
+    "dev": "concurrently \"npm run dev-node\" \"vite\" -k -n \"API,WEB\" -c \"bgBlue.bold,bgGreen.bold\"",
+    "dev-node": "ts-node-dev -P tsconfig.server.json src/server/"
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",
@@ -32,6 +33,7 @@
     "faker": "^5.5.3",
     "glob": "^7.2.0",
     "graphql": "15.3",
+    "graphql-yoga": "^5.1.1",
     "helmet": "^5.0.2",
     "heroku-ssl-redirect": "^0.1.1",
     "pg": "^8.7.3",
@@ -42,7 +44,8 @@
     "react-table": "^7.7.0",
     "react-window": "^1.8.6",
     "react-window-infinite-loader": "^1.0.7",
-    "remult": "^0.23.0",
+    "remult": "^0.25.5-exp.6",
+    "remult-admin": "^0.0.11",
     "swagger-ui-express": "^4.3.0",
     "typescript": "^4.5.4",
     "web-vitals": "^2.1.3"

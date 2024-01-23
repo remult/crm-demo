@@ -11,6 +11,16 @@ import { ContactNote } from '../Contacts/ContactNote.entity'
 import { Tag } from '../Contacts/Tag.entity'
 
 config()
+export const entities = [
+  AccountManager,
+  Company,
+  Contact,
+  ContactNote,
+  Tag,
+  ContactTag,
+  DealContact,
+  Deal
+]
 
 export const api = remultExpress({
   getUser: (req) => req.session!['user'],
@@ -20,14 +30,5 @@ export const api = remultExpress({
     return undefined
   },
   initApi: seed,
-  entities: [
-    AccountManager,
-    Company,
-    Contact,
-    ContactNote,
-    Tag,
-    ContactTag,
-    DealContact,
-    Deal
-  ]
+  entities
 })
