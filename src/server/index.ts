@@ -36,7 +36,7 @@ const { typeDefs, resolvers } = remultGraphql({
   entities,
   removeComments: true
 })
-fs.writeFileSync('./tmp/x.gql', typeDefs)
+
 const yoga = createYoga({
   graphqlEndpoint: '/api/graphql',
   schema: createSchema({
