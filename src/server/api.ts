@@ -12,13 +12,13 @@ import { Tag } from '../Contacts/Tag.entity'
 
 config()
 export const entities = [
-  AccountManager,
   Company,
   Contact,
   ContactNote,
   Tag,
   ContactTag,
   DealContact,
+  AccountManager,
   Deal
 ]
 
@@ -26,7 +26,10 @@ export const api = remultExpress({
   getUser: (req) => req.session!['user'],
   dataProvider: async () => {
     if (process.env.NODE_ENV === 'production')
-      return createPostgresConnection({ configuration: 'heroku' })
+      return createPostgresConnection({
+        configuration: 'heroku',
+        caseInsensitiveIdentifiers: true
+      })
     return undefined
   },
   initApi: seed,
