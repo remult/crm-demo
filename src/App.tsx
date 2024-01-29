@@ -176,8 +176,6 @@ function App({ signOut }: { signOut: VoidFunction }) {
                     Source
                   </Button>
                 </MenuItem>
-
-                {/* Add more menu items here */}
               </Menu>
 
               <Box sx={{ flexGrow: 0 }}>

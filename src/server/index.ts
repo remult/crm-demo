@@ -5,11 +5,9 @@ import sslRedirect from 'heroku-ssl-redirect'
 import swaggerUi from 'swagger-ui-express'
 import { api, entities } from './api'
 import { auth } from './auth'
-import { Remult, remult } from 'remult'
-import remultAdmin from 'remult-admin'
+import { remult } from 'remult'
 import { remultGraphql } from 'remult/graphql'
 import { createSchema, createYoga } from 'graphql-yoga'
-import fs from 'fs'
 
 const app = express()
 app.use(sslRedirect())
@@ -47,11 +45,6 @@ const yoga = createYoga({
 app.use(yoga.graphqlEndpoint, api.withRemult, (req, res) => {
   remult.user = { id: 'admin', avatar: '' } //this is a hack to make sure the admin user is logged in
   yoga(req, res)
-})
-
-app.get('/api/admin/*', api.withRemult, (_, res) => {
-  remult.user = { id: 'admin', avatar: '' } //this is a hack to make sure the admin user is logged in
-  res.send(remultAdmin({ entities, baseUrl: '/api/admin' }))
 })
 
 app.use(express.static('dist'))
