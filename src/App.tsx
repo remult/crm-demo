@@ -42,6 +42,7 @@ const theme = createTheme()
 function App({ signOut }: { signOut: VoidFunction }) {
   const isDesktop = useIsDesktop()
   const [openDrawer, setOpenDrawer] = useState(false)
+  const [anchorElDevMenu, setAnchorElDevMenu] = useState<Element | null>(null)
 
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
@@ -112,6 +113,72 @@ function App({ signOut }: { signOut: VoidFunction }) {
                     {route.caption}
                   </Button>
                 ))}
+              <Button
+                color="inherit"
+                onClick={(e) => setAnchorElDevMenu(e.currentTarget)}
+              >
+                dev
+              </Button>
+              <Menu
+                id="dev-menu"
+                anchorEl={anchorElDevMenu}
+                keepMounted
+                open={Boolean(anchorElDevMenu)}
+                onClose={() => setAnchorElDevMenu(null)}
+              >
+                <MenuItem>
+                  <Button
+                    component="a"
+                    href="https://github.com/remult/crm-demo/blob/master/src/Companies/Company.entity.ts"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Entity
+                  </Button>
+                </MenuItem>
+                <MenuItem>
+                  <Button
+                    component="a"
+                    href="/api/admin"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Admin
+                  </Button>
+                </MenuItem>
+                <MenuItem>
+                  <Button
+                    component="a"
+                    href="/api/graphql"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Graphql
+                  </Button>
+                </MenuItem>
+                <MenuItem>
+                  <Button
+                    component="a"
+                    href="/api/docs"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Swagger
+                  </Button>
+                </MenuItem>
+                <MenuItem>
+                  <Button
+                    component="a"
+                    href="https://github.com/remult/crm-demo"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Source
+                  </Button>
+                </MenuItem>
+
+                {/* Add more menu items here */}
+              </Menu>
 
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title={remult.user!.name!}>
