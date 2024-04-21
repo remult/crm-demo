@@ -14005,5 +14005,43 @@
     "lastSeen": "2021-12-28T15:18:25.535Z",
     "createdAt": "2021-04-14T19:39:06.648Z",
     "nbNotes": 0
+  },
+  {
+    "id": "86ddd4af-1e95-4cd6-8dd2-4818da883dbd",
+    "firstName": "Noam",
+    "lastName": "Test",
+    "gender": "male",
+    "title": "",
+    "company": "21ef1df0-2f2a-430e-8cd5-a85eae47ac5e",
+    "phoneNumber1": "",
+    "phoneNumber2": "",
+    "background": "",
+    "acquisition": "inbound",
+    "email": "",
+    "avatar": "",
+    "hasNewsletter": false,
+    "accountManager": "",
+    "status": "cold",
+    "lastSeen": "2024-04-21T10:15:53.178Z",
+    "createdAt": "2024-04-21T10:15:53.178Z"
+  },
+  {
+    "id": "72f7e351-2527-4ff7-b5b0-32e731153fd3",
+    "firstName": "Noam",
+    "lastName": "Honig",
+    "gender": "male",
+    "title": "",
+    "company": "aa005ce4-4c23-420b-b3d1-bbec27ea64e6",
+    "phoneNumber1": "0507330590",
+    "phoneNumber2": "",
+    "background": "",
+    "acquisition": "inbound",
+    "email": "noam.honig@gmail.com",
+    "avatar": "",
+    "hasNewsletter": false,
+    "accountManager": "",
+    "status": "cold",
+    "lastSeen": "2024-04-21T10:16:27.620Z",
+    "createdAt": "2024-04-21T10:16:27.620Z"
   }
 ]

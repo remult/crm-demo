@@ -121,7 +121,7 @@ export const ContactsList: React.FC<{
                     <>
                       {contact.title} at {contact.company?.name}{' '}
                       {`- ${contact.nbNotes} notes `}
-                      {contact.tags!.map((tag) => (
+                      {contact.tags?.map((tag) => (
                         <span
                           key={tag.tag.id}
                           style={{
