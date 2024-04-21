@@ -26,8 +26,10 @@ import {
   Typography
 } from '@mui/material'
 import { ContactShow } from './Contacts/ContactShow'
-import DateAdapter from '@mui/lab/AdapterDateFns'
-import { LocalizationProvider } from '@mui/lab'
+
+import { LocalizationProvider } from '@mui/x-date-pickers'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+
 import { remult } from 'remult'
 import { DealsList } from './Deals/DealList'
 import { DealsKanban } from './Deals/DealsKanban'
@@ -67,7 +69,7 @@ function App({ signOut }: { signOut: VoidFunction }) {
           }}
         />
 
-        <LocalizationProvider dateAdapter={DateAdapter}>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
           <Drawer
             anchor="left"
             open={openDrawer}
