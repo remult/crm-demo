@@ -18,9 +18,9 @@ import { Status } from './Status'
   },
   saving: async (contactNote) => {
     if (isBackend()) {
-      contactNote.accountManager = await remult
+      contactNote.accountManager = (await remult
         .repo(AccountManager)
-        .findId(remult.user!.id)
+        .findId(remult.user!.id))!
     }
   },
   saved: async (_, { relations }) =>

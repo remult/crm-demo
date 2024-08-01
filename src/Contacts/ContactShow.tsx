@@ -46,11 +46,11 @@ export const ContactShow: React.FC<{}> = () => {
 
   useEffect(() => {
     ;(async () => {
-      const contact = await repo(Contact).findId(params.id!, {
+      const contact = (await repo(Contact).findId(params.id!, {
         include: {
           notes: true
         }
-      })
+      }))!
       setContact(contact)
       if (contact) {
         setNotes(contact.notes!)

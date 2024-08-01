@@ -48,7 +48,7 @@ export class Deal {
     onDealId: string | undefined
   ) {
     const dealRepo = remult!.repo(Deal)
-    const deal = await dealRepo.findId(dealId)
+    const deal = (await dealRepo.findId(dealId))!
     const origList = await dealRepo.find({
       where: { stage: deal.stage },
       orderBy: { index: 'asc' }

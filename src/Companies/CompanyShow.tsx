@@ -37,7 +37,7 @@ export const CompanyShow: React.FC<{}> = () => {
 
   useEffect(() => {
     ;(async () => {
-      const company = await remult.repo(Company).findId(params.id!, {
+      const company = (await remult.repo(Company).findId(params.id!, {
         include: {
           accountManager: true,
           contacts: {
@@ -47,7 +47,7 @@ export const CompanyShow: React.FC<{}> = () => {
           },
           deals: true
         }
-      })
+      }))!
       setCompany(company)
       setLoading(false)
       if (company) {

@@ -70,7 +70,7 @@ export const PlayForm = () => {
     )
   })
   useEffect(() => {
-    contactRepo.findFirst().then(f.setState)
+    contactRepo.findFirst().then((c) => f.setState(c!))
     remult.repo(Company).find().then(setCompanies)
     remult.repo(AccountManager).find().then(setAccountManagers)
   }, [f.setState])

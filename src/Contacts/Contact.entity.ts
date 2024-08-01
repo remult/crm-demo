@@ -77,7 +77,7 @@ export class Contact {
   })
   createdAt = new Date()
 
-  @Fields.integer({
+  @Fields.integer<Contact>({
     serverExpression: async (contact) =>
       remult.repo(Contact).relations(contact).notes.count()
   })
@@ -115,7 +115,7 @@ export class Contact {
         }
       )
 
-    contact.lastSeen = last?.createdAt
+    contact.lastSeen = last?.createdAt!
     await remult.repo(Contact).save(contact)
   }
 }
