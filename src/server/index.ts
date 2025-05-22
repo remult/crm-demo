@@ -8,6 +8,7 @@ import { auth } from './auth'
 import { remult } from 'remult'
 import { remultGraphql } from 'remult/graphql'
 import { createSchema, createYoga } from 'graphql-yoga'
+import { mcpTransport } from './mcp/transport'
 
 const app = express()
 app.use(sslRedirect())
@@ -23,6 +24,8 @@ app.use(auth)
 app.get('/api/test', (req, res) => res.send('ok'))
 //@ts-ignore
 app.use(api)
+
+app.use('/api/mcp', mcpTransport)
 
 app.use(
   '/api/docs',

@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "remult-app-mcp": {
+      "url": "http://localhost:3002/api/mcp"
+    }
+  }
+}
