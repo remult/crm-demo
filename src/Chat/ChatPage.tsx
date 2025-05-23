@@ -18,8 +18,59 @@ import { remult } from 'remult'
 import RefreshIcon from '@mui/icons-material/Refresh'
 import SmartToyIcon from '@mui/icons-material/SmartToy'
 import PersonIcon from '@mui/icons-material/Person'
+import MicIcon from '@mui/icons-material/Mic'
+import MicOffIcon from '@mui/icons-material/MicOff'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+
+// Add complete type definitions for Web Speech API
+interface SpeechRecognitionEvent extends Event {
+  results: SpeechRecognitionResultList
+  resultIndex: number
+  interpretation: any
+}
+
+interface SpeechRecognitionErrorEvent extends Event {
+  error: string
+  message: string
+}
+
+interface SpeechRecognitionResultList {
+  length: number
+  item(index: number): SpeechRecognitionResult
+  [index: number]: SpeechRecognitionResult
+}
+
+interface SpeechRecognitionResult {
+  isFinal: boolean
+  length: number
+  item(index: number): SpeechRecognitionAlternative
+  [index: number]: SpeechRecognitionAlternative
+}
+
+interface SpeechRecognitionAlternative {
+  transcript: string
+  confidence: number
+}
+
+interface SpeechRecognition extends EventTarget {
+  continuous: boolean
+  interimResults: boolean
+  lang: string
+  start(): void
+  stop(): void
+  abort(): void
+  onresult: (event: SpeechRecognitionEvent) => void
+  onerror: (event: SpeechRecognitionErrorEvent) => void
+  onend: () => void
+}
+
+declare global {
+  interface Window {
+    SpeechRecognition: new () => SpeechRecognition
+    webkitSpeechRecognition: new () => SpeechRecognition
+  }
+}
 
 const thinkingMessages = [
   'Processing your request... 🤔',
@@ -35,13 +86,16 @@ const thinkingMessages = [
 ]
 
 export const ChatPage: React.FC = () => {
-  const [message, setMessage] = useState('Give me the list of managers')
+  // const [message, setMessage] = useState('Give me the list of managers')
+  const [message, setMessage] = useState('')
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [loading, setLoading] = useState(false)
   const [sessionId, setSessionId] = useState<string>('')
   const [thinkingMessage, setThinkingMessage] = useState<string>('')
+  const [isListening, setIsListening] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const thinkingIntervalRef = useRef<NodeJS.Timeout>()
+  const recognitionRef = useRef<SpeechRecognition | null>(null)
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -54,6 +108,39 @@ export const ChatPage: React.FC = () => {
   useEffect(() => {
     scrollToBottom()
   }, [messages, thinkingMessage])
+
+  useEffect(() => {
+    // Initialize speech recognition
+    if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+      const SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition
+      recognitionRef.current = new SpeechRecognition()
+      recognitionRef.current.continuous = false
+      recognitionRef.current.interimResults = false
+      recognitionRef.current.lang = 'en-US'
+
+      recognitionRef.current.onresult = (event: SpeechRecognitionEvent) => {
+        const transcript = event.results[0][0].transcript
+        setMessage(transcript)
+        handleSubmit()
+      }
+
+      recognitionRef.current.onend = () => {
+        setIsListening(false)
+      }
+
+      recognitionRef.current.onerror = (event: SpeechRecognitionErrorEvent) => {
+        console.error('Speech recognition error:', event.error)
+        setIsListening(false)
+      }
+    }
+
+    return () => {
+      if (recognitionRef.current) {
+        recognitionRef.current.stop()
+      }
+    }
+  }, [])
 
   const getRandomThinkingMessage = () => {
     return thinkingMessages[Math.floor(Math.random() * thinkingMessages.length)]
@@ -126,6 +213,20 @@ export const ChatPage: React.FC = () => {
     if (event.ctrlKey && event.key === 'Enter') {
       event.preventDefault()
       handleSubmit()
+    }
+  }
+
+  const toggleListening = () => {
+    if (!recognitionRef.current) {
+      alert('Speech recognition is not supported in your browser.')
+      return
+    }
+
+    if (isListening) {
+      recognitionRef.current.stop()
+    } else {
+      recognitionRef.current.start()
+      setIsListening(true)
     }
   }
 
@@ -292,17 +393,34 @@ export const ChatPage: React.FC = () => {
 
         <Divider sx={{ my: 2 }} />
 
-        <TextField
-          fullWidth
-          multiline
-          rows={4}
-          variant="outlined"
-          placeholder="Type your message here... (Ctrl + Enter to send)"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          onKeyDown={handleKeyDown}
-          sx={{ mb: 2 }}
-        />
+        <Box sx={{ position: 'relative' }}>
+          <TextField
+            fullWidth
+            multiline
+            rows={4}
+            variant="outlined"
+            placeholder="Type your message here... (Ctrl + Enter to send)"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            onKeyDown={handleKeyDown}
+            sx={{ mb: 2 }}
+          />
+          <IconButton
+            onClick={toggleListening}
+            sx={{
+              position: 'absolute',
+              right: 8,
+              bottom: 16,
+              backgroundColor: isListening ? 'error.main' : 'primary.main',
+              color: 'white',
+              '&:hover': {
+                backgroundColor: isListening ? 'error.dark' : 'primary.dark'
+              }
+            }}
+          >
+            {isListening ? <MicOffIcon /> : <MicIcon />}
+          </IconButton>
+        </Box>
         <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
           <Button
             variant="contained"

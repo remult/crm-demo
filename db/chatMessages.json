@@ -1,0 +1,10 @@
+[
+  {
+    "id": "ffc03bf4-11ae-4c1c-b65e-921d51de9e13",
+    "sessionId": "b0098145-150d-400b-9183-2fe00aa819eb",
+    "message": "for my friend Noam I would like to get the list of manager please",
+    "response": "# User Data\n\n| Avatar | First Name | Last Name | Email | ID |\n|--------|------------|-----------|-------|----|\n| ![Avatar](https://i.pravatar.cc/40?img=14) | Adrain | Predovic | Adrain_Predovic@hotmail.com | d60f6fd8-75c3-43ab-af42-83371413a827 |\n| ![Avatar](https://i.pravatar.cc/40?img=21) | Brown | Walter | Brown_Walter@yahoo.com | 27d24908-f417-4b0c-b98a-8946d661f0ce |\n| ![Avatar](https://i.pravatar.cc/40?img=33) | Dudley | Olson | Dudley70@gmail.com | 59dd3275-47d1-4394-a5e9-b8dea26cce2c |\n| ![Avatar](https://i.pravatar.cc/40?img=32) | Gaylord | Gerhold | Gaylord_Gerhold@gmail.com | 0c078496-ab7d-48ed-8bef-29edc084af2b |\n| ![Avatar](https://i.pravatar.cc/40?img=45) | Henderson | Rodriguez | Henderson_Rodriguez@gmail.com | 3fae6a74-6bc0-427f-a905-efc44f746b4f |\n| ![Avatar](https://i.pravatar.cc/40?img=61) | Kathleen | Jacobs | Kathleen51@gmail.com | 55f98c99-5fcd-4584-91ae-9ceb4e448f26 |\n| ![Avatar](https://i.pravatar.cc/40?img=63) | Lauren | Mills | Lauren.Mills24@gmail.com | a6e9da4b-2ce9-46ac-bb0f-680c1ddc8a5b |\n| ![Avatar](https://i.pravatar.cc/40?img=3) | Meaghan | McClure | Meaghan.McClure32@gmail.com | 226716e4-7933-44b1-bba3-1fa12392920a |\n| ![Avatar](https://i.pravatar.cc/40?img=34) | Morton | Schamberger | Morton_Schamberger@gmail.com | 7472fe13-9966-4ce3-b1a6-fba718f2e37e |\n| ![Avatar](https://i.pravatar.cc/40?img=68) | Raphaelle | Medhurst | Raphaelle10@gmail.com | db2751a2-5a29-4820-84b6-8d4a378bf463 |",
+    "accountManager": "db2751a2-5a29-4820-84b6-8d4a378bf463",
+    "createdAt": "2025-05-23T17:05:18.013Z"
+  }
+]
