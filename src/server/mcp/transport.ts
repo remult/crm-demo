@@ -12,9 +12,11 @@ mcpTransportRouter.post(
 
 		try {
 			res.on('close', () => {
-				// console.log("Request closed");
+				console.log("MCP Request closed")
 			})
 			console.log(`MCP method:`, req.body?.method)
+			console.log('MCP request body:', JSON.stringify(req.body, null, 2))
+			console.log('MCP request headers:', JSON.stringify(req.headers, null, 2))
 
 			if (req.body?.method === 'initialize') {
 				sendSSE(req, res, {

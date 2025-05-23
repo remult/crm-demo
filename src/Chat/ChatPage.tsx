@@ -157,7 +157,9 @@ export const ChatPage: React.FC = () => {
             mb: 2,
             p: 2,
             backgroundColor: 'background.default',
-            borderRadius: 1
+            borderRadius: 1,
+            display: 'flex',
+            flexDirection: 'column'
           }}
         >
           {messages.length === 0 ? (
@@ -165,7 +167,7 @@ export const ChatPage: React.FC = () => {
               Start a conversation by typing a message below
             </Typography>
           ) : (
-            <List>
+            <List sx={{ width: '100%' }}>
               {messages.map((msg) => (
                 <React.Fragment key={msg.id}>
                   {/* User Message */}
@@ -208,13 +210,14 @@ export const ChatPage: React.FC = () => {
                     </Avatar>
                     <Box
                       sx={{
-                        maxWidth: '70%',
+                        maxWidth: '90%',
                         backgroundColor: 'grey.100',
                         borderRadius: 2,
                         p: 1.5,
                         px: 2,
                         display: 'flex',
-                        alignItems: 'center',
+                        // alignItems: 'center',
+                        flexDirection: 'column',
                         gap: 1,
                         '& pre': {
                           backgroundColor: 'grey.200',
@@ -233,12 +236,14 @@ export const ChatPage: React.FC = () => {
                     >
                       {msg.id === messages[messages.length - 1].id &&
                       thinkingMessage ? (
-                        <>
+                        <Box
+                          sx={{ display: 'flex', alignItems: 'center', gap: 1 }}
+                        >
                           <CircularProgress size={16} />
                           <Typography variant="body1">
                             {thinkingMessage}
                           </Typography>
-                        </>
+                        </Box>
                       ) : (
                         <ReactMarkdown
                           remarkPlugins={[remarkGfm]}
