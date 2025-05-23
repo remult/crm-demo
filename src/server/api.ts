@@ -9,17 +9,19 @@ import { Contact } from '../Contacts/Contact.entity'
 import { ContactTag } from '../Contacts/ContactTag.entity'
 import { ContactNote } from '../Contacts/ContactNote.entity'
 import { Tag } from '../Contacts/Tag.entity'
+import { ChatMessage } from '../Chat/ChatMessage.entity'
 
 config()
 export const entities = [
+  AccountManager,
   Company,
   Contact,
   ContactNote,
-  Tag,
   ContactTag,
+  Deal,
   DealContact,
-  AccountManager,
-  Deal
+  Tag,
+  ChatMessage
 ]
 
 export const api = remultExpress({

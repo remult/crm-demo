@@ -4,6 +4,7 @@ import { AccountManagersList } from './AccountManagers/AccountManagersList'
 import { CompaniesList } from './Companies/CompaniesList'
 import { ContactsPage } from './Contacts/ContactsPage'
 import { CompanyShow } from './Companies/CompanyShow'
+import { ChatPage } from './Chat/ChatPage'
 import {
   AppBar,
   Avatar,
@@ -55,7 +56,8 @@ function App({ signOut }: { signOut: VoidFunction }) {
       { path: '/kanban', caption: 'Kanban' },
       { path: `/companies`, caption: 'Companies' },
       { path: `/accountManagers`, caption: 'Account Managers' },
-      { path: `/deals`, caption: 'Deals' }
+      { path: `/deals`, caption: 'Deals' },
+      { path: `/chat`, caption: 'Chat' }
     ],
     []
   )
@@ -224,6 +226,7 @@ function App({ signOut }: { signOut: VoidFunction }) {
               <Route path="/companies" element={<CompaniesList />} />
               <Route path="/companies/:id" element={<CompanyShow />} />
               <Route path="/deals" element={<DealsList />} />
+              <Route path="/chat" element={<ChatPage />} />
               <Route
                 path="/accountManagers"
                 element={<AccountManagersList />}
