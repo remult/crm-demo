@@ -18,6 +18,8 @@ import { remult } from 'remult'
 import RefreshIcon from '@mui/icons-material/Refresh'
 import SmartToyIcon from '@mui/icons-material/SmartToy'
 import PersonIcon from '@mui/icons-material/Person'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 const thinkingMessages = [
   'Processing your request... 🤔',
@@ -150,7 +152,7 @@ export const ChatPage: React.FC = () => {
 
         <Box
           sx={{
-            height: '60vh',
+            height: '50vh',
             overflow: 'auto',
             mb: 2,
             p: 2,
@@ -213,7 +215,20 @@ export const ChatPage: React.FC = () => {
                         px: 2,
                         display: 'flex',
                         alignItems: 'center',
-                        gap: 1
+                        gap: 1,
+                        '& pre': {
+                          backgroundColor: 'grey.200',
+                          padding: 2,
+                          borderRadius: 1,
+                          overflowX: 'auto',
+                          margin: '8px 0'
+                        },
+                        '& code': {
+                          backgroundColor: 'grey.200',
+                          padding: '2px 4px',
+                          borderRadius: 1,
+                          fontFamily: 'monospace'
+                        }
                       }}
                     >
                       {msg.id === messages[messages.length - 1].id &&
@@ -225,7 +240,41 @@ export const ChatPage: React.FC = () => {
                           </Typography>
                         </>
                       ) : (
-                        <Typography variant="body1">{msg.response}</Typography>
+                        <ReactMarkdown
+                          remarkPlugins={[remarkGfm]}
+                          components={{
+                            p: ({ children }) => (
+                              <Typography variant="body1" component="div">
+                                {children}
+                              </Typography>
+                            ),
+                            code: ({
+                              node,
+                              inline,
+                              className,
+                              children
+                            }: any) => {
+                              const match = /language-(\w+)/.exec(
+                                className || ''
+                              )
+                              return !inline ? (
+                                <pre>
+                                  <code
+                                    className={
+                                      match ? `language-${match[1]}` : ''
+                                    }
+                                  >
+                                    {String(children).replace(/\n$/, '')}
+                                  </code>
+                                </pre>
+                              ) : (
+                                <code className={className}>{children}</code>
+                              )
+                            }
+                          }}
+                        >
+                          {msg.response}
+                        </ReactMarkdown>
                       )}
                     </Box>
                   </ListItem>

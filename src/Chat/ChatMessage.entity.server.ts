@@ -1,61 +1,75 @@
 import OpenAI from 'openai'
-import fetch from 'node-fetch'
+import { getTools, callTools } from '../server/mcp/mcp'
 import { ChatMessage } from './ChatMessage.entity'
 
 // Define the server-side implementation
 export async function llmsChatServer(message: string, sessionId: string, user: any, entityMetadata: any): Promise<string> {
 	try {
-		// First, check if we should use a tool by calling the MCP server
-		const mcpResponse = await fetch('http://localhost:3002/api/mcp', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				message,
-				sessionId,
-				context: {
-					user,
-					entityMetadata
-				}
-			})
-		})
+		// Get available tools
+		const tools = await getTools()
 
-		if (!mcpResponse.ok) {
-			throw new Error('Failed to communicate with MCP server')
-		}
-
-		const mcpResult = await mcpResponse.json() as {
-			shouldUseTool: boolean
-			toolResponse?: string
-		}
-
-		// If MCP suggests using a tool, use it
-		if (mcpResult.shouldUseTool && mcpResult.toolResponse) {
-			return mcpResult.toolResponse
-		}
-
-		// Otherwise, use OpenAI for a general response
+		// Use OpenAI to determine which tool to use
 		const openai = new OpenAI({
 			apiKey: process.env.OPENAI_API_KEY,
 		})
 
-		const completion = await openai.chat.completions.create({
-			model: "gpt-3.5-turbo",
-			messages: [
-				{
-					role: "system",
-					content: "You are a helpful assistant for a CRM system. Provide responses in markdown format to support rich text formatting like tables, code blocks, and lists."
-				},
-				{
-					role: "user",
-					content: message
-				}
-			],
-			temperature: 0.7,
-		})
+		// List of models to try in order
+		const models = [
+			"gpt-3.5-turbo",
+			// "gpt-3.5-turbo-16k",
+			// "gpt-4",
+			// "gpt-4-turbo-preview"
+		]
 
-		return completion.choices[0].message?.content || 'Sorry, I could not generate a response.'
+		let lastError: any = null
+		for (const model of models) {
+			try {
+				const completion = await openai.chat.completions.create({
+					model: model,
+					// tools
+					messages: [
+						{
+							role: "system",
+							content: `You are a helpful assistant for a CRM system. You have access to the following tools: ${JSON.stringify(tools)}. 
+							If the user's request can be handled by one of these tools, respond with the tool name and parameters in JSON format.
+							Otherwise, provide a general response in markdown format.`
+						},
+						{
+							role: "user",
+							content: message
+						}
+					],
+					temperature: 0.7,
+				})
+
+				const response = completion.choices[0].message?.content || 'Sorry, I could not generate a response.'
+
+				// Try to parse the response as a tool call
+				try {
+					const toolCall = JSON.parse(response)
+					if (toolCall.name && toolCall.params) {
+						const result = await callTools(toolCall.name, toolCall.params)
+						return JSON.stringify(result, null, 2)
+					}
+				} catch (e) {
+					// If parsing fails, return the response as is
+					return response
+				}
+
+				return response
+			} catch (error: any) {
+				lastError = error
+				// If it's not a quota error, throw immediately
+				if (!error.message?.includes('quota') && !error.message?.includes('429')) {
+					throw error
+				}
+				// Otherwise, continue to the next model
+				console.log(`Model ${model} failed, trying next model...`)
+			}
+		}
+
+		// If we've tried all models and they all failed
+		throw lastError || new Error('All models failed')
 	} catch (error) {
 		console.error('Error in llmsChat:', error)
 		return 'Sorry, there was an error processing your request. Please try again.'

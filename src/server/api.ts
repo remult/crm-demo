@@ -41,5 +41,6 @@ export const api = remultExpress({
     ChatMessage.llmsChatImplementation = llmsChatServer
   },
   entities,
-  admin: true
+  admin: true,
+  // mcp: true // ['read'] // 'deals' // ...
 })
