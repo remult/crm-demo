@@ -25,10 +25,15 @@ export class ChatMessage {
 	@Fields.date()
 	createdAt = new Date()
 
+	// This will be initialized from the server
+	static llmsChatImplementation: (message: string, sessionId: string, user: any, entityMetadata: any) => Promise<string>
+
 	@BackendMethod({ allowed: Allow.authenticated })
 	static async llmsChat(message: string, sessionId: string) {
-		// TODO: Implement actual LLM integration
-		return `Response to: ${message}`
+		if (!ChatMessage.llmsChatImplementation) {
+			throw new Error('llmsChat implementation not initialized')
+		}
+		return ChatMessage.llmsChatImplementation(message, sessionId, remult.user, remult.repo(ChatMessage).metadata)
 	}
 
 	@BackendMethod({ allowed: Allow.authenticated })

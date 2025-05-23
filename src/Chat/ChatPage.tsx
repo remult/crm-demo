@@ -33,7 +33,7 @@ const thinkingMessages = [
 ]
 
 export const ChatPage: React.FC = () => {
-  const [message, setMessage] = useState('')
+  const [message, setMessage] = useState('Give me the list of managers')
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [loading, setLoading] = useState(false)
   const [sessionId, setSessionId] = useState<string>('')

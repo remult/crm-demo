@@ -10,6 +10,7 @@ import { ContactTag } from '../Contacts/ContactTag.entity'
 import { ContactNote } from '../Contacts/ContactNote.entity'
 import { Tag } from '../Contacts/Tag.entity'
 import { ChatMessage } from '../Chat/ChatMessage.entity'
+import { llmsChatServer } from '../Chat/ChatMessage.entity.server'
 
 config()
 export const entities = [
@@ -34,7 +35,11 @@ export const api = remultExpress({
       })
     return undefined
   },
-  initApi: seed,
+  initApi: () => {
+    seed()
+    // Initialize the llmsChat implementation
+    ChatMessage.llmsChatImplementation = llmsChatServer
+  },
   entities,
   admin: true
 })
