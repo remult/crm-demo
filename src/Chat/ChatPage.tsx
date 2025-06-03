@@ -399,7 +399,8 @@ export const ChatPage: React.FC = () => {
             multiline
             rows={4}
             variant="outlined"
-            placeholder="Type your message here... (Ctrl + Enter to send)"
+            placeholder={`Type your question here... (Ctrl + Enter to send)
+For example: Can you give me the list of managers?`}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             onKeyDown={handleKeyDown}

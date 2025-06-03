@@ -1,6 +1,5 @@
 import OpenAI from 'openai'
 import { getTools, callTools } from '../server/mcp/mcp'
-import { ChatMessage } from './ChatMessage.entity'
 
 // Define the server-side implementation
 export async function llmsChatServer(message: string, sessionId: string, user: any, entityMetadata: any): Promise<string> {
