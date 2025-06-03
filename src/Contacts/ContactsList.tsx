@@ -30,6 +30,7 @@ export const ContactsList: React.FC<{
   itemsPerPage?: number
   addedContacts?: Contact[]
   setAddedContacts?: (contacts: Contact[]) => void
+  children?: React.ReactNode
 }> = ({
   contacts,
   setContacts,
