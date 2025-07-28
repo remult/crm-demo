@@ -16,7 +16,7 @@ import { Contact } from '../Contacts/Contact.entity'
   allowApiCrud: Allow.authenticated
 })
 export class Deal {
-  @Fields.uuid()
+  @Fields.id()
   id?: string
   @Fields.string()
   name = ''

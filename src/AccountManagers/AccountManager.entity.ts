@@ -16,7 +16,7 @@ import {
   }
 })
 export class AccountManager {
-  @Fields.uuid()
+  @Fields.id()
   id?: string
   @Fields.string({ validate: Validators.required })
   firstName = ''

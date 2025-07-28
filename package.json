@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node dist/server/server/",
+    "start": "node dist/server/server/ --trace-deprecation",
     "build": "tsc && vite build && tsc -p tsconfig.server.json",
     "dev": "concurrently \"npm run dev-node\" \"vite\" -k -n \"API,WEB\" -c \"bgBlue.bold,bgGreen.bold\"",
-    "dev-node": "tsx src/server/"
+    "dev-node": "tsx src/server/ --trace-deprecation"
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",
@@ -45,8 +45,7 @@
     "react-table": "^7.7.0",
     "react-window": "^1.8.6",
     "react-window-infinite-loader": "^1.0.7",
-    "remult": "^3.0.2",
-    "remult-admin": "^0.0.11",
+    "remult": "^3.1.0-next.0",
     "swagger-ui-express": "^4.3.0",
     "typescript": "^4.5.4",
     "web-vitals": "^2.1.3"

@@ -9,7 +9,7 @@ import { Deal } from '../Deals/Deal.entity'
   allowApiDelete: false
 })
 export class Company {
-  @Fields.uuid()
+  @Fields.id()
   id?: string
   @Fields.string()
   name = ''
