@@ -4,7 +4,7 @@ import { Allow, Entity, Fields } from 'remult'
   allowApiCrud: Allow.authenticated
 })
 export class Tag {
-  @Fields.uuid()
+  @Fields.id()
   id?: string
   @Fields.string()
   tag = ''
